@@ -1,0 +1,304 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* ------------------------------------
+//  BASE
+// ----------------------------------*/
+a {
+  @include transition();
+  color: $linkColor;
+  text-decoration: none;
+  &:link, &:visited {
+    text-decoration: none;
+  }
+  &:hover, &:active {
+    opacity: 0.8;
+    color: $linkHoverColor;
+  }
+  // ウェブアイコン使用時
+  i {
+    margin: 0 4px;
+  }
+  // transform使用時にchromeでズレが生じるのを防ぐ
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+//画像リンク
+a img {
+  opacity: 1;
+}
+@include res_min( $break ) {
+  a img {
+   @include transition(opacity);
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+*:is(header, footer) a{
+  color: $textBaseColor;
+  &:hover, &:active {
+    color: $textBaseColor;
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  アイコンタイプ
+---------------------------------------------------------------- */
+// 左に > アイコン
+.link_type_arrow_left1 {
+  padding: 0 0 0 18px;
+  position: relative;
+  &::before {
+    content: '';
+    width: 7px;
+    height: 100%;
+    background-image: url(./assets/images/common/ico_arrow_r_white.svg);
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 100% auto;
+    position: absolute;
+    top: 0.4em;
+    left: 0;
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  ボタンタイプ
+---------------------------------------------------------------- */
+.button-wrap {
+  @include flex(wrap, center, stretch);
+  gap: 1em;
+  &.--left{
+    justify-content: flex-start;
+  }
+  &.--right{
+    justify-content: flex-end;
+  }
+}
+@include res_min( $break ) {
+  .button-wrap {
+    gap: 1.5em 2em;
+  }
+}
+
+.button {
+  // 基本
+  border-radius: 3px;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  text-align: center;
+  position: relative;
+  &:link, &:visited {
+    background-color: #fff;
+  }
+  &:hover, &:active {
+    opacity: 0.8;
+    text-decoration: none;
+  }
+}
+@include res_min( $break ) {
+  .button {
+    // 基本
+    border-radius: 4px;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+  }
+}
+
+
+//テキスト+ボタンリンク
+.button-r-link-small{
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  &:link, &:visited{
+    text-decoration: underline;
+    color: $textBaseColor;
+  }
+  &::after{
+    content: '';
+    margin-left: 8px;
+    width: 28px;
+    height: 28px;
+    background-color: $mainColor;
+    -webkit-mask-image: url(./assets/images/common/icon-t-r-button.svg);
+            mask-image: url(./assets/images/common/icon-t-r-button.svg);
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+            mask-position: center;
+    -webkit-mask-size: 100%;
+            mask-size: 100%;
+  }
+}
+
+.button-r-link-large{
+  @extend .button-r-link-small;
+  font-size: 1.6rem;
+  &:link, &:visited{
+    text-decoration: none;
+    color: $textBaseColor;
+  }
+  &::after{
+    margin-left: 20px;
+    width: 82px;
+    height: 82px;
+    -webkit-mask-image: url(./assets/images/common/icon-t-r-button-large.svg);
+            mask-image: url(./assets/images/common/icon-t-r-button-large.svg);
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  ページナビ
+---------------------------------------------------------------- */
+.pager {
+  margin-top: 16px;
+  padding: 0 46px;
+  @include flex(wrap, center, stretch);
+  position: relative;
+
+  .prev,
+  .next,
+  .pager_num {
+    width: 30px;
+    flex: 0 0 30px;
+    height: 30px;
+    border-radius: 100%;
+    font-size: 1.4rem;
+    line-height: 1;
+    @include flex(nowrap, center, center);
+  }
+
+  .pager_num {
+    margin: 16px 8px 0;
+  }
+  a.pager_num {
+    &:hover, &:active {
+      text-decoration: none;
+      background-color: $brown;
+      font-weight: 700;
+      color: #fff;
+    }
+  }
+
+  .current {
+    background-color: $brown;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  // 前後
+  .prev,
+  .next {
+    position: absolute;
+    bottom: 0;
+    &::before {
+      content: "";
+      width: 30px;
+      height: 30px;
+      background-image: url(./assets/images/common/ico_arrow_pager.svg);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 5px;
+      border-radius: 15px;
+      position: absolute;
+      bottom: 0;
+    }
+    &::after {
+      content: "";
+      width: 30px;
+      height: 30px;
+      border: 1px solid $brown;
+      border-radius: 15px;
+      position: absolute;
+      bottom: 0;
+    }
+    &:hover, &:active {
+      text-decoration: none;
+      &::before {
+        background-color: $brown;
+        background-image: url(./assets/images/common/ico_arrow_pager_white.svg);
+      }
+    }
+  }
+  .prev {
+    left: 0;
+    padding-left: 40px;
+    &::before {
+      transform: scale(-1,-1);
+    }
+    &::before,
+    &::after {
+      left: 0;
+    }
+  }
+  .next {
+    right: 0;
+    padding-right: 40px;
+    &::before,
+    &::after {
+      left: auto;
+      right: 0;
+    }
+  }
+
+  ///// 個別記事内
+  &__entry {
+    margin-top: 34px;
+    margin-bottom: 60px;
+    padding: 0;
+    @include flex(nowrap, space-between, stretch);
+    .prev,
+    .next {
+      width: auto;
+      flex: 0 0 auto;
+      position: relative;
+    }
+  }
+
+}
+
+
+/* ----------------------------------------------------------------
+  その他
+---------------------------------------------------------------- */
+// blank
+a[target="_blank"] {
+  position: relative;
+  &::after {
+    content: '';
+    display: inline-block;
+    margin-left: 0;
+    width: 15px;
+    height: 1em;
+    background-image: url(./assets/images/common/icon-blank.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: auto;
+    vertical-align: bottom;
+  }
+}
+
+
+// telリンク
+.link-tel {
+  &:hover, &:focus {
+    outline: none;
+    text-decoration: none;
+  }
+}
+// @include res_min( $break ) {
+//   .link-tel {
+//     pointer-events: none;
+//   }
+// }

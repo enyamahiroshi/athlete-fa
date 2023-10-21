@@ -1,0 +1,95 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* ----------------------------------------------------------------
+  見出し設定
+---------------------------------------------------------------- */
+.title01 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.4;
+  .italic{
+    font-family: $ff-en;
+    font-size: 3rem;
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: -0.025em;
+  }
+  &::before{
+    content: attr(data-sub);
+    display: block;
+    margin-bottom: 16px;
+    font-family: 'Montserrat', 'Noto Sans CJK JP', sans-serif;
+    font-size: 1.5rem;
+    color: $mainColor;
+    letter-spacing: -0.025em;
+    white-space: pre; //data属性に「&#10;」を入れて改行する
+  }
+  &.--data-sub-ja::before{
+    font-family: $ff-go;
+    letter-spacing: 0.05em;
+  }
+}
+@include res_min( $break ) {
+  .title01 {
+    font-size: 2rem;
+    .italic{
+      font-size: 4.2rem;
+    }
+    &::before{
+      margin-bottom: 25px;
+    }
+  }
+}
+
+.title02{
+  font-family: $ff-en;
+  font-size: 4.2rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  &::before{
+    content: attr(data-sub);
+    display: block;
+    margin-bottom: 18px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: $mainColor;
+    letter-spacing: -0.025em;
+    line-height: 1.3;
+    white-space: pre; //data属性に「&#10;」を入れて改行する
+  }
+  &.--data-sub-ja::before{
+    font-family: $ff-go;
+    letter-spacing: 0.05em;
+  }
+}
+@include res_min( $break ) {
+  .title02{
+    font-size: 8rem;
+    &::before{
+      margin-bottom: 24px;
+    }
+  }
+}
+
+.title03{
+  @extend .title02;
+  color: $mainColor;
+  text-align: center;
+}
+
+.title04{
+  @extend .title02;
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+@include res_min( $break ) {
+  .title04{
+    font-size: 3.2rem;
+    &::before{
+      margin-bottom: 18px;
+    }
+  }
+}

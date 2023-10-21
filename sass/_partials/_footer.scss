@@ -1,0 +1,190 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* ----------------------------------------------------------------
+  フッターのレイアウト
+---------------------------------------------------------------- */
+.footer {
+  padding: 28px 15px 30px;
+  background-image: url(./assets/images/common/bg-footer-small.svg);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100%;
+  font-weight: 400;
+}
+.footer__main{
+  display: flex;
+  flex-direction: column-reverse;
+}
+.footer__main__company{
+  margin-top: 50px;
+}
+  .footer__main__company__logo{
+    margin-bottom: 27px;
+    svg{
+      width: 160px;
+      fill: $mainColor;
+    }
+  }
+  .footer__main__company__data{
+    margin-top: 8px;
+    line-height: 1.5;
+    span{
+      margin: 0 10px;
+      font-size: 1.6rem;
+    }
+  }
+.footer__main__navigation{
+}
+  .footer__main__navigation__main{
+
+    .menu{
+      margin-left: 0;
+      margin-right: 0;
+      &:first-of-type{
+        border-top: none;
+      }
+      &:not(:first-of-type){
+        margin-top: 20px;
+      }
+      .menu-item{
+        padding: 0;
+        border-bottom: none;
+        font-size: 1.5rem;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        &:not(:first-of-type){
+          margin-top: 20px;
+        }
+        //サブメニュー開閉
+        &.menu-item-has-children{
+          & > .sub-menu{
+            display: flex;
+          }
+          & > a{
+            cursor: default;
+            &::after{
+              content: none;
+            }
+          }
+        }
+      }
+      //サブメニュー
+      .sub-menu{
+        margin-top: 15px;
+        margin-left: 10px;
+        flex-wrap: wrap;
+        row-gap: 1em;
+        .menu-item{
+          margin-top: 0;
+          margin-right: 32px;
+        }
+      }
+    }
+
+  }
+  .footer__main__navigation__sub{
+    margin-top: 42px;
+    line-height: 1;
+    a[target="_blank"]{
+      display: inline-block;
+      margin-top: 20px;
+      letter-spacing: 0.1em;
+      span{
+        font-family: $ff-en;
+        font-size: 1.2rem;
+        vertical-align: 0.1em;
+      }
+    }
+  }
+.footer__bottom{
+  margin-top: 24px;
+  padding-top: 5px;
+  border-top: 1px solid rgba($textBaseColor, 0.15);
+  a{
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    color: rgba($textBaseColor, 0.7);
+  }
+  .copyright{
+    margin-top: 30px;
+    font-family: $ff-en;
+    font-size: 1.2rem;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+}
+@include res_min( $break ) {
+  .footer {
+    & > *{
+      margin-left: auto;
+      margin-right: auto;
+      max-width: #{$break4 + px};
+    }
+    padding: 130px 50px 100px;
+    background-image: url(./assets/images/common/bg-footer-large.svg);
+    background-position: left bottom;
+    background-size: auto 100%;
+    font-size: 1.5rem;
+  }
+  .footer__main{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .footer__main__company{
+    margin-top: 0;
+  }
+    .footer__main__company__logo{
+      margin-bottom: 34px;
+    }
+  .footer__main__navigation{
+    margin-top: 40px;
+  }
+    .footer__main__navigation__main{
+      margin-right: 75px;
+      display: flex;
+      justify-content: flex-end;
+      -moz-column-gap: 125px;
+           column-gap: 125px;
+
+      .menu{
+        &:not(:first-of-type){
+          margin-top: 0;
+        }
+        .menu-item{
+        }
+        //サブメニュー
+        .sub-menu{
+          margin-top: 20px;
+          flex-direction: column;
+          .menu-item{
+            margin-top: 0;
+            margin-right: 0;
+          }
+        }
+      }
+
+    }
+    .footer__main__navigation__sub{
+      margin-top: 100px;
+      display: flex;
+      justify-content: flex-end;
+      -moz-column-gap: 39px;
+           column-gap: 39px;
+      a[target="_blank"]{
+        margin-top: 0;
+      }
+    }
+  .footer__bottom{
+    margin-top: 27px;
+    padding-top: 22px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    .copyright{
+      margin-top: 0;
+    }
+  }
+}
