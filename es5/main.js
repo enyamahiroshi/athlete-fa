@@ -90,7 +90,7 @@
   const BtnOpen = $('.js-tgl-menu');
   const classname = 'is-open';
   const NaviLink = $('.menu a[href]');
-  const mediaquerynum = '767px';
+  const mediaquerynum = '1023px';
   $(window).on('resize', function () {
     if (window.matchMedia( "(min-width: " + mediaquerynum + ")" ).matches) {
       if (body.hasClass(classname)) {

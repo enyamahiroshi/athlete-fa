@@ -29,7 +29,7 @@ body {
   word-wrap : break-word;
   overflow-wrap : break-word;
 }
-@include res_min( $break ) {
+@include res_min() {
   body {
     font-size: 1.6rem;
     line-height: 2;
@@ -89,7 +89,7 @@ p {
   }
   margin-top: 1.5em;
 }
-@include res_min( $break ) {
+@include res_min() {
   p {
     margin-top: 2em;
   }
@@ -110,7 +110,7 @@ svg {
   vertical-align: bottom;
   line-height: 1;
 }
-@include res_min( $break ) {
+@include res_min() {
   // img,
   // svg {
   //   width: auto;

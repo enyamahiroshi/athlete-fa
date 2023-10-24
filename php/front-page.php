@@ -31,7 +31,6 @@
       </div>
     </section>
 
-
     <section class="sec sec-medium sec-intro-products-info-1">
       <div class="block-layout1">
         <div class="block-item-data">
@@ -39,14 +38,20 @@
             <em class="italic">Create Future Arts</em><br>私たちは未来につながる技術を創造します
           </h2>
           <p class="block-item-text">私たちのものづくりにおいて、Future Arts(未来につながる技術)は現在から未来への架け橋となる技術を意味します。<br>私たちはFuture Artsの創造を通して、お客様のビジネスの可能性を広げるチカラになるとともに豊かな社会に貢献します。</p>
-          <a href="<?php echo esc_url(home_url()); ?>/archives/category/products" class="button-r-link-large">製品情報</a>
+          <a href="<?php echo esc_url(home_url()); ?>/archives/category/products" class="button-r-link-large button-circle-ani">
+            製品情報
+            <span class="svg-area">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
+                <circle cx="50%" cy="50%" r="28" class="circle-ani">
+              </svg>
+            </span>
+          </a>
         </div>
         <figure class="block-item-image">
           <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-intro.jpg" alt="" width="600" height="600">
         </figure>
       </div>
     </section>
-
 
     <?php //products slider ?>
     <section class="sec sec-full sec-intro-products-info-2">
@@ -65,10 +70,16 @@
               <div class="products-item__data">
                 <h2 class="products-item__data__title" data-num="01">
                   ボールマウンタ
-                  <span class="sub-en"><span>Ball</span><span>mounter</span></span>
                 </h2>
                 <p class="products-item__data__text">微小はんだボールをウェハや基板の上に配列させるための装置です。<br>はんだボール配列には当社独自の技術を採用し高スループットの生産性を実現しています。<br>最終製品はデータセンタ(DC)/ハイパフォーマンスコンピュータ(HPC)/5G等最先端のデバイスに展開されています。</p>
-                <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large"><span>詳しく見る</span></a>
+                <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
+                  <span class="pc">詳しく見る</span>
+                  <span class="svg-area">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
+                      <circle cx="50%" cy="50%" r="28" class="circle-ani">
+                    </svg>
+                  </span>
+                </a>
               </div>
             </section>
             <?php //slide item ?>
@@ -79,10 +90,16 @@
               <div class="products-item__data">
                 <h2 class="products-item__data__title" data-num="02">
                   ボンディング
-                  <span class="sub-en">Bonding</span>
                 </h2>
                 <p class="products-item__data__text">フリップチップボンダおよびダイボンダは、幅広いラインナップ(R＆D～量産機)をご用意しており、フォトニクス/LD/イメージセンサを始めとした各種アプリケーションおよび各種実装プロセス向けに、高精度・高スループット装置として提供しています。</p>
-                <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large"><span>詳しく見る</span></a>
+                <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
+                  <span class="pc">詳しく見る</span>
+                  <span class="svg-area">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
+                      <circle cx="50%" cy="50%" r="28" class="circle-ani">
+                    </svg>
+                  </span>
+                </a>
               </div>
             </section>
             <?php //slide item ?>
@@ -93,10 +110,16 @@
               <div class="products-item__data">
                 <h2 class="products-item__data__title" data-num="03">
                   カスタム
-                  <span class="sub-en">Custom</span>
                 </h2>
-                <p class="products-item__data__text">長年に渡り培った豊富な要素技術を組み合わせ、安全性と信頼性を確保し、多岐にわたるお客様のニーズを満たす新しい装置を生み出していきます。</p>
-                <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large"><span>詳しく見る</span></a>
+                <p class="products-item__data__text">長年にわたり培った豊富な要素技術を組み合わせ、安全性と信頼性を確保し、多岐にわたるお客様のニーズを満たす新しい装置を生み出していきます。</p>
+                <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
+                  <span class="pc">詳しく見る</span>
+                  <span class="svg-area">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
+                      <circle cx="50%" cy="50%" r="28" class="circle-ani">
+                    </svg>
+                  </span>
+                </a>
               </div>
             </section>
           </div>
@@ -104,7 +127,6 @@
         <div class="swiper-pagination"></div>
       </section><?php // eof スライダー ?>
     </section>
-
 
     <?php //Join our TEAM ?>
     <section class="sec sec-full sec-join-our-team">
@@ -136,13 +158,19 @@
       </div>
     </section>
 
-
     <?php //新卒採用 ?>
     <section class="sec sec-full sec-new-graduate">
       <div class="contents-wrap">
         <div class="sec-header">
           <h2 class="title04" data-sub="new &#10;graduate">新卒採用</h2>
-          <a href="<?php echo esc_url(home_url()); ?>/recruit/new-graduates" class="button-r-link-large"><span>新卒採用トップ</span></a>
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/new-graduates" class="button-r-link-large button-circle-ani">
+            新卒採用トップ
+            <span class="svg-area">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
+                <circle cx="50%" cy="50%" r="28" class="circle-ani">
+              </svg>
+            </span>
+          </a>
         </div>
         <div class="recruit-link-area">
           <?php //採用項目リンク ?>
@@ -178,21 +206,26 @@
     </section>
     <div id="mouse-stkr"></div><?php //マウスストーカー ?>
 
-
     <?php //キャリア採用 ?>
     <section class="sec sec-medium sec-career">
       <a href="<?php echo esc_url(home_url()); ?>/recruit/career" class="link-to-career">
         <div class="link-to-career__data">
           <h2 class="title04" data-sub="career">キャリア採用</h2>
           <p class="link-to-career__text">アスリートFAではキャリア人材の採用を随時行っています。<br>経験を活かし、新しい挑戦を始めましょう。</p>
-          <div class="button-r-link-large"><span>キャリア採用トップ</span></div>
+          <div class="button-r-link-large button-circle-ani">
+            <span>キャリア採用トップ</span>
+            <span class="svg-area">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
+                <circle cx="50%" cy="50%" r="28" class="circle-ani">
+              </svg>
+            </span>
+          </div>
         </div>
         <figure class="link-to-career__image">
           <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-recruit-career.jpg" alt="" width="600" height="424">
         </figure>
       </a>
     </section>
-
 
     <?php //採用リンクボタン ?>
     <section class="recruit-links">
@@ -205,7 +238,6 @@
         エントリーフォーム
       </a>
     </section>
-
 
     <?php //企業情報 ?>
     <section class="sec sec-wide sec-company">
@@ -228,18 +260,23 @@
       </div>
     </section>
 
-
     <?php //Block: content - news ?>
     <section class="sec sec-wide sec-news">
       <div class="layout-block">
         <div class="layout-block__left">
           <h2 class="title02 --data-sub-ja" data-sub="お知らせ">News</h2>
           <div class="button-wrap --right">
-            <a href="<?php echo esc_url(home_url()); ?>/news" class="button-r-link-large"><span>一覧を見る</span></a>
+            <a href="<?php echo esc_url(home_url()); ?>/news" class="button-r-link-large button-circle-ani">
+              <span>一覧を見る</span>
+              <span class="svg-area">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
+                <circle cx="50%" cy="50%" r="28" class="circle-ani">
+              </svg>
+            </span>
+            </a>
           </div>
         </div>
         <?php the_content(); ?>
       </div>
     </section>
-
 <?php get_footer(); ?>

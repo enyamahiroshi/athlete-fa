@@ -1,165 +1,16 @@
 @use '../_core/valiables' as *;
 @use '../_core/mixins' as *;
 
+
 /* ----------------------------------------------------------------
   共通
 ---------------------------------------------------------------- */
-// 新着記事リスト - お知らせ
-.sec-latest {
-  margin-top: 40px;
-  padding: 40px 0;
-  .sec-latest-works + & {
-    margin-top: 0;
-    padding-top: 0;
-  }
-  background-color: #F1F1F1;
-  .post-list {
-    margin-top: 10px;
-  }
-  .button-wrap {
-    margin-top: 25px;
-  }
-}
-@include res_min( $break ) {
-  .sec-latest {
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 70px;
-    .sec-latest-works + & {
-      margin-top: 0;
-    }
-    padding: 70px 0;
-    .inner {
-      position: relative;
-    }
-    .post-list {
-      margin-top: 18px;
-    }
-    .button-wrap {
-      justify-content: flex-end;
-      width: 100%;
-      padding-left: 5vw;
-      padding-right: 10vw;
-      position: absolute;
-      left: 50%;
-      top: -6px;
-      transform: translateX(-50%);
-    }
-  }
-}
-
-
-// 新着記事リスト - 実績紹介
-.sec-latest-works {
-  @extend .sec-latest;
-  padding: 40px 20px;
-  margin-top: 40px;
-  .post-list {
-    margin-top: 20px;
-  }
-}
-@include res_min( $break ) {
-  .sec-latest-works {
-    margin-top: 100px;
-    .post-list {
-      margin-top: 35px;
-    }
-  }
-}
-
-
-// 新着記事リスト - クルマの知恵袋
-.sec-latest-kurumano-chie-bukuro {
-  margin-top: 40px;
-  .sec-latest + &,
-  .sec-latest-works + & {
-    margin-top: 0;
-  }
-  padding: 30px 20px;
-  background-color: $mainColor;
-  .title-latest-kurumano-chie-bukuro {
-    h2 {
-      padding: 2px 10px;
-      background-color: #fff;
-      border-radius: 2px;
-      font-size: 2.2rem;
-      font-weight: 600;
-    }
-    p {
-      margin-top: 15px;
-      color: #fff;
-    }
-  }
-  .post-list {
-    margin-top: 25px;
-  }
-  .button-wrap {
-    margin-top: 25px;
-  }
-}
-@include res_min( $break ) {
-  .sec-latest-kurumano-chie-bukuro {
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 70px;
-    .sec-latest + &,
-    .sec-latest-works + & {
-      margin-top: 0;
-    }
-    padding: 50px 0 40px;
-    .button-wrap {
-      margin-top: 30px;
-      justify-content: flex-end;
-    }
-    @include res_min( $break2 ) {
-      .title-latest-kurumano-chie-bukuro {
-        @include flex(nowrap, flex-start, center);
-        padding: 0 20px;
-        background-color: #fff;
-        border-radius: 2px;
-        height: 47px;
-        h2 {
-          padding: 0;
-          margin-right: 20px;
-          font-size: 2.6rem;
-        }
-        p {
-          margin-top: 0;
-          font-size: 1.4rem;
-          color: $textBaseColor;
-        }
-      }
-      .post-list {
-        margin-top: 30px;
-      }
-      .button-wrap {
-        margin-top: 20px;
-      }
-    }
-  }
-}
-
-
-// 新着記事リスト - 採用情報
-.sec-latest-recruit {
-  @extend .sec-latest;
-  padding: 0 20px;
-  background-color: transparent;
-}
-@include res_min( $break ) {
-  .sec-latest-recruit {
-    margin-top: 80px;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-}
-
-
 // お問い合わせ
 .sec-cta-contact{
   background-image: url(./assets/images/common/bg-cta-contact--small.jpg);
   background-position: left bottom;
   background-size: cover;
+  overflow: hidden;
 }
 .cta-contact{
   padding: 75px 0 55px;
@@ -168,7 +19,6 @@
   a{
     color: #fff;
   }
-}
   .cta-contact__main{
     .title{
       margin-bottom: 18px;
@@ -183,21 +33,12 @@
       font-weight: 600;
     }
   }
-  //丸ボタンアニメーション
+  //アニメーションボタン
   svg.circle-ani{
-    transform: rotate(-90deg) scale(2);
-    position: absolute;
-    z-index: -1;
-    pointer-events: none;
-  }
     circle.circle-ani{
-      fill: none;
       stroke: #fff;
-      stroke-width: calc(1px / 4);
-      stroke-dasharray: 314;
-      opacity: 0;
-      transition: all cubic-bezier(0.35, 0.01, 0, 0.98) 0.3s;
     }
+  }
   .cta-contact__button{
     margin: 40px auto 0;
     display: flex;
@@ -244,43 +85,8 @@
       }
     }
   }
-  @-webkit-keyframes circleAni {
-    from {
-      stroke-dashoffset: 314;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-  @keyframes circleAni {
-    from {
-      stroke-dashoffset: 314;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-  @-webkit-keyframes roundBtn {
-    from {
-      transform: scale(1);
-      opacity: 1;
-    }
-    to {
-      transform: scale(1.1);
-      opacity: 0;
-    }
-  }
-  @keyframes roundBtn {
-    from {
-      transform: scale(1);
-      opacity: 1;
-    }
-    to {
-      transform: scale(1.1);
-      opacity: 0;
-    }
-  }
-@include res_min( $break ) {
+}
+@include res_min() {
   .sec-cta-contact{
     background-image: url(./assets/images/common/bg-cta-contact--large.jpg);
     background-position: center;
@@ -291,7 +97,6 @@
     justify-content: space-between;
     align-items: center;
     height: 700px;
-  }
     .cta-contact__main{
       text-align: left;
       .title{
@@ -317,6 +122,7 @@
       font-size: 2.4rem;
       line-height: 1.5;
     }
+  }
 }
 
 
@@ -327,7 +133,7 @@
     margin-top: 0;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .page-intro {
     margin-top: 30px;
     font-size: 1.8rem;
@@ -346,7 +152,6 @@
   align-items: center;
   height: 100vh;
   height: 100dvh;
-  // overflow: hidden;
   position: relative;
   z-index: 0;
   .mv__movie {
@@ -400,7 +205,7 @@
     }
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .mv {
     //グラデ
     &::before{
@@ -425,7 +230,7 @@
   bottom: 100px;
   transform: translateX(-50%);
 }
-@include res_min( $break ) {
+@include res_min() {
   .mv__catchcopy{
     width: 34.5%;
     left: 9.7%;
@@ -468,7 +273,7 @@
     font-size: 1.8rem;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .mv__recruit{
     left: auto;
     right: 30px;
@@ -486,7 +291,7 @@
   background-position: right bottom;
   background-size: 100%;
 }
-@include res_min( $break ) {
+@include res_min() {
   .home .sec-intro-products-info-1{
     padding-top: 190px;
     background-image: url(./assets/images/common/bg-sec-intro-products-info-1-large.svg);
@@ -502,7 +307,7 @@
   background-position: right top;
   background-size: 100%;
 }
-@include res_min( $break ) {
+@include res_min() {
   .home .sec-intro-products-info-2{
     padding-top: 100px;
     padding-bottom: 120px;
@@ -535,7 +340,7 @@
     pointer-events: none;
     z-index: 1;
   }
-  .our-products-slider{
+  .our-products-slider{ //swiper-container：スワイブ反応区域
     height: 100%;
     position: relative;
   }
@@ -564,9 +369,6 @@
     font-weight: 600;
     letter-spacing: 0;
     line-height: 1.4;
-    .sub-en{
-      display: none;
-    }
     &::before{
       content: attr(data-num);
       margin-right: 20px;
@@ -583,9 +385,6 @@
     right: 0;
     top: 50%;
     transform: translateY(calc(-50% - 30%));
-    span{
-      display: none;
-    }
   }
 
   //ページネーション
@@ -603,6 +402,7 @@
     @include flex(nowrap, center, center);
     -moz-column-gap: 8px;
          column-gap: 8px;
+    z-index: 9;
     //ボタン
     .swiper-pagination-bullet{
       margin: 0 !important;
@@ -645,7 +445,7 @@
   }
 
 }
-@include res_min( $break ) {
+@include res_min() {
   .our-products{
     margin-top: -120px;
     height: 700px;
@@ -660,13 +460,13 @@
       bottom: 0;
       transform: translate(0);
     }
-    .swiper-wrapper{
-      height: auto;
-    }
-    .our-products-slider{
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 1300px;
+    .our-products-slider{ //swiper-container：スワイブ反応区域
+      .swiper-wrapper{
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1300px;
+        height: auto;
+      }
     }
     .products-item{
       @include flex(nowrap, space-between, center);
@@ -678,30 +478,36 @@
     .products-item__data{
       flex-basis: calc(45% - 55px);
       padding-right: 50px;
+      position: relative;
+      //個別に背景にテキスト画像追加
+      &::before{
+        content: '';
+        width: 150%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: auto;
+        position: absolute;
+        left: 50%;
+        top: -6.8vw;
+        transform: translateX(-55%);
+        z-index: -1;
+        :nth-of-type(1) &{
+          background-image: url(./assets/images/home/txt-our-products-1.svg);
+        }
+        :nth-of-type(2) &{
+          background-image: url(./assets/images/home/txt-our-products-2.svg);
+        }
+        :nth-of-type(3) &{
+          background-image: url(./assets/images/home/txt-our-products-3.svg);
+        }
+      }
     }
     .products-item__data__title{
       margin-top: 0;
       padding-bottom: 13px;
       font-size: 3.2rem;
       position: relative;
-      .sub-en{
-        display: block;
-        display: none;
-
-        font-family: $ff-en;
-        font-size: 16.9rem;
-        font-weight: 600;
-        letter-spacing: -0.025em;
-        line-height: 1;
-        white-space: nowrap;
-        position: absolute;
-        span{
-          display: block;
-          & + span{
-            margin-top: -0.3em;
-          }
-        }
-      }
       &::before{
         margin-right: 24px;
         font-size: 5.6rem;
@@ -717,9 +523,6 @@
       right: auto;
       top: auto;
       transform: translateY(0);
-      span{
-        display: block;
-      }
     }
 
     //ページネーション
@@ -759,7 +562,7 @@
     text-align: left;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .sec-join-our-team{
     padding-top: 140px;
     .join-intro{
@@ -809,8 +612,8 @@
   padding: 0;
 }
 .scroll-infinity__list--left {
-  -webkit-animation: infinity-scroll-left 20s infinite linear 0.5s both;
-          animation: infinity-scroll-left 20s infinite linear 0.5s both;
+  -webkit-animation: infinity-scroll-left 40s infinite linear 0.5s both;
+          animation: infinity-scroll-left 40s infinite linear 0.5s both;
 }
 .scroll-infinity__item {
   width: 67vw;
@@ -820,7 +623,7 @@
 .scroll-infinity__item > img {
   width: 100%;
 }
-@include res_min( $break ) {
+@include res_min() {
   .scroll-infinity{
     margin-top: 70px;
     margin-left: 0;
@@ -849,7 +652,7 @@
     }
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .sec-new-graduate{
     padding-top: 65px;
     padding-left: 50%;
@@ -943,7 +746,7 @@
       width: 100%;
     }
   }
-@include res_min( $break ) {
+@include res_min() {
   .recruit-link-area{
     margin-top: 70px;
     padding-left: min(11.667%, 112px);
@@ -1038,7 +841,7 @@
   .link-to-career__image{
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .sec-career{
     padding-top: 60px;
     padding-bottom: 98px;
@@ -1158,7 +961,7 @@
     }
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .recruit-links{
     flex-direction: row;
     .recruit-links__button{
@@ -1245,7 +1048,7 @@
     background-size: cover;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .sec-company{
     margin-top: 175px;
     .intro-text{
@@ -1345,7 +1148,7 @@
     }
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .page-link{
     display: grid;
     grid-template-rows: 1fr;
@@ -1434,7 +1237,7 @@
     margin-top: 27px;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .sec-news{
     padding-top: 150px;
     padding-bottom: 160px;
@@ -1461,172 +1264,8 @@
 
 
 
-/* ----------------------------------------------------------------
-  service
----------------------------------------------------------------- */
-.service-link {
-  @include flex(nowrap, flex-start, stretch);
-  flex-direction: column-reverse;
-  margin-top: 15px;
-  &:first-of-type {
-    margin-top: 40px;
-  }
-  &:link, &:visited {
-    background-color: #fff;
-  }
-  &:hover, &:active {
-    opacity: 1;
-    background-color: #F4F4F4;
-    .service-link__image {
-      opacity: 0.8;
-    }
-  }
-  border: 1px solid #BFBFBF;
-	.service-link__content {
-    padding: 12px 15px 15px;
-		.service-link__content__title {
-      em {
-        display: block;
-        font-size: 2.6rem;
-        font-weight: 600;
-        line-height: 1.4;
-        letter-spacing: 0.02em;
-      }
-      span {
-        display: block;
-        margin-top: 2px;
-        margin-left: -0.55em;
-        font-size: 1.6rem;
-      }
-		}
-		.service-link__content__text {
-      margin-top: 8px;
-      font-weight: 400;
-      line-height: 1.67;
-		}
-	}
-	.service-link__image {
-    @include transition();
-    width: 100%;
-    height: 45vw;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    //個別
-    &--car-sales {
-      background-image: url(./assets/images/service/img-cover_car-sales-s.jpg);
-    }
-    &--repair {
-      background-image: url(./assets/images/service/img-cover_repair-s.jpg);
-    }
-    &--maintenance {
-      background-image: url(./assets/images/service/img-cover_maintenance-s.jpg);
-    }
-    &--emergency {
-      background-image: url(./assets/images/service/img-cover_emergency-s.jpg);
-    }
-  }
-}
-@include res_min( $break ) {
-  .service-link {
-    flex-direction: row-reverse;
-    margin-top: 20px;
-    &:first-of-type {
-      margin-top: 70px;
-    }
-    &:hover, &:active {
-      .service-link__content::before {
-        background-image: url(./assets/images/common/icon-arrow8.svg);
-      }
-    }
-    .service-link__content {
-      align-self: center;
-      flex-basis: 65%;
-      padding: min(2%, 50px) min(8%, 100px) min(2%, 50px) min(3%, 36px);
-      @include res_min( $break3 ) {
-        flex-basis: 69.5%;
-        padding: min(3.3%, 50px) min(9%, 100px) min(3.3%, 50px) min(3%, 36px);
-      }
-      position: relative;
-      &::before {
-        content: '';
-        width: 20px;
-        height: 100%;
-        background-image: url(./assets/images/common/icon-arrow7.svg);
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 100%;
-        position: absolute;
-        right: min(4%, 36px);
-        top: 50%;
-        transform: translateY(-50%);
-      }
-      .service-link__content__title {
-        @include res_min( $break3 ) {
-          @include flex(nowrap, flex-start, center);
-          -moz-column-gap: 25px;
-               column-gap: 25px;
-        }
-        em {
-          white-space: nowrap;
-          font-size: 3rem;
-          @include res_min( $break3 ) {
-            font-size: 4.6rem;
-          }
-        }
-        span {
-          margin-top: 0;
-          font-size: min(1.7vw, 1.6rem);
-          @include res_min( $break3 ) {
-            font-size: min(1.3vw, 2rem);
-          }
-        }
-      }
-      .service-link__content__text {
-        margin-top: 3px;
-        font-size: 1.3rem;
-        @include res_min( $break3 ) {
-          margin-top: 8px;
-          font-size: 1.5rem;
-        }
-      }
-    }
-    .service-link__image {
-      flex-basis: 35%;
-      @include res_min( $break3 ) {
-        flex-basis: 30.5%;
-      }
-      height: auto;
-      //個別
-      &--car-sales {
-        background-image: url(./assets/images/service/img-cover_car-sales.jpg);
-      }
-      &--repair {
-        background-image: url(./assets/images/service/img-cover_repair.jpg);
-      }
-      &--maintenance {
-        background-image: url(./assets/images/service/img-cover_maintenance.jpg);
-      }
-      &--emergency {
-        background-image: url(./assets/images/service/img-cover_emergency.jpg);
-      }
-    }
-  }
-}
 
 
-.sec-service {
-  .title02 {
-    margin-bottom: 15px;
-  }
-}
-@include res_min( $break ) {
-  .sec-service {
-    .title02 {
-      margin-bottom: 30px;
-    }
-  }
-}
 
 
 /* ----------------------------------------------------------------
@@ -1635,7 +1274,7 @@
 .content-history {
   margin-top: 40px;
 }
-@include res_min( $break ) {
+@include res_min() {
   .content-history {
     margin-top: 60px;
   }
@@ -1704,7 +1343,7 @@
     }
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .content-history__wrap {
     margin-top: 20px;
     @include flex(nowrap, space-between, stretch);
@@ -1765,7 +1404,7 @@
     }
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .content-gallery {
     margin-top: 70px;
     .gallery {
@@ -1806,7 +1445,7 @@
   color: #FF1212;
   text-align: center;
 }
-@include res_min( $break ) {
+@include res_min() {
   .rectuit {
     padding: 80px 10px;
     margin-top: 40px;
@@ -1828,7 +1467,7 @@
     }
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .sec-archive {
     .post-list {
       margin-top: 45px;
@@ -1865,7 +1504,7 @@
     margin-top: 40px;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .sec-post {
     .post-header {
       .post-title {
@@ -1901,7 +1540,7 @@
     line-height: 1.5;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .sec-inquiry {
     .inner {
       padding-right: 5% !important;
@@ -1931,7 +1570,7 @@
     margin-top: 15px;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .privacypolicy {
     margin-top: 70px;
     .title03 {

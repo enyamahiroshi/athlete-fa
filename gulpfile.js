@@ -62,19 +62,20 @@ return gulp.src(f_sass + '**/*.scss')
     errorHandler: notify.onError('<%= error.message %>')
     }))
     .pipe(sass({ //sassのコンパイル
-    includePaths: bourbon.includePaths
+        includePaths: bourbon.includePaths
     }))
     .pipe(pleeease({
-    rem: false,
-    browsers: browsers,
-    minifier: true, //圧縮
-    mqpacker: false, //メディアクエリをまとめる
+        rem: false,
+        browsers: browsers,
+        minifier: true, //圧縮
+        mqpacker: false, //メディアクエリをまとめる
+        autoprefixer: false, //ベンダープレフィックスを付与しない
     }))
     .pipe(csscomb())
     .pipe(gulp.dest(f_css))
     //ブラウザリロード
     .pipe(browser.reload({
-    stream: true,
+        stream: true,
     }));
     done();
 });
@@ -117,7 +118,9 @@ gulp.task("jsminify", (done) => {
     .pipe(plumber({
         errorHandler: notify.onError('<%= error.message %>')
     }))
-    .pipe(uglify())
+    .pipe(uglify({
+        minifier: true
+    }))
     .pipe(gulp.dest(f_js + "min"))
     //ブラウザリロード
     .pipe(browser.reload({
@@ -125,17 +128,6 @@ gulp.task("jsminify", (done) => {
     }));
     done();
 });
-// JavaScript
-// gulp.task('jsminify', (done) => {
-//     return gulp
-//         .src(f_js + "**/*.js")
-//         .pipe(uglify()) //minify
-//         .pipe(rename({
-//             suffix: ".min",
-//         }))
-//         .pipe(gulp.dest(f_js));
-//     done();
-// })
 
 //jsチェック
 gulp.task('jslint', (done) => {
@@ -233,8 +225,6 @@ gulp.task('browserify', (done) => {
       done();
 });
 
-
-
 gulp.task('babel', (done) => {
   gulp.src([f_es6 + '**/*.js', "!" + f_es6 + 'browserify/*'])
     .pipe(plumber({
@@ -251,8 +241,14 @@ gulp.task('babel', (done) => {
     .pipe(gulp.dest(f_js))
 
     gulp.src(f_es5 + '**/*.js')
+        .pipe(uglify()) //minify
+        .pipe(
+            rename({
+                suffix: '.min',
+            })
+        )
         .pipe(gulp.dest(f_js));
-        done();
+    done();
 });
 
 gulp.task('move', (done) => {
@@ -270,6 +266,8 @@ gulp.task('code', (done) => {
         done();
 });
 
+// gulp.task('comp', gulp.series(['styles', 'jsminify']));
+// gulp.task('check', gulp.series(['csslint', 'jslint']));
 gulp.task('default', gulp.series(['sass', 'babel', 'browserify', 'imagemin', 'move', 'code', 'browser-sync'], (done) => {
     gulp.watch(f_sass + '**/*.scss', gulp.series('sass'));
     gulp.watch(f_es6 + 'browserify/**/*.js', gulp.series('browserify'));
@@ -279,5 +277,3 @@ gulp.task('default', gulp.series(['sass', 'babel', 'browserify', 'imagemin', 'mo
     gulp.watch(f_image_gulp + '**', gulp.series('imagemin'));
     done();
 }));
-gulp.task('comp', gulp.series(('styles', 'jsminify')));
-gulp.task('check', gulp.series(('csslint', 'jslint')));

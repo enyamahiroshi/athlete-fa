@@ -30,7 +30,7 @@
     letter-spacing: 0.05em;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .title01 {
     font-size: 2rem;
     .italic{
@@ -64,7 +64,7 @@
     letter-spacing: 0.05em;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .title02{
     font-size: 8rem;
     &::before{
@@ -85,7 +85,7 @@
   font-weight: 500;
   letter-spacing: 0;
 }
-@include res_min( $break ) {
+@include res_min() {
   .title04{
     font-size: 3.2rem;
     &::before{

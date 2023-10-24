@@ -8,7 +8,7 @@
 .main {
   background-color: $gray;
 }
-@include res_min( $break ) {
+@include res_min() {
   .main {  }
 }
 
@@ -26,7 +26,7 @@
 .sec-wide{}
 .sec-medium{}
 .sec-small{}
-@include res_min( $break ) {
+@include res_min() {
   .sec {
     padding-left: 50px;
     padding-right: 50px;
@@ -37,17 +37,17 @@
   }
   .sec-wide{
     & > *{
-      max-width: #{$break4 + px};
+      max-width: #{map-get($maxSize, xl) + px};
     }
   }
   .sec-medium{
     & > *{
-      max-width: #{$break3 + px};
+      max-width: #{map-get($maxSize, l) + px};
     }
   }
   .sec-small{
     & > *{
-      max-width: #{$break2 + px};
+      max-width: #{map-get($maxSize, base) + px};
     }
   }
 }
@@ -55,12 +55,12 @@
 
 // SPで表示
 .sp {}
-@include res_min( $break ) {
+@include res_min() {
   .sp { display: none; }
 }
 // PCで表示
 .pc { display: none; }
-@include res_min( $break ) {
+@include res_min() {
   .pc { display: inline; }
 }
 
@@ -110,7 +110,7 @@
       color: rgba($textBaseColor, 1);
     }
   }
-  @include res_min( $break ) {
+  @include res_min() {
     //homeのみ
     html[lang="ja"] .home .global-menu & > a{
       &.ja{
@@ -130,7 +130,7 @@
 // ページヘッダー
 .page-header {
 }
-@include res_min( $break ) {
+@include res_min() {
 }
 
 
@@ -157,7 +157,7 @@
     margin-top: 26px;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .block-layout1{
     justify-content: space-between;
     align-items: center;
@@ -215,7 +215,7 @@
     margin-top: 30px;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .tbl01 {
     .tbl-th,
     .tbl-td {
@@ -301,7 +301,7 @@
     background-size: auto;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .page-top{
     display: contents;
   }
@@ -333,7 +333,7 @@
   padding-top: 40px;
   margin-top: -40px;
 }
-@include res_min( $break ) {
+@include res_min() {
   .anchor {
     padding-top: 80px;
     margin-top: -80px;
@@ -356,7 +356,7 @@
   transition: 0.6s;
   transition-timing-function: ease-out;
   pointer-events: none;
-  z-index: 10;
+  z-index: 9;
   &::after{
     content: 'VIEW';
     font-family: $ff-en;

@@ -27,7 +27,7 @@ a {
 a img {
   opacity: 1;
 }
-@include res_min( $break ) {
+@include res_min() {
   a img {
    @include transition(opacity);
     -webkit-backface-visibility: hidden;
@@ -81,7 +81,7 @@ a img {
     justify-content: flex-end;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .button-wrap {
     gap: 1.5em 2em;
   }
@@ -103,7 +103,7 @@ a img {
     text-decoration: none;
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .button {
     // 基本
     border-radius: 4px;
@@ -120,40 +120,170 @@ a img {
   font-weight: 500;
   line-height: 1;
   white-space: nowrap;
+  position: relative;
   &:link, &:visited{
     text-decoration: underline;
     color: $textBaseColor;
   }
+  //丸
   &::after{
     content: '';
     margin-left: 8px;
     width: 28px;
     height: 28px;
+    border-radius: 50%;
+    border: 1px solid rgba($mainColor, 0.25);
+  }
+  //丸の中のアイコン
+  &::before{
+    content: '';
+    width: 14px;
+    height: 8px;
     background-color: $mainColor;
-    -webkit-mask-image: url(./assets/images/common/icon-t-r-button.svg);
-            mask-image: url(./assets/images/common/icon-t-r-button.svg);
+    -webkit-mask-image: url(./assets/images/common/icon-arrow-right.svg);
+            mask-image: url(./assets/images/common/icon-arrow-right.svg);
     -webkit-mask-repeat: no-repeat;
             mask-repeat: no-repeat;
     -webkit-mask-position: center;
             mask-position: center;
     -webkit-mask-size: 100%;
             mask-size: 100%;
+    position: absolute;
+    right: calc(28px / 2 - 7px);
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 
 .button-r-link-large{
   @extend .button-r-link-small;
+  align-self: flex-start;
   font-size: 1.6rem;
   &:link, &:visited{
     text-decoration: none;
     color: $textBaseColor;
   }
+  //丸
   &::after{
+    content: '';
     margin-left: 20px;
     width: 82px;
     height: 82px;
-    -webkit-mask-image: url(./assets/images/common/icon-t-r-button-large.svg);
-            mask-image: url(./assets/images/common/icon-t-r-button-large.svg);
+    border: 1px solid rgba($mainColor, 0.25);
+  }
+  //丸の中のアイコン
+  &::before{
+    content: '';
+    width: 14px;
+    height: 8px;
+    background-color: $mainColor;
+    -webkit-mask-image: url(./assets/images/common/icon-arrow-right.svg);
+            mask-image: url(./assets/images/common/icon-arrow-right.svg);
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+            mask-position: center;
+    -webkit-mask-size: 100%;
+            mask-size: 100%;
+    position: absolute;
+    right: calc(82px / 2 - 7px);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  ボタンアニメーション
+---------------------------------------------------------------- */
+
+//丸ボタンアニメーション
+svg.circle-ani{
+  transform: rotate(-90deg) scale(2);
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  circle.circle-ani{
+    fill: none;
+    stroke: rgba($mainColor, 1);
+    stroke-width: calc(1px / 4);
+    stroke-dasharray: 314;
+    opacity: 0;
+    transition: all cubic-bezier(0.35, 0.01, 0, 0.98) 0.3s;
+  }
+}
+.button-circle-ani{
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  @include res_min() {
+    overflow: visible;
+  }
+  .svg-area{
+    width: 82px;
+    height: 82px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  //丸
+  &::after{
+    content: '';
+    border-radius: 50%;
+    z-index: -1;
+    transform: scale(1);
+    opacity: 1;
+    transition: all cubic-bezier(0.35, 0.01, 0, 0.98) 1.5s;
+  }
+  &:hover{
+    //広がりながら消える丸
+    &::after{
+      transform: scale(1.15);
+      opacity: 0;
+    }
+    //丸を描くアニメーション
+    circle.circle-ani{
+      opacity: 1;
+      -webkit-animation: circleAni cubic-bezier(0.35, 0.01, 0, 0.98) 1.5s 1;
+      animation: circleAni cubic-bezier(0.35, 0.01, 0, 0.98) 1.5s 1;
+    }
+  }
+}
+@-webkit-keyframes circleAni {
+  from {
+    stroke-dashoffset: 314;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes circleAni {
+  from {
+    stroke-dashoffset: 314;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@-webkit-keyframes roundBtn {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}
+@keyframes roundBtn {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.1);
+    opacity: 0;
   }
 }
 
@@ -297,7 +427,7 @@ a[target="_blank"] {
     text-decoration: none;
   }
 }
-// @include res_min( $break ) {
+// @include res_min() {
 //   .link-tel {
 //     pointer-events: none;
 //   }

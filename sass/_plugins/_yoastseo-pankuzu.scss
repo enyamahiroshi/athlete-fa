@@ -52,7 +52,7 @@
     }
   }
 }
-@include res_min( $break ) {
+@include res_min() {
   .bread-navi {
     padding: 13px 18px;
     margin-left: 0;

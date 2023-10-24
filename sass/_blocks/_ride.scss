@@ -21,7 +21,7 @@
   padding: 26px 80px 26px 14px !important;
   border-bottom: 1px solid rgba($textBaseColor, 0.15);
   position: relative;
-  @include res_min( $break ) {
+  @include res_min() {
     padding: 36px 80px 36px 20px !important;
   }
   & > .wp-block-group__inner-container > .wp-block-group-is-layout-flex{
@@ -44,7 +44,7 @@
     right: 14px;
     top: 50%;
     transform: translateY(-50%);
-    @include res_min( $break ) {
+    @include res_min() {
       right: 20px;
     }
   }
