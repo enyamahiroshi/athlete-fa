@@ -6,9 +6,11 @@
   <meta name="format-detection" content="telephone=no">
   <title><?php bloginfo('name'); wp_title('|', true, 'left'); ?></title>
   <?php wp_head(); ?>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
 </head>
 <body id="top" <?php body_class(); ?>>
-
+  <div class="scroll-bar"></div>
   <?php //header ?>
   <header class="header">
     <a href="<?php echo esc_url( home_url() ); ?>/" class="header__logo">

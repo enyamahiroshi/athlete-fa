@@ -411,10 +411,15 @@ a[target="_blank"] {
     margin-left: 0;
     width: 15px;
     height: 1em;
-    background-image: url(./assets/images/common/icon-blank.svg);
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: auto;
+    background-color: rgba($textBaseColor, 1);
+    -webkit-mask-image: url(./assets/images/common/icon-blank.svg);
+            mask-image: url(./assets/images/common/icon-blank.svg);
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: left center;
+            mask-position: left center;
+    -webkit-mask-size: auto;
+            mask-size: auto;
     vertical-align: bottom;
   }
 }

@@ -1,72 +1,156 @@
-(function ($) {
+//Vanilla JS
+/* --------------------------------------------------
+  GSAP
+-------------------------------------------------- */
+//https://qiita.com/k_watanabe_51/items/0d21d6560c10163a130f
+gsap.registerPlugin(ScrollTrigger);
+const wrapper = document.getElementById('slider-wrapper');
+const container = document.getElementById('slider-wrapper__container');
 
-  /* --------------------------------------------------
-    動画読み込み完了後処理
-  -------------------------------------------------- */
-  document.addEventListener('DOMContentLoaded', function () {
-    const videoWrappers = document.getElementsByClassName('mv__movie');
-    for(let i = 0; i < videoWrappers.length; i++) {
-        const videoWrapper = videoWrappers[i];
-        const video = videoWrapper.getElementsByTagName('video')[0];
-        video.addEventListener('canplay', function() {
-            videoWrapper.classList.add('is-play');
-        }, false);
-    }
-  }, false);
-
-  /* --------------------------------------------------
-    マウスストーカー + トップ新卒採用箇所
-  -------------------------------------------------- */
-  const stalker = document.getElementById('mouse-stkr');
-  const scrollingElem = document.scrollingElement || document.documentElement || document.body;
-  const isActive = 'is-active';
-  let hovFlag = false;
-
-  const firstItem = document.querySelector('.recruit-link-item__image');
-  window.addEventListener("load", function (e) {
-    firstItem.style.opacity = 1;
-  });
-
-  scrollingElem.addEventListener('mousemove', function(e) {
-    stalker.style.top  = e.clientY - 110 + 'px';
-    stalker.style.left = e.clientX - 80 + 'px';
-  });
-
-  const linkElem = document.querySelectorAll('.mouse-stkr-target');
-  for (let i = 0; i < linkElem.length; i++) {
-    linkElem[i].addEventListener('mouseover', function (e) {
-      hovFlag = true;
-      stalker.classList.add(isActive);
-      this.classList.add(isActive);
-    });
-    linkElem[i].addEventListener('mouseout', function (e) {
-      hovFlag = false;
-      stalker.classList.remove(isActive);
-      this.classList.remove(isActive);
-    });
+gsap.to(container, {
+  x: () => -(container.clientWidth - wrapper.clientWidth) + 'px',
+  ease: 'none',
+  scrollTrigger: {
+    trigger: wrapper,
+    start: 'top top',
+    end: () => {
+      if (container.clientWidth > wrapper.clientWidth) {
+        return '+=' + (container.clientWidth - wrapper.clientWidth + 500);
+      } else {
+        return '+=' + 0;
+      }
+    },
+    pin: true,
+    anticipatePin: 1,
+    scrub: true,
+    invalidateOnRefresh: true,
+    anticipatePin: 1,
+    onEnter: () => {
+      wrapper.classList.add('is-start');
+    },
+    onLeave: () => { //スクロール方向が正で、スクロール位置がendを通り過ぎたときのコールバック関数を設定できます。
+      wrapper.classList.remove('is-start');
+    },
+    onLeaveBack: () => { //スクロール方向が負で、スクロール位置がstartを通り過ぎたときのコールバック関数を設定できます。
+      wrapper.classList.remove('is-start');
+    },
+    onEnterBack: () => { //スクロール方向が負で、スクロール位置がendを通り過ぎたときのコールバック関数を設定できます。
+      wrapper.classList.add('is-start');
+    },
   }
+});
+
+window.addEventListener('resize', () => {
+  ScrollTrigger.refresh();
+});
+
+
+/* --------------------------------------------------
+  動画読み込み完了後処理
+-------------------------------------------------- */
+document.addEventListener('DOMContentLoaded', function () {
+  const videoWrappers = document.getElementsByClassName('mv__movie');
+  for(let i = 0; i < videoWrappers.length; i++) {
+      const videoWrapper = videoWrappers[i];
+      const video = videoWrapper.getElementsByTagName('video')[0];
+      video.addEventListener('canplay', function() {
+          videoWrapper.classList.add('is-play');
+      }, false);
+  }
+}, false);
+
+/* --------------------------------------------------
+スクロール量によるページ全体のパーセンテージ表示
+-------------------------------------------------- */
+// 表示するスクロールバー
+const progressBar = document.querySelector('.scroll-bar');
+progressBar.style.transformOrigin = '0% 0%';
+
+const scrollBarHeight = 100;
+const maxScroll = document.documentElement.scrollHeight;
+
+progressBar.animate(
+  {
+    transform: ['scaleY(0)', 'scaleY(1)'],
+  },
+  {
+    fill: 'forwards',
+    timeline: new ScrollTimeline({
+      source: document.documentElement,
+      duration: maxScroll / scrollBarHeight * 2,
+    }),
+  }
+);
+
+/* --------------------------------------------------
+  マウスストーカー + トップ新卒採用箇所
+-------------------------------------------------- */
+const stalker = document.getElementById('mouse-stkr');
+const scrollingElem = document.scrollingElement || document.documentElement || document.body;
+const isActive = 'is-active';
+let hovFlag = false;
+
+const firstItem = document.querySelector('.recruit-link-item__image');
+window.addEventListener("load", function (e) {
+  firstItem.style.opacity = 1;
+});
+
+scrollingElem.addEventListener('mousemove', function(e) {
+  stalker.style.top  = e.clientY - 110 + 'px';
+  stalker.style.left = e.clientX - 80 + 'px';
+});
+
+const linkElem = document.querySelectorAll('.mouse-stkr-target');
+for (let i = 0; i < linkElem.length; i++) {
+  linkElem[i].addEventListener('mouseover', function (e) {
+    hovFlag = true;
+    stalker.classList.add(isActive);
+    this.classList.add(isActive);
+  });
+  linkElem[i].addEventListener('mouseout', function (e) {
+    hovFlag = false;
+    stalker.classList.remove(isActive);
+    this.classList.remove(isActive);
+  });
+}
+
+
+//jQuery
+(function ($) {
 
   /* --------------------------------------------------
     スクロールで処理
   -------------------------------------------------- */
+  const mqueryLG = '1023px';
   const $aadclass = 'is-fixed';
+
   // header
-  /*
-  const $hideClass = 'is-hide';
-  const $AppearGM = $('body, .header');
-  const $AppearGMTiming = $('.sec:first-of-type').offset().top;
-  $(window).on('load scroll', function () {
-    if ($(this).scrollTop() > $AppearGMTiming && $AppearGM.hasClass($aadclass) == false) {
-      $AppearGM.removeClass($hideClass);
-      $AppearGM.addClass($aadclass);
-    } else if ($(this).scrollTop() > 0 && $(this).scrollTop() < $AppearGMTiming && $AppearGM.hasClass($hideClass) == false) {
-      $AppearGM.addClass($hideClass);
-      $AppearGM.removeClass($aadclass);
-    } else if ($(this).scrollTop() == 0) {
-      $AppearGM.removeClass($hideClass).removeClass($aadclass);
+  const $AppearGM = $('.header');
+  $(window).on('load resize', function () {
+    //ハンバーガーメニュー表示の場合
+    if (window.matchMedia("(max-width: " + mqueryLG + ")").matches) {
+      const headerH = $_header.height();
+      $(window).on('scroll', function () {
+        if ($(this).scrollTop() > headerH && $AppearGM.hasClass($aadclass) == false) {
+          $AppearGM.addClass($aadclass);
+        } else if ($(this).scrollTop() == 0) {
+          $AppearGM.removeClass($aadclass);
+        }
+      });
+    } else
+    //通常表示の場合
+    {
+      const $AppearGMTiming = $('.js-flag-first').offset().top;
+      const headerH = $_header.height();
+      $(window).on('scroll', function () {
+        if ($(this).scrollTop() > $AppearGMTiming && $AppearGM.hasClass($aadclass) == false) {
+          $AppearGM.addClass($aadclass);
+        } else if ($(this).scrollTop() == 0) {
+          $AppearGM.removeClass($aadclass);
+        }
+      });
     }
   });
-  */
 
   // pagetop
   const $pageTop = $('.button-page-top');
@@ -90,9 +174,8 @@
   const BtnOpen = $('.js-tgl-menu');
   const classname = 'is-open';
   const NaviLink = $('.menu a[href]');
-  const mediaquerynum = '1023px';
   $(window).on('resize', function () {
-    if (window.matchMedia( "(min-width: " + mediaquerynum + ")" ).matches) {
+    if (window.matchMedia( "(min-width: " + mqueryLG + ")" ).matches) {
       if (body.hasClass(classname)) {
         body.removeClass(classname);
         header.removeClass(classname);
@@ -102,7 +185,7 @@
     }
   });
   BtnOpen.on('tap click', function () {
-    if (window.matchMedia( "(max-width: " + mediaquerynum + ")" ).matches) {
+    if (window.matchMedia( "(max-width: " + mqueryLG + ")" ).matches) {
       if (body.hasClass(classname)) {
         body.removeClass(classname);
         header.removeClass(classname);
@@ -117,7 +200,7 @@
     }
   });
   NaviLink.on('tap click', function () {
-    if (window.matchMedia( "(max-width: " + mediaquerynum + ")" ).matches) {
+    if (window.matchMedia( "(max-width: " + mqueryLG + ")" ).matches) {
       if (body.hasClass(classname)) {
         body.removeClass(classname);
         header.removeClass(classname);
@@ -137,17 +220,17 @@
   -------------------------------------------------- */
   const subMenuTgl = '.header-navi .menu-item-has-children';
   $(subMenuTgl).on('tap click', function () {
-    if (window.matchMedia("(max-width: " + mediaquerynum + ")").matches) {
+    if (window.matchMedia("(max-width: " + mqueryLG + ")").matches) {
       $(this).toggleClass(classname);
     }
   });
   $(subMenuTgl).on('mouseover', function () {
-    if (window.matchMedia("(min-width: " + mediaquerynum + ")").matches) {
+    if (window.matchMedia("(min-width: " + mqueryLG + ")").matches) {
       $(this).addClass(classname);
     }
   });
   $(subMenuTgl).on('mouseout', function () {
-    if (window.matchMedia("(min-width: " + mediaquerynum + ")").matches) {
+    if (window.matchMedia("(min-width: " + mqueryLG + ")").matches) {
       $(this).removeClass(classname);
     }
   });

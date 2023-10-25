@@ -2,53 +2,55 @@
 @use '../_core/mixins' as *;
 
 
-$headerHighSP: 54;
+$headerHighSP: 57;
 $headerHighPC: 127;
 
 
 /* ----------------------------------------------------------------
   ヘッダーのレイアウト
 ---------------------------------------------------------------- */
-.header {
-  @include transition(transform);
+.header{
+  @include transition();
   @include flex(nowrap, space-between, center);
   position: fixed;
   left: 0;
   top: 0;
   z-index: 10;
 
-  padding: 0 16px;
+  padding: 0 0 0 16px;
   width: 100%;
   height: #{$headerHighSP + px};
   background-color: transparent;
-  .header__logo {
+  .header__logo{
     flex: 0 0 auto;
     line-height: 1;
     z-index: 10;
     &:hover{
       opacity: 1;
     }
-    svg {
+    svg{
       width: auto;
       height: 15px;
-      fill: #fff;
+      fill: rgba(255,255,255, 1);
+      @include transition();
     }
   }
-  .menu-bar {
-    flex: 0 0 32px;
+  .menu-bar{
+    flex: 0 0 64px;
+    height: 100%;
   }
 }
-@include res_min( map-get($BP, lg) ) {
-  .header {
+@include res_min( map-get($BP, lg) ){
+  .header{
     padding: 0 40px;
     height: #{$headerHighPC + px};
-    .header__logo {
-      svg {
+    .header__logo{
+      svg{
         width: 160px;
         height: auto;
       }
     }
-    .menu-bar {
+    .menu-bar{
       display: none;
     }
   }
@@ -58,7 +60,7 @@ $headerHighPC: 127;
 /* ----------------------------------------------------------------
   グローバルメニュー
 ---------------------------------------------------------------- */
-.global-menu {
+.global-menu{
   @include transition(opacity);
   @include flex(nowrap, flex-start, stretch);
   flex-direction: column;
@@ -75,8 +77,8 @@ $headerHighPC: 127;
   pointer-events: none;
   z-index: 9;
 }
-@include res_min( map-get($BP, lg) ) {
-  .global-menu {
+@include res_min( map-get($BP, lg) ){
+  .global-menu{
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: 1fr 202px;
@@ -174,7 +176,7 @@ $headerHighPC: 127;
     }
   }
 }
-@include res_min( map-get($BP, lg) ) {
+@include res_min( map-get($BP, lg) ){
   .global-menu{
     .menu{
       margin-left: 0;
@@ -282,7 +284,7 @@ $headerHighPC: 127;
     }
   }
 }
-@include res_min( map-get($BP, lg) ) {
+@include res_min( map-get($BP, lg) ){
   .global-menu{
     .switch-language{
       margin-left: 34px;
@@ -299,13 +301,14 @@ $headerHighPC: 127;
       a[target="_blank"]{
         margin-top: 0;
         font-size: 1.4rem;
-        span{
+        &::after{
+          background-color: rgba($textBaseColor, 1);
         }
       }
       //homeのみ
       .home &{
         a{
-          color: rgba(#fff, 0.5);
+          color: rgba(255,255,255, 0.5);
         }
         .separate{
           background-color: #fff;
@@ -313,7 +316,7 @@ $headerHighPC: 127;
         a[target="_blank"]{
           color: #fff;
           &::after{
-            background-image: url(./assets/images/common/icon-blank-white.svg);
+            background-color: rgba(255,255,255, 1);
           }
         }
       }
@@ -325,7 +328,7 @@ $headerHighPC: 127;
 .header-navi{
   margin-top: 38px;
 }
-@include res_min( map-get($BP, lg) ) {
+@include res_min( map-get($BP, lg) ){
   .header-navi{
     align-self: end;
     grid-row: 2 / 3;
@@ -355,7 +358,7 @@ $headerHighPC: 127;
     font-weight: 500;
   }
 }
-@include res_min( map-get($BP, lg) ) {
+@include res_min( map-get($BP, lg) ){
   .global-menu__contact{
     grid-row: 1 / 3;
     grid-column: 2 / 3;
@@ -393,53 +396,60 @@ $headerHighPC: 127;
 /* ----------------------------------------------------------------
   開閉トグルボタン
 ---------------------------------------------------------------- */
-.menu-bar {
+.menu-bar{
   cursor: pointer;
   height: 21px;
   position: relative;
   z-index: 9;
-  .menu-bar-line {
+  background-color: rgba(255,255,255, 0);
+  @include transition();
+  .menu-bar-line{
     width: 32px;
     height: 1px;
     background-color: transparent;
     position: absolute;
     left: 50%;
-    top: 0;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(-50%,-50%);
     &::before,
-    &::after {
+    &::after{
       content: "";
       width: 32px;
       height: 1px;
-      background-color: #fff;
+      background-color: rgba(255,255,255, 1);
       position: absolute;
       right: 0;
       @include transition();
     }
     &::before{
-      top: 0;
+      top: -11px;
     }
-    &::after {
+    &::after{
       width: 20px;
-      top: 6px;
+      top: -5px;
     }
   }
-  .menu-bar-image {
+  .menu-bar-image{
     display: block;
     width: 30px;
     height: 8px;
-    background-image: url(./assets/images/common/menu-bar-open.svg);
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: 100%;
+    background-color: rgba(255,255,255, 1);
+    -webkit-mask-image: url(./assets/images/common/menu-bar-open.svg);
+            mask-image: url(./assets/images/common/menu-bar-open.svg);
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: center top;
+            mask-position: center top;
+    -webkit-mask-size: 100%;
+            mask-size: 100%;
     position: absolute;
     left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
+    bottom: calc(50% - 13px);
+    transform: translate(-50%,-50%);
   }
 }
-@include res_min( map-get($BP, lg) ) {
-  .menu-bar {
+@include res_min( map-get($BP, lg) ){
+  .menu-bar{
     display: none;
   }
 }
@@ -449,28 +459,89 @@ $headerHighPC: 127;
   スクロールでfixed　まとめて指定
 ---------------------------------------------------------------- */
 // グローバルメニュー表示
-body.is-hide,
-body.is-fixed  {
-  padding-top: #{$headerHighSP + px};
-}
-.header.is-hide,
-.header.is-fixed {
-  position: fixed;
-}
-.header.is-hide {
-  transform: translateY(-#{$headerHighSP + px});
-}
-.header.is-fixed {
-  box-shadow: 0 3px 4px rgba(0,0,0,0.08);
-  transform: translateY(0);
-}
-@include res_min( map-get($BP, lg) ) {
-  body.is-hide,
-  body.is-fixed  {
-    padding-top: #{$headerHighPC + px};
+.header.is-fixed{
+  .header__logo{
+    svg{
+      fill: rgba($mainColor, 1);
+    }
   }
-  .header.is-hide {
-    transform: translateY(-#{$headerHighPC + px});
+  .menu-bar{
+    background-color: rgba(255,255,255, 1);
+    .menu-bar-line{
+      &::before,
+      &::after{
+        background-color: rgba($textBaseColor, 1);
+      }
+    }
+    .menu-bar-image{
+      background-color: rgba($textBaseColor, 1);
+    }
+  }
+}
+@include res_min( map-get($BP, lg) ){
+  .header.is-fixed{
+    height: 100px;
+    background-color: rgba(255,255,255, 1);
+    .menu-item{
+      //homeのみ
+      .home &{
+        a{
+          color: rgba($textBaseColor, 1);
+        }
+        //サブメニュー開閉
+        &.menu-item-has-children{
+          & > a{
+            &::after{
+              background-image: url(./assets/images/common/icon-arrow-toggle.svg);
+            }
+          }
+        }
+      }
+      //カレント
+      &.current_page_item,
+      &.current-menu-item{
+        a{
+          color: $mainColor;
+        }
+      }
+    }
+    //JP / EN
+    .global-menu{
+      .global-menu__sub{
+        //homeのみ
+        .home &{
+          .switch-language a{
+            color: rgba($textBaseColor, 0.5);
+            .ja{
+              color: rgba($textBaseColor, 1);
+            }
+          }
+          .separate{
+            background-color: rgba($textBaseColor, 1);
+          }
+          a[target="_blank"]{
+            color: rgba($textBaseColor, 1);
+            &::after{
+              background-color: rgba($textBaseColor, 1);
+            }
+          }
+        }
+      }
+    }
+    //お問い合わせボタン
+    .global-menu__contact{
+      //homeのみ
+      .home &{
+        .button{
+          background-color: transparent;
+          border-color: rgba($textBaseColor, 0.8);
+          color: rgba($textBaseColor, 1);
+          &::after{
+            background-color: rgba($textBaseColor, 1);
+          }
+        }
+      }
+    }
   }
 }
 
@@ -479,11 +550,11 @@ body.is-fixed  {
   メニュー開閉時の挙動　まとめて指定
 ---------------------------------------------------------------- */
 // body
-body.is-open {
+body.is-open{
   overflow: hidden;
 }
 // header
-.header.is-open {
+.header.is-open{
   background-color: $gray;
   .header__logo{
     svg{
@@ -492,7 +563,7 @@ body.is-open {
   }
 }
 // メニュー
-.global-menu.is-open {
+.global-menu.is-open{
   opacity: 1;
   overflow: scroll;
   //以下、スマホでメニューオープン時に背景がスクロールしないようにするため
@@ -501,26 +572,28 @@ body.is-open {
   // overflow-y: auto;
 }
 // 開閉トグルボタン
-.menu-bar.is-open {
+.menu-bar.is-open{
   background-color: transparent;
-  .menu-bar-line {
+  .menu-bar-line{
     // top: 50%;
     // transform: translate(-50%,-50%);
     &::before,
     &::after{
-      background-color: $textBaseColor;
+      background-color: rgba($textBaseColor, 1);
     }
     &::before{
-      top: 3px;
+      top: -8px;
       transform: rotate(20deg);
     }
-    &::after {
+    &::after{
       width: 32px;
-      top: 3px;
+      top: -8px;
       transform: rotate(-20deg);
     }
   }
-  .menu-bar-image {
-    background-image: url(./assets/images/common/menu-bar-close.svg);
+  .menu-bar-image{
+    background-color: rgba($textBaseColor, 1);
+    -webkit-mask-image: url(./assets/images/common/menu-bar-close.svg);
+            mask-image: url(./assets/images/common/menu-bar-close.svg);
   }
 }

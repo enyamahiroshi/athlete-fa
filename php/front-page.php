@@ -31,7 +31,7 @@
       </div>
     </section>
 
-    <section class="sec sec-medium sec-intro-products-info-1">
+    <section class="sec sec-medium sec-intro-products-info-1 js-flag-first">
       <div class="block-layout1">
         <div class="block-item-data">
           <h2 class="title01 block-item-title" data-sub="Our mission is ...">
@@ -54,16 +54,16 @@
     </section>
 
     <?php //products slider ?>
-    <section class="sec sec-full sec-intro-products-info-2">
-      <div class="sec sec-wide">
+    <section id="slider-wrapper" class="sec sec-full sec-intro-products-info-2">
+      <div class="sec-wide">
         <h2 class="title02 --data-sub-ja" data-sub="製品情報">Our<br>Products</h2>
       </div>
       <?php //スライダー ?>
       <section class="our-products">
-        <div class="swiper-container our-products-slider">
-          <div class="swiper-wrapper">
-            <?php //slide item ?>
-            <section class="swiper-slide products-item">
+        <div id="slider-wrapper__container" class="our-products-slider">
+        <?php //slide item ?>
+          <section class="products-item">
+            <div class="inner">
               <figure class="products-item__image">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-01.png" alt="ボールマウンタ" width="724" height="445">
               </figure>
@@ -81,9 +81,16 @@
                   </span>
                 </a>
               </div>
-            </section>
-            <?php //slide item ?>
-            <section class="swiper-slide products-item">
+              <div class="swiper-pagination">
+                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" aria-label="Go to slide 1" aria-current="true"></span>
+                <span class="swiper-pagination-bullet" aria-label="Go to slide 2"></span>
+                <span class="swiper-pagination-bullet" aria-label="Go to slide 3"></span>
+              </div>
+            </div>
+          </section>
+          <?php //slide item ?>
+          <section class="products-item">
+            <div class="inner">
               <figure class="products-item__image">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-02.png" alt="ボンディング" width="724" height="445">
               </figure>
@@ -101,9 +108,16 @@
                   </span>
                 </a>
               </div>
-            </section>
-            <?php //slide item ?>
-            <section class="swiper-slide products-item">
+              <div class="swiper-pagination">
+                <span class="swiper-pagination-bullet" aria-label="Go to slide 1" aria-current="true"></span>
+                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" aria-label="Go to slide 2"></span>
+                <span class="swiper-pagination-bullet" aria-label="Go to slide 3"></span>
+              </div>
+            </div>
+          </section>
+          <?php //slide item ?>
+          <section class="products-item">
+            <div class="inner">
               <figure class="products-item__image">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-03.png" alt="カスタム" width="724" height="445">
               </figure>
@@ -121,11 +135,15 @@
                   </span>
                 </a>
               </div>
-            </section>
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
-      </section><?php // eof スライダー ?>
+              <div class="swiper-pagination">
+                <span class="swiper-pagination-bullet" aria-label="Go to slide 1" aria-current="true"></span>
+                <span class="swiper-pagination-bullet" aria-label="Go to slide 2"></span>
+                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" aria-label="Go to slide 3"></span>
+              </div>
+            </div>
+          </section>
+        </div><?php // #slider-wrapper__container ?>
+      </section><?php // slider-wrapper ?>
     </section>
 
     <?php //Join our TEAM ?>

@@ -4,6 +4,18 @@
 /* ----------------------------------------------------------------
   各ページ共通
 ---------------------------------------------------------------- */
+//左の独自スクロールバー
+.scroll-bar{
+  width: 4px;
+  height: 100vh;
+  height: 100dvh;
+  background-color: rgba($mainColor, 1);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 11;
+}
+
 //メインコンテンツ
 .main {
   background-color: $gray;
