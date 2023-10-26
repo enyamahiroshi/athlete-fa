@@ -21,13 +21,8 @@
   padding: 26px 80px 26px 14px !important;
   border-bottom: 1px solid rgba($textBaseColor, 0.15);
   position: relative;
-  @include res_min() {
-    padding: 36px 80px 36px 20px !important;
-  }
-  & > .wp-block-group__inner-container > .wp-block-group-is-layout-flex{
-    gap: 0;
-  }
-  &::after{
+  //右矢印（ホバーで左に動く）
+  &::before{
     content: '';
     width: 14px;
     height: 8px;
@@ -44,9 +39,22 @@
     right: 14px;
     top: 50%;
     transform: translateY(-50%);
-    @include res_min() {
+  }
+  @include res_min() {
+    padding: 36px 80px 36px 20px !important;
+    &::before{
       right: 20px;
+      @include transition();
     }
+    &:hover{
+      &::before{
+        right: 24px;
+      }
+    }
+  }
+  //日付 + カテゴリー
+  & > .wp-block-group__inner-container > .wp-block-group-is-layout-flex{
+    gap: 0;
   }
   //日付
   .wp-block-post-date{
@@ -79,8 +87,11 @@
   //タイトル
   .wp-block-post-title{
     margin-top: 13px;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     line-height: 1.5;
+    @include res_min() {
+      font-size: 1.8rem;
+    }
   }
   //リンク範囲を block-post-typeA 全体にする
   a{
@@ -96,6 +107,12 @@
     }
     &:hover{
       color: rgba($mainColor, 1) !important;
+      &::before{
+        @include res_min() {
+          -webkit-mask-position: right 28px center;
+          mask-position: right 28px center;
+        }
+      }
     }
   }
 }

@@ -54,12 +54,12 @@
     </section>
 
     <?php //products slider ?>
-    <section id="slider-wrapper" class="sec sec-full sec-intro-products-info-2">
+    <section class="sec sec-full sec-intro-products-info-2">
       <div class="sec-wide">
         <h2 class="title02 --data-sub-ja" data-sub="製品情報">Our<br>Products</h2>
       </div>
       <?php //スライダー ?>
-      <section class="our-products">
+      <section id="slider-wrapper" class="our-products">
         <div id="slider-wrapper__container" class="our-products-slider">
         <?php //slide item ?>
           <section class="products-item">
@@ -73,18 +73,13 @@
                 </h2>
                 <p class="products-item__data__text">微小はんだボールをウェハや基板の上に配列させるための装置です。<br>はんだボール配列には当社独自の技術を採用し高スループットの生産性を実現しています。<br>最終製品はデータセンタ(DC)/ハイパフォーマンスコンピュータ(HPC)/5G等最先端のデバイスに展開されています。</p>
                 <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
-                  <span class="pc">詳しく見る</span>
+                  <span>詳しく見る</span>
                   <span class="svg-area">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
                       <circle cx="50%" cy="50%" r="28" class="circle-ani">
                     </svg>
                   </span>
                 </a>
-              </div>
-              <div class="swiper-pagination">
-                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" aria-label="Go to slide 1" aria-current="true"></span>
-                <span class="swiper-pagination-bullet" aria-label="Go to slide 2"></span>
-                <span class="swiper-pagination-bullet" aria-label="Go to slide 3"></span>
               </div>
             </div>
           </section>
@@ -100,18 +95,13 @@
                 </h2>
                 <p class="products-item__data__text">フリップチップボンダおよびダイボンダは、幅広いラインナップ(R＆D～量産機)をご用意しており、フォトニクス/LD/イメージセンサを始めとした各種アプリケーションおよび各種実装プロセス向けに、高精度・高スループット装置として提供しています。</p>
                 <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
-                  <span class="pc">詳しく見る</span>
+                  <span>詳しく見る</span>
                   <span class="svg-area">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
                       <circle cx="50%" cy="50%" r="28" class="circle-ani">
                     </svg>
                   </span>
                 </a>
-              </div>
-              <div class="swiper-pagination">
-                <span class="swiper-pagination-bullet" aria-label="Go to slide 1" aria-current="true"></span>
-                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" aria-label="Go to slide 2"></span>
-                <span class="swiper-pagination-bullet" aria-label="Go to slide 3"></span>
               </div>
             </div>
           </section>
@@ -127,18 +117,13 @@
                 </h2>
                 <p class="products-item__data__text">長年にわたり培った豊富な要素技術を組み合わせ、安全性と信頼性を確保し、多岐にわたるお客様のニーズを満たす新しい装置を生み出していきます。</p>
                 <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
-                  <span class="pc">詳しく見る</span>
+                  <span>詳しく見る</span>
                   <span class="svg-area">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
                       <circle cx="50%" cy="50%" r="28" class="circle-ani">
                     </svg>
                   </span>
                 </a>
-              </div>
-              <div class="swiper-pagination">
-                <span class="swiper-pagination-bullet" aria-label="Go to slide 1" aria-current="true"></span>
-                <span class="swiper-pagination-bullet" aria-label="Go to slide 2"></span>
-                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" aria-label="Go to slide 3"></span>
               </div>
             </div>
           </section>
@@ -193,28 +178,36 @@
         <div class="recruit-link-area">
           <?php //採用項目リンク ?>
           <a href="<?php echo esc_url(home_url()); ?>/recruit/" class="recruit-link-item mouse-stkr-target">
-            <em>職種紹介</em><span>Occupation</span>
+            <div class="recruit-link-item__link">
+              <em>職種紹介</em><span>Occupation</span><i class="icon"></i>
+            </div>
             <figure class="recruit-link-item__image">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-recruit-link-image-01.jpg" alt="" width="958" height="677">
             </figure>
           </a>
           <?php //採用項目リンク ?>
           <a href="<?php echo esc_url(home_url()); ?>/recruit/data" class="recruit-link-item mouse-stkr-target">
-            <em>数字でわかるアスリートFA</em><span>Data</span>
+            <div class="recruit-link-item__link">
+              <em>数字でわかるアスリートFA</em><span>Data</span><i class="icon"></i>
+            </div>
             <figure class="recruit-link-item__image">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-recruit-link-image-02.jpg" alt="" width="958" height="677">
             </figure>
           </a>
           <?php //採用項目リンク ?>
           <a href="<?php echo esc_url(home_url()); ?>/recruit/internship" class="recruit-link-item mouse-stkr-target">
-            <em>インターンシップ情報</em><span>Internship</span>
+            <div class="recruit-link-item__link">
+              <em>インターンシップ情報</em><span>Internship</span><i class="icon"></i>
+            </div>
             <figure class="recruit-link-item__image">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-recruit-link-image-03.jpg" alt="" width="958" height="677">
             </figure>
           </a>
           <?php //採用項目リンク ?>
           <a href="<?php echo esc_url(home_url()); ?>/recruit/job-description" class="recruit-link-item mouse-stkr-target">
-            <em>新卒募集要項</em><span>Requirements</span>
+            <div class="recruit-link-item__link">
+              <em>新卒募集要項</em><span>Requirements</span><i class="icon"></i>
+            </div>
             <figure class="recruit-link-item__image">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-recruit-link-image-04.jpg" alt="" width="958" height="677">
             </figure>

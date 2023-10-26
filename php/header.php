@@ -10,7 +10,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
 </head>
 <body id="top" <?php body_class(); ?>>
-  <div class="scroll-bar"></div>
+  <div class="progress">
+    <div class="progress__bar"></div>
+  </div>
   <?php //header ?>
   <header class="header">
     <a href="<?php echo esc_url( home_url() ); ?>/" class="header__logo">

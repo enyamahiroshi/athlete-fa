@@ -128,7 +128,7 @@ $headerHighPC: 127;
         // opacity: 0.8;
       }
       & > .sub-menu{
-        display: none;
+        // display: none;
       }
       & > a{
         cursor: pointer;
@@ -149,7 +149,17 @@ $headerHighPC: 127;
       //open
       &.is-open{
         & > .sub-menu{
-          display: block;
+          margin-top: 20px;
+          height: auto;
+          .menu-item{
+            opacity: 1;
+            margin-top: 20px;
+            font-size: 1.5rem;
+            a{
+              pointer-events: visible;
+              color: rgba($textBaseColor, 0.7);
+            }
+          }
         }
         & > a{
           &::after{
@@ -161,17 +171,23 @@ $headerHighPC: 127;
   }
   //サブメニュー
   .sub-menu{
-    margin-top: 20px;
+    margin-top: 0;
     margin-left: 13px;
+    height: 0;
+    @include transition();
     .menu-item{
+      opacity: 0;
       padding: 0;
-      margin-top: 20px;
+      margin-top: 0;
       border-bottom: none;
       font-size: 1.5rem;
       font-weight: 400;
       letter-spacing: 0.05em;
+      @include transition();
       a{
-        color: rgba($textBaseColor, 0.7);
+        pointer-events: none;
+        color: rgba($textBaseColor, 0);
+        @include transition(all, 0);
       }
     }
   }
@@ -227,21 +243,21 @@ $headerHighPC: 127;
               z-index: -1;
             }
             & > .sub-menu{
-              display: block;
+              pointer-events: visible;
+              opacity: 1;
+              margin-top: 0;
               padding: 15px 15px 35px;
               background-color: #fff;
               border-radius: 5px;
               box-shadow: 0px 3px 20px rgba(46, 46, 46, 0.08);
-              position: absolute;
-              left: 50%;
-              top: 40px;
-              transform: translateX(-50%);
+              top: 31px;
               .menu-item{
-                white-space: nowrap;
+                font-size: inherit;
                 a{
                   display: block;
                   padding-left: 20px;
                   padding-right: 45px;
+                  color: rgba($textBaseColor, 1);
                   &:hover, &:active{
                     color: $mainColor;
                   }
@@ -253,13 +269,32 @@ $headerHighPC: 127;
       }
       //サブメニュー
       .sub-menu{
-        margin-top: 0;
+        pointer-events: none;
+        opacity: 0;
         margin-left: 0;
+        padding: 15px 15px 35px;
+        height: auto;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 3px 20px rgba(46, 46, 46, 0.08);
+        position: absolute;
+        left: 50%;
+        top: 35px;
+        transform: translateX(-50%);
+        @include transition(all, 0.2);
         .menu-item{
           margin-top: 20px;
           font-size: 1.6rem;
+          white-space: nowrap;
           a{
+            display: block;
+            padding-left: 20px;
+            padding-right: 45px;
             color: rgba($textBaseColor, 1);
+            @include transition();
+            &:hover, &:active{
+              color: $mainColor;
+            }
           }
         }
       }
@@ -344,11 +379,10 @@ $headerHighPC: 127;
 .global-menu__contact{
   margin-top: 40px;
   .button{
-    opacity: 0.8;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid $textBaseColor;
+    border: 1px solid rgba($textBaseColor, 0.8);
     margin-left: auto;
     margin-right: auto;
     max-width: 400px;
@@ -356,6 +390,7 @@ $headerHighPC: 127;
     border-radius: 28px;
     font-size: 1.6rem;
     font-weight: 500;
+    overflow: hidden;
   }
 }
 @include res_min( map-get($BP, lg) ){
@@ -371,11 +406,23 @@ $headerHighPC: 127;
         width: 5px;
         height: 5px;
         border-radius: 50%;
-        background-color: $textBaseColor;
+        background-color: rgba($textBaseColor, 1);
         position: absolute;
         right: 31px;
         top: 50%;
         transform: translateY(-50%);
+        z-index: -1;
+        @include transition();
+      }
+      &:hover, &:active{
+        opacity: 1;
+        border-color: rgba($textBaseColor, 1);
+        color: #fff;
+        &::after{
+          background-color: rgba($textBaseColor, 1);
+          transform: scale(100);
+          transform-origin: center;
+        }
       }
     }
     //homeのみ
@@ -385,7 +432,17 @@ $headerHighPC: 127;
         border-color: #fff;
         color: #fff;
         &::after{
-          background-color: #fff;
+          background-color: rgba(255,255,255, 1);
+        }
+        &:hover, &:active{
+          opacity: 1;
+          border-color: rgba($textBaseColor, 1);
+          color: #fff;
+          &::after{
+            background-color: rgba($textBaseColor, 1);
+            transform: scale(100);
+            transform-origin: center;
+          }
         }
       }
     }
@@ -510,9 +567,11 @@ $headerHighPC: 127;
       .global-menu__sub{
         //homeのみ
         .home &{
-          .switch-language a{
+          a{
             color: rgba($textBaseColor, 0.5);
-            .ja{
+          }
+          .switch-language{
+            a.ja{
               color: rgba($textBaseColor, 1);
             }
           }
@@ -530,14 +589,19 @@ $headerHighPC: 127;
     }
     //お問い合わせボタン
     .global-menu__contact{
-      //homeのみ
-      .home &{
-        .button{
-          background-color: transparent;
-          border-color: rgba($textBaseColor, 0.8);
-          color: rgba($textBaseColor, 1);
+      .button{
+        border-color: rgba($textBaseColor, 0.8);
+        color: rgba($textBaseColor, 1);
+        &::after{
+          background-color: rgba($textBaseColor, 1);
+        }
+        &:hover, &:active{
+          opacity: 1;
+          color: #fff;
           &::after{
             background-color: rgba($textBaseColor, 1);
+            transform: scale(100);
+            transform-origin: center;
           }
         }
       }

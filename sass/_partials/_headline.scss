@@ -81,15 +81,21 @@
 
 .title04{
   @extend .title02;
+  font-family: $ff-go;
   font-size: 2.2rem;
   font-weight: 500;
+  line-height: 1.4;
   letter-spacing: 0;
+  &::before{
+    font-family: $ff-en;
+    margin-bottom: 14px;
+  }
 }
 @include res_min() {
   .title04{
     font-size: 3.2rem;
     &::before{
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
   }
 }

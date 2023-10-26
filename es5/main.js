@@ -26,16 +26,16 @@ gsap.to(container, {
     invalidateOnRefresh: true,
     anticipatePin: 1,
     onEnter: () => {
-      wrapper.classList.add('is-start');
+      container.classList.add('is-enter');
     },
     onLeave: () => { //スクロール方向が正で、スクロール位置がendを通り過ぎたときのコールバック関数を設定できます。
-      wrapper.classList.remove('is-start');
+      container.classList.remove('is-enter');
     },
     onLeaveBack: () => { //スクロール方向が負で、スクロール位置がstartを通り過ぎたときのコールバック関数を設定できます。
-      wrapper.classList.remove('is-start');
+      container.classList.remove('is-enter');
     },
     onEnterBack: () => { //スクロール方向が負で、スクロール位置がendを通り過ぎたときのコールバック関数を設定できます。
-      wrapper.classList.add('is-start');
+      container.classList.add('is-enter');
     },
   }
 });
@@ -43,7 +43,6 @@ gsap.to(container, {
 window.addEventListener('resize', () => {
   ScrollTrigger.refresh();
 });
-
 
 /* --------------------------------------------------
   動画読み込み完了後処理
@@ -60,27 +59,15 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 /* --------------------------------------------------
-スクロール量によるページ全体のパーセンテージ表示
+スクロール量によるページ全体のプログレスバー表示
 -------------------------------------------------- */
-// 表示するスクロールバー
-const progressBar = document.querySelector('.scroll-bar');
-progressBar.style.transformOrigin = '0% 0%';
-
-const scrollBarHeight = 100;
-const maxScroll = document.documentElement.scrollHeight;
-
-progressBar.animate(
-  {
-    transform: ['scaleY(0)', 'scaleY(1)'],
-  },
-  {
-    fill: 'forwards',
-    timeline: new ScrollTimeline({
-      source: document.documentElement,
-      duration: maxScroll / scrollBarHeight * 2,
-    }),
-  }
-);
+const progressBar = document.querySelector('.progress__bar');
+window.addEventListener('scroll', () => {
+  const windowYPos = window.pageYOffset;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (windowYPos / height) * 100;
+  progressBar.style.height = scrolled + "%";
+});
 
 /* --------------------------------------------------
   マウスストーカー + トップ新卒採用箇所
