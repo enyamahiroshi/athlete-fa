@@ -1,0 +1,63 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+// ----------------------------------------------------------------
+// パンくず(Breadcrumb NavXT)
+// ▼テーマファイルへ
+// <?php //パンくずリスト(yoast seo)
+// echo '<aside class="bread-navi">';
+// if(function_exists('bcn_display')){ bcn_display(); }
+// echo '</aside>';
+// ?>
+// ▼書き出されるコード
+// <aside class="bread-navi">
+//   <span>
+//     <span><a href="">HOME</a> &gt; <span class="breadcrumb_last" aria-current="page">◯◯◯◯</span></span>
+//   </span>
+// </aside>
+// ----------------------------------------------------------------
+.bread-navi {
+  padding-bottom: 1em;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  @include flex(nowrap, flex-start, stretch);
+  gap: 5px;
+  overflow: hidden;
+  span {
+    white-space: nowrap;
+    a {
+      @include flex(nowrap, flex-start, center);
+      gap: 5px;
+      &::after {
+        content: '';
+        width: 10px;
+        height: 6px;
+        background-image: url(./assets/images/common/icon-arrow-toggle.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        transform: rotate(-90deg) translateX(-1px);
+      }
+      &:link, &:visited {
+        text-decoration: none;
+        color: rgba($textBaseColor, 0.5);
+      }
+      &:hover, &:active {
+        opacity: 1;
+        color: rgba($textBaseColor, 1);
+      }
+    }
+  }
+}
+@include res_min() {
+  .bread-navi {
+    padding-bottom: 25px;
+    font-size: 1.5rem;
+    gap: 14px;
+    span {
+      a {
+        gap: 14px;
+      }
+    }
+  }
+}

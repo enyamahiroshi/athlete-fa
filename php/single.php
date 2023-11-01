@@ -23,8 +23,10 @@
 				?>
 			</h1>
     </header>
-    <?php //パンくずリスト(yoast seo)
-    if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb( '<aside class="bread-navi">','</aside>' ); }
+    <?php //Breadcrumb NavXT
+    echo '<aside class="bread-navi">';
+    if(function_exists('bcn_display')){ bcn_display(); }
+    echo '</aside>';
     ?>
 		<section class="sec sec-post">
 			<div class="inner">

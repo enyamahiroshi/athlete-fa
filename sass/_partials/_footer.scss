@@ -73,11 +73,17 @@
       .sub-menu{
         margin-top: 15px;
         margin-left: 10px;
+        height: auto;
         flex-wrap: wrap;
         row-gap: 1em;
         .menu-item{
+          opacity: 1;
           margin-top: 0;
           margin-right: 32px;
+          a{
+            pointer-events: visible;
+            color: rgba($textBaseColor, 0.7);
+          }
         }
       }
     }

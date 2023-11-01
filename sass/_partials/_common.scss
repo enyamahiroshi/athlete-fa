@@ -145,13 +145,6 @@
 }
 
 
-// ページヘッダー
-.page-header {
-}
-@include res_min() {
-}
-
-
 //ブロックレイアウト
 .block-layout1{
   @include flex(nowrap, flex-start, stretch);

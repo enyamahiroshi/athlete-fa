@@ -1,3 +1,10 @@
+  <section class="sec sec-medium">
+    <?php //Breadcrumb NavXT
+    echo '<aside class="bread-navi">';
+    if(function_exists('bcn_display')){ bcn_display(); }
+    echo '</aside>';
+    ?>
+  </section>
 </main>
 
 <?php //お問い合わせへ ?>

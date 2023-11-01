@@ -5,7 +5,7 @@ get_template_part( 'setting/include_files' );
 // get_template_part( 'setting/customize-dashbord' );
 // get_template_part( 'setting/customize-plugins' );
 // get_template_part( 'setting/customize-block-editer' );
-get_template_part( 'block/breadcrumb' );
+// get_template_part( 'block/breadcrumb' );
 get_template_part( 'block/prevnext-fn' );
 get_template_part( 'block/form-seni' );
 
@@ -73,12 +73,13 @@ function add_posttype_classes($classes) {
     $classes[] = $page->post_name;
 
     $parent_id = $page->post_parent;
-      if ( 0 == $parent_id ) {
-        $classes[] = get_post($parent_id)->post_name;
-      } else {
-        $progenitor_id = array_pop( get_ancestors( $page->ID, 'page', 'post_type' ) );
-        $classes[] = get_post($progenitor_id)->post_name . '-child';
-      }
+    if ( 0 == $parent_id ) {
+      $classes[] = get_post($parent_id)->post_name;
+    } else {
+      // $progenitor_id = array_pop( get_ancestors( $page->ID, 'page', 'post_type' ) );
+      // $classes[] = get_post($progenitor_id)->post_name . '-child';
+      $classes[] = get_post($parent_id)->post_name;
+    }
   }
   return $classes;
 }

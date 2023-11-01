@@ -33,7 +33,7 @@
         ?>
       </section>
       <div class="global-menu__contact">
-        <a href="<?php echo esc_html(home_url()); ?>/contact" class="button">お問い合わせ</a>
+        <a href="<?php echo esc_html(home_url()); ?>/contact" class="button-contact">お問い合わせ</a>
       </div>
     </section>
     <button class="menu-bar js-tgl-menu" type="button">

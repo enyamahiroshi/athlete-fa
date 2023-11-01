@@ -55,80 +55,86 @@
 
     <?php //products slider ?>
     <section class="sec sec-full sec-intro-products-info-2">
-      <div class="sec-wide">
-        <h2 class="title02 --data-sub-ja" data-sub="製品情報">Our<br>Products</h2>
-      </div>
-      <?php //スライダー ?>
-      <section id="slider-wrapper" class="our-products">
-        <div id="slider-wrapper__container" class="our-products-slider">
-        <?php //slide item ?>
-          <section class="products-item">
-            <div class="inner">
-              <figure class="products-item__image">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-01.png" alt="ボールマウンタ" width="724" height="445">
-              </figure>
-              <div class="products-item__data">
-                <h2 class="products-item__data__title" data-num="01">
-                  ボールマウンタ
-                </h2>
-                <p class="products-item__data__text">微小はんだボールをウェハや基板の上に配列させるための装置です。<br>はんだボール配列には当社独自の技術を採用し高スループットの生産性を実現しています。<br>最終製品はデータセンタ(DC)/ハイパフォーマンスコンピュータ(HPC)/5G等最先端のデバイスに展開されています。</p>
-                <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
-                  <span>詳しく見る</span>
-                  <span class="svg-area">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
-                      <circle cx="50%" cy="50%" r="28" class="circle-ani">
-                    </svg>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </section>
-          <?php //slide item ?>
-          <section class="products-item">
-            <div class="inner">
-              <figure class="products-item__image">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-02.png" alt="ボンディング" width="724" height="445">
-              </figure>
-              <div class="products-item__data">
-                <h2 class="products-item__data__title" data-num="02">
-                  ボンディング
-                </h2>
-                <p class="products-item__data__text">フリップチップボンダおよびダイボンダは、幅広いラインナップ(R＆D～量産機)をご用意しており、フォトニクス/LD/イメージセンサを始めとした各種アプリケーションおよび各種実装プロセス向けに、高精度・高スループット装置として提供しています。</p>
-                <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
-                  <span>詳しく見る</span>
-                  <span class="svg-area">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
-                      <circle cx="50%" cy="50%" r="28" class="circle-ani">
-                    </svg>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </section>
-          <?php //slide item ?>
-          <section class="products-item">
-            <div class="inner">
-              <figure class="products-item__image">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-03.png" alt="カスタム" width="724" height="445">
-              </figure>
-              <div class="products-item__data">
-                <h2 class="products-item__data__title" data-num="03">
-                  カスタム
-                </h2>
-                <p class="products-item__data__text">長年にわたり培った豊富な要素技術を組み合わせ、安全性と信頼性を確保し、多岐にわたるお客様のニーズを満たす新しい装置を生み出していきます。</p>
-                <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
-                  <span>詳しく見る</span>
-                  <span class="svg-area">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
-                      <circle cx="50%" cy="50%" r="28" class="circle-ani">
-                    </svg>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </section>
-        </div><?php // #slider-wrapper__container ?>
-      </section><?php // slider-wrapper ?>
+      <div class="horizon-slider-trigger">
+
+        <div class="sec-wide">
+          <h2 class="title02 --data-sub-ja" data-sub="製品情報">Our<br>Products</h2>
+        </div>
+        <?php //スライダー ?>
+        <section class="horizon-slider">
+          <div class="horizon-slider__container">
+            <div class="horizon-slider__container__inner">
+              <?php //slide item ?>
+              <section class="slider-item">
+                <div class="inner">
+                  <figure class="slider-item__image">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-01.png" alt="ボールマウンタ" width="724" height="445">
+                  </figure>
+                  <div class="slider-item__data">
+                    <h2 class="slider-item__data__title" data-num="01">
+                      ボールマウンタ
+                    </h2>
+                    <p class="slider-item__data__text">微小はんだボールをウェハや基板の上に配列させるための装置です。<br>はんだボール配列には当社独自の技術を採用し高スループットの生産性を実現しています。<br>最終製品はデータセンタ(DC)/ハイパフォーマンスコンピュータ(HPC)/5G等最先端のデバイスに展開されています。</p>
+                    <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
+                      <span>詳しく見る</span>
+                      <span class="svg-area">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
+                          <circle cx="50%" cy="50%" r="28" class="circle-ani">
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </section>
+              <?php //slide item ?>
+              <section class="slider-item">
+                <div class="inner">
+                  <figure class="slider-item__image">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-02.png" alt="ボンディング" width="724" height="445">
+                  </figure>
+                  <div class="slider-item__data">
+                    <h2 class="slider-item__data__title" data-num="02">
+                      ボンディング
+                    </h2>
+                    <p class="slider-item__data__text">フリップチップボンダおよびダイボンダは、幅広いラインナップ(R＆D～量産機)をご用意しており、フォトニクス/LD/イメージセンサを始めとした各種アプリケーションおよび各種実装プロセス向けに、高精度・高スループット装置として提供しています。</p>
+                    <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
+                      <span>詳しく見る</span>
+                      <span class="svg-area">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
+                          <circle cx="50%" cy="50%" r="28" class="circle-ani">
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </section>
+              <?php //slide item ?>
+              <section class="slider-item">
+                <div class="inner">
+                  <figure class="slider-item__image">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-03.png" alt="カスタム" width="724" height="445">
+                  </figure>
+                  <div class="slider-item__data">
+                    <h2 class="slider-item__data__title" data-num="03">
+                      カスタム
+                    </h2>
+                    <p class="slider-item__data__text">長年にわたり培った豊富な要素技術を組み合わせ、安全性と信頼性を確保し、多岐にわたるお客様のニーズを満たす新しい装置を生み出していきます。</p>
+                    <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
+                      <span>詳しく見る</span>
+                      <span class="svg-area">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
+                          <circle cx="50%" cy="50%" r="28" class="circle-ani">
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </section>
+            </div><?php //horizon-slider__container__inner ?>
+          </div><?php // #horizon-slider__container ?>
+        </section><?php // horizon-slider ?>
+
+      </div><?php // horizon-slider-trigger ?>
     </section>
 
     <?php //Join our TEAM ?>

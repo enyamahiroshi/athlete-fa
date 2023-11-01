@@ -1,3 +1,6 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
 // ----------------------------------------------------------------
 // パンくず(Yoast SEO)
 // ▼テーマファイルへ
@@ -12,61 +15,51 @@
 // </aside>
 // ----------------------------------------------------------------
 .bread-navi {
-  padding: 5px 10px;
-  margin-bottom: 25px;
-  background-color: #F1F1F1;
-  font-size: 1.1rem;
-  font-weight: 400;
+  padding-bottom: 1em;
+  font-size: 1.3rem;
   line-height: 1.4;
-  letter-spacing: 0.03em;
-  span {
-    span {
-      @include flex(nowrap, flex-start, stretch);
-      overflow: hidden;
-      & > * {
-        white-space: nowrap;
-      }
-      a {
-        &:link, &:visited {
-          text-decoration: none;
-        }
-        &:hover, &:active {
-          opacity: 1;
-          font-weight: 500;
-          color: $mainColor;
-        }
-        &::after {
-          content: '';
-          display: inline-block;
-          vertical-align: top;
-          width: 12px;
-          height: 100%;
-          background-image: url(./assets/images/common/icon-arrow6.svg);
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: auto 5px;
-        }
-      }
-      // current
-      &.breadcrumb_last {}
+  & > span {
+    @include flex(nowrap, flex-start, stretch);
+    gap: 5px;
+    overflow: hidden;
+    & > * {
+      white-space: nowrap;
     }
+    a {
+      @include flex(nowrap, flex-start, center);
+      gap: 5px;
+      &::after {
+        content: '';
+        width: 10px;
+        height: 6px;
+        background-image: url(./assets/images/common/icon-arrow-toggle.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        transform: rotate(-90deg) translateX(-1px);
+      }
+      &:link, &:visited {
+        text-decoration: none;
+        color: rgba($textBaseColor, 0.5);
+      }
+      &:hover, &:active {
+        opacity: 1;
+        color: rgba($textBaseColor, 1);
+      }
+    }
+    // current
+    &.breadcrumb_last {}
   }
 }
 @include res_min() {
   .bread-navi {
-    padding: 13px 18px;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 70px;
-    font-size: 1.3rem;
-    span {
-      span {
-        a {
-          &::after {
-            width: 22px;
-            height: 100%;
-            background-size: auto 7px;
-          }
+    padding-bottom: 25px;
+    font-size: 1.5rem;
+    & > span {
+      gap: 14px;
+      a {
+        gap: 14px;
+        &::after {
         }
       }
     }

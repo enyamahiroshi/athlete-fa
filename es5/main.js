@@ -4,11 +4,12 @@
 -------------------------------------------------- */
 //https://qiita.com/k_watanabe_51/items/0d21d6560c10163a130f
 gsap.registerPlugin(ScrollTrigger);
-const wrapper = document.getElementById('slider-wrapper');
-const container = document.getElementById('slider-wrapper__container');
+const wrapper = document.querySelector('.horizon-slider-trigger');
+const container = document.querySelector('.horizon-slider__container__inner');
 
 gsap.to(container, {
   x: () => -(container.clientWidth - wrapper.clientWidth) + 'px',
+  horizontal: true,
   ease: 'none',
   scrollTrigger: {
     trigger: wrapper,
@@ -25,18 +26,19 @@ gsap.to(container, {
     scrub: true,
     invalidateOnRefresh: true,
     anticipatePin: 1,
-    onEnter: () => {
-      container.classList.add('is-enter');
-    },
-    onLeave: () => { //スクロール方向が正で、スクロール位置がendを通り過ぎたときのコールバック関数を設定できます。
-      container.classList.remove('is-enter');
-    },
-    onLeaveBack: () => { //スクロール方向が負で、スクロール位置がstartを通り過ぎたときのコールバック関数を設定できます。
-      container.classList.remove('is-enter');
-    },
-    onEnterBack: () => { //スクロール方向が負で、スクロール位置がendを通り過ぎたときのコールバック関数を設定できます。
-      container.classList.add('is-enter');
-    },
+    toggleClass: {targets: ".sec-intro-products-info-2", className: "is-enter"},
+    // onEnter: () => {
+    //   wrapper.classList.add('is-enter');
+    // },
+    // onLeave: () => { //スクロール方向が正で、スクロール位置がendを通り過ぎたときのコールバック関数を設定できます。
+    //   wrapper.classList.remove('is-enter');
+    // },
+    // onLeaveBack: () => { //スクロール方向が負で、スクロール位置がstartを通り過ぎたときのコールバック関数を設定できます。
+    //   wrapper.classList.remove('is-enter');
+    // },
+    // onEnterBack: () => { //スクロール方向が負で、スクロール位置がendを通り過ぎたときのコールバック関数を設定できます。
+    //   wrapper.classList.add('is-enter');
+    // },
   }
 });
 
