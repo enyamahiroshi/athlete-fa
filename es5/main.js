@@ -56,6 +56,31 @@ for (let i = 0; i < linkElem.length; i++) {
   });
 }
 
+// スクロールイベントを登録
+// A 要素を取得
+const a = document.querySelector(".button-page-top");
+// js-color-change クラスの要素を取得
+const jsColorChangeElements = document.querySelectorAll(".js-color-change");
+// js-color-change クラスの要素を配列に変換
+const jsColorChangeElementsArray = Array.from(jsColorChangeElements);
+// スクロールイベントを登録
+window.addEventListener("scroll", function() {
+  // A 要素と js-color-change クラスの要素の位置を取得
+  const aRect = a.getBoundingClientRect();
+  for (const jsColorChangeElement of jsColorChangeElementsArray) {
+    const jsColorChangeRect = jsColorChangeElement.getBoundingClientRect();
+    // A 要素と js-color-change クラスの要素が重なっているかどうかを判定
+    const isOverlap = aRect.bottom >= jsColorChangeRect.top && aRect.top <= jsColorChangeRect.bottom;
+    // A 要素と js-color-change クラスの要素が重なっている場合、is-change クラスを付与
+    if (isOverlap) {
+      a.classList.add("is-change");
+      break;
+    } else {
+      a.classList.remove("is-change");
+    }
+  }
+});
+
 
 //jQuery
 (function ($) {

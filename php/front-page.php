@@ -277,6 +277,8 @@
       </div>
     </section>
 
+    <section class="sec sec-full sec-company-image js-color-change">sfafsddsa</section>
+
     <?php //Block: content - news ?>
     <section class="sec sec-wide sec-news">
       <div class="layout-block">

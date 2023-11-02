@@ -10,7 +10,7 @@
 </main>
 
 <?php //お問い合わせへ ?>
-<section class="sec sec-medium sec-cta-contact">
+<section class="sec sec-medium sec-cta-contact js-color-change">
   <div class="cta-contact">
     <div class="cta-contact__main">
       <h2 class="title">Contact</h2>

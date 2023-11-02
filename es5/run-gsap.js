@@ -25,19 +25,19 @@ gsap.to(container, {
     anticipatePin: 1,
     scrub: 0,
     invalidateOnRefresh: true,
-    toggleClass: {targets: ".sec-intro-products-info-2", className: "is-enter"},
-    onEnter: () => {
-      wrapper.classList.add('is-enter');
-    },
-    onLeave: () => { //スクロール方向が正で、スクロール位置がendを通り過ぎたときのコールバック関数を設定できます。
-      wrapper.classList.remove('is-enter');
-    },
-    onLeaveBack: () => { //スクロール方向が負で、スクロール位置がstartを通り過ぎたときのコールバック関数を設定できます。
-      wrapper.classList.remove('is-enter');
-    },
-    onEnterBack: () => { //スクロール方向が負で、スクロール位置がendを通り過ぎたときのコールバック関数を設定できます。
-      wrapper.classList.add('is-enter');
-    },
+    // toggleClass: {targets: ".sec-intro-products-info-2", className: "is-enter"},
+    // onEnter: () => {
+    //   wrapper.classList.add('is-enter');
+    // },
+    // onLeave: () => { //スクロール方向が正で、スクロール位置がendを通り過ぎたときのコールバック関数を設定できます。
+    //   wrapper.classList.remove('is-enter');
+    // },
+    // onLeaveBack: () => { //スクロール方向が負で、スクロール位置がstartを通り過ぎたときのコールバック関数を設定できます。
+    //   wrapper.classList.remove('is-enter');
+    // },
+    // onEnterBack: () => { //スクロール方向が負で、スクロール位置がendを通り過ぎたときのコールバック関数を設定できます。
+    //   wrapper.classList.add('is-enter');
+    // },
   }
 });
 

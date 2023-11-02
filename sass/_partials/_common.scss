@@ -297,19 +297,25 @@
     font-size: 1.4rem;
     font-weight: 500;
     letter-spacing: 0;
-    color: $textBaseColor;
+    color: rgba($textBaseColor, 1);;
     line-height: 1;
+    @include transition(all, 0.1);
   }
   &::before{
     content: '';
     width: 36px;
     height: 36px;
     border-radius: 18px;
-    border: 1px solid rgba( $textBaseColor , 0.15 );
-    background-image: url(./assets/images/common/icon-arrow-pagetop.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: auto;
+    background-color: rgba( $textBaseColor , 1 );
+    -webkit-mask-image: url(./assets/images/common/icon-arrow-pagetop.svg);
+            mask-image: url(./assets/images/common/icon-arrow-pagetop.svg);
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+            mask-position: center;
+    -webkit-mask-size: auto;
+            mask-size: auto;
+    @include transition(all, 0.1);
   }
 }
 @include res_min() {
@@ -333,6 +339,15 @@
               writing-mode: vertical-rl;
       -webkit-text-orientation: sideways;
               text-orientation: sideways;
+    }
+    //色を変える
+    &.is-change{
+      span{
+        color: rgba(#fff, 0.6);
+      }
+      &::before{
+        background-color: rgba(#fff, 0.8);
+      }
     }
   }
 }
