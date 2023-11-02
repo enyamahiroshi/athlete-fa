@@ -144,10 +144,6 @@ a img {
   line-height: 1;
   white-space: nowrap;
   position: relative;
-  &:link, &:visited{
-    text-decoration: underline;
-    color: $textBaseColor;
-  }
   //丸
   &::after{
     content: '';
@@ -156,13 +152,14 @@ a img {
     height: 28px;
     border-radius: 50%;
     border: 1px solid rgba($mainColor, 0.25);
+    @include transition();
   }
   //丸の中のアイコン
   &::before{
     content: '';
     width: 14px;
     height: 8px;
-    background-color: $mainColor;
+    background-color: rgba($mainColor, 1);
     -webkit-mask-image: url(./assets/images/common/icon-arrow-right.svg);
             mask-image: url(./assets/images/common/icon-arrow-right.svg);
     -webkit-mask-repeat: no-repeat;
@@ -175,8 +172,26 @@ a img {
     right: calc(28px / 2 - 7px);
     top: 50%;
     transform: translateY(-50%);
+    @include transition();
+  }
+  &:link, &:visited{
+    text-decoration: underline;
+    color: $textBaseColor;
+  }
+  &:hover, &:active{
+    opacity: 1;
+  }
+  &:hover{
+    &::after{
+      background-color: rgba($mainColor, 1);
+      border-color: rgba($mainColor, 1);
+    }
+    &::before{
+      background-color: rgba(#fff, 1);
+    }
   }
 }
+
 
 .button-r-link-large{
   @extend .button-r-link-small;
@@ -199,7 +214,7 @@ a img {
     content: '';
     width: 14px;
     height: 8px;
-    background-color: $mainColor;
+    background-color: rgba($mainColor, 1);
     -webkit-mask-image: url(./assets/images/common/icon-arrow-right.svg);
             mask-image: url(./assets/images/common/icon-arrow-right.svg);
     -webkit-mask-repeat: no-repeat;
@@ -212,6 +227,15 @@ a img {
     right: calc(82px / 2 - 7px);
     top: 50%;
     transform: translateY(-50%);
+  }
+  &:hover{
+    &::after{
+      background-color: rgba($mainColor, 0);
+      border-color: transparent;
+    }
+    &::before{
+      background-color: rgba($mainColor, 1);
+    }
   }
 }
 

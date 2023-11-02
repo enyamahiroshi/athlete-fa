@@ -287,9 +287,12 @@
 }
 @include res_min() {
   .mv__catchcopy{
-    width: 34.5%;
-    left: 9.7%;
-    bottom: 92px;
+    // width: 34.5%;
+    // left: 9.7%;
+    // bottom: 92px;
+    width: clamp(300px, 34.5% ,660px);
+    left: min(64px, 4vw);
+    bottom: min(64px, 5vw);
     transform: translateX(0);
   }
 }
@@ -665,6 +668,7 @@
       margin-top: 20px;
       margin-left: auto;
       margin-right: auto;
+      text-align: center;
     }
   }
 }
@@ -1426,7 +1430,10 @@
       justify-content: space-between;
       .layout-block__left{
         display: block;
-        padding-right: 100px;
+        padding-right: clamp(20px, 5vw, 100px);
+        .title02{
+          white-space: nowrap;
+        }
       }
     }
     @media (max-width:1023px) {

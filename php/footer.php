@@ -1,3 +1,4 @@
+  <?php if(!is_front_page()): ?>
   <section class="sec sec-medium">
     <?php //Breadcrumb NavXT
     echo '<aside class="bread-navi">';
@@ -5,6 +6,7 @@
     echo '</aside>';
     ?>
   </section>
+  <?php endif; ?>
 </main>
 
 <?php //お問い合わせへ ?>
@@ -64,7 +66,7 @@
   </section>
   <section class="footer__bottom">
     <a href="<?php echo esc_url(home_url()); ?>/privacy-policy">プライバシーポリシー</a>
-    <div class="copyright">@ Athlete CO.,LTD</div>
+    <div class="copyright">@ Athlete FA Corporation</div>
   </section>
 </footer>
 <?php wp_footer(); ?>

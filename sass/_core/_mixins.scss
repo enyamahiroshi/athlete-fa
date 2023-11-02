@@ -5,7 +5,7 @@
 // ----------------------------------------------------------------
 
 // トランジション
-@mixin transition($trg: all, $time: 0.1) {
+@mixin transition($trg: all, $time: 0.3) {
   transition: $trg #{$time + s} linear 0s;
 }
 

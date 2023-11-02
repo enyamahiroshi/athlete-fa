@@ -47,7 +47,7 @@
   </section>
   <section class="footer__bottom">
     <a href="<?php echo esc_url(home_url()); ?>/privacy-policy">プライバシーポリシー</a>
-    <div class="copyright">@ Athlete CO.,LTD</div>
+    <div class="copyright">@ Athlete FA Corporation</div>
   </section>
 </footer>
 <?php wp_footer(); ?>

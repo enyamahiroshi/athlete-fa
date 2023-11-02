@@ -21,6 +21,7 @@ $headerHighPC: 127;
   width: 100%;
   height: #{$headerHighSP + px};
   background-color: transparent;
+  border-bottom: 1px solid rgba( $textBaseColor , 0.15 );
   .header__logo{
     flex: 0 0 auto;
     line-height: 1;
@@ -31,13 +32,22 @@ $headerHighPC: 127;
     svg{
       width: auto;
       height: 15px;
-      fill: rgba(255,255,255, 1);
+      fill: rgba($mainColor, 1);
       @include transition();
     }
   }
   .menu-bar{
     flex: 0 0 64px;
     height: 100%;
+  }
+  //homeのみ
+  .home &{
+    border-bottom: none;
+    .header__logo{
+      svg{
+        fill: rgba(255,255,255, 1);
+      }
+    }
   }
 }
 @include res_min( map-get($BP, lg) ){
@@ -473,7 +483,7 @@ $headerHighPC: 127;
       content: "";
       width: 32px;
       height: 1px;
-      background-color: rgba(255,255,255, 1);
+      background-color: rgba($textBaseColor, 1);
       position: absolute;
       right: 0;
       @include transition();
@@ -490,7 +500,7 @@ $headerHighPC: 127;
     display: block;
     width: 30px;
     height: 8px;
-    background-color: rgba(255,255,255, 1);
+    background-color: rgba($textBaseColor, 1);
     -webkit-mask-image: url(./assets/images/common/menu-bar-open.svg);
             mask-image: url(./assets/images/common/menu-bar-open.svg);
     -webkit-mask-repeat: no-repeat;
@@ -503,6 +513,18 @@ $headerHighPC: 127;
     left: 50%;
     bottom: calc(50% - 13px);
     transform: translate(-50%,-50%);
+  }
+  //homeのみ
+  .home &{
+    .menu-bar-line{
+      &::before,
+      &::after{
+        background-color: rgba(255,255,255, 1);
+      }
+    }
+    .menu-bar-image{
+      background-color: rgba(255,255,255, 1);
+    }
   }
 }
 @include res_min( map-get($BP, lg) ){
@@ -517,6 +539,7 @@ $headerHighPC: 127;
 ---------------------------------------------------------------- */
 // グローバルメニュー表示
 .header.is-fixed{
+  border-bottom: none;
   .header__logo{
     svg{
       fill: rgba($mainColor, 1);
