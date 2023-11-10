@@ -1,8 +1,8 @@
-  <section class="sec sec-medium">
+  <section class="sec sec-medium sec-bread-navi">
     <?php //Breadcrumb NavXT
     echo '<aside class="bread-navi">';
     if(function_exists('bcn_display')){ bcn_display(); }
-    echo '</aside>';
+    echo '</aside>'."\n";;
     ?>
   </section>
 </main>
@@ -26,13 +26,13 @@
     <div class="footer__main__navigation">
       <section class="footer__main__navigation__main">
         <?php //カスタムメニューの呼び出し
-          wp_nav_menu( array ( 'menu'=>'menu1', 'container'=>'' , 'container_class' =>'' , 'menu_class'=>'menu',  'items_wrap'=>'<ul class="%2$s">%3$s</ul>' ) );
+          wp_nav_menu( array ( 'menu'=>'menu1', 'container'=>'' , 'container_class' =>'' , 'menu_class'=>'menu',  'items_wrap'=>'<ul class="%2$s">%3$s</ul>'."\n" ) );
         ?>
         <?php //カスタムメニューの呼び出し
-          wp_nav_menu( array ( 'menu'=>'menu2', 'container'=>'' , 'container_class' =>'' , 'menu_class'=>'menu',  'items_wrap'=>'<ul class="%2$s">%3$s</ul>' ) );
+          wp_nav_menu( array ( 'menu'=>'menu2', 'container'=>'' , 'container_class' =>'' , 'menu_class'=>'menu',  'items_wrap'=>'<ul class="%2$s">%3$s</ul>'."\n" ) );
         ?>
         <?php //カスタムメニューの呼び出し
-          wp_nav_menu( array ( 'menu'=>'menu3', 'container'=>'' , 'container_class' =>'' , 'menu_class'=>'menu',  'items_wrap'=>'<ul class="%2$s">%3$s</ul>' ) );
+          wp_nav_menu( array ( 'menu'=>'menu3', 'container'=>'' , 'container_class' =>'' , 'menu_class'=>'menu',  'items_wrap'=>'<ul class="%2$s">%3$s</ul>'."\n" ) );
         ?>
       </section>
       <section class="footer__main__navigation__sub">
@@ -47,7 +47,7 @@
   </section>
   <section class="footer__bottom">
     <a href="<?php echo esc_url(home_url()); ?>/privacy-policy">プライバシーポリシー</a>
-    <div class="copyright">@ Athlete FA Corporation</div>
+    <div class="copyright">© Athlete FA Corporation</div>
   </section>
 </footer>
 <?php wp_footer(); ?>

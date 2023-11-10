@@ -40,14 +40,20 @@ $headerHighPC: 127;
     flex: 0 0 64px;
     height: 100%;
   }
-  //homeのみ
-  .home &{
-    border-bottom: none;
+  //個別に変更
+  .home &,
+  .page-template-tmp-recruit &{
     .header__logo{
       svg{
         fill: rgba(255,255,255, 1);
       }
     }
+  }
+  .home &{
+    border-bottom: none;
+  }
+  .page-template-tmp-recruit &{
+    border-color: rgba(#fff, 0.15);
   }
 }
 @include res_min( map-get($BP, lg) ){
@@ -92,7 +98,6 @@ $headerHighPC: 127;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: 1fr 202px;
-
     opacity: 1;
     padding: 0;
     background-color: transparent;
@@ -118,6 +123,7 @@ $headerHighPC: 127;
     font-weight: 500;
     letter-spacing: 0.1em;
     line-height: 1;
+    position: relative;
     //ラベルとして使用するのみ
     &.link-label{
       cursor: pointer;
@@ -128,17 +134,22 @@ $headerHighPC: 127;
         pointer-events: none !important;
       }
     }
-    position: relative;
+    //カレント
+    &.current_page_item,
+    &.current-menu-item,
+    &.current_page_ancestor,
+    .recruit &.link-recruit{
+      a{
+        color: rgba($mainColor, 1);
+      }
+    }
     //サブメニュー開閉
     &.menu-item-has-children{
       position: relative;
       @include transition();
       opacity: 1;
-      &:hover{
-        // opacity: 0.8;
-      }
-      & > .sub-menu{
-        // display: none;
+      &::before{ //サブメニューが開いたときにマウスオーバーエリアを広げるため
+        transition: none !important;
       }
       & > a{
         cursor: pointer;
@@ -149,11 +160,32 @@ $headerHighPC: 127;
           margin-left: 10px;
           width: 10px;
           height: 1em;
-          background-image: url(./assets/images/common/icon-arrow-toggle.svg);
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: auto;
+          background-color: rgba($textBaseColor, 1);
+          -webkit-mask-image: url(./assets/images/common/icon-arrow-toggle.svg);
+                  mask-image: url(./assets/images/common/icon-arrow-toggle.svg);
+          -webkit-mask-repeat: no-repeat;
+                  mask-repeat: no-repeat;
+          -webkit-mask-position: center;
+                  mask-position: center;
+          -webkit-mask-size: auto;
+                  mask-size: auto;
           @include transition();
+        }
+      }
+      //カレント
+      &.current_page_item,
+      &.current-menu-item,
+      &.current_page_ancestor,
+      .recruit &.link-recruit{
+        & > a{
+          &::after{
+            background-color: rgba($mainColor, 1);
+          }
+        }
+        .current-menu-item{
+          a{
+            color: rgba($mainColor, 1) !important;
+          }
         }
       }
       //open
@@ -216,36 +248,75 @@ $headerHighPC: 127;
       .menu-item{
         padding: 0;
         border-bottom: none;
-        font-weight: 400;
-        //homeのみ
-        .home &{
+        font-weight: 500;
+        position: relative;
+        //個別に変更
+        .home &,
+        .page-template-tmp-recruit &{
           a{
             color: #fff;
           }
+          //カレント
+          &.current_page_item,
+          &.current-menu-item,
+          &.current_page_ancestor,
+          .recruit &.link-recruit{
+            &::after{
+              content: none;
+            }
+            a{
+              color: rgba($mainColor, 1);
+            }
+          }
           //サブメニュー開閉
-          &.menu-item-has-children{
+          &.menu-item-has-children:not(:is(.current_page_ancestor)){
             & > a{
               &::after{
-                background-image: url(./assets/images/common/icon-arrow-toggle-white.svg);
+                background-color: rgba(#fff, 1);
               }
             }
           }
         }
         //カレント
         &.current_page_item,
-        &.current-menu-item{
-          a{
-            color: $mainColor;
+        &.current-menu-item,
+        &.current_page_ancestor,
+        .recruit &.link-recruit{
+          &::before{
+            content: '';
+            width: calc(100% + 16px);
+            height: 2px;
+            background-color: rgba($mainColor, 1);
+            position: absolute;
+            left: -8px;
+            bottom: -39px;
+            // @include transition();
+            .home &{
+              content: none;
+            }
           }
         }
         //サブメニュー開閉
         &.menu-item-has-children{
+          & > .sub-menu{
+            .menu-item{
+              &.current_page_item,
+              &.current-menu-item,
+              &.current_page_ancestor,
+              .recruit &.link-recruit{
+                &::before{
+                  content: none;
+                }
+              }
+            }
+          }
           //open
           &.is-open{
             &::before{ //サブメニューが開いたときにマウスオーバーエリアを広げるため
               content: '';
               width: 200%;
               height: 4em;
+              background-color: transparent;
               position: absolute;
               left: 50%;
               top: 1em;
@@ -310,6 +381,24 @@ $headerHighPC: 127;
       }
     }
   }
+
+  //カレント
+  .products .global-menu .menu .menu-item.menu-products,
+  .tax-products-category .global-menu .menu .menu-item.menu-products{
+    &::before{
+      content: '';
+      width: calc(100% + 16px);
+      height: 2px;
+      background-color: rgba($mainColor, 1);
+      position: absolute;
+      left: -8px;
+      bottom: -39px;
+      @include transition();
+    }
+    a{
+      color: rgba($mainColor, 1);
+    }
+  }
 }
 
 
@@ -350,8 +439,9 @@ $headerHighPC: 127;
           background-color: rgba($textBaseColor, 1);
         }
       }
-      //homeのみ
-      .home &{
+      //個別に変更
+      .home &,
+      .page-template-tmp-recruit &{
         a{
           color: rgba(255,255,255, 0.5);
         }
@@ -435,8 +525,9 @@ $headerHighPC: 127;
         }
       }
     }
-    //homeのみ
-    .home &{
+    //個別に変更
+    .home &,
+    .page-template-tmp-recruit &{
       .button-contact{
         background-color: transparent;
         border-color: #fff;
@@ -514,8 +605,9 @@ $headerHighPC: 127;
     bottom: calc(50% - 13px);
     transform: translate(-50%,-50%);
   }
-  //homeのみ
-  .home &{
+  //個別に変更
+  .home &,
+  .page-template-tmp-recruit &{
     .menu-bar-line{
       &::before,
       &::after{
@@ -563,23 +655,29 @@ $headerHighPC: 127;
     height: 100px;
     background-color: rgba(255,255,255, 1);
     .menu-item{
-      //homeのみ
-      .home &{
+      //個別に変更
+      .home &,
+      .page-template-tmp-recruit &{
         a{
           color: rgba($textBaseColor, 1);
         }
         //サブメニュー開閉
-        &.menu-item-has-children{
+        &.menu-item-has-children:not(:is(.current_page_ancestor)){
           & > a{
             &::after{
-              background-image: url(./assets/images/common/icon-arrow-toggle.svg);
+              background-color: rgba($textBaseColor, 1);
             }
           }
         }
       }
       //カレント
       &.current_page_item,
-      &.current-menu-item{
+      &.current-menu-item,
+      &.current_page_ancestor,
+      .recruit &.link-recruit{
+        &::before{
+          bottom: -25px;
+        }
         a{
           color: $mainColor;
         }
@@ -588,8 +686,9 @@ $headerHighPC: 127;
     //JP / EN
     .global-menu{
       .global-menu__sub{
-        //homeのみ
-        .home &{
+        //個別に変更
+        .home &,
+        .page-template-tmp-recruit &{
           a{
             color: rgba($textBaseColor, 0.5);
           }
@@ -628,6 +727,23 @@ $headerHighPC: 127;
           }
         }
       }
+    }
+  }
+  //カレント
+  .products .header.is-fixed .global-menu .menu .menu-item.menu-products,
+  .tax-products-category .header.is-fixed .global-menu .menu .menu-item.menu-products{
+    &::before{
+      content: '';
+      width: 100%;
+      height: 2px;
+      background-color: rgba($mainColor, 1);
+      position: absolute;
+      left: 0;
+      bottom: -25px;
+      @include transition();
+    }
+    a{
+      color: rgba($mainColor, 1);
     }
   }
 }

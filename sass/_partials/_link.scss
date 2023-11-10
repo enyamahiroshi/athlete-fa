@@ -1,22 +1,23 @@
 @use '../_core/valiables' as *;
 @use '../_core/mixins' as *;
+@use '../_partials/common' as *;
 
 /* ------------------------------------
 //  BASE
 // ----------------------------------*/
-a {
+a{
   @include transition();
   color: $linkColor;
   text-decoration: none;
-  &:link, &:visited {
+  &:link, &:visited{
     text-decoration: none;
   }
-  &:hover, &:active {
-    opacity: 0.8;
+  &:hover, &:active{
+    // opacity: 0.8;
     color: $linkHoverColor;
   }
   // ウェブアイコン使用時
-  i {
+  i{
     margin: 0 4px;
   }
   // transform使用時にchromeでズレが生じるのを防ぐ
@@ -24,23 +25,23 @@ a {
           backface-visibility: hidden;
 }
 //画像リンク
-a img {
+a img{
   opacity: 1;
 }
-@include res_min() {
-  a img {
+@include res_min(){
+  a img{
    @include transition(opacity);
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-    &:hover {
-      opacity: 0.8;
+    &:hover{
+      // opacity: 0.8;
     }
   }
 }
 
 *:is(header, footer) a{
   color: $textBaseColor;
-  &:hover, &:active {
+  &:hover, &:active{
     color: $textBaseColor;
   }
 }
@@ -49,21 +50,40 @@ a img {
 /* ----------------------------------------------------------------
   アイコンタイプ
 ---------------------------------------------------------------- */
-// 左に > アイコン
-.link_type_arrow_left1 {
-  padding: 0 0 0 18px;
-  position: relative;
-  &::before {
+//右にアイコン
+.after-icon{
+  margin-left: 2px;
+  margin-right: 2px;
+  display: inline-flex;
+  align-items: center;
+  &::after{
     content: '';
-    width: 7px;
-    height: 100%;
-    background-image: url(./assets/images/common/ico_arrow_r_white.svg);
-    background-repeat: no-repeat;
-    background-position: left top;
-    background-size: 100% auto;
-    position: absolute;
-    top: 0.4em;
-    left: 0;
+    width: 11px;
+    height: 1em;
+    margin-left: 3px;
+    background-color: rgba($textBaseColor, 1);
+    @include transition();
+  }
+  &.after-icon--map::after{
+    -webkit-mask-image: url(./assets/images/common/icon-map.svg);
+            mask-image: url(./assets/images/common/icon-map.svg);
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+            mask-position: center;
+    -webkit-mask-size: 11px;
+            mask-size: 11px;
+  }
+  &:link, &:visited{
+    color: rgba($textBaseColor, 1);
+    text-decoration: underline;
+  }
+  &:hover, &:active{
+    opacity: 1;
+    color: rgba($mainColor, 1);
+    &::after{
+      background-color: rgba($mainColor, 1);
+    }
   }
 }
 
@@ -71,7 +91,7 @@ a img {
 /* ----------------------------------------------------------------
   ボタンタイプ
 ---------------------------------------------------------------- */
-.button-wrap {
+.button-wrap{
   @include flex(wrap, center, stretch);
   gap: 1em;
   &.--left{
@@ -81,13 +101,14 @@ a img {
     justify-content: flex-end;
   }
 }
-@include res_min() {
-  .button-wrap {
-    gap: 1.5em 1.125em;
+@include res_min(){
+  .button-wrap{
+    gap: 1.5em 3.5em;
+    padding: 10px 0;
   }
 }
 
-.button {
+.button{
   // 基本
   @include flex(nowrap, center, center);
   @include transition();
@@ -96,18 +117,32 @@ a img {
   min-height: 50px;
   border-radius: 25px;
   background-color: rgba($textBaseColor, 1);
-  background-image: url(./assets/images/common/icon-arrow-right.svg);
-  background-repeat: no-repeat;
-  background-position: right 20px center;
-  background-size: 14px 8px;
   font-size: 1.5rem;
   color: rgba(#fff, 1);
   position: relative;
-  &:link, &:visited {
+  &::after{
+    content: '';
+    width: 14px;
+    height: 100%;
+    background-color: rgba(#fff, 1);
+    -webkit-mask-image: url(./assets/images/common/icon-arrow-right.svg);
+            mask-image: url(./assets/images/common/icon-arrow-right.svg);
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+            mask-position: center;
+    -webkit-mask-size: 100%;
+            mask-size: 100%;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    @include transition();
+  }
+  &:link, &:visited{
     background-color: rgba($textBaseColor, 1);
     color: rgba(#fff, 1);
   }
-  &:hover, &:active {
+  &:hover, &:active{
     opacity: 0.8;
     text-decoration: none;
   }
@@ -115,23 +150,244 @@ a img {
   &--gray{
     background-color: rgba(#8B8B8B, 1);
     background-image: none;
-    &:link, &:visited {
+    &:link, &:visited{
       background-color: rgba(#8B8B8B, 1);
       color: rgba(#fff, 1);
     }
-    &:hover, &:active {
+    &:hover, &:active{
       opacity: 0.8;
       text-decoration: none;
     }
   }
+  &--white{
+    justify-content: flex-start;
+    padding-left: 20px;
+    padding-right: 20px;
+    white-space: nowrap;
+    &::after{
+      background-color: rgba($mainColor, 1);
+    }
+    &:link, &:visited{
+      border: 1px solid rgba($textBaseColor, 0.3);
+      background-color: rgba(#fff, 1);
+      color: rgba($textBaseColor, 1);
+    }
+    &:hover, &:active{
+      opacity: 0.8;
+      text-decoration: none;
+    }
+  }
+  &--blank{
+    &::after{
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
 }
-@include res_min() {
-  .button {
+@include res_min(){
+  .button{
     // 基本
     min-height: 60px;
     border-radius: 30px;
     background-position: right 27px center;
     font-size: 1.6rem;
+    &::after{
+      right: 27px;
+    }
+    &--white{
+      padding-left: 30px;
+      padding-right: 30px;
+      &:hover, &:active{
+        &::after{
+          right: 20px;
+        }
+      }
+    }
+    &--blank{
+      &::after{
+        right: 25px;
+      }
+    }
+  }
+}
+
+
+//上下罫線 + 右に●印のリンク
+// ↓ 基本形
+//<a href="<?php echo esc_url(home_url()); ?>/company/message" class="link-item01 page-link__item">
+//<div class="link-content">
+//  <em class="main-text">社長メッセージ</em><span class="sub-text">Message</span>
+//</div>
+//<i class="icon"></i>
+//</a>
+.link-item01{
+  @include flex(nowrap, space-between, center);
+  padding: 30px 65px 30px 15px;
+  border-bottom: 1px solid rgba($textBaseColor, 0.15);
+  &:first-of-type{
+    border-top: 1px solid rgba($textBaseColor, 0.15);
+  }
+  color: $textBaseColor;
+  line-height: 1.3;
+  position: relative;
+  &:hover, &:active{
+    color: $textBaseColor;
+    opacity: 1;
+  }
+  .link-content{
+    position: relative;
+    .main-text{
+      font-size: 1.8rem;
+      letter-spacing: 0;
+      position: relative;
+    }
+    .sub-text{
+      display: block;
+      font-family: $ff-en;
+      letter-spacing: -0.025em;
+      margin-top: 5px;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: rgba($textBaseColor, 0.4);
+    }
+    //各種アイコン
+    &.icon-document{
+      padding-left: 45px;
+      &::before{
+        content: '';
+        width: 30px;
+        height: 37px;
+        background-color: rgba($textBaseColor, 1);
+        -webkit-mask-image: url(./assets/images/common/icon-document.svg);
+                mask-image: url(./assets/images/common/icon-document.svg);
+        -webkit-mask-repeat: no-repeat;
+                mask-repeat: no-repeat;
+        -webkit-mask-position: left center;
+                mask-position: left center;
+        -webkit-mask-size: 100%;
+                mask-size: 100%;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .main-text{
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .icon{
+    margin: 0;
+    width: 37px;
+    height: 37px;
+    border-radius: 999px;
+    background-color: rgba(255,255,255, 1);
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    &::before{
+      content: '';
+      width: 0;
+      height: 0;
+      border-radius: 999px;
+      background-color: rgba($mainColor, 0);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &::after{
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background-color: rgba($mainColor, 1);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    //個別
+    &.icon--gray{
+      &::before{
+        width: 100%;
+        height: 100%;
+        background-color: rgba($gray, 1);
+      }
+    }
+  }
+}
+@include res_min(){
+  .link-item01{
+    padding: 38px 65px 38px 20px;
+    @include transition(all, 0.3);
+    transition-timing-function: ease-out;
+    .link-content{
+      .main-text{
+        margin-right: 14px;
+        margin-bottom: 0.1em;
+        font-size: 2.2rem;
+        line-height: 1.6;
+        &::before{
+          left: -35px;
+          top: 6px;
+        }
+      }
+      .sub-text{
+        margin-top: 10px;
+      }
+      //各種アイコン
+      &.icon-document{
+        padding-left: 70px;
+        &::before{
+          content: '';
+          width: 43px;
+          height: 54px;
+        }
+        .main-text{
+          font-size: 2rem;
+        }
+      }
+    }
+    .icon{
+      right: 20px;
+      &::before{
+        @include transition(all, 0.3);
+        transition-timing-function: ease-out;
+      }
+      &::after{
+        @include transition(background-color, 0.3);
+        transition-timing-function: ease-out;
+        transition-delay: -0.2s;
+      }
+    }
+    //hover
+    &:hover, &:active{
+      color: rgba($mainColor, 1);
+      .icon{
+        &::before{
+          width: 100%;
+          height: 100%;
+          background-color: rgba($mainColor, 1);
+        }
+        &::after{
+          width: 14px;
+          height: 8px;
+          background-color: #fff;
+          -webkit-mask-image: url(./assets/images/common/icon-arrow-right.svg);
+                  mask-image: url(./assets/images/common/icon-arrow-right.svg);
+          -webkit-mask-repeat: no-repeat;
+                  mask-repeat: no-repeat;
+          -webkit-mask-position: center;
+                  mask-position: center;
+          -webkit-mask-size: 100%;
+                  mask-size: 100%;
+        }
+      }
+    }
   }
 }
 
@@ -203,30 +459,13 @@ a img {
   }
   //丸
   &::after{
-    content: '';
     margin-left: 20px;
     width: 82px;
     height: 82px;
-    border: 1px solid rgba($mainColor, 0.25);
   }
   //丸の中のアイコン
   &::before{
-    content: '';
-    width: 14px;
-    height: 8px;
-    background-color: rgba($mainColor, 1);
-    -webkit-mask-image: url(./assets/images/common/icon-arrow-right.svg);
-            mask-image: url(./assets/images/common/icon-arrow-right.svg);
-    -webkit-mask-repeat: no-repeat;
-            mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-            mask-position: center;
-    -webkit-mask-size: 100%;
-            mask-size: 100%;
-    position: absolute;
     right: calc(82px / 2 - 7px);
-    top: 50%;
-    transform: translateY(-50%);
   }
   &:hover{
     &::after{
@@ -235,6 +474,44 @@ a img {
     }
     &::before{
       background-color: rgba($mainColor, 1);
+    }
+  }
+  //白バージョン
+  &.--white{
+    color: rgba(#fff, 1);
+    &::after{
+      border-color: rgba(#fff, 0.6);
+    }
+    &::before{
+      background-color: #fff;
+    }
+    &:hover{
+      &::before{
+        background-color: rgba(#fff, 1);
+      }
+    }
+  }
+  //矢印が縦バージョン
+  &.--vertical{
+    &::before{
+      transform: translateY(-50%) rotate(90deg);
+    }
+  }
+  //blankバージョン
+  &.--blank{
+    &::before{
+      content: '';
+      width: 17px;
+      height: 14px;
+      background-color: rgba(#fff, 1);
+      -webkit-mask-image: url(./assets/images/common/icon-blank.svg);
+              mask-image: url(./assets/images/common/icon-blank.svg);
+      -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+      -webkit-mask-position: left center;
+              mask-position: left center;
+              -webkit-mask-size: auto 100%;
+              mask-size: auto 100%;
     }
   }
 }
@@ -259,11 +536,16 @@ svg.circle-ani{
     transition: all cubic-bezier(0.35, 0.01, 0, 0.98) 0.3s;
   }
 }
+.--white svg.circle-ani{
+  circle.circle-ani{
+    stroke: rgba(#fff, 1);
+  }
+}
 .button-circle-ani{
   position: relative;
   z-index: 1;
   overflow: hidden;
-  @include res_min() {
+  @include res_min(){
     overflow: visible;
   }
   .svg-area{
@@ -276,6 +558,8 @@ svg.circle-ani{
   }
   //丸
   &::after{
+    flex-grow: 0;
+    flex-shrink: 0;
     content: '';
     border-radius: 50%;
     z-index: -1;
@@ -283,54 +567,38 @@ svg.circle-ani{
     opacity: 1;
     transition: all cubic-bezier(0.35, 0.01, 0, 0.98) 1.5s;
   }
-  &:hover{
-    //広がりながら消える丸
-    &::after{
-      transform: scale(1.15);
-      opacity: 0;
-    }
-    //丸を描くアニメーション
-    circle.circle-ani{
-      opacity: 1;
-      -webkit-animation: circleAni cubic-bezier(0.35, 0.01, 0, 0.98) 1.5s 1;
-      animation: circleAni cubic-bezier(0.35, 0.01, 0, 0.98) 1.5s 1;
+}
+@include res_min(){
+  .button-circle-ani{
+    &:hover{
+      //広がりながら消える丸
+      &::after{
+        transform: scale(1.15);
+        opacity: 0;
+      }
+      //丸を描くアニメーション
+      circle.circle-ani{
+        opacity: 1;
+        -webkit-animation: circleAni cubic-bezier(0.35, 0.01, 0, 0.98) 1.5s 1;
+        animation: circleAni cubic-bezier(0.35, 0.01, 0, 0.98) 1.5s 1;
+      }
     }
   }
 }
-@-webkit-keyframes circleAni {
-  from {
+@-webkit-keyframes circleAni{
+  from{
     stroke-dashoffset: 314;
   }
-  to {
+  to{
     stroke-dashoffset: 0;
   }
 }
-@keyframes circleAni {
-  from {
+@keyframes circleAni{
+  from{
     stroke-dashoffset: 314;
   }
-  to {
+  to{
     stroke-dashoffset: 0;
-  }
-}
-@-webkit-keyframes roundBtn {
-  from {
-    transform: scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: scale(1.1);
-    opacity: 0;
-  }
-}
-@keyframes roundBtn {
-  from {
-    transform: scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: scale(1.1);
-    opacity: 0;
   }
 }
 
@@ -338,7 +606,7 @@ svg.circle-ani{
 /* ----------------------------------------------------------------
   ページナビ
 ---------------------------------------------------------------- */
-.pager {
+.pager{
   margin-top: 16px;
   padding: 0 46px;
   @include flex(wrap, center, stretch);
@@ -346,7 +614,7 @@ svg.circle-ani{
 
   .prev,
   .next,
-  .pager_num {
+  .pager_num{
     width: 30px;
     flex: 0 0 30px;
     height: 30px;
@@ -356,11 +624,11 @@ svg.circle-ani{
     @include flex(nowrap, center, center);
   }
 
-  .pager_num {
+  .pager_num{
     margin: 16px 8px 0;
   }
-  a.pager_num {
-    &:hover, &:active {
+  a.pager_num{
+    &:hover, &:active{
       text-decoration: none;
       background-color: $brown;
       font-weight: 700;
@@ -368,7 +636,7 @@ svg.circle-ani{
     }
   }
 
-  .current {
+  .current{
     background-color: $brown;
     font-weight: 700;
     color: #fff;
@@ -376,10 +644,10 @@ svg.circle-ani{
 
   // 前後
   .prev,
-  .next {
+  .next{
     position: absolute;
     bottom: 0;
-    &::before {
+    &::before{
       content: "";
       width: 30px;
       height: 30px;
@@ -391,7 +659,7 @@ svg.circle-ani{
       position: absolute;
       bottom: 0;
     }
-    &::after {
+    &::after{
       content: "";
       width: 30px;
       height: 30px;
@@ -400,43 +668,43 @@ svg.circle-ani{
       position: absolute;
       bottom: 0;
     }
-    &:hover, &:active {
+    &:hover, &:active{
       text-decoration: none;
-      &::before {
+      &::before{
         background-color: $brown;
         background-image: url(./assets/images/common/ico_arrow_pager_white.svg);
       }
     }
   }
-  .prev {
+  .prev{
     left: 0;
     padding-left: 40px;
-    &::before {
+    &::before{
       transform: scale(-1,-1);
     }
     &::before,
-    &::after {
+    &::after{
       left: 0;
     }
   }
-  .next {
+  .next{
     right: 0;
     padding-right: 40px;
     &::before,
-    &::after {
+    &::after{
       left: auto;
       right: 0;
     }
   }
 
   ///// 個別記事内
-  &__entry {
+  &__entry{
     margin-top: 34px;
     margin-bottom: 60px;
     padding: 0;
     @include flex(nowrap, space-between, stretch);
     .prev,
-    .next {
+    .next{
       width: auto;
       flex: 0 0 auto;
       position: relative;
@@ -450,9 +718,9 @@ svg.circle-ani{
   その他
 ---------------------------------------------------------------- */
 // blank
-a[target="_blank"] {
+a[target="_blank"]:not(:is(.button-r-link-large, .cta-entry__button)){
   position: relative;
-  &::after {
+  &::after{
     content: '';
     display: inline-block;
     margin-left: 0;
@@ -473,14 +741,14 @@ a[target="_blank"] {
 
 
 // telリンク
-.link-tel {
-  &:hover, &:focus {
+.link-tel{
+  &:hover, &:focus{
     outline: none;
     text-decoration: none;
   }
 }
-// @include res_min() {
-//   .link-tel {
+// @include res_min(){
+//   .link-tel{
 //     pointer-events: none;
 //   }
 // }

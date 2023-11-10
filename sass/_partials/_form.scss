@@ -402,9 +402,11 @@ input{
     .ordered-list{
       padding: 0 20px;
       dt{
-        font-size: 1.6rem;
+        margin-top: 1.5em;
+        font-size: 1.8rem;
       }
       dd{
+        padding-left: 0;
         font-size: 1.5rem;
       }
     }

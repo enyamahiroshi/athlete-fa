@@ -20,6 +20,17 @@ function import_files_to_footer() {
   //GSAP
   if(is_front_page()){
     wp_enqueue_script( 'runGsap', get_stylesheet_directory_uri() . '/assets/js/run-gsap.min.js', true, array());
+    wp_enqueue_script( 'mouseStalker', get_stylesheet_directory_uri() . '/assets/js/mouse-stalker.min.js', true, array());
+  }
+  //Movie モーダルウィンドウ
+  if(is_page( array('new-graduates','career') )){
+    wp_enqueue_script( 'modalVideo', get_stylesheet_directory_uri() . '/assets/js/jquery-modal-video.min.js', true, array());
+    wp_enqueue_script( 'runMovie', get_stylesheet_directory_uri() . '/assets/js/run-movie.min.js', true, array());
+  }
+  //infiniteslidev2 無限ループ
+  if(is_page( array('new-graduates','career') )){
+    wp_enqueue_script( 'Infiniteslidev2', get_stylesheet_directory_uri() . '/assets/js/infiniteslidev2.min.js', true, array());
+    wp_enqueue_script( 'runInfiniteslidev2', get_stylesheet_directory_uri() . '/assets/js/run-infiniteslidev2.min.js', true, array());
   }
   wp_enqueue_script( 'main', get_stylesheet_directory_uri() . '/assets/js/main.min.js', true, array());
 }

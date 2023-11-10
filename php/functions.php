@@ -1,13 +1,8 @@
 <?php
 get_template_part( 'setting/system' );
 get_template_part( 'setting/include_files' );
-// get_template_part( 'setting/custom-post-type' );
-// get_template_part( 'setting/customize-dashbord' );
-// get_template_part( 'setting/customize-plugins' );
-// get_template_part( 'setting/customize-block-editer' );
-// get_template_part( 'block/breadcrumb' );
-get_template_part( 'block/prevnext-fn' );
-get_template_part( 'block/form-seni' );
+get_template_part( 'setting/customize-plugins' );
+get_template_part( 'setting/customize-block-editer' );
 
 /* -------------------------------------------------------------
 //  メインループの表示件数を制御
@@ -23,9 +18,9 @@ function my_pre_get_posts( $query ) {
   // if($query -> is_front_page()) { //フロントページ
   //   $query -> set('posts_per_page', 10); //表示件数
   // }
-  if($query->is_home()){ // アーカイブページ
-    $query->set( 'posts_per_page', 6); //表示件数
-  }
+  // if($query->is_home()){ // アーカイブページ
+  //   $query->set( 'posts_per_page', 1); //表示件数
+  // }
   // if($query->is_month()){ // 月別アーカイブ
   //   $query->set('posts_per_page', -1); //表示件数
   // }
@@ -62,16 +57,23 @@ function my_pre_get_posts( $query ) {
 // body_class
 // ------------------------------------------------------------*/
 add_filter('body_class','add_posttype_classes');
-function add_posttype_classes($classes) {
-    $postype = get_query_var('post_type');
-    $classes[] = $postype;
-    if(!$postype ==""){
-        $m_key = array_search('home', $classes);
-        unset($classes[${'m_key'}]);
-    }elseif ( is_page() ) {
+function add_posttype_classes( $classes ) {
+  $posType = get_query_var('post_type');
+  $classes[] = $posType;
+  if( !$posType === "" ){
+    $m_key = array_search('home', $classes);
+    unset($classes[${'m_key'}]);
+  } elseif( is_singular('products') ) {
+    global $post;
+    $taxonomy_terms = get_the_terms($post->ID, 'products-category'); //タクソノミーを指定
+    if ( $taxonomy_terms ) {
+      foreach ( $taxonomy_terms as $taxonomy_term ) {
+      $classes[] = 'term-'. $taxonomy_term->slug;
+      }
+    }
+  } elseif ( is_page() ) {
     $page = get_post( get_the_ID() );
     $classes[] = $page->post_name;
-
     $parent_id = $page->post_parent;
     if ( 0 == $parent_id ) {
       $classes[] = get_post($parent_id)->post_name;
@@ -79,6 +81,13 @@ function add_posttype_classes($classes) {
       // $progenitor_id = array_pop( get_ancestors( $page->ID, 'page', 'post_type' ) );
       // $classes[] = get_post($progenitor_id)->post_name . '-child';
       $classes[] = get_post($parent_id)->post_name;
+    }
+  } elseif ( is_single() || is_singular() ) {
+    $terms = get_the_terms( get_the_ID(), get_query_var('taxonomy') );
+    if ( $terms ) {
+      foreach ( $terms as $term ) {
+        $classes[] = 'term-' . $term->slug;
+      }
     }
   }
   return $classes;
@@ -95,20 +104,6 @@ add_filter( 'next_post_link', 'add_next_post_link_class' );
 function add_next_post_link_class($output) {
   return str_replace('<a href=', '<a class="next-link" href=', $output);
 }
-
-/* -------------------------------------------------------------
-// MV WP FORM の自動 pタグを削除
-// ------------------------------------------------------------*/
-function mvwpform_autop_filter() {
-  if (class_exists('MW_WP_Form_Admin')) {
-    $mw_wp_form_admin = new MW_WP_Form_Admin();
-    $forms = $mw_wp_form_admin->get_forms();
-    foreach ($forms as $form) {
-      add_filter('mwform_content_wpautop_mw-wp-form-' . $form->ID, '__return_false');
-    }
-  }
-}
-mvwpform_autop_filter();
 
 /* -------------------------------------------------------------
 // 親ページのスラッグを取得 (条件武器で is_parent_slug('xxx') 使用)
@@ -165,17 +160,17 @@ add_filter('nav_menu_item_id', 'removeId', 10);
 /* -------------------------------------------------------------
 // ウィジェットの使用
 // ------------------------------------------------------------*/
-function my_theme_widgets_init() {
-  register_sidebar( array(
-    'name' => 'Main Sidebar',
-    'id' => 'main-sidebar',
-    'before_widget' => '<section class="widget %1$s">',
-    'after_widget' => '</section>',
-    'before_title' => '<h3 class="hl03 widget__title">',
-    'after_title'  => '</h3>',
-  ) );
-}
-add_action( 'widgets_init', 'my_theme_widgets_init' );
+// function my_theme_widgets_init() {
+//   register_sidebar( array(
+//     'name' => 'Main Sidebar',
+//     'id' => 'main-sidebar',
+//     'before_widget' => '<section class="widget %1$s">',
+//     'after_widget' => '</section>',
+//     'before_title' => '<h3 class="hl03 widget__title">',
+//     'after_title'  => '</h3>',
+//   ) );
+// }
+// add_action( 'widgets_init', 'my_theme_widgets_init' );
 
 /* -------------------------------------------------------------
 // 標準ギャラリーのCSSを停止
@@ -205,12 +200,12 @@ add_action( 'wp_terms_checklist_args', 'lig_wp_category_terms_checklist_no_top' 
 add_action( 'restrict_manage_posts', 'add_post_taxonomy_restrict_filter' );
 function add_post_taxonomy_restrict_filter() {
     global $post_type;
-    if ( 'plan' == $post_type ) {
+    if ( 'products' == $post_type ) {
         ?>
-        <select name="plan_category">
+        <select name="products-category">
             <option value="">カテゴリー指定なし</option>
             <?php
-            $terms = get_terms('plan_category');
+            $terms = get_terms('products-category');
             foreach ($terms as $term) { ?>
                 <option value="<?php echo $term->slug; ?>"><?php echo $term->name; ?></option>
             <?php } ?>
@@ -218,3 +213,6 @@ function add_post_taxonomy_restrict_filter() {
         <?php
     }
 }
+
+/** Form related */
+require_once (realpath(dirname(__FILE__) . '/libs/require.php'));

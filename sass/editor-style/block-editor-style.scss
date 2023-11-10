@@ -1,90 +1,60 @@
-.editor-styles-wrapper {
-  &.block-editor-writing-flow {
-    //入力エリア内側の定義
-    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-    width: auto;
-    height: auto !important;
-    width: 100%;
-    max-width: 950px;
-    background-color: white;
-    margin: 20px auto;
-    padding: 25px 0 100px;
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
 
-    //タイトル系の定義
-    h1 {
+// @use '../_partials/base';
+// @use '../_partials/common';
+@use '../_partials/editor';
 
-    }
-    h2 {
+html{
+  font-size: 62.5%; //10px
+}
 
-    }
-    h3 {
+.editor-styles-wrapper.block-editor-writing-flow {
+  // reset.css -------------
+  // ol,ul{list-style:none}table{border-collapse:collapse;border-spacing:0}caption,th,td{text-align:left;font-weight:400;vertical-align:middle}q,blockquote{quotes:none}q:before,q:after,blockquote:before,blockquote:after{content:"";content:none}sub,sup{font-size:50%;font-weight:400}a img{border:none}article,aside,details,figcaption,figure,picture,footer,header,hgroup,main,menu,nav,section,summary{display:block}input[type='button']:not([disabled]),input[type='submit']:not([disabled]),input[type='reset']:not([disabled]),button:not([disabled]){cursor:pointer}[hidden]{display:none!important}button{background-color:transparent;border:none;cursor:pointer;outline:none;padding:0;-webkit-appearance:none;-moz-appearance:none;appearance:none}
+  //-------------
 
-    }
-    h4 {
-
-    }
-
-    //リストの定義
-    ul {
-      li {
-
-      }
-    }
-    ol {
-      li {
-
-      }
-    }
-
-    //テーブルの定義
-    .wp-block-table {
-      width: 100%;
-      max-width: 900px;
-      table{
-        tbody {
-          tr {
-            td {
-            }
-          }
-          td {
-          }
-        }
-      }
-    }
-
-    //通常の文章とリンクの定義
-    p {
-
-      a {
-        //リンクの定義
-        text-decoration: none;
-      }
-    }
-
+  //入力エリア内側の定義
+  width: 100%;
+  max-width: 920px;
+  margin: 20px auto;
+  padding: 0 0 100px;
+  font-family: $ff-go;
+  font-size: 1.6rem;
+  font-weight: 400; // R:400, M:500, B:600
+  line-height: 2;
+  letter-spacing: 0.05em;
+  color: $textBaseColor;
+  h1,h2,h3,h4,h5,h6,
+  figure,p{
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
   }
-}
 
-.wp-block {
-  max-width: 900px;
-}
-
-.wp-block-image { //imgを囲うボックス
-
-    .components-resizable-box__container {
-     height: auto !important; //画像をリサイズしたときに必要
-    max-width: 100% !important; //画像をリサイズしたときに必要
-    }
-   img { //imgの定義
-
+  .wp-block {
+    max-width: 100%;
   }
-}
 
-.editor-post-title__block {
-    .editor-post-title__input { //メインタイトルの定義
-
+  .wp-block-image { //imgを囲うボックス
+      .components-resizable-box__container {
+        height: auto !important; //画像をリサイズしたときに必要
+        max-width: 100% !important; //画像をリサイズしたときに必要
+      }
+     img { //imgの定義
     }
-}
+  }
 
-.edit-post-visual-editor__post-title-wrapper .editor-post-title {
-  margin: 0 auto; //メインタイトル周りの余白の定義
-}
+  //メインタイトルの定義
+  .editor-post-title__block {
+      .editor-post-title__input {
+      }
+  }
+  .edit-post-visual-editor__post-title-wrapper .editor-post-title {
+    margin-bottom: 80px;
+    font-size: 3.2rem;
+    font-weight: bolder;
+  }
+
+
+} //.editor-styles-wrapper

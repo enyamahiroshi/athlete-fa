@@ -6,11 +6,14 @@
 ---------------------------------------------------------------- */
 .footer {
   padding: 28px 15px 30px;
+  border-top: 1px solid rgba($textBaseColor, 0.15);
   background-image: url(./assets/images/common/bg-footer-small.svg);
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: 100%;
   font-weight: 400;
+  position: relative;
+  z-index: 3;
 }
 .footer__main{
   display: flex;
@@ -34,10 +37,8 @@
       font-size: 1.6rem;
     }
   }
-.footer__main__navigation{
-}
+.footer__main__navigation{}
   .footer__main__navigation__main{
-
     .menu{
       margin-left: 0;
       margin-right: 0;
@@ -55,6 +56,14 @@
         letter-spacing: 0.05em;
         &:not(:first-of-type){
           margin-top: 20px;
+        }
+        //カレント
+        &.current_page_item,
+        &.current-menu-item,
+        &.current_page_ancestor{
+          a{
+            color: rgba($textBaseColor, 1);
+          }
         }
         //サブメニュー開閉
         &.menu-item-has-children{
@@ -80,6 +89,14 @@
           opacity: 1;
           margin-top: 0;
           margin-right: 32px;
+          //カレント
+          &.current_page_item,
+          &.current-menu-item,
+          &.current_page_ancestor{
+            a{
+              color: rgba($textBaseColor, 0.7) !important;
+            }
+          }
           a{
             pointer-events: visible;
             color: rgba($textBaseColor, 0.7);

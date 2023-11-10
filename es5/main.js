@@ -25,37 +25,8 @@ window.addEventListener('scroll', () => {
 });
 
 /* --------------------------------------------------
-  マウスストーカー + トップ新卒採用箇所
+  ページトップが背景要素によって変化
 -------------------------------------------------- */
-const stalker = document.getElementById('mouse-stkr');
-const scrollingElem = document.scrollingElement || document.documentElement || document.body;
-const isActive = 'is-active';
-let hovFlag = false;
-
-const firstItem = document.querySelector('.recruit-link-item__image');
-window.addEventListener("load", function (e) {
-  firstItem.style.opacity = 1;
-});
-
-scrollingElem.addEventListener('mousemove', function(e) {
-  stalker.style.top  = e.clientY - 110 + 'px';
-  stalker.style.left = e.clientX - 80 + 'px';
-});
-
-const linkElem = document.querySelectorAll('.mouse-stkr-target');
-for (let i = 0; i < linkElem.length; i++) {
-  linkElem[i].addEventListener('mouseover', function (e) {
-    hovFlag = true;
-    stalker.classList.add(isActive);
-    this.classList.add(isActive);
-  });
-  linkElem[i].addEventListener('mouseout', function (e) {
-    hovFlag = false;
-    stalker.classList.remove(isActive);
-    this.classList.remove(isActive);
-  });
-}
-
 // スクロールイベントを登録
 // A 要素を取得
 const a = document.querySelector(".button-page-top");
@@ -90,36 +61,56 @@ window.addEventListener("scroll", function() {
   -------------------------------------------------- */
   const mqueryLG = '1023px';
   const $aadclass = 'is-fixed';
+  const $_header = $('.header');
 
-  // header
+  // header固定
   const $AppearGM = $('.header');
-  $(window).on('load resize', function () {
+  $(window).on('load resize scroll', function () {
     //ハンバーガーメニュー表示の場合
     if (window.matchMedia("(max-width: " + mqueryLG + ")").matches) {
       const headerH = $_header.height();
-      $(window).on('scroll', function () {
         if ($(this).scrollTop() > headerH && $AppearGM.hasClass($aadclass) == false) {
           $AppearGM.addClass($aadclass);
         } else if ($(this).scrollTop() == 0) {
           $AppearGM.removeClass($aadclass);
         }
-      });
     } else
     //通常表示の場合
     {
-      const $AppearGMTiming = $('.js-flag-first').offset().top;
-      const headerH = $_header.height();
-      $(window).on('scroll', function () {
+      const $firstObj = $('.main > *:first-of-type');
+      const $AppearGMTiming = $firstObj.offset().top + $firstObj.outerHeight() - 100;
         if ($(this).scrollTop() > $AppearGMTiming && $AppearGM.hasClass($aadclass) == false) {
           $AppearGM.addClass($aadclass);
         } else if ($(this).scrollTop() == 0) {
           $AppearGM.removeClass($aadclass);
         }
-      });
     }
   });
 
-  // pagetop
+  //サイドナビ固定
+  // const $sideCateNav = $('.side-column');
+
+  // $(window).on('load resize scroll', function () {
+  //   if ($sideCateNav.length) {
+  //     if (window.matchMedia("(max-width: " + mqueryLG + ")").matches) {
+  //       const $fixedTiming = $sideCateNav.offset().top - 57;
+  //       if ($(this).scrollTop() > $fixedTiming) {
+  //         $sideCateNav.addClass($aadclass);
+  //       } else {
+  //         $sideCateNav.removeClass($aadclass);
+  //       }
+  //     } else {
+  //       const $fixedTiming = $sideCateNav.offset().top - 100;
+  //       if ($(this).scrollTop() > $fixedTiming) {
+  //         $sideCateNav.addClass($aadclass);
+  //       } else {
+  //         $sideCateNav.removeClass($aadclass);
+  //       }
+  //     }
+  //   }
+  // });
+
+  // pagetop固定
   const $pageTop = $('.button-page-top');
   const $pageTopT = '400';
   $(window).on('load scroll', function () {
@@ -131,6 +122,41 @@ window.addEventListener("scroll", function() {
       $pageTop.removeClass($aadclass);
     }
   });
+
+
+  /* --------------------------------------------------
+    特定の範囲内で要素を固定
+  -------------------------------------------------- */
+  $(window).on('load scroll', function() {
+    fix_element();
+  });
+
+  function fix_element() {
+    // 固定配置に使用する要素
+    var $fixWrapper = $('.js-fix-wrapper');
+    var $fix = $('.js-fix-item');
+    var $fixArea = $('.js-fix-area');
+
+    // 要素がある場合のみ処理
+    if($fixWrapper.length && $fix.length && $fixArea.length) {
+      var fixTop = $fixWrapper.offset().top;
+      var fixEnd = $fixArea.offset().top + $fixArea.height();
+      var fixHeight = $fix.height();
+      var winScroll = $(window).scrollTop();
+      var winheight = $(window).height();
+      // 開始位置を通過する前
+      if(winScroll < fixTop) {
+        $fix.removeClass('is-fixed');
+      // 終了位置を通過した後
+      } else if(winScroll > fixEnd - fixHeight) {
+        $fix.removeClass('is-fixed');
+      // 対象範囲内の場合
+      } else {
+        $fix.addClass('is-fixed');
+      }
+    }
+  }
+
 
   /* --------------------------------------------------
     メニュー開閉
@@ -206,7 +232,6 @@ window.addEventListener("scroll", function() {
     anchor link
   -------------------------------------------------- */
   const $anchor = 'a[href^="#"]';
-  const $_header = $('.header');
   const headerHeight = $_header.height() + 40;
   const speed = 300;
 
@@ -214,7 +239,9 @@ window.addEventListener("scroll", function() {
     const href= $(this).attr("href");
     const target = $(href == "#" || href == "" ? 'html' : href);
     const position = target.offset().top - headerHeight;
-    $("html, body").stop().animate({scrollTop:position}, speed, 'swing');
+    $("html, body").stop().animate({ scrollTop: position }, speed, 'swing');
+    $('*').removeClass('is-active');
+    $(this).parent().addClass('is-active');
     return false;
   });
   $(window).on('load', function() {

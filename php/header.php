@@ -27,7 +27,7 @@
       </section>
       <section class="header-navi">
         <?php //カスタムメニューの呼び出し
-          wp_nav_menu( array ( 'menu'=>'main_menu', 'container'=>'' , 'container_class' =>'' , 'menu_class'=>'menu',  'items_wrap'=>'<ul class="%2$s">%3$s</ul>' ) );
+          wp_nav_menu( array ( 'menu'=>'main_menu', 'container'=>'' , 'container_class' =>'' , 'menu_class'=>'menu',  'items_wrap'=>'<ul class="%2$s">%3$s</ul>'."\n" ) );
         ?>
       </section>
       <div class="global-menu__contact">

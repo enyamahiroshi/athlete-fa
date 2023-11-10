@@ -1,52 +1,39 @@
 <?php get_header(); ?>
-    <header class="page-header">
-      <h1 class="page-header__title">
-				<?php
-					$gpt = get_post_type( $post->ID );
-					$obj = get_post_type_object( $gpt );
-				  if( is_singular( array( 'works', 'kurumano-chie-bukuro' ) ) ){
-						$gpt = get_post_type( $post->ID );
-						$obj = get_post_type_object( $gpt );
-						$post_type = $obj->name;
-						$taxonomy = $post_type . '_category';
-						$cat = get_the_terms($post->ID, $taxonomy);
-						$cat_name = $cat[0]->name;
-						$cat_slug = $cat[0]->slug;
-						$taxname = $obj->labels->name;
-					} else {
-						$cat = get_the_category();
-						$cat_name = $cat[0]->cat_name;
-						$cat_slug  = $cat[0]->category_nicename;
-						$taxname = 'お知らせ';
-					}
-					echo $taxname;
-				?>
-			</h1>
-    </header>
-    <?php //Breadcrumb NavXT
-    echo '<aside class="bread-navi">';
-    if(function_exists('bcn_display')){ bcn_display(); }
-    echo '</aside>';
-    ?>
+
+		<div class="page-header" data-sub="News">
+			<div class="page-header__title" data-sub="お知らせ">News</div>
+		</div>
+
 		<section class="sec sec-post">
-			<div class="inner">
-				<?php if(have_posts()): the_post(); ?>
-				<header class="post-header">
-					<h1 class="post-title"><?php the_title(); ?></h1>
-					<div class="post-meta">
-						<time class="post-date"><?php the_time('Y.m.d'); ?></time>
-						<span class="post-category post-category--<?php echo $post_type; ?>"><?php echo $cat_name; ?></span>
-					</div>
-				</header>
-
-				<div class="post-body">
-					<?php the_content(); ?>
+			<?php if(have_posts()): the_post(); ?>
+			<?php
+			$category = get_the_category();
+			$cat_name = $category[0]->cat_name;
+			$cat_slug = $category[0]->category_nicename;
+			?>
+			<header class="post-header">
+				<div class="post-meta">
+					<time class="post-date"><?php the_time('Y.m.d'); ?></time>
+					<span class="post-category post-category--<?php echo $cat_slug; ?>"><?php echo $cat_name; ?></span>
 				</div>
-				<?php endif; ?>
+				<h1 class="post-title"><?php the_title(); ?></h1>
+			</header>
 
-				<?php //前後の記事（ block/prevnext.php, blick/prevnext-fn.php ）
-				get_template_part( 'block/prevnext' ); ?>
-
+			<div class="post-body">
+				<?php the_content(); ?>
 			</div>
+			<?php endif; ?>
+
+			<?php //前後の記事
+			get_template_part( 'block/prevnext' );
+			?>
+		</section>
+
+		<section class="sec sec-medium sec-bread-navi">
+			<?php //Breadcrumb NavXT
+			echo '<aside class="bread-navi">';
+			if(function_exists('bcn_display')){ bcn_display(); }
+			echo '</aside>'."\n";;
+			?>
 		</section>
 <?php get_footer(); ?>

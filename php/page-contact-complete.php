@@ -1,3 +1,11 @@
+<?php
+/**
+ * From Action
+ * 
+ */
+$objApp = new Contact();
+$objApp->thanks();
+?>
 <?php get_header(); ?>
   <header class="page-header page-header--contact">
     <h1 class="page-header__title" data-sub="お問い合わせ">Contact</h1>

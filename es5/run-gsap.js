@@ -9,7 +9,6 @@ const container = document.querySelector('.horizon-slider__container__inner');
 
 gsap.to(container, {
   x: () => -(container.clientWidth - wrapper.clientWidth) + 'px',
-  horizontal: true,
   ease: 'none',
   scrollTrigger: {
     trigger: wrapper,

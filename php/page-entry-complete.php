@@ -1,3 +1,11 @@
+<?php
+/**
+ * From Action
+ * 
+ */
+$objApp = new Entry();
+$objApp->thanks();
+?>
 <?php get_header(); ?>
   <header class="page-header page-header--contact">
     <h1 class="page-header__title" data-sub="エントリーフォーム">Entry</h1>

@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+
     <section class="mv">
       <div class="mv__movie">
         <video class="mv__movie__video" poster="<?php echo get_stylesheet_directory_uri(); ?>/assets/video/mv_movie-cover.jpg" webkit-playsinline playsinline muted autoplay loop>
@@ -21,17 +22,17 @@
           <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-catchcopy-large.png" alt="Factory of the Future 限界を超える技術で向上の未来を創る。" width="662" height="303">
         </picture>
       </h1>
-      <div class="mv__recruit">
-        <div class="mv__recruit__title">RECRUIT</div>
-        <div class="mv__recruit__text">共に挑戦する仲間を募集しています。</div>
-        <div class="mv__recruit__navi">
-          <a href="<?php echo esc_url(home_url()); ?>/rectuit/new-graduates" class="button-r-link-small">新卒採用</a>
-          <a href="<?php echo esc_url(home_url()); ?>/rectuit/career" class="button-r-link-small">キャリア採用</a>
+      <div class="cta-recruit">
+        <div class="cta-recruit__title">RECRUIT</div>
+        <div class="cta-recruit__text">共に挑戦する仲間を募集しています。</div>
+        <div class="cta-recruit__navi">
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/new-graduates" class="button-r-link-small">新卒採用</a>
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/career" class="button-r-link-small">キャリア採用</a>
         </div>
       </div>
     </section>
 
-    <section class="sec sec-medium sec-intro-products-info-1 js-flag-first">
+    <section class="sec sec-medium sec-intro-products-info-1">
       <div class="block-layout1">
         <div class="block-item-data">
           <h2 class="title01 block-item-title" data-sub="Our mission is ...">
@@ -262,22 +263,34 @@
       <p class="intro-text">当社は自動化設備、省力化設備を製作する専門企業として1988年に設立いたしました。<br>以来、積み重ねてきた技術力をバックボーンに、今と未来をつなぐ技術者集団として工場の自動化に貢献しています。</p>
       <?php //ページリンク ?>
       <div class="page-link">
-        <a href="<?php echo esc_url(home_url()); ?>/company/message" class="page-link__item">
-          <em>社長メッセージ</em><span>Message</span><i class="icon"></i>
+        <a href="<?php echo esc_url(home_url()); ?>/company/message" class="link-item01 page-link__item">
+          <div class="link-content">
+            <em class="main-text">社長メッセージ</em><span class="sub-text">Message</span>
+          </div>
+          <i class="icon"></i>
         </a>
-        <a href="<?php echo esc_url(home_url()); ?>/company/about" class="page-link__item">
-          <em>会社概要</em><span>Profile</span><i class="icon"></i>
+        <a href="<?php echo esc_url(home_url()); ?>/company/about" class="link-item01 page-link__item">
+          <div class="link-content">
+            <em class="main-text">会社概要</em><span class="sub-text">Profile</span>
+          </div>
+          <i class="icon"></i>
         </a>
-        <a href="<?php echo esc_url(home_url()); ?>/company/mission" class="page-link__item">
-          <em>経営理念・方針</em><span>Philosophy</span><i class="icon"></i>
+        <a href="<?php echo esc_url(home_url()); ?>/company/mission" class="link-item01 page-link__item">
+          <div class="link-content">
+            <em class="main-text">経営理念・方針</em><span class="sub-text">Philosophy</span>
+          </div>
+          <i class="icon"></i>
         </a>
-        <a href="<?php echo esc_url(home_url()); ?>/company/history" class="page-link__item">
-          <em>沿革</em><span>History</span><i class="icon"></i>
+        <a href="<?php echo esc_url(home_url()); ?>/company/history" class="link-item01 page-link__item">
+          <div class="link-content">
+            <em class="main-text">沿革</em><span class="sub-text">History</span>
+          </div>
+          <i class="icon"></i>
         </a>
       </div>
     </section>
 
-    <section class="sec sec-full sec-company-image js-color-change">sfafsddsa</section>
+    <section class="sec sec-full sec-company-image js-color-change"></section>
 
     <?php //Block: content - news ?>
     <section class="sec sec-wide sec-news">
@@ -295,7 +308,15 @@
             </a>
           </div>
         </div>
-        <?php the_content(); ?>
+        <?php //記事リスト
+        $args = array(
+          'post_type' => 'post',
+          'posts_per_page' => '3',
+          // 'category_name' => 'cat_slug',
+        );
+        get_template_part( 'block/post_list', null, $args );
+        ?>
+        <?php //the_content(); ?>
       </div>
     </section>
 <?php get_footer(); ?>

@@ -7,7 +7,7 @@
 // <?php //パンくずリスト(yoast seo)
 // echo '<aside class="bread-navi">';
 // if(function_exists('bcn_display')){ bcn_display(); }
-// echo '</aside>';
+// echo '</aside>'."\n";;
 // ?>
 // ▼書き出されるコード
 // <aside class="bread-navi">
@@ -30,8 +30,8 @@
       gap: 5px;
       &::after {
         content: '';
-        width: 10px;
-        height: 6px;
+        width: 8px;
+        height: 5px;
         background-image: url(./assets/images/common/icon-arrow-toggle.svg);
         background-repeat: no-repeat;
         background-position: center;
@@ -48,15 +48,26 @@
       }
     }
   }
+  //ページによって表示を消す
+  .company &,
+  .recruit &{
+    & > span:nth-of-type(2){
+      display: none;
+    }
+  }
 }
 @include res_min() {
   .bread-navi {
     padding-bottom: 25px;
     font-size: 1.5rem;
-    gap: 14px;
+    gap: 10px;
     span {
       a {
-        gap: 14px;
+        gap: 10px;
+        &::after {
+          width: 10px;
+          height: 6px;
+        }
       }
     }
   }

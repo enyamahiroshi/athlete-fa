@@ -4,22 +4,55 @@
 /* ----------------------------------------------------------------
   リスト
 ---------------------------------------------------------------- */
-.ordered-list {
+//1. 2. 3. ...
+.ordered-list{
+  margin: 1em auto;
   & > li,
   & > dt{
-    margin-top: 2em;
-    font-size: 2rem;
-    font-weight: 500;
-    line-height: 1.6;
+    margin-top: 0.75em;
+    padding-left: 1.5em;
+    position: relative;
     counter-increment: cntnum;
     &::before{
       content: counter(cntnum)'.';
+      font-family: $ff-en;
+      font-size: 105%;
+      position: absolute;
+      left: 0;
     }
   }
+  dt{
+    font-weight: 500;
+  }
   dd{
-    margin-top: 1em;
+    padding-left: 1.5em;
+    margin-top: 0.75em;
   }
 }
-@include res_min() {
+@include res_min(){
+}
 
+
+//黒丸
+.list-disc{
+  margin: 1.25em 0;
+  li{
+    &:not(:first-of-type){
+      margin-top: 0.25em;
+    }
+    padding-left: 16px;
+    position: relative;
+    &::before{
+      content: '';
+      width: 8px;
+      height: 8px;
+      background-color: rgba($textBaseColor, 1);
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: calc(0.65em + 2px);
+    }
+  }
+}
+@include res_min(){
 }

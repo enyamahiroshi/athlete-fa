@@ -1,5 +1,6 @@
 @use '../_core/valiables' as *;
 @use '../_core/mixins' as *;
+@use '../_partials/common' as *;
 
 /* ----------------------------------------------------------------
   見出し設定
@@ -10,10 +11,10 @@
   line-height: 1.4;
   .italic{
     font-family: $ff-en;
+    letter-spacing: -0.025em;
     font-size: 3rem;
     font-weight: 600;
     font-style: italic;
-    letter-spacing: -0.025em;
   }
   &::before{
     content: attr(data-sub);
@@ -44,9 +45,9 @@
 
 .title02{
   font-family: $ff-en;
+  letter-spacing: -0.025em;
   font-size: 4.2rem;
   font-weight: 600;
-  letter-spacing: -0.025em;
   line-height: 1;
   &::before{
     content: attr(data-sub);
@@ -60,7 +61,9 @@
     white-space: pre; //data属性に「&#10;」を入れて改行する
   }
   &.--data-sub-ja::before{
+    margin-bottom: 12px;
     font-family: $ff-go;
+    line-height: 2;
     letter-spacing: 0.05em;
   }
 }
@@ -69,6 +72,9 @@
     font-size: 8rem;
     &::before{
       margin-bottom: 24px;
+    }
+    &.--data-sub-ja::before{
+      margin-bottom: 18px;
     }
   }
 }
@@ -96,6 +102,92 @@
     font-size: 3.2rem;
     &::before{
       margin-bottom: 12px;
+    }
+  }
+}
+
+.title05{
+  margin-bottom: 30px;
+  &:not(:first-of-type){
+    margin-top: 60px;
+  }
+  font-size: 2.5rem;
+  font-weight: 500;
+  &::before{
+    content: '';
+    width: 50px;
+    height: 1px;
+    background-color: rgba($mainColor, 1);
+    display: block;
+    margin-bottom: 15px;
+  }
+}
+@include res_min() {
+  .title05{
+    margin-bottom: 60px;
+    &:not(:first-of-type){
+      margin-top: 150px;
+    }
+    font-size: 3.2rem;
+    &::before{
+      width: 60px;
+      margin-bottom: 18px;
+    }
+  }
+}
+
+.title06{
+  font-size: clamp(1.8rem, -1.2rem + 6.25vw, 2.8rem);
+  line-height: 1.5;
+  position: relative;
+  &::before{
+    content: attr(data-sub);
+    display: block;
+    margin-left: 25px;
+    margin-bottom: 10px;
+    font-family: $ff-en;
+    font-size: 1.6rem;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    color: rgba($mainColor, 1);
+  }
+  &::after{
+    content: '';
+    width: 15px;
+    height: 2px;
+    background-color: rgba($mainColor, 1);
+    position: absolute;
+    left: 0;
+    top: 8px;
+  }
+}
+@include res_min(){
+  .title06{
+    &::before{
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.title07{
+  @extend .title02;
+  font-family: $ff-go;
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-align: center;
+  &::before{
+    margin-bottom: 5px;
+    font-family: $ff-en;
+    letter-spacing: 0.05em;
+  }
+}
+@include res_min() {
+  .title07{
+    font-size: 3.2rem;
+    &::before{
+      margin-bottom: 5px;
     }
   }
 }

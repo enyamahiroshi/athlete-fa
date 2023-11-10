@@ -5,7 +5,7 @@
   各ページ共通
 ---------------------------------------------------------------- */
 //左のプログレスバー
-.progress {
+.progress{
   position: fixed;
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@
   height: 100%;
   z-index: 100;
 }
-.progress__bar {
+.progress__bar{
   position: absolute;
   top: 0;
   left: 0;
@@ -23,16 +23,24 @@
 }
 
 //メインコンテンツ
-.main {
-  background-color: $gray;
+.main{
+  background-color: #fff;
+  z-index: 1;
 }
-@include res_min() {
-  .main {  }
+//ページごとに背景色を変える
+.archive:not(:is(.category,.term-custom)),
+.recruit.entry{
+  .main{
+    background-color: rgba($gray, 1);
+  }
+}
+@include res_min(){
+  .main{}
 }
 
 
 // section
-.sec {
+.sec{
   padding-left: 15px;
   padding-right: 15px;
   & > *{
@@ -44,8 +52,8 @@
 .sec-wide{}
 .sec-medium{}
 .sec-small{}
-@include res_min() {
-  .sec {
+@include res_min(){
+  .sec{
     padding-left: 50px;
     padding-right: 50px;
   }
@@ -56,36 +64,172 @@
   .sec-wide{
     & > *{
       max-width: #{map-get($maxSize, xl) + px};
+      margin-left: auto;
+      margin-right: auto;
     }
   }
   .sec-medium{
     & > *{
       max-width: #{map-get($maxSize, l) + px};
+      margin-left: auto;
+      margin-right: auto;
     }
   }
   .sec-small{
     & > *{
       max-width: #{map-get($maxSize, base) + px};
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+
+//複数カラム表示レイアウト
+.has-column{
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  position: relative;
+  z-index: 0;
+  //side
+  .side-column{
+    padding: 40px 15px 25px;
+    background-color: rgba($gray, 1);
+    //fixed - サイドに固定
+    & > *.is-fixed{
+      padding: 25px;
+      width: 100%;
+      background-color: rgba($gray, 1);
+      position: fixed;
+      left: 0;
+      top: 57px;
+      z-index: 2;
+    }
+  }
+  //main
+  .main-column{
+    padding-top: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
+    //個別：製品情報詳細
+    &.main-column--products-singular{
+      // padding-top: 30px;
+    }
+    .button-wrap:last-child{
+      margin-top: 60px;
+      @include res_min( map-get($BP, lg) ){
+        margin: 100px auto;
+        @include res_min( map-get($BP, xl) ){
+          margin: 140px auto;
+        }
+      }
+    }
+  }
+}
+@include res_min( map-get($BP, lg) ){
+  .has-column{
+    //基本は2カラム
+    grid-template-columns: clamp(250px, 18.75vw, 360px) 1fr;
+    z-index: 2;
+    //side
+    .side-column{
+      padding: 30px 0 100px;
+      background-color: rgba($gray, 1);
+      & > *{
+        margin: 0 auto;
+        width: clamp(140px, 15.81vw, 215px);
+      }
+      //個別：製品情報
+      &.side-column--products{
+        padding-top: 65px;
+      }
+      //fixed - サイドに固定
+      & > *.is-fixed{
+        padding: 0;
+        width: clamp(140px, 15.81vw, 215px);
+        left: calc( (clamp(250px, 18.75vw, 360px) - clamp(140px, 15.81vw, 215px)) /2 );
+        top: 130px;
+      }
+    }
+    //main
+    .main-column{
+      padding-top: 95px;
+      padding-left: 0;
+      padding-right: 0;
+      & > *:not(:is(.sec-bread-navi, .sec-page-navi)){
+        margin-left: clamp(50px, 6.77vw, 130px);
+        margin-right: clamp(50px, 6.77vw, 130px);
+        @include res_min( map-get($BP, xl) ){
+          margin-right: clamp(150px, 18.75vw, 360px);
+        }
+      }
+    }
+  }
+}
+
+
+//バンくず
+.sec-bread-navi{
+  margin-top: 40px;
+  background-color: #fff;
+  //複数カラム内
+  .main-column > &{}
+  //ページごと
+  .recruit &,
+  .sec.contact + &{
+    margin-top: 0;
+  }
+}
+//個別にグレー背景にする
+.archive:not(.term-custom) .sec-bread-navi,
+.contact .sec-bread-navi{
+  background-color: rgba($gray, 1);
+}
+@include res_min(){
+  .sec-bread-navi{
+    margin-top: 200px;
+    //複数カラム内
+    .main-column > &{
+      margin-left: min(50px, 2.6vw);
+    }
+    //ページごと
+    .sec.contact + &{
+      margin-top: 0;
+    }
+    @include res_min( map-get($BP, xl) ){
+      .recruit &{
+        .bread-navi{
+          padding-left: 50px;
+          padding-right: 50px;
+        }
+      }
+    }
+    &.sec-medium{
+      & >*{
+        max-width: 1100px;
+      }
     }
   }
 }
 
 
 // SPで表示
-.sp {}
-@include res_min() {
-  .sp { display: none; }
+.sp{}
+@include res_min(){
+  .sp{ display: none; }
 }
 // PCで表示
-.pc { display: none; }
-@include res_min() {
-  .pc { display: inline; }
+.pc{ display: none; }
+@include res_min(){
+  .pc{ display: inline; }
 }
 
 
 //font
 .ff-en{
   font-family: $ff-en;
+  letter-spacing: -0.025em;
 }
 
 
@@ -128,15 +272,17 @@
       color: rgba($textBaseColor, 1);
     }
   }
-  @include res_min() {
-    //homeのみ
-    html[lang="ja"] .home .global-menu & > a{
+  @include res_min(){
+    //個別に変更
+    html[lang="ja"] .home .global-menu & > a,
+    html[lang="ja"] .page-template-tmp-recruit .global-menu & > a{
       &.ja{
         color: #fff;
       }
     }
-    //homeのみ
-    html[lang="en"] .home .global-menu & > a{
+    //個別に変更
+    html[lang="en"] .home .global-menu & > a,
+    html[lang="en"] .page-template-tmp-recruit .global-menu & > a{
       &.en{
         color: #fff;
       }
@@ -168,7 +314,7 @@
     margin-top: 26px;
   }
 }
-@include res_min() {
+@include res_min(){
   .block-layout1{
     justify-content: space-between;
     align-items: center;
@@ -201,53 +347,73 @@
 /* ------------------------------------
 //  テーブル
 // ----------------------------------*/
-//標準
-.tbl01 {
+.tbl1{
   width: 100%;
-  table-layout: fixed;
-  .tbl-th,
-  .tbl-td {
-    padding: 10px 0;
-    vertical-align: top;
-    line-height: 1.4;
-    border-bottom: 1px solid #DFDFDF;
-  }
-  .tbl-th {
-    width: 25%;
-  }
-  .tbl-td {
-    & > * {
-      margin-top: 10px;
+  max-width: 100%;
+  tr{
+    border-bottom: 1px solid rgba($textBaseColor, 0.15);
+    &:first-of-type{
+      border-top: 1px solid rgba($textBaseColor, 0.15);
     }
   }
-
-  //個別
-  &--company {
-    margin-top: 30px;
+  th, td{
+    display: block;
+    padding: 0.7em 1em;
+  }
+  th{
+    background-color: rgba($gray, 0.7);
+    font-weight: 500;
   }
 }
-@include res_min() {
-  .tbl01 {
-    .tbl-th,
-    .tbl-td {
-      padding: 16px 0;
-      line-height: 2;
+@include res_min(){
+  .tbl1{
+    th, td{
+      display: table-cell;
+      vertical-align: top;
+      padding: 1.7em 0;
     }
-    .tbl-th {
-      width: 25%;
+    th{
+      padding-right: 1.7em;
+      width: clamp(120px, 14.32vw, 270px);
+      background-color: rgba($gray, 0);
     }
-    .tbl-td {
-      & > * {
-        margin-top: 10px;
-      }
-    }
+  }
+}
 
-    //個別
-    &--company {
-      margin-top: 30px;
-      .g-map {
-        max-width: 630px;
-      }
+
+.tbl2{
+  width: 100%;
+  max-width: 100%;
+  tr{
+    border-bottom: 1px solid rgba($textBaseColor, 0.15);
+    &:first-of-type{
+      border-top: 1px solid rgba($textBaseColor, 0.15);
+    }
+  }
+  th,
+  td{
+    padding: 0.7em 1em;
+    line-height: 1.5;
+  }
+  th{
+    width: 31.5%;
+    background-color: rgba($gray, 0.7);
+    border-right: 1px solid rgba($textBaseColor, 0.5);
+  }
+  td{
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}
+@include res_min(){
+  .tbl2{
+    th,
+    td{
+      padding: 0.7em 1.6em;
+    }
+    td{
+      padding-left: 2.5em;
+      padding-right: 2.5em;
     }
   }
 }
@@ -256,13 +422,20 @@
 /* ------------------------------------
 //  他パーツ
 // ----------------------------------*/
+
+//色
+.red{
+  color: rgba($mainColor, 1);
+}
+
+
 // 注釈
-.note {
+.note{
   position: relative;
   padding-left: 1.1em;
   margin-top: 0.5em;
   line-height: 1.5;
-  &::before {
+  &::before{
     content: '・';
     position: absolute;
     left: 0;
@@ -271,8 +444,47 @@
 }
 
 
+//頭に●印が付く
+.before-disc-item{
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5em;
+  &::before{
+    content: '';
+    margin-right: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: rgba( $textBaseColor , 1 );
+    border-radius: 50%;
+    display: block;
+  }
+}
+
+
+//前後を揃えるブロック
+.align-block{
+  @include flex(nowrap, flex-start, stretch);
+  & > *:first-child{
+    white-space: nowrap;
+  }
+}
+.align-blocks{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  dt{
+    padding-right: 1em;
+    position: relative;
+    &::after{
+      content: '：';
+      position: absolute;
+      right: 0;
+    }
+  }
+}
+
+
 // マーカー
-.marker {
+.marker{
   background-color: #FFE2D9;
   padding: 0 .3em;
   margin: 0 .3em;
@@ -285,7 +497,7 @@
   border-top: 1px solid rgba( $textBaseColor , 0.2 );
   border-bottom: 1px solid rgba( $textBaseColor , 0.2 );
 }
-.button-page-top {
+.button-page-top{
   @include transition();
   z-index: 8;
   @include flex(nowrap, center, center);
@@ -299,7 +511,6 @@
     letter-spacing: 0;
     color: rgba($textBaseColor, 1);;
     line-height: 1;
-    @include transition(all, 0.1);
   }
   &::before{
     content: '';
@@ -315,16 +526,15 @@
             mask-position: center;
     -webkit-mask-size: auto;
             mask-size: auto;
-    @include transition(all, 0.1);
   }
 }
-@include res_min() {
+@include res_min(){
   .page-top{
     display: contents;
   }
-  .button-page-top {
+  .button-page-top{
     opacity: 0;
-    &.is-fixed {
+    &.is-fixed{
       opacity: 1;
     }
     position: fixed;
@@ -343,10 +553,10 @@
     //色を変える
     &.is-change{
       span{
-        color: rgba(#fff, 0.6);
+        color: rgba(#fff, 0.8);
       }
       &::before{
-        background-color: rgba(#fff, 0.8);
+        background-color: rgba(#fff, 1);
       }
     }
   }
@@ -354,13 +564,13 @@
 
 
 // アンカーリンク
-.anchor {
+.anchor{
   display: block;
   padding-top: 40px;
   margin-top: -40px;
 }
-@include res_min() {
-  .anchor {
+@include res_min(){
+  .anchor{
     padding-top: 80px;
     margin-top: -80px;
   }
@@ -392,7 +602,7 @@
     transition: 0.3s;
     transition-timing-function: ease-out;
   }
-  &.is-active {
+  &.is-active{
     // top: -110px;
     // left: -80px;
     width: 160px;

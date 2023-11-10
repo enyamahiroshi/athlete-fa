@@ -1,3 +1,14 @@
+<?php
+/**
+ * From Action
+ * 
+ */
+$objApp = new Contact();
+$objApp->confirm();
+add_action('wp_head', function(){
+    echo '<style>.u-error{ color: #c80421; display: block;}.u-error__box{ color: #c80421; display: block;}</style>'."\n";
+});
+?>
 <?php get_header(); ?>
   <header class="page-header page-header--contact">
     <h1 class="page-header__title" data-sub="お問い合わせ">Contact</h1>
@@ -11,10 +22,16 @@
       <div class="form-step__item"><span>3</span>送信完了</div>
     </div>
 
+    <?php if (!empty($objApp->exceptionErr)): ?>
+        <p class="error-text"><?php echo $objApp->exceptionErr; ?></p>
+    <?php endif; ?>
+
     <p class="form-information">入力内容をご確認ください。</p>
 
     <?php //フォーム ?>
-    <form class="form-contents">
+    <form class="form-contents" method="post" action="?">
+      <input type="hidden" name="mode" value="complete">
+      <input type="hidden" name="<?php echo TRANSACTION_NAME; ?>" value="<?php echo Sessions::getToken(); ?>">
 
       <div class="item">
         <div class="item__label">
@@ -22,7 +39,7 @@
         </div>
         <div class="item__input">
           <div class="item__input__block">
-            <input type="text" id="kaishamei" name="kaishamei" value="アスリートFA株式会社" readonly class="size-wide">
+            <?php esc_html_e($objApp->arrData['kaishamei'] ?? ''); ?>
           </div>
         </div>
       </div>
@@ -33,7 +50,7 @@
         </div>
         <div class="item__input">
           <div class="item__input__block">
-            <input type="text" id="onamae" name="onamae" value="山田太郎" readonly class="size-wide">
+            <?php esc_html_e($objApp->arrData['onamae'] ?? ''); ?>
           </div>
         </div>
       </div>
@@ -44,7 +61,7 @@
         </div>
         <div class="item__input">
           <div class="item__input__block">
-            <input type="text" id="furigana" name="furigana" value="やまだたろう" readonly class="size-wide">
+            <?php esc_html_e($objApp->arrData['furigana'] ?? ''); ?>
           </div>
         </div>
       </div>
@@ -55,7 +72,7 @@
         </div>
         <div class="item__input">
           <div class="item__input__block">
-            <input type="email" id="mailaddress" name="mailaddress" value="example@example.com" readonly class="size-wide">
+            <?php esc_html_e($objApp->arrData['mailaddress'] ?? ''); ?>
           </div>
         </div>
       </div>
@@ -66,7 +83,7 @@
         </div>
         <div class="item__input">
           <div class="item__input__block">
-            <input type="tel" id="telnum" name="telnum" value="0266-53-3369" readonly class="size-wide">
+            <?php esc_html_e($objApp->arrData['telnum'] ?? ''); ?>
           </div>
         </div>
       </div>
@@ -78,10 +95,10 @@
         <div class="item__input">
           <div class="item__input__block">
             <span class="input-separate-text">〒</span>
-            <input type="text" id="zipnum" name="zipnum" value="392-0012" readonly class="size-small p-postal-code">
+            <?php esc_html_e($objApp->arrData['zipnum'] ?? ''); ?>
           </div>
           <div class="item__input__block">
-            <input type="text" id="address" name="address" value="長野県諏訪市四賀2970-1" readonly class="size-wide p-region p-locality p-street-address p-extended-address">
+            <?php esc_html_e($objApp->arrData['address'] ?? ''); ?>
           </div>
         </div>
       </div>
@@ -92,13 +109,15 @@
         </div>
         <div class="item__input">
           <div class="item__input__block">
-            <div id="naiyo" name="naiyo" class="size-wide">テキストが入ります。このテキストはダミーです。テキストが入ります。このテキストはダミーです。テキストが入ります。このテキストはダミーです。テキストが入ります。このテキストはダミーです。テキストが入ります。このテキストはダミーです。テキストが入ります。このテキストはダミーです。テキストが入ります。このテキストはダミーです。テキストが入ります。このテキストはダミーです。テキストが入ります。このテキストはダミーです。</div>
+            <div id="naiyo" name="naiyo" class="size-wide">
+            <?php echo nl2br(esc_html($objApp->arrData['naiyo'] ?? '')); ?>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="button-wrap">
-        <button type="button" class="button button--gray">入力画面へ戻る</button>
+        <button type="button" class="button button--gray" onclick="location.href='<?php echo home_url(CONTACT_INPUT_SLUG); ?>'">入力画面へ戻る</button>
         <button type="submit" class="button">送信</button>
       </div>
 

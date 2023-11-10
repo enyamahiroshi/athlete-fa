@@ -2,142 +2,119 @@
 @use '../_core/mixins' as *;
 
 // ----------------------------------------------------------------
-// the_content(); で吐き出される投稿箇所
+// ベース
 // ----------------------------------------------------------------
-.post-body {
+.post-body,
+.editor-styles-wrapper.block-editor-writing-flow{
 
   // 見出し
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h6{
     margin-top: 1em;
-    font-weight: 600;
+    font-weight: inherit;
     line-height: 1.75;
   }
-  @include res_min() {
-    h1, h2, h3, h4, h5, h6 {
+  @include res_min(){
+    h1, h2, h3, h4, h5, h6{
       margin-top: 2em;
     }
   }
-  // h1 {font-size: 2.8rem;}
-  h2 {
-    padding-left: 0.8em;
-    font-size: 2.5rem;
-    position: relative;
-    &::before {
-      content: '';
-      width: 6px;
-      height: calc(100% - 0.25em);
-      border-radius: 3px;
-      background-color: $mainColor;
-      position: absolute;
-      left: 0;
-      top: 0.125em;
+  // h1{font-size: 2.8rem;}
+  h2{
+    font-size: 2.2rem;
+  }
+  @include res_min(){
+    h2{
+      margin-top: calc(60px * 0.7);
+      font-size: 2.5rem;
     }
   }
-  @include res_min() {
-    h2 {
-      margin-top: 1.5em;
-      font-size: 3.2rem;
-    }
-  }
-  h3 {
-    padding-left: 1em;
+  h3{
     font-size: 2.1rem;
-    position: relative;
-    &::before {
-      content: '';
-      width: 0.5em;
-      height: 0.5em;
-      border-radius: 3px;
-      background-color: $mainColor;
-      position: absolute;
-      left: 0;
-      top: 0.5em;
+  }
+  @include res_min(){
+    h3{
+      margin-top: calc(60px * 0.7);
+      font-size: 2.2rem;
     }
   }
-  @include res_min() {
-    h3 {
-      font-size: 2.8rem;
-    }
-  }
-  h4 {
+  h4{
     font-size: 2rem;
   }
-  h5 {
-    font-size: 1.9rem;
-  }
-  h6 {
-    font-size: 1.8rem;
-  }
-  @include res_min() {
-    h4 {
-      font-size: 2.6rem;
+  @include res_min(){
+    h4{
+      margin-top: calc(40px * 0.7);
+      font-size: 2rem;
     }
-    h5 {
-      font-size: 2.4rem;
-    }
-    h6 {
-      font-size: 2.2rem;
+  }
+  h5,
+  h6{
+    font-size: 1.6rem;
+  }
+  @include res_min(){
+    h5,
+    h6{
+      margin-top: calc(40px * 0.7);
+      font-size: 1.8rem;
     }
   }
 
   // 段落
-  p {
+  p{
     font-size: inherit;
-    &:not(:first-of-type) {
-      margin: 1em 0 0;
+    &:not(:first-of-type){
+      margin: calc(1em * 0.7) 0 0;
     }
   }
-  @include res_min() {
-    p {
-      &:not(:first-of-type) {
-        margin-top: 1.5em;
+  @include res_min(){
+    p{
+      &:not(:first-of-type){
       }
     }
   }
 
   // リンク
-  a {
-    &:link,
-    &:visited {
-      color: $mainColor;
-      text-decoration: underline;
-    }
-    &:hover,
-    &:active {
-      opacity: 0.8;
-    }
-  }
+  // a{
+  //   &:link,
+  //   &:visited{
+  //     color: $linkColor;
+  //     text-decoration: underline;
+  //   }
+  //   &:hover,
+  //   &:active{
+  //     opacity: 0.8;
+  //   }
+  // }
 
   // 画像
-  img {
-    // width: auto;
-    // height: auto;
-    max-width: 100%;
-    margin: 1em 0 0;
-    vertical-align: bottom;
-  }
-  @include res_min() {
-    img {
-      margin-top: 1.5em;
-    }
-  }
+  // img{
+  //   width: auto;
+  //   height: auto;
+  //   max-width: 100%;
+  //   margin: 1em 0 0;
+  //   vertical-align: bottom;
+  // }
+  // @include res_min(){
+  //   img{
+  //     margin-top: 1.5em;
+  //   }
+  // }
 
   // 回り込み
-  .alignnone {
+  .alignnone{
     display: block;
     float: none;
   }
-  .alignleft {
+  .alignleft{
     float: left;
     margin: 0 1em 1em 0;
   }
-  .aligncenter {
+  .aligncenter{
     display: block;
     float: none;
     margin: 1em auto;
     text-align: center;
   }
-  .alignright {
+  .alignright{
     float: right;
     margin: 0 0 1em 1em;
   }
@@ -145,73 +122,69 @@
   .alignleft:before,
   .alignleft:after,
   .alignrightalignright:before,
-  .alignright:after {
+  .alignright:after{
     display: table;
     content: '';
   }
   .alignleft:after,
-  .alignrightalignright:after {
+  .alignrightalignright:after{
     clear: both;
   }
   .alignleft,
-  .alignright {
+  .alignright{
     *zoom: 1;
   }
 
   // リスト
   ul,
-  ol {
-    margin: 1em 0 0;
+  ol{
+    margin: calc(2em * 0.7) 0 0;
     padding: 0;
     padding-left: 1em;
   }
-  @include res_min() {
-    ul,
-    ol {
-      margin-top: 1.5em;
-    }
-  }
   // 丸
-  ul {
+  ul{
     list-style: none outside;
-    li {
+    li{
       position: relative;
-      &::before {
+      &::before{
         content: '';
         width: 0.5em;
         height: 0.5em;
-        background-color: $mainColor;
+        background-color: $textBaseColor;
         border-radius: 50%;
         position: absolute;
         left: -1em;
-        top: 0.625em;
+        top: 0.8em;
       }
     }
   }
   // 番号
-  ol {
+  ol{
+    margin-left: 0.2em;
     list-style: decimal outside;
-    li {
-      &::marker {
-        color: $mainColor;
+    li{
+      &::marker{
+        font-family: $ff-en;
+        color: $textBaseColor;
       }
     }
   }
 
-  dl {
-    margin: 1em 0 0;
-    &:last-child {
+  dl{
+    margin: calc(2em * 0.7) 0 0;
+    &:last-child{
       margin-bottom: 0;
     }
-    dt, dd {
-      &:last-child {
+    dt, dd{
+      &:last-child{
         margin-bottom: 0;
       }
     }
-    dt {
+    dt{
       margin-bottom: 0.5em;
     }
-    dd {
+    dd{
       margin-bottom: 0.5em;
     }
   }
@@ -225,61 +198,206 @@
   ol dl,
   dl dl,
   dl ul,
-  dl ol {
-    margin: 1em;
+  dl ol{
+    margin: calc(1em * 0.7) 1em;
   }
 
   // テーブル
-  table {
-    margin: 1em 0;
+  table{
+    margin: calc(2em * 0.7) 0;
     width: auto;
     max-width: 100%;
+    th,
+    td{
+      padding: 0.6em 0.7em;
+      @include res_min() {
+        padding: 0.9em 1.5em;
+      }
+      border: none;
+      border-bottom: 1px solid rgba($textBaseColor, 0.15);
+      &:not(:first-of-type){
+        border-left: 1px solid rgba($textBaseColor, 0.15);
+      }
+    }
+    thead{
+      border: none;
+      th{
+        background-color: rgba($gray, 0.7);
+        border-top: 1px solid rgba($textBaseColor, 0.5);
+        border-bottom: 1px solid rgba($textBaseColor, 0.5);
+        text-align: center;
+      }
+    }
   }
-  th,
-  td {
-    padding: 0.7em 0.8em;
-    border: 1px solid #b3b3b3;
-    background: #f6f6f6;
-    line-height: 1.5em;
-  }
-  td {
-    background: #fdfdfd;
+  //テーブルキャプション
+  .wp-block-table .wp-element-caption{
   }
 
   // iframe
-  iframe {
-    margin: 1em auto;
+  iframe{
+    margin: calc(1em * 0.7) auto;
     max-width: 100%;
   }
 
   // その他装飾
-  strong {
+  strong{
     font-weight: 400;
     color: $textBaseColor;
   }
-  em {
+  em{
     font-weight: normal;
     font-style: italic;
     color: $textBaseColor;
   }
-  pre {
-    margin: 1em 0;
-    padding: 1em 1.5em;
+  pre{
+    margin: calc(1em * 0.7) 0;
+    padding: calc(1em * 0.7) 1.5em;
     background: #ededed;
     white-space: pre-wrap;
   }
-  hr {
+  hr{
     border: 1px solid #ccc;
   }
-  blockquote {
-    padding: 1em 1.5em;
+  blockquote{
+    padding: calc(1em * 0.7) 1.5em;
     color: #555;
     font-style: italic;
   }
-  blockquote cite:before {
+  blockquote cite:before{
     margin: 0 1em;
     color: #999;
     content: '─';
   }
 
-} // .post-area
+} //.post-body & .editor-styles-wrapper.block-editor-writing-flow
+
+
+// ----------------------------------------------------------------
+// ブロックエディタを上書き
+// ----------------------------------------------------------------
+//記事リスト - wrap
+.wp-block-post-template-is-layout-grid{
+  gap: 0;
+  .wp-block-post:first-of-type{
+    .block-post-typeA{
+      border-top: 1px solid rgba($textBaseColor, 0.15);
+    }
+  }
+}
+
+//記事リスト - 各ポスト
+.block-post-typeA{
+  padding: 26px 80px 26px 14px !important;
+  border-bottom: 1px solid rgba($textBaseColor, 0.15);
+  position: relative;
+  //右矢印（ホバーで左に動く）
+  &::before{
+    content: '';
+    width: 14px;
+    height: 8px;
+    background-color: $mainColor;
+    -webkit-mask-image: url(./assets/images/common/icon-arrow-right.svg);
+            mask-image: url(./assets/images/common/icon-arrow-right.svg);
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+            mask-position: center;
+    -webkit-mask-size: 100%;
+            mask-size: 100%;
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @include res_min() {
+    padding: 36px 80px 36px 20px !important;
+    &::before{
+      right: 20px;
+      @include transition();
+    }
+    &:hover{
+      &::before{
+        right: 24px;
+      }
+    }
+  }
+  //日付 + カテゴリー
+  & > .wp-block-group__inner-container > .wp-block-group-is-layout-flex{
+    gap: 0;
+  }
+  //日付
+  .wp-block-post-date{
+    font-family: $ff-en;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1;
+    margin-top: 0.1em;
+  }
+  //カテゴリー
+  .wp-block-post-terms{
+    font-size: 1.4rem;
+    line-height: 1;
+    @include flex(nowrap, flex-start, center);
+    &::before{
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: $mainColor;
+      display: block;
+      margin: 0 14px;
+    }
+    //カテゴリーはリンクしないようにする
+    & > a{
+      pointer-events: none !important;
+      color: $mainColor;
+    }
+  }
+  //タイトル
+  .wp-block-post-title{
+    margin-top: 13px;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    @include res_min() {
+      font-size: 1.8rem;
+    }
+  }
+  //リンク範囲を block-post-typeA 全体にする
+  a{
+    color: $textBaseColor;
+    &::after{
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+    }
+    &:hover{
+      color: rgba($mainColor, 1) !important;
+      &::before{
+        @include res_min() {
+          -webkit-mask-position: right 28px center;
+          mask-position: right 28px center;
+        }
+      }
+    }
+  }
+}
+
+
+//画像関連
+.wp-block-image{
+  margin: 3.125em 0;
+  line-height: 1;
+  img{
+    vertical-align: bottom;
+    line-height: 1;
+    margin: 0;
+  }
+  figcaption {
+    margin: 0.8em 0 0;
+    text-align: center;
+  }
+}
