@@ -28,7 +28,7 @@ get_header(); ?>
       <?php //ボタン ?>
       <?php if( is_page('new-graduates') ): ?>
       <div class="button-wrap">
-        <a href="<?php echo esc_html(home_url()); ?>/recruit/job-description" class="button-r-link-large button-circle-ani --white">
+        <a href="<?php echo esc_url(home_url()); ?>/recruit/job-description/" class="button-r-link-large button-circle-ani --white">
           新卒採用募集要項
           <span class="svg-area">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
@@ -36,7 +36,7 @@ get_header(); ?>
             </svg>
           </span>
         </a>
-        <a href="<?php echo esc_html(home_url()); ?>/recruit/entry" target="_blank" rel="noopener noreferrer" class="button-r-link-large button-circle-ani --white --blank">
+        <a href="https://job.mynavi.jp/24/pc/search/corp91106/outline.html" target="_blank" rel="noopener noreferrer" class="button-r-link-large button-circle-ani --white --blank">
           <div class="cta-entry__button__text">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/icon-mynavi-white.svg" alt="" width="187" height="34.71">
           </div>
@@ -69,22 +69,22 @@ get_header(); ?>
       <?php endif; ?>
       <?php //CTAボタン ?>
       <?php if( is_page('new-graduates') ): ?>
-      <div class="cta-recruit --new-graduates">
+      <a href="<?php echo esc_url(home_url()); ?>/recruit/internship/" class="cta-recruit --new-graduates">
         <div class="cta-recruit__title">INTERNSHIP</div>
         <div class="cta-recruit__subtext">アスリートFAを体験する！</div>
         <div class="cta-recruit__text">インターンシップ情報</div>
         <div class="cta-recruit__navi">
-          <a href="<?php echo esc_url(home_url()); ?>/recruit/internship" class="button-r-link-small"></a>
+          <div class="button-r-link-small"></div>
         </div>
-      </div>
+      </a>
       <?php elseif( is_page('career') ): ?>
-      <div class="cta-recruit">
+      <a href="<?php echo esc_url(home_url()); ?>/recruit/entry/" class="cta-recruit">
         <div class="cta-recruit__title">ENTRY</div>
         <div class="cta-recruit__text">エントリーフォーム</div>
         <div class="cta-recruit__navi">
-          <a href="<?php echo esc_url(home_url()); ?>/recruit/entry" class="button-r-link-small"></a>
+          <div class="button-r-link-small"></div>
         </div>
-      </div>
+      </a>
       <?php endif; ?>
     </section>
 
@@ -157,7 +157,7 @@ get_header(); ?>
     </section>
 
     <section class="sec sec-full sec-page-link">
-      <a href="<?php echo esc_url(home_url()); ?>/recruit/department" class="large-page-link">
+      <a href="<?php echo esc_url(home_url()); ?>/recruit/department/" class="large-page-link">
         <figure class="large-page-link__image">
           <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/img-page-link-department.jpg" alt="" width="960" height="678">
         </figure>
@@ -170,7 +170,7 @@ get_header(); ?>
           </span>
         </span>
       </a>
-      <a href="<?php echo esc_url(home_url()); ?>/recruit/data" class="large-page-link">
+      <a href="<?php echo esc_url(home_url()); ?>/recruit/data/" class="large-page-link">
         <figure class="large-page-link__image">
           <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/img-page-link-data.jpg" alt="" width="960" height="678">
         </figure>
@@ -191,7 +191,7 @@ get_header(); ?>
         <p>アスリートFAで働く社員たちをご紹介いたします。</p>
       </div>
       <div class="staff-interview">
-        <a href="<?php echo esc_url(home_url()); ?>/recruit/interview01" class="staff-data">
+        <a href="<?php echo esc_url(home_url()); ?>/recruit/interview01/" class="staff-data">
           <figure class="staff-data__image">
             <div class="staff-data__photo">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/staff/img-staff-card-image01.jpg" alt="" width="418" height="590">
@@ -205,7 +205,7 @@ get_header(); ?>
             <div class="staff-join">2020年新卒入社</div>
           </div>
         </a>
-        <a href="<?php echo esc_url(home_url()); ?>/recruit/interview02" class="staff-data">
+        <a href="<?php echo esc_url(home_url()); ?>/recruit/interview02/" class="staff-data">
           <figure class="staff-data__image">
             <div class="staff-data__photo">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/staff/img-staff-card-image02.jpg" alt="" width="418" height="590">
@@ -219,7 +219,7 @@ get_header(); ?>
             <div class="staff-join">2021年新卒入社</div>
           </div>
         </a>
-        <a href="<?php echo esc_url(home_url()); ?>/recruit/interview03" class="staff-data">
+        <a href="<?php echo esc_url(home_url()); ?>/recruit/interview03/" class="staff-data">
           <figure class="staff-data__image">
             <div class="staff-data__photo">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/staff/img-staff-card-image03.jpg" alt="" width="418" height="590">
@@ -241,7 +241,7 @@ get_header(); ?>
       <div class="info-internship">
         <h2 class="title02 --data-sub-ja" data-sub="インターンシップ情報">Internship</h2>
         <p>アスリートFAでは学生の皆さんを対象に、「社会人として働くこと」「自らの持つ能力、可能性」について、実体験を通して理解を深めていただくことを目的として、インターンシップを開催しています。弊社製品の製造工程に沿って様々なコースを用意しておりますので、ぜひご応募ください。</p>
-        <a href="<?php echo esc_url(home_url()); ?>/recruit/internship" class="button-r-link-large button-circle-ani">
+        <a href="<?php echo esc_url(home_url()); ?>/recruit/internship/" class="button-r-link-large button-circle-ani">
           <span>詳しく見る</span>
           <span class="svg-area">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
@@ -264,10 +264,10 @@ get_header(); ?>
           <h3 class="selection-flow__data__title"><?php if( is_page('new-graduates') ){ echo 'エントリー'; } elseif( is_page('career') ){ echo '応募'; } ?></h3>
           <?php if( is_page('new-graduates') ): ?>
           <p class="selection-flow__data__text">下記リンクよりエントリーください。<br>マイナビでは今後の会社説明会の開催日程等の情報を共有させていただきます。</p>
-          <a href="" target="_blank" rel="noopener noreferrer" class="button button--white button--blank"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/icon-mynavi2024.svg" alt=""></a>
+          <a href="https://job.mynavi.jp/24/pc/search/corp91106/outline.html" target="_blank" rel="noopener noreferrer" class="button button--white button--blank"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/icon-mynavi2024.svg" alt=""></a>
           <?php elseif( is_page('career') ): ?>
           <p class="selection-flow__data__text">下記エントリーフォームよりご応募ください。</p>
-          <a href="<?php echo esc_url(home_url()); ?>/recruit/entry" class="button button--white">エントリーフォーム</a>
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/entry/" class="button button--white">エントリーフォーム</a>
           <?php endif; ?>
         </div>
       </div>
@@ -342,7 +342,7 @@ get_header(); ?>
         </div>
       </div>
       <div class="link-wrap">
-        <a href="<?php echo esc_url(home_url()); ?>/recruit/job-description" class="link-item01 page-link__item">
+        <a href="<?php echo esc_url(home_url()); ?>/recruit/job-description/" class="link-item01 page-link__item">
           <div class="link-content icon-document">
             <em class="main-text">新卒採用 <span class="red">[ 募集要項 ] </span>はこちら</em><span class="sub-text">Job description</span>
           </div>
@@ -355,7 +355,7 @@ get_header(); ?>
     <?php if( is_page('career') ): ?>
     <section id="matter" class="sec sec-medium sec-job-description">
       <h2 class="title02 --data-sub-ja" data-sub="キャリア採用募集要項">Job description</h2>
-      <?php include_once('./wp-content/themes/athletefa/block/block-job-description.php'); ?>
+      <?php include_once('./wp-content/themes/athletefa/block/block-job-description-career.php'); ?>
     </section>
     <figure class="sec sec-full sec-job-description-images">
       <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/career/img-job-description01.jpg" alt="" width="640" height="427">

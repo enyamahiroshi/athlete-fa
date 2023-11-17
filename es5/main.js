@@ -3,7 +3,7 @@
   動画読み込み完了後処理
 -------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', function () {
-  const videoWrappers = document.getElementsByClassName('mv__movie');
+const videoWrappers = document.getElementsByClassName('mv__movie');
   for(let i = 0; i < videoWrappers.length; i++) {
       const videoWrapper = videoWrappers[i];
       const video = videoWrapper.getElementsByTagName('video')[0];
@@ -53,7 +53,52 @@ window.addEventListener("scroll", function() {
 });
 
 
+/* --------------------------------------------------
+  スクロールに応じてメニューの状態を変化する
+  参考下記でネイティブJSに書き換えた
+  https://www.rootstyledesign.com/blog/%E3%80%90jquery%E3%80%91%E3%82%B9%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%9F%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E3%81%AB%E5%BF%9C%E3%81%98%E3%81%A6%E5%A4%89%E5%8C%96%E3%81%99%E3%82%8B%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC
+-------------------------------------------------- */
+const presentTop = [];
+const activeClass = "is-active";
+
+function presentCheck() {
+  const headerHeight = document.querySelector(".js-positionNav").offsetHeight;
+  const targets = document.querySelectorAll(".js-positionNav-target");
+
+  for (let i = 0; i < targets.length; i++) {
+    const targetOffsetTop = targets[i].offsetTop - headerHeight;
+    presentTop[i] = Math.round(targetOffsetTop);
+  }
+}
+
+function scAnime() {
+  const scrollTop = document.documentElement.scrollTop;
+  const navBlocks = document.querySelectorAll(".js-positionNav li");
+
+  for (let i = 0; i < navBlocks.length; i++) {
+    navBlocks[i].classList.remove(activeClass);
+  }
+
+  for (let i = 0; i < presentTop.length; i++) {
+    if (scrollTop >= 0 && scrollTop < presentTop[i]) {
+      navBlocks[0].classList.add(activeClass);
+      break;
+    } else if (scrollTop >= presentTop[i] && (i === presentTop.length - 1 || scrollTop < presentTop[i + 1])) {
+      navBlocks[i].classList.add(activeClass);
+      break;
+    }
+  }
+}
+
+window.addEventListener('load', presentCheck);
+window.addEventListener('resize', presentCheck);
+window.addEventListener('scroll', scAnime);
+
+
+
+/* ----------------------------------------------------------------------------------- */
 //jQuery
+/* ----------------------------------------------------------------------------------- */
 (function ($) {
 
   /* --------------------------------------------------
@@ -127,35 +172,35 @@ window.addEventListener("scroll", function() {
   /* --------------------------------------------------
     特定の範囲内で要素を固定
   -------------------------------------------------- */
-  $(window).on('load scroll', function() {
-    fix_element();
-  });
+  // $(window).on('load scroll', function() {
+  //   fix_element();
+  // });
 
-  function fix_element() {
-    // 固定配置に使用する要素
-    var $fixWrapper = $('.js-fix-wrapper');
-    var $fix = $('.js-fix-item');
-    var $fixArea = $('.js-fix-area');
+  // function fix_element() {
+  //   // 固定配置に使用する要素
+  //   var $fixWrapper = $('.js-fix-wrapper');
+  //   var $fix = $('.js-fix-item');
+  //   var $fixArea = $('.js-fix-area');
 
-    // 要素がある場合のみ処理
-    if($fixWrapper.length && $fix.length && $fixArea.length) {
-      var fixTop = $fixWrapper.offset().top;
-      var fixEnd = $fixArea.offset().top + $fixArea.height();
-      var fixHeight = $fix.height();
-      var winScroll = $(window).scrollTop();
-      var winheight = $(window).height();
-      // 開始位置を通過する前
-      if(winScroll < fixTop) {
-        $fix.removeClass('is-fixed');
-      // 終了位置を通過した後
-      } else if(winScroll > fixEnd - fixHeight) {
-        $fix.removeClass('is-fixed');
-      // 対象範囲内の場合
-      } else {
-        $fix.addClass('is-fixed');
-      }
-    }
-  }
+  //   // 要素がある場合のみ処理
+  //   if($fixWrapper.length && $fix.length && $fixArea.length) {
+  //     var fixTop = $fixWrapper.offset().top;
+  //     var fixEnd = $fixArea.offset().top + $fixArea.height();
+  //     var fixHeight = $fix.height();
+  //     var winScroll = $(window).scrollTop();
+  //     var winheight = $(window).height();
+  //     // 開始位置を通過する前
+  //     if(winScroll < fixTop) {
+  //       $fix.removeClass($aadclass);
+  //     // 終了位置を通過した後
+  //     } else if(winScroll > fixEnd - fixHeight) {
+  //       $fix.removeClass($aadclass);
+  //     // 対象範囲内の場合
+  //     } else {
+  //       $fix.addClass($aadclass);
+  //     }
+  //   }
+  // }
 
 
   /* --------------------------------------------------
@@ -166,7 +211,7 @@ window.addEventListener("scroll", function() {
   const header = $('.header');
   const BtnOpen = $('.js-tgl-menu');
   const classname = 'is-open';
-  const NaviLink = $('.menu a[href]');
+  const NaviLink = $('.header-navi .menu a[href]');
   $(window).on('resize', function () {
     if (window.matchMedia( "(min-width: " + mqueryLG + ")" ).matches) {
       if (body.hasClass(classname)) {
@@ -244,7 +289,7 @@ window.addEventListener("scroll", function() {
     $(this).parent().addClass('is-active');
     return false;
   });
-  $(window).on('load', function() {
+  $(window).on('load resize', function() {
     if(document.URL.match("#")) {
       const str = location.href ;
       const cut_str = "#";

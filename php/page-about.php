@@ -6,7 +6,7 @@
 
     <div class="has-column js-fix-area">
       <aside class="side-column js-fix-wrapper">
-        <ul class="category-list js-fix-item">
+        <ul class="category-list js-positionNav js-fix-item">
           <li class="cat-item is-active"><a href="#outline">会社概要</a></li>
           <li class="cat-item"><a href="#access">アクセス</a></li>
         </ul>
@@ -14,7 +14,7 @@
 
       <section class="main-column">
 
-        <div id="outline" class="cont">
+        <div id="outline" class="cont js-positionNav-target">
           <h2 class="title05">会社概要</h2>
           <table class="tbl1 tbl-company">
             <tr>
@@ -26,7 +26,7 @@
             <tr>
               <th>所在地</th>
               <td>
-                <p>〒392-0012<br>長野県諏訪市四賀2970-1 <span class="ff-en">[</span><a href="<?php echo esc_url(home_url()); ?>" class="ff-en after-icon after-icon--map">Map</a><span>]</span></p>
+                <p>〒392-0012<br>長野県諏訪市四賀2970-1 <span class="ff-en">[</span><a href="https://maps.app.goo.gl/dnEMheRagnespc1Z7" target="_blank" rel="noopener noreferrer" class="ff-en after-icon after-icon--map">Map</a><span>]</span></p>
               </td>
             </tr>
             <tr>
@@ -81,14 +81,14 @@
           </table>
         </div>
 
-        <div id="access" class="cont">
+        <div id="access" class="cont js-positionNav-target">
           <h2 class="title05">アクセス</h2>
           <div class="access">
             <div class="access__data">
               <div class="access__data__title">本社</div>
               <p>〒392-0012<br>長野県諏訪市四賀2970-1</p>
               <p><span class="before-disc-item">諏訪ICより車で約5分</span><span class="before-disc-item">上諏訪駅より車で約15分</span><span class="before-disc-item">茅野駅より車で約10分</span></p>
-              <p></span><a href="<?php echo esc_url(home_url()); ?>" class="ff-en after-icon after-icon--map">Google Map</a></p>
+              <p></span><a href="https://maps.app.goo.gl/dnEMheRagnespc1Z7" target="_blank" rel="noopener noreferrer" class="ff-en after-icon after-icon--map">Google Map</a></p>
             </div>
             <figure class="access__image">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/about/img-company-honsha.jpg" alt="" width="687" height="457">
@@ -98,7 +98,7 @@
             <div class="access__data">
               <div class="access__data__title">第二工場</div>
               <p>〒392-0012<br>長野県諏訪市四賀2930-1</p>
-              <p></span><a href="<?php echo esc_url(home_url()); ?>" class="ff-en after-icon after-icon--map">Google Map</a></p>
+              <p></span><a href="https://maps.app.goo.gl/dnEMheRagnespc1Z7" target="_blank" rel="noopener noreferrer" class="ff-en after-icon after-icon--map">Google Map</a></p>
             </div>
             <figure class="access__image">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/about/img-company-daini.jpg" alt="" width="687" height="457">
@@ -117,19 +117,19 @@
         <section class="sec-page-navi">
           <h2 class="page-navi-title --en" data-sub="企業情報">Company</h2>
           <nav class="page-navi">
-            <a href="<?php echo esc_url(home_url()); ?>/company/message" class="link-item01">
+            <a href="<?php echo esc_url(home_url()); ?>/company/message/" class="link-item01">
               <div class="link-content">
                 <em class="main-text">社長メッセージ</em><span class="sub-text">Message</span>
               </div>
               <i class="icon"></i>
             </a>
-            <a href="<?php echo esc_url(home_url()); ?>/company/mission" class="link-item01">
+            <a href="<?php echo esc_url(home_url()); ?>/company/mission/" class="link-item01">
               <div class="link-content --en">
                 <em class="main-text">経営理念・方針</em><span class="sub-text">Philosophy</span>
               </div>
               <i class="icon"></i>
             </a>
-            <a href="<?php echo esc_url(home_url()); ?>/company/history" class="link-item01">
+            <a href="<?php echo esc_url(home_url()); ?>/company/history/" class="link-item01">
               <div class="link-content --en">
                 <em class="main-text">沿革</em><span class="sub-text">History</span>
               </div>

@@ -46,12 +46,22 @@ function my_pre_get_posts( $query ) {
     // $query -> set('orderby', 'date'); //日
   }
   //カスタムタクソノミーのアーカイブ
-  if($query -> is_tax()){
-  $query -> set('posts_per_page', 20); //表示件数
-    // $query -> set('order', 'ASC'); //昇順
-    // $query -> set('orderby', 'date'); //日
-  }
+  // if($query -> is_tax()){
+  // $query -> set('posts_per_page', 2); //表示件数
+  //   $query -> set('order', 'ASC'); //昇順
+  //   $query -> set('orderby', 'date'); //日
+  // }
 }
+
+// the_posts_pagination で吐き出すページネーションの整形
+function cut_screen_reader_text($template) {
+	$template = '
+		<nav class="navigation %1$s">
+			<div class="nav-links">%3$s</div>
+		</nav>';
+	return $template;
+}
+add_filter('navigation_markup_template', 'cut_screen_reader_text');
 
 /* -------------------------------------------------------------
 // body_class

@@ -6,7 +6,7 @@
 
     <div class="has-column js-fix-area">
       <aside class="side-column js-fix-wrapper">
-        <ul class="category-list js-fix-item">
+        <ul class="category-list js-positionNav js-fix-item">
           <li class="cat-item is-active"><a href="#development">開発部</a></li>
           <li class="cat-item"><a href="#designing">設計部</a></li>
           <li class="cat-item"><a href="#manufacturing">製造部</a></li>
@@ -20,7 +20,7 @@
       <section class="main-column">
 
         <?php //開発部 ?>
-        <div id="development" class="dept development-dept">
+        <div id="development" class="dept development-dept js-positionNav-target">
           <h2 class="title05">開発部</h2>
           <div class="qa-wrapper">
             <section class="qa">
@@ -66,7 +66,7 @@
         </div>
 
         <?php //設計部 ?>
-        <div id="designing" class="dept designing-dept">
+        <div id="designing" class="dept designing-dept js-positionNav-target">
           <h2 class="title05">設計部</h2>
           <div class="qa-wrapper">
             <section class="qa">
@@ -103,7 +103,7 @@
         </div>
 
         <?php //製造部 ?>
-        <div id="manufacturing" class="dept manufacturing-dept">
+        <div id="manufacturing" class="dept manufacturing-dept js-positionNav-target">
           <h2 class="title05">製造部</h2>
           <div class="qa-wrapper">
             <section class="qa">
@@ -149,7 +149,7 @@
         </div>
 
         <?php //品質保証部 ?>
-        <div id="quality-assuarance" class="dept quality-assuarance-dept">
+        <div id="quality-assuarance" class="dept quality-assuarance-dept js-positionNav-target">
           <h2 class="title05">品質保証部</h2>
           <div class="qa-wrapper">
             <section class="qa">
@@ -186,7 +186,7 @@
         </div>
 
         <?php //生産管理部 ?>
-        <div id="production-management" class="dept production-management-dept">
+        <div id="production-management" class="dept production-management-dept js-positionNav-target">
           <h2 class="title05">生産管理部</h2>
           <div class="qa-wrapper">
             <section class="qa">
@@ -223,7 +223,7 @@
         </div>
 
         <?php //営業部 ?>
-        <div id="sales" class="dept sales-dept">
+        <div id="sales" class="dept sales-dept js-positionNav-target">
           <h2 class="title05">営業部</h2>
           <div class="qa-wrapper">
             <section class="qa">
@@ -252,7 +252,7 @@
               <div class="qa__data">
                 <h2 class="qa__data__q" data-sub="Point">採用担当者からのひとこと解説<span class="line"></span></h2>
                 <div class="qa__data__a">
-                  <p class="qa__data__a__text">営業としての喜びは、何といってもお客様に弊社の製品をご発注いただくことです。そのために、世界中のお客様をまわり、高いヒアリング能力でお客様のニーズを引き出します。また、お客様に安心安全に当社製品を使用していただく為のアフタフォローも営業部の重要な役割です。会社の顔としてアスリートFAの製品、技術を世界中に届ける業務に携わることができます。</p>
+                  <p class="qa__data__a__text">営業としての喜びは、何といってもお客様に弊社の製品をご発注いただくことです。そのために、世界中のお客様をまわり、高いヒアリング能力でお客様のニーズを引き出します。また、お客様に安心安全に当社製品を使用していただく為のアフターフォローも営業部の重要な役割です。会社の顔としてアスリートFAの製品、技術を世界中に届ける業務に携わることができます。</p>
                 </div>
               </div>
             </section>
@@ -260,7 +260,7 @@
         </div>
 
         <?php //総務部 ?>
-        <div id="general-affairs" class="dept general-affairs-dept">
+        <div id="general-affairs" class="dept general-affairs-dept js-positionNav-target">
           <h2 class="title05">総務部</h2>
           <div class="qa-wrapper">
             <section class="qa">
@@ -296,8 +296,8 @@
           </div>
         </div>
 
-        <div class="button-wrap">
-          <a href="<?php echo esc_url(home_url()); ?>/recruit/new-graduates" class="button-r-link-large button-circle-ani">
+        <div class="button-wrap --list">
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/new-graduates/" class="button-r-link-large button-circle-ani">
             <span>新卒採用ページへ戻る</span>
             <span class="svg-area">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
@@ -305,7 +305,7 @@
               </svg>
             </span>
           </a>
-          <a href="<?php echo esc_url(home_url()); ?>/recruit/career" class="button-r-link-large button-circle-ani">
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/career/" class="button-r-link-large button-circle-ani">
             <span>キャリア採用ページへ戻る</span>
             <span class="svg-area">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">

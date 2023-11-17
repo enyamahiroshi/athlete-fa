@@ -1,7 +1,7 @@
 <?php
 /**
  * From Action
- * 
+ *
  */
 $objApp = new Entry();
 $objApp->main();
@@ -45,7 +45,7 @@ add_action('wp_head', function(){
           <label for="kibojob" class="item__label__name required">希望職種</label>
         </div>
         <div class="item__input">
-          <div class="item__input__block">
+          <div class="item__input__block custom-select">
             <select id="kibojob" name="kibojob" class="custom-select size-wide">
               <option value="" selected disabled>選択してください</option>
               <?php echo Utils::html_select(ITEM_KIBOJOB, $objApp->arrData['kibojob'] ?? ''); ?>

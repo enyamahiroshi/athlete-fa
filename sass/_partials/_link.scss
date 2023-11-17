@@ -100,11 +100,39 @@ a img{
   &.--right{
     justify-content: flex-end;
   }
+  &.--list{
+    padding: 0 5px 0 15px;
+    justify-content: flex-start;
+    row-gap: 0;
+    .button-r-link-large{
+      width: 100%;
+      .svg-area{
+        transform: translateY(-50%) scale(0.6);
+      }
+      &::after {
+        transform: scale(0.6);
+      }
+    }
+  }
 }
 @include res_min(){
   .button-wrap{
     gap: 1.5em 3.5em;
     padding: 10px 0;
+    &.--list{
+      justify-content: center;
+      gap: 1.5em 3.5em;
+      padding: 10px 0;
+      .button-r-link-large{
+        width: auto;
+        .svg-area{
+          transform: translateY(-50%) scale(1);
+        }
+        &::after {
+          transform: scale(1);
+        }
+      }
+    }
   }
 }
 
@@ -283,7 +311,7 @@ a img{
     width: 37px;
     height: 37px;
     border-radius: 999px;
-    background-color: rgba(255,255,255, 1);
+    background-color: rgba(#fff, 1);
     position: absolute;
     right: 15px;
     top: 50%;
@@ -452,6 +480,7 @@ a img{
 .button-r-link-large{
   @extend .button-r-link-small;
   align-self: flex-start;
+  justify-content: space-between;
   font-size: 1.6rem;
   &:link, &:visited{
     text-decoration: none;
@@ -501,8 +530,8 @@ a img{
   &.--blank{
     &::before{
       content: '';
-      width: 17px;
-      height: 14px;
+      width: 20px;
+      height: 15px;
       background-color: rgba(#fff, 1);
       -webkit-mask-image: url(./assets/images/common/icon-blank.svg);
               mask-image: url(./assets/images/common/icon-blank.svg);
@@ -718,7 +747,7 @@ svg.circle-ani{
   その他
 ---------------------------------------------------------------- */
 // blank
-a[target="_blank"]:not(:is(.button-r-link-large, .cta-entry__button)){
+a[target="_blank"]:not(:is(.no-blank-image, .button-r-link-large, .cta-entry__button, .after-icon)){
   position: relative;
   &::after{
     content: '';

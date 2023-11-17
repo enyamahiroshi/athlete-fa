@@ -6,7 +6,7 @@
 
     <div class="has-column js-fix-area">
       <aside class="side-column js-fix-wrapper">
-        <ul class="category-list js-fix-item">
+        <ul class="category-list js-positionNav js-fix-item">
           <li class="cat-item is-active"><a href="#bland">ブランド</a></li>
           <li class="cat-item"><a href="#philosophy">経営理念</a></li>
           <li class="cat-item"><a href="#policy">経営方針</a></li>
@@ -17,7 +17,7 @@
 
       <section class="main-column">
 
-        <div id="bland" class="cont">
+        <div id="bland" class="cont js-positionNav-target">
           <h2 class="title05">ブランド</h2>
           <figure class="bland-logo">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/logo-red.svg" alt="" width="194" height="31.74">
@@ -48,12 +48,12 @@
           </div>
         </div>
 
-        <div id="philosophy" class="cont">
+        <div id="philosophy" class="cont js-positionNav-target">
           <h2 class="title05">経営理念</h2>
           <p class="philosophy-text">私たち、Athlete FAは<span>Future Arts</span>を創造します</p>
         </div>
 
-        <div id="policy" class="cont">
+        <div id="policy" class="cont js-positionNav-target">
           <h2 class="title05">経営方針</h2>
           <p class="policy-intro">Future Artsの創造を志向するために</p>
           <dl class="policy-list">
@@ -68,7 +68,7 @@
           </dl>
         </div>
 
-        <div id="quality" class="cont">
+        <div id="quality" class="cont js-positionNav-target">
           <h2 class="title05">品質方針</h2>
           <div class="quality-info">
             <ul class="list-disc">
@@ -87,7 +87,7 @@
           </ul>
         </div>
 
-        <div id="environmental" class="cont">
+        <div id="environmental" class="cont js-positionNav-target">
           <h2 class="title05">環境方針</h2>
           <p>アスリートFA株式会社は、自動化設備及び省力化設備の開発、設計、製造、販売を行うにあたり、企業活動と地球環境との調和を目指し、資源の有効活用と環境汚染の予防に積極的に取り組み、良き企業市民としての社会的責任を果たしていきます。</p>
           <ul class="ordered-list">
@@ -108,19 +108,19 @@
         <section class="sec-page-navi">
           <h2 class="page-navi-title --en" data-sub="企業情報">Company</h2>
           <nav class="page-navi">
-            <a href="<?php echo esc_url(home_url()); ?>/company/message" class="link-item01">
+            <a href="<?php echo esc_url(home_url()); ?>/company/message/" class="link-item01">
               <div class="link-content">
                 <em class="main-text">社長メッセージ</em><span class="sub-text">Message</span>
               </div>
               <i class="icon"></i>
             </a>
-            <a href="<?php echo esc_url(home_url()); ?>/company/mission" class="link-item01">
-              <div class="link-content --en">
-                <em class="main-text">経営理念・方針</em><span class="sub-text">Philosophy</span>
+            <a href="<?php echo esc_url(home_url()); ?>/company/about/" class="link-item01">
+              <div class="link-content">
+                <em class="main-text">会社概要</em><span class="sub-text">Profile</span>
               </div>
               <i class="icon"></i>
             </a>
-            <a href="<?php echo esc_url(home_url()); ?>/company/history" class="link-item01">
+            <a href="<?php echo esc_url(home_url()); ?>/company/history/" class="link-item01">
               <div class="link-content --en">
                 <em class="main-text">沿革</em><span class="sub-text">History</span>
               </div>

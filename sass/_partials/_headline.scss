@@ -49,6 +49,7 @@
   font-size: 4.2rem;
   font-weight: 600;
   line-height: 1;
+  @include transition();
   &::before{
     content: attr(data-sub);
     display: block;
@@ -58,6 +59,7 @@
     color: $mainColor;
     letter-spacing: -0.025em;
     line-height: 1.3;
+    @include transition();
     white-space: pre; //data属性に「&#10;」を入れて改行する
   }
   &.--data-sub-ja::before{
@@ -189,5 +191,41 @@
     &::before{
       margin-bottom: 5px;
     }
+  }
+}
+
+.title08{
+  font-size: 2.6rem;
+  font-weight: 500;
+  text-align: center;
+  &::after{
+    content: attr(data-sub);
+    @extend .ff-en;
+    display: block;
+    font-size: 50%;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: rgba($mainColor, 1);
+    margin-top: 0.2em;
+  }
+}
+@include res_min() {
+  .title08{
+    font-size: 3.2rem;
+  }
+}
+
+.title09{
+  @extend .title08;
+  font-size: 2.3rem;
+  &::after{
+    font-size: 57%;
+    letter-spacing: -0.025em;
+    margin-top: 0;
+  }
+}
+@include res_min() {
+  .title09{
+    font-size: 2.8rem;
   }
 }

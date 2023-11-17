@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
-    <header class="page-header" data-sub="Philosophy">
-      <h1 class="page-header__title" data-sub="<?php the_title(); ?>">Philosophy</h1>
+    <header class="page-header" data-sub="Privacy policy">
+      <h1 class="page-header__title" data-sub="プライバシーポリシー（個人情報保護方針）">Privacy policy</h1>
     </header>
 
     <section class="sec sec-small sec-pp">

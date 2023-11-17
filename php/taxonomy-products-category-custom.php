@@ -7,7 +7,7 @@
 
     <div class="has-column js-fix-area">
       <aside class="side-column side-column--products js-fix-wrapper">
-        <ul class="category-list js-fix-item">
+        <ul class="category-list js-positionNav js-fix-item">
           <li class="cat-item is-active"><a href="#features">サービスの特徴</a></li>
           <li class="cat-item"><a href="#flow">導入までの流れ</a></li>
           <li class="cat-item"><a href="#case">カスタム事例</a></li>
@@ -18,7 +18,7 @@
       <section class="main-column main-column--custom">
 
         <?php //サービスの特徴 ?>
-        <div id="features" class="custom-features">
+        <div id="features" class="custom-features js-positionNav-target">
           <div class="features__data">
             <h2 class="title05">サービスの特徴</h2>
             <p>アスリートFAのカスタム装置はお客様の「欲しい」を実現します。長年に渡り培ってきた要素技術の組み合わせが、お客様の想定したプロセスに対し、技術的裏付けのある最適な装置提案を可能とします。また、各案件ごとにプロジェクトチームを編成し、仕様詰めから納入、アフターフォローにいたるまで一貫サポート致します。</p>
@@ -29,7 +29,7 @@
         </div>
 
         <?php //導入までの流れ ?>
-        <div id="flow" class="custom-flow">
+        <div id="flow" class="custom-flow js-positionNav-target">
           <h2 class="title05">カスタム導入までの流れ</h2>
           <figure class="flow-list">
               <div class="flow-list__item">
@@ -108,7 +108,7 @@
         </div>
 
         <?php //カスタム事例 ?>
-        <div id="case" class="custom-case">
+        <div id="case" class="custom-case js-positionNav-target">
           <h2 class="title05">カスタム事例</h2>
         <?php if( have_posts() ): ?>
           <ul class="product-list">
@@ -124,6 +124,7 @@
               $imageSRC = wp_get_attachment_image_src($imageID, 'medium');
             }
             ?>
+
             <li class="product-list__item">
               <a href="<?php the_permalink(); ?>" class="product-link">
                 <h2 class="product-name"><?php the_title(); ?></h2>
@@ -152,8 +153,11 @@
           </ul>
         <?php endif; wp_reset_postdata(); ?>
 
+        <?php
+        $cntPost = $wp_query->found_posts;
+        if( $cntPost > 12 ): ?>
           <div class="button-wrap">
-            <a href="<?php echo esc_url(home_url()); ?>/products/products-category/custom" class="button-r-link-large button-circle-ani">
+            <a href="<?php echo esc_url(home_url()); ?>/products/custom/custom-list/" class="button-r-link-large button-circle-ani">
               カスタム事例一覧
               <span class="svg-area">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
@@ -163,9 +167,10 @@
             </a>
           </div>
         </div>
+        <?php endif; ?>
 
         <?php //その他実績装置 ?>
-        <div id="other" class="custom-other">
+        <div id="other" class="custom-other js-positionNav-target">
           <h2 class="title05">その他実績装置</h2>
           <ul class="list-disc custom-other-list">
             <li>ＡＧシンタ対応加熱加圧装置</li>

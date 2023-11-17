@@ -6,14 +6,13 @@
 ---------------------------------------------------------------- */
 .footer {
   padding: 28px 15px 30px;
-  border-top: 1px solid rgba($textBaseColor, 0.15);
   background-image: url(./assets/images/common/bg-footer-small.svg);
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: 100%;
   font-weight: 400;
   position: relative;
-  z-index: 3;
+  z-index: 2;
 }
 .footer__main{
   display: flex;
@@ -147,6 +146,7 @@
       max-width: #{map-get($maxSize, xl) + px};
     }
     padding: 130px 50px 100px;
+    border-top: 1px solid rgba($textBaseColor, 0.15);
     background-image: url(./assets/images/common/bg-footer-large.svg);
     background-position: left bottom;
     background-size: auto 100%;

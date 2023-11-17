@@ -45,7 +45,7 @@ $headerHighPC: 127;
   .page-template-tmp-recruit &{
     .header__logo{
       svg{
-        fill: rgba(255,255,255, 1);
+        fill: rgba(#fff, 1);
       }
     }
   }
@@ -117,27 +117,23 @@ $headerHighPC: 127;
     border-top: 1px solid rgba( $textBaseColor , 0.15 );
   }
   .menu-item{
-    padding: 20px 15px;
     border-bottom: 1px solid rgba( $textBaseColor , 0.15 );
     font-size: 1.6rem;
     font-weight: 500;
     letter-spacing: 0.1em;
     line-height: 1;
     position: relative;
-    //ラベルとして使用するのみ
-    &.link-label{
-      cursor: pointer;
-      & > *{
-        cursor: default;
-      }
-      & > a{
-        pointer-events: none !important;
-      }
+    //ラベルとして利用する.menu-item
+    &.link-label > a{
+      pointer-events: none;
     }
     //カレント
     &.current_page_item,
     &.current-menu-item,
     &.current_page_ancestor,
+    .company &.link-company,
+    .tax-products-category &.menu-products,
+    .products &.menu-products,
     .recruit &.link-recruit{
       a{
         color: rgba($mainColor, 1);
@@ -148,18 +144,16 @@ $headerHighPC: 127;
       position: relative;
       @include transition();
       opacity: 1;
-      &::before{ //サブメニューが開いたときにマウスオーバーエリアを広げるため
-        transition: none !important;
-      }
       & > a{
         cursor: pointer;
         display: inline-flex;
         align-items: center;
+        //サブメニュー開閉矢印
         &::after{
           content: '';
           margin-left: 10px;
           width: 10px;
-          height: 1em;
+          height: 6px;
           background-color: rgba($textBaseColor, 1);
           -webkit-mask-image: url(./assets/images/common/icon-arrow-toggle.svg);
                   mask-image: url(./assets/images/common/icon-arrow-toggle.svg);
@@ -176,8 +170,12 @@ $headerHighPC: 127;
       &.current_page_item,
       &.current-menu-item,
       &.current_page_ancestor,
+      .company &.link-company,
+      .tax-products-category &.menu-products,
+      .products &.menu-products,
       .recruit &.link-recruit{
         & > a{
+          //サブメニュー開閉矢印
           &::after{
             background-color: rgba($mainColor, 1);
           }
@@ -191,11 +189,10 @@ $headerHighPC: 127;
       //open
       &.is-open{
         & > .sub-menu{
-          margin-top: 20px;
+          // margin-top: 20px;
           height: auto;
           .menu-item{
             opacity: 1;
-            margin-top: 20px;
             font-size: 1.5rem;
             a{
               pointer-events: visible;
@@ -204,6 +201,7 @@ $headerHighPC: 127;
           }
         }
         & > a{
+          //サブメニュー開閉矢印
           &::after{
             transform: rotate(180deg);
           }
@@ -216,7 +214,6 @@ $headerHighPC: 127;
     margin-top: 0;
     margin-left: 13px;
     height: 0;
-    @include transition();
     .menu-item{
       opacity: 0;
       padding: 0;
@@ -225,11 +222,11 @@ $headerHighPC: 127;
       font-size: 1.5rem;
       font-weight: 400;
       letter-spacing: 0.05em;
-      @include transition();
+      @include transition(margin, 0.3);
       a{
         pointer-events: none;
         color: rgba($textBaseColor, 0);
-        @include transition(all, 0);
+        @include transition(color, 0);
       }
     }
   }
@@ -250,30 +247,15 @@ $headerHighPC: 127;
         border-bottom: none;
         font-weight: 500;
         position: relative;
-        //個別に変更
-        .home &,
-        .page-template-tmp-recruit &{
-          a{
-            color: #fff;
-          }
-          //カレント
-          &.current_page_item,
-          &.current-menu-item,
-          &.current_page_ancestor,
-          .recruit &.link-recruit{
+        //ラベルとして利用する.menu-item
+        &.link-label > a{
+          pointer-events: visible;
+        }
+        a{
+          &:hover, &:active{
+            color: rgba($mainColor, 1);
             &::after{
-              content: none;
-            }
-            a{
-              color: rgba($mainColor, 1);
-            }
-          }
-          //サブメニュー開閉
-          &.menu-item-has-children:not(:is(.current_page_ancestor)){
-            & > a{
-              &::after{
-                background-color: rgba(#fff, 1);
-              }
+              background-color: rgba($mainColor, 1);
             }
           }
         }
@@ -281,7 +263,11 @@ $headerHighPC: 127;
         &.current_page_item,
         &.current-menu-item,
         &.current_page_ancestor,
+        .company &.link-company,
+        .tax-products-category &.menu-products,
+        .products &.menu-products,
         .recruit &.link-recruit{
+          //下線
           &::before{
             content: '';
             width: calc(100% + 16px);
@@ -290,10 +276,14 @@ $headerHighPC: 127;
             position: absolute;
             left: -8px;
             bottom: -39px;
-            // @include transition();
+            @include transition(bottom, 0.3);
+            //下線を付けない
             .home &{
               content: none;
             }
+          }
+          a{
+            color: rgba($mainColor, 1);
           }
         }
         //サブメニュー開閉
@@ -347,6 +337,22 @@ $headerHighPC: 127;
             }
           }
         }
+        //個別に変更（リンク色を白にする）
+        .home &:not(.current_page_item),
+        .page-template-tmp-recruit &{
+          a{
+            color: rgba(#fff, 1);
+            &::after{
+              background-color: rgba(#fff, 1);
+            }
+            &:hover, &:active{
+              color: rgba($mainColor, 1);
+              &::after{
+                background-color: rgba($mainColor, 1);
+              }
+            }
+          }
+        }
       }
       //サブメニュー
       .sub-menu{
@@ -373,30 +379,9 @@ $headerHighPC: 127;
             padding-right: 45px;
             color: rgba($textBaseColor, 1);
             @include transition();
-            &:hover, &:active{
-              color: $mainColor;
-            }
           }
         }
       }
-    }
-  }
-
-  //カレント
-  .products .global-menu .menu .menu-item.menu-products,
-  .tax-products-category .global-menu .menu .menu-item.menu-products{
-    &::before{
-      content: '';
-      width: calc(100% + 16px);
-      height: 2px;
-      background-color: rgba($mainColor, 1);
-      position: absolute;
-      left: -8px;
-      bottom: -39px;
-      @include transition();
-    }
-    a{
-      color: rgba($mainColor, 1);
     }
   }
 }
@@ -405,7 +390,7 @@ $headerHighPC: 127;
 //JP / EN, CN
 .global-menu__sub{
   line-height: 1;
-  a[target="_blank"]{
+  .link-cn{
     display: inline-block;
     margin-top: 13px;
     font-weight: 400;
@@ -432,26 +417,38 @@ $headerHighPC: 127;
       padding-right: 39px;
       @include flex(nowrap, flex-start, center);
       flex-direction: row-reverse;
-      a[target="_blank"]{
+      .link-cn{
         margin-top: 0;
         font-size: 1.4rem;
         &::after{
           background-color: rgba($textBaseColor, 1);
+        }
+        &:link, &:visited{
+          opacity: 0.7;
+        }
+        &:hover, &:active{
+          opacity: 1;
         }
       }
       //個別に変更
       .home &,
       .page-template-tmp-recruit &{
         a{
-          color: rgba(255,255,255, 0.5);
+          color: rgba(#fff, 0.5);
         }
         .separate{
-          background-color: #fff;
+          background-color: rgba(#fff, 1);
         }
-        a[target="_blank"]{
-          color: #fff;
+        .link-cn{
+          color: rgba(#fff, 0.7);
           &::after{
-            background-color: rgba(255,255,255, 1);
+            background-color: rgba(#fff, 0.7);
+          }
+          &:hover, &:active{
+            color: rgba(#fff, 1);
+            &::after{
+              background-color: rgba(#fff, 1);
+            }
           }
         }
       }
@@ -533,7 +530,7 @@ $headerHighPC: 127;
         border-color: #fff;
         color: #fff;
         &::after{
-          background-color: rgba(255,255,255, 1);
+          background-color: rgba(#fff, 1);
         }
         &:hover, &:active{
           opacity: 1;
@@ -559,7 +556,7 @@ $headerHighPC: 127;
   height: 21px;
   position: relative;
   z-index: 9;
-  background-color: rgba(255,255,255, 0);
+  background-color: rgba(#fff, 0);
   @include transition();
   .menu-bar-line{
     width: 32px;
@@ -611,11 +608,11 @@ $headerHighPC: 127;
     .menu-bar-line{
       &::before,
       &::after{
-        background-color: rgba(255,255,255, 1);
+        background-color: rgba(#fff, 1);
       }
     }
     .menu-bar-image{
-      background-color: rgba(255,255,255, 1);
+      background-color: rgba(#fff, 1);
     }
   }
 }
@@ -638,7 +635,7 @@ $headerHighPC: 127;
     }
   }
   .menu-bar{
-    background-color: rgba(255,255,255, 1);
+    background-color: rgba(#fff, 1);
     .menu-bar-line{
       &::before,
       &::after{
@@ -653,33 +650,49 @@ $headerHighPC: 127;
 @include res_min( map-get($BP, lg) ){
   .header.is-fixed{
     height: 100px;
-    background-color: rgba(255,255,255, 1);
-    .menu-item{
-      //個別に変更
-      .home &,
-      .page-template-tmp-recruit &{
-        a{
-          color: rgba($textBaseColor, 1);
-        }
-        //サブメニュー開閉
-        &.menu-item-has-children:not(:is(.current_page_ancestor)){
-          & > a{
-            &::after{
-              background-color: rgba($textBaseColor, 1);
+    background-color: rgba(#fff, 1);
+    .menu{
+      .menu-item{
+        //個別に変更
+        .home &,
+        .page-template-tmp-recruit &{
+          a{
+            color: rgba($textBaseColor, 1);
+          }
+          //サブメニュー開閉
+          &.menu-item-has-children:not(:is(.current-menu-ancestor)){
+            & > a{
+              &::after{
+                background-color: rgba($textBaseColor, 1);
+              }
+            }
+          }
+          &.menu-item-has-children{
+            & > a{
+              &:hover, &:active{
+                color: rgba($mainColor, 1);
+                &::after{
+                  background-color: rgba($mainColor, 1);
+                }
+              }
             }
           }
         }
-      }
-      //カレント
-      &.current_page_item,
-      &.current-menu-item,
-      &.current_page_ancestor,
-      .recruit &.link-recruit{
-        &::before{
-          bottom: -25px;
-        }
-        a{
-          color: $mainColor;
+        //カレント
+        &.current_page_item,
+        &.current-menu-item,
+        &.current_page_ancestor,
+        .company &.link-company,
+        .tax-products-category &.menu-products,
+        .products &.menu-products,
+        .recruit &.link-recruit{
+          //下線
+          &::before{
+            bottom: -25px;
+          }
+          a{
+            color: $mainColor;
+          }
         }
       }
     }
@@ -700,7 +713,7 @@ $headerHighPC: 127;
           .separate{
             background-color: rgba($textBaseColor, 1);
           }
-          a[target="_blank"]{
+          .link-cn{
             color: rgba($textBaseColor, 1);
             &::after{
               background-color: rgba($textBaseColor, 1);
@@ -727,23 +740,6 @@ $headerHighPC: 127;
           }
         }
       }
-    }
-  }
-  //カレント
-  .products .header.is-fixed .global-menu .menu .menu-item.menu-products,
-  .tax-products-category .header.is-fixed .global-menu .menu .menu-item.menu-products{
-    &::before{
-      content: '';
-      width: 100%;
-      height: 2px;
-      background-color: rgba($mainColor, 1);
-      position: absolute;
-      left: 0;
-      bottom: -25px;
-      @include transition();
-    }
-    a{
-      color: rgba($mainColor, 1);
     }
   }
 }
@@ -773,6 +769,30 @@ body.is-open{
   pointer-events: visible;
   // overscroll-behavior-y: contain;
   // overflow-y: auto;
+  .menu-item:not(.menu-item-has-children){
+    a{
+      display: block;
+      padding: 20px 15px;
+    }
+  }
+  .menu-item.menu-item-has-children{
+    a{
+      display: inline-flex;
+      padding: 20px 15px;
+    }
+  }
+  //サブメニュー
+  .sub-menu{
+    margin-top: -10px;
+    margin-bottom: 10px;
+    .menu-item{
+      a{
+        display: block;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+    }
+  }
 }
 // 開閉トグルボタン
 .menu-bar.is-open{

@@ -6,9 +6,25 @@
     </header>
 
     <section class="sec sec-medium">
-    <?php if( have_posts() ): ?>
+    <?php
+    $taxonomy = get_query_var('taxonomy');
+    $term = get_query_var('term');
+    $args = array(
+      'post_type' => 'products',
+      'posts_per_page' => 3,
+      'tax_query' => array(
+        array(
+          'taxonomy' => $taxonomy,
+          'field' => 'slug',
+          'terms' => array($term),
+        ),
+      ),
+      'paged' => $paged,
+    );
+    $the_query = new WP_Query( $args );
+    if( $the_query->have_posts() ): ?>
       <ul class="product-list">
-        <?php while( have_posts() ): the_post(); ?>
+        <?php while( $the_query->have_posts() ): $the_query->the_post(); ?>
         <?php
         //カスタム投稿タイプのタクソノミーからタームを抽出
         $termTagTax = get_the_terms(get_the_ID(), 'products-tag');
@@ -47,6 +63,22 @@
         <li><div class="not-post">まだ記事はありません。</div></li>
       </ul>
     <?php endif; wp_reset_postdata(); ?>
+
+      <?php //ページネーション
+
+      //WP_Queryでメインクエリではないループを使用している場合必要（'paged' => $paged,も）
+      $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+      $GLOBALS['wp_query']->max_num_pages = $the_query->max_num_pages;
+
+      the_posts_pagination(
+        array(
+          'mid_size' => 1, // 現在ページの左右に表示するページ番号の数
+          'prev_text' => '', // 「前へ」リンクのテキスト
+          'next_text' => '', // 「次へ」リンクのテキスト
+          'type' => 'list', // 戻り値の指定 (plain/list)
+          'screen_reader_text'	=> '',
+        )
+      ); ?>
 
       <section class="sec-bread-navi">
         <?php //Breadcrumb NavXT

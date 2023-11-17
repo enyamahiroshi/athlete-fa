@@ -6,7 +6,7 @@
 
     <div class="has-column js-fix-area">
       <aside class="side-column js-fix-wrapper">
-        <ul class="category-list js-fix-item">
+        <ul class="category-list js-positionNav js-fix-item">
           <li class="cat-item is-active"><a href="#history1980">1980～</a></li>
           <li class="cat-item"><a href="#history1990">1990～</a></li>
           <li class="cat-item"><a href="#history2000">2000～</a></li>
@@ -20,7 +20,7 @@
         <p class="history-intro">1988年の設立から、現在まで築いてきたアスリートFAの歩みをご紹介。</p>
 
         <dl class="history-list">
-          <div id="history1980">
+          <div id="history1980" class="js-positionNav-target">
             <dt>1988</dt>
             <dd>
               <p>設立　資本金2,000万円<br>カメラレンズ組立機</p>
@@ -30,14 +30,14 @@
               <p>新社屋・工場竣工<br>マルチダイボンダ（MS-3000）<br>TABカッティング装置（MS-1700）<br>セミコン・ジャパンに出展開始</p>
             </dd>
           </div>
-          <div id="history1990">
+          <div id="history1990" class="js-positionNav-target">
             <dt>1990</dt>
             <dd>
               <p>COBポッティング装置（MS-1820）<br>ICカードテストハンドラ</p>
             </dd>
             <dt>1991</dt>
             <dd>
-              <p>商標を「Athlete」と命名<br>商標を「Athlete」と命名<br>TABマーキング装置<br>共晶ダイボンダ<br>フリップチップボンダ（CB-1000）を業界初の外販</p>
+              <p>商標を「Athlete」と命名<br>ツインヘッドTABポッティング装置（MS-1850T）<br>TABマーキング装置<br>共晶ダイボンダ<br>フリップチップボンダ（CB-1000）を業界初の外販</p>
             </dd>
             <dt>1992</dt>
             <dd>
@@ -72,7 +72,7 @@
               <p>3シリンジTABポッティング装置（MS-1880DⅢ.）<br>搭載ヘッドを大型化したBGAボール搭載機（BA-1110）<br>社屋を倍に増設しクリーンルーム、トラックヤードを新設</p>
             </dd>
           </div>
-          <div id="history2000">
+          <div id="history2000" class="js-positionNav-target">
             <dt>2000</dt>
             <dd>
               <p>アスリートFA（株）へ社名変更<br>私募債20,000万円発行</p>
@@ -106,7 +106,7 @@
               <p>経営理念・経営方針制定</p>
             </dd>
           </div>
-          <div id="history2010">
+          <div id="history2010" class="js-positionNav-target">
             <dt>2010</dt>
             <dd>
               <p>CSP対応マイクロボールマウンタ（BM-4100）<br>セミコンジャパンにて超音波リフロー炉を発表</p>
@@ -140,7 +140,7 @@
               <p>社屋増築<br>CoSボンダ（CBZ-1000）</p>
             </dd>
           </div>
-          <div id="history2020">
+          <div id="history2020" class="js-positionNav-target">
             <dt>2022</dt>
             <dd>
               <p>アスリートFA株式会社第二工場竣工</p>
@@ -163,21 +163,21 @@
         <section class="sec-page-navi">
           <h2 class="page-navi-title --en" data-sub="企業情報">Company</h2>
           <nav class="page-navi">
-            <a href="<?php echo esc_url(home_url()); ?>/company/message" class="link-item01">
+            <a href="<?php echo esc_url(home_url()); ?>/company/message/" class="link-item01">
               <div class="link-content">
                 <em class="main-text">社長メッセージ</em><span class="sub-text">Message</span>
               </div>
               <i class="icon"></i>
             </a>
-            <a href="<?php echo esc_url(home_url()); ?>/company/mission" class="link-item01">
-              <div class="link-content --en">
-                <em class="main-text">経営理念・方針</em><span class="sub-text">Philosophy</span>
+            <a href="<?php echo esc_url(home_url()); ?>/company/about/" class="link-item01">
+              <div class="link-content">
+                <em class="main-text">会社概要</em><span class="sub-text">Profile</span>
               </div>
               <i class="icon"></i>
             </a>
-            <a href="<?php echo esc_url(home_url()); ?>/company/history" class="link-item01">
+            <a href="<?php echo esc_url(home_url()); ?>/company/mission/" class="link-item01">
               <div class="link-content --en">
-                <em class="main-text">沿革</em><span class="sub-text">History</span>
+                <em class="main-text">経営理念・方針</em><span class="sub-text">Philosophy</span>
               </div>
               <i class="icon"></i>
             </a>

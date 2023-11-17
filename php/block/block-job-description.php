@@ -10,8 +10,8 @@
     <td>
       <p><span class="before-disc-item">研究開発</span>開発機の試作、装置に搭載する要素技術の開発及び評価、ユーザー製品の試作検証、プロセス評価<br>UI開発、画像認識ソフト開発、アプリケーションソフト製作<br>CAEを使用した解析業務</p>
       <p><span class="before-disc-item">機械設計</span>3DCADを使用した機構設計、外観設計業務</p>
-      <p><span class="before-disc-item">電気制御技術</span><br>装置の仕様に基づくプログラム設計、デバック業務（言語：ベーシックライク、C系　他）<br>ビジュアルベーシックを使用したUI調整<br>顧客工場への装置据付、調整業務</p>
-      <p><span class="before-disc-item">組立調整技術</span><br>装置の組み立て、調整業務<br>顧客工場への装置据付、調整業務</p>
+      <p><span class="before-disc-item">電気制御技術</span>装置の仕様に基づくプログラム設計、デバック業務（言語：ベーシックライク、C系　他）<br>ビジュアルベーシックを使用したUI調整<br>顧客工場への装置据付、調整業務</p>
+      <p><span class="before-disc-item">組立調整技術</span>装置の組み立て、調整業務<br>顧客工場への装置据付、調整業務</p>
     </td>
   </tr>
   <tr>

@@ -1,23 +1,59 @@
 </main>
 
-<?php if( is_page( array('new-graduates', 'career', 'job-description') ) ): ?>
-<?php //新卒採用 / エントリー ?>
+<?php if( is_page( array('new-graduates', 'job-description') ) ): ?>
 <section class="sec sec-small sec-cta-entry">
-  <div class="cta-entry">
-    <h2 class="title02 --data-sub-ja" data-sub="新卒採用 / エントリー">ENTRY</h2>
-    <a href="<?php echo esc_html(home_url()); ?>/recruit/entry" target="_blank" rel="noopener noreferrer" class="cta-entry__button">
-      <div class="cta-entry__button__text">
-        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/icon-mynavi-white.svg" alt="" width="187" height="34.71">
+  <a href="https://job.mynavi.jp/24/pc/search/corp91106/outline.html" target="_blank" rel="noopener noreferrer" class="cta-entry no-blank-image">
+    <div class="inner">
+      <h2 class="title02 --data-sub-ja" data-sub="新卒採用 / エントリー">ENTRY</h2>
+      <div class="cta-entry__button">
+        <div class="cta-entry__button__text">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/icon-mynavi-white.svg" alt="" width="187" height="34.71">
+        </div>
+        <div class="icon icon--blank">
+          <span class="rotateChar1">J</span><span class="rotateChar2">o</span><span class="rotateChar3">i</span><span class="rotateChar4">n</span><span class="rotateChar5"></span><span class="rotateChar6">o</span><span class="rotateChar7">u</span><span class="rotateChar8">r</span><span class="rotateChar9"></span><span class="rotateChar10">T</span><span class="rotateChar11">E</span><span class="rotateChar12">A</span><span class="rotateChar13">M</span><span class="rotateChar14">!</span>
+        </div>
       </div>
-      <div class="icon">
-        <span class="rotateChar1">J</span><span class="rotateChar2">o</span><span class="rotateChar3">i</span><span class="rotateChar4">n</span><span class="rotateChar5"></span><span class="rotateChar6">o</span><span class="rotateChar7">u</span><span class="rotateChar8">r</span><span class="rotateChar9"></span><span class="rotateChar10">T</span><span class="rotateChar11">E</span><span class="rotateChar12">A</span><span class="rotateChar13">M</span><span class="rotateChar14">!</span>
+    </div>
+  </a>
+</section>
+<?php elseif( is_page( 'career' ) ): ?>
+<section class="sec sec-small sec-cta-entry">
+  <a href="<?php echo esc_url(home_url()); ?>/recruit/entry/" target="_blank" rel="noopener noreferrer" class="cta-entry no-blank-image">
+    <div class="inner">
+      <h2 class="title02 --data-sub-ja" data-sub="キャリア採用 / エントリー">ENTRY</h2>
+      <div class="cta-entry__button">
+        <div class="cta-entry__button__text">
+          <em>エントリーフォーム</em>
+        </div>
+        <div class="icon icon--blank">
+          <span class="rotateChar1">J</span><span class="rotateChar2">o</span><span class="rotateChar3">i</span><span class="rotateChar4">n</span><span class="rotateChar5"></span><span class="rotateChar6">o</span><span class="rotateChar7">u</span><span class="rotateChar8">r</span><span class="rotateChar9"></span><span class="rotateChar10">T</span><span class="rotateChar11">E</span><span class="rotateChar12">A</span><span class="rotateChar13">M</span><span class="rotateChar14">!</span>
+        </div>
       </div>
-    </a>
-  </div>
+    </div>
+  </a>
+</section>
+<?php elseif( is_page( 'internship' ) ): ?>
+<section class="sec sec-small sec-cta-entry">
+  <a href="https://job.mynavi.jp/24/pc/search/corp91106/outline.html" target="_blank" rel="noopener noreferrer" class="cta-entry cta-entry--black no-blank-image">
+    <div class="inner">
+      <div class="cta-titles">
+        <h2 class="cta-titles__title">インターンシップ<br>お申込み</h2>
+        <p class="cta-titles__text">マイナビよりコースを選択の上、エントリーをお願いいたします。</p>
+      </div>
+      <div class="cta-entry__button">
+        <div class="cta-entry__button__text">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/icon-mynavi-white.svg" alt="" width="187" height="34.71">
+        </div>
+        <div class="icon icon--blank">
+          <span class="rotateChar1">J</span><span class="rotateChar2">o</span><span class="rotateChar3">i</span><span class="rotateChar4">n</span><span class="rotateChar5"></span><span class="rotateChar6">o</span><span class="rotateChar7">u</span><span class="rotateChar8">r</span><span class="rotateChar9"></span><span class="rotateChar10">T</span><span class="rotateChar11">E</span><span class="rotateChar12">A</span><span class="rotateChar13">M</span><span class="rotateChar14">!</span>
+        </div>
+      </div>
+    </div>
+  </a>
 </section>
 <?php else: ?>
-<section class="sec sec-full sec-cta-entry2">
-  <a href="<?php echo esc_html(home_url()); ?>/recruit/entry" target="_blank" rel="noopener noreferrer" class="cta-entry__button">
+<section class="sec sec-full sec-cta-entry-column">
+  <a href="https://job.mynavi.jp/24/pc/search/corp91106/outline.html" target="_blank" rel="noopener noreferrer" class="cta-entry__button">
     <div class="cta-entry__button__text">
       <span class="cta-entry__button__text__sub">新卒採用 / エントリー</span>
       <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/icon-mynavi-white.svg" alt="" width="187" height="34.71">
@@ -26,10 +62,10 @@
       <span class="rotateChar1">J</span><span class="rotateChar2">o</span><span class="rotateChar3">i</span><span class="rotateChar4">n</span><span class="rotateChar5"></span><span class="rotateChar6">o</span><span class="rotateChar7">u</span><span class="rotateChar8">r</span><span class="rotateChar9"></span><span class="rotateChar10">T</span><span class="rotateChar11">E</span><span class="rotateChar12">A</span><span class="rotateChar13">M</span><span class="rotateChar14">!</span>
     </div>
   </a>
-  <a href="<?php echo esc_html(home_url()); ?>/recruit/entry" class="cta-entry__button">
+  <a href="<?php echo esc_url(home_url()); ?>/recruit/entry/" class="cta-entry__button">
     <div class="cta-entry__button__text">
       <span class="cta-entry__button__text__sub">キャリア採用 / エントリー</span>
-      エントリーフォーム
+      <em>エントリーフォーム</em>
     </div>
     <div class="icon">
       <span class="rotateChar1">J</span><span class="rotateChar2">o</span><span class="rotateChar3">i</span><span class="rotateChar4">n</span><span class="rotateChar5"></span><span class="rotateChar6">o</span><span class="rotateChar7">u</span><span class="rotateChar8">r</span><span class="rotateChar9"></span><span class="rotateChar10">T</span><span class="rotateChar11">E</span><span class="rotateChar12">A</span><span class="rotateChar13">M</span><span class="rotateChar14">!</span>
@@ -47,13 +83,26 @@
       <p class="cta-item__sub">採用担当宛</p>
     </div>
     <div class="cta-item cta-item--link">
-      <a href="<?php echo esc_url(home_url()); ?>/recruit/job-description" class="link-item01">
+      <a href="<?php echo esc_url(home_url()); ?>/contact/" class="link-item01">
         <div class="link-content">お問い合わせ</div>
         <i class="icon icon--gray"></i>
       </a>
     </div>
   </div>
 </section>
+
+<?php if( is_page( 'internship' ) ): ?>
+<div class="button-wrap">
+  <a href="<?php echo esc_url(home_url()); ?>/recruit/new-graduates/" class="button-r-link-large button-circle-ani">
+    <span>新卒採用ページへ戻る</span>
+    <span class="svg-area">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
+        <circle cx="50%" cy="50%" r="28" class="circle-ani">
+      </svg>
+    </span>
+  </a>
+</div>
+<?php endif; ?>
 
 <section class="sec sec-wide sec-bread-navi">
   <?php //Breadcrumb NavXT
@@ -64,30 +113,30 @@
 </section>
 
 <?php //採用 ページナビ ?>
-<?php if( is_page( array('new-graduates', 'career', 'job-description') ) ): ?>
+<?php if( is_page( array('new-graduates', 'career', 'job-description', 'internship') ) ): ?>
 <section class="sec sec-wide sec-page-navi">
-  <?php if( is_page('new-graduates') ): ?>
+  <?php if( is_page( array('new-graduates', 'internship') ) ): ?>
   <h2 class="page-navi-title">新卒採用情報</h2>
   <nav class="page-navi">
-    <a href="<?php echo esc_url(home_url()); ?>/recruit/department" class="link-item01">
+    <a href="<?php echo esc_url(home_url()); ?>/recruit/department/" class="link-item01">
       <div class="link-content">
         <em class="main-text">部署紹介</em><span class="sub-text">Department</span>
       </div>
       <i class="icon"></i>
     </a>
-    <a href="<?php echo esc_url(home_url()); ?>/recruit/data" class="link-item01">
+    <a href="<?php echo esc_url(home_url()); ?>/recruit/data/" class="link-item01">
       <div class="link-content">
         <em class="main-text">数字でわかる<br>アスリートFA</em><span class="sub-text">Data</span>
       </div>
       <i class="icon"></i>
     </a>
-    <a href="<?php echo esc_url(home_url()); ?>/recruit/job-description" class="link-item01">
+    <a href="<?php echo esc_url(home_url()); ?>/recruit/job-description/" class="link-item01">
       <div class="link-content">
         <em class="main-text">新卒募集要項</em><span class="sub-text">Job description</span>
       </div>
       <i class="icon"></i>
     </a>
-    <a href="<?php echo esc_url(home_url()); ?>/recruit/internship" class="link-item01">
+    <a href="<?php echo esc_url(home_url()); ?>/recruit/internship/" class="link-item01">
       <div class="link-content">
         <em class="main-text">インターンシップ情報</em><span class="sub-text">Internship</span>
       </div>
@@ -97,13 +146,13 @@
   <?php elseif( is_page('career') ): ?>
   <h2 class="page-navi-title">キャリア採用情報</h2>
   <nav class="page-navi">
-    <a href="<?php echo esc_url(home_url()); ?>/recruit/department" class="link-item01">
+    <a href="<?php echo esc_url(home_url()); ?>/recruit/department/" class="link-item01">
       <div class="link-content">
         <em class="main-text">部署紹介</em><span class="sub-text">Department</span>
       </div>
       <i class="icon"></i>
     </a>
-    <a href="<?php echo esc_url(home_url()); ?>/recruit/data" class="link-item01">
+    <a href="<?php echo esc_url(home_url()); ?>/recruit/data/" class="link-item01">
       <div class="link-content">
         <em class="main-text">数字でわかる<br>アスリートFA</em><span class="sub-text">Data</span>
       </div>
@@ -114,7 +163,7 @@
 
   <h2 class="page-navi-title">社員インタビュー</h2>
   <nav class="recruit-interview-navi">
-    <a href="<?php echo esc_url(home_url()); ?>/recruit/interview01" class="link-item01">
+    <a href="<?php echo esc_url(home_url()); ?>/recruit/interview01/" class="link-item01">
       <div class="link-content">
         <p class="staff-data__text">精密動作を可能とする機構設計、<br>おもしろさと社会への貢献を実感</p>
         <div class="staff-data__meta">
@@ -127,7 +176,7 @@
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/staff/img-staff-card-image01.jpg" alt="" width="418" height="590">
       </div>
     </a>
-    <a href="<?php echo esc_url(home_url()); ?>/recruit/interview02" class="link-item01">
+    <a href="<?php echo esc_url(home_url()); ?>/recruit/interview02/" class="link-item01">
       <div class="link-content">
         <p class="staff-data__text">風通しのよい環境が魅力、<br>仲間とともに頼れる技術者を目指す</p>
         <div class="staff-data__meta">
@@ -140,7 +189,7 @@
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/staff/img-staff-card-image02.jpg" alt="" width="418" height="590">
       </div>
     </a>
-    <a href="<?php echo esc_url(home_url()); ?>/recruit/interview03" class="link-item01">
+    <a href="<?php echo esc_url(home_url()); ?>/recruit/interview03/" class="link-item01">
       <div class="link-content">
         <p class="staff-data__text">装置に命を吹き込むものづくり精神、<br>困難を乗り越えた先に喜びを実感</p>
         <div class="staff-data__meta">
@@ -187,17 +236,17 @@
       </section>
       <section class="footer__main__navigation__sub">
         <div class="switch-language">
-          <a href="<?php echo esc_url(home_url()); ?>" class="ja">JP</a>
+          <a href="<?php echo esc_url(home_url()); ?>/" class="ja">JP</a>
           <span class="separate"></span>
-          <a href="<?php echo esc_url(home_url()); ?>/en" class="en">EN</a>
+          <a href="<?php echo esc_url(home_url()); ?>/en/" class="en">EN</a>
         </div>
-        <a href="http://" target="_blank" rel="noopener noreferrer">愛立発自動化設備有限公司<span>（CN）</span></a>
+        <a href="http://www.athlete-china.com/" target="_blank" rel="noopener noreferrer" class="link-cn">愛立発自動化設備有限公司<span>（CN）</span></a>
       </section>
     </div>
   </section>
   <section class="footer__bottom">
-    <a href="<?php echo esc_url(home_url()); ?>/privacy-policy">プライバシーポリシー</a>
-    <div class="copyright">© Athlete FA Corporation</div>
+    <a href="<?php echo esc_url(home_url()); ?>/privacy-policy/">プライバシーポリシー</a>
+    <div class="copyright">©　2023　Athlete FA Corporation</div>
   </section>
 </footer>
 <?php wp_footer(); ?>

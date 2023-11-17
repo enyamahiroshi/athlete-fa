@@ -31,7 +31,7 @@
 
     <div class="has-column js-fix-area">
       <aside class="side-column side-column--products js-fix-wrapper">
-        <ul class="category-list js-fix-item">
+        <ul class="category-list js-positionNav js-fix-item">
           <li class="cat-item is-active"><a href="#features">特徴</a></li>
           <li class="cat-item"><a href="#spec">基本仕様</a></li>
         </ul>
@@ -39,13 +39,13 @@
 
       <section class="main-column main-column--products-singular">
         <?php //特徴（ブロックエディタ） ?>
-        <h2 id="features" class="title05">特徴</h2>
+        <h2 id="features" class="title05 js-positionNav-target">特徴</h2>
         <div class="post-body">
           <?php the_content(); ?>
         </div>
 
         <?php //基本仕様（カスタムフィールド） ?>
-        <h2 id="spec" class="title05">基本仕様</h2>
+        <h2 id="spec" class="title05 js-positionNav-target">基本仕様</h2>
         <?php
         $specStageSize = get_field('spec-stage_size');
         $specBallKei = get_field('spec-ball_kei');
@@ -72,7 +72,7 @@
         </div>
 
         <div class="button-wrap --left">
-          <a href="<?php echo esc_url(home_url()); ?>/products" class="button-r-link-large button-circle-ani">
+          <a href="<?php echo esc_url(home_url()); ?>/products/" class="button-r-link-large button-circle-ani">
             製品一覧へ戻る
             <span class="svg-area">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">

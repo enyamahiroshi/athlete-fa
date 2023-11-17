@@ -15,9 +15,9 @@ $phsize: 1.5rem;
 $phcolor: rgba($textBaseColor, 0.2);
 $phweight: inherit;
 
-:placeholder-shown { font-size: #{$phsize}; color: $phcolor; font-weight: $phweight; }
+:placeholder-shown { font-family: $ff-go; font-size: #{$phsize}; color: $phcolor; font-weight: $phweight; }
 /* Google Chrome, Safari, Opera 15+, Android, iOS */
-::-webkit-input-placeholder { font-size: #{$phsize}; color: $phcolor; font-weight: $phweight; }/* Firefox 18- */:-moz-placeholder { color: $phcolor; font-weight: $phweight; opacity: 1; }/* Firefox 19+ */::-moz-placeholder { color: $phcolor; font-weight: $phweight; opacity: 1; }
+::-webkit-input-placeholder { font-family: $ff-go; font-size: #{$phsize}; color: $phcolor; font-weight: $phweight; }/* Firefox 18- */:-moz-placeholder { color: $phcolor; font-weight: $phweight; opacity: 1; }/* Firefox 19+ */::-moz-placeholder { color: $phcolor; font-weight: $phweight; opacity: 1; }
 
 /* -----------------------------------------
 // 基本設定
@@ -35,14 +35,17 @@ textarea {
   padding: 0.7em 1em;
   max-width: 100%;
   background-color: rgba(#fff, 1);
+  border: 10px solid rgba(#fff, 1);
   border-radius: 3px;
+  font-family: $ff-go;
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
   border: none;
+  caret-color: rgba($textBaseColor, 1);
   &:focus {
     outline: none;
-    // border: 1px solid $mainColor;
+    outline: 1px solid rgba($textBaseColor, 1);
     // background-color: #f1f1f1;
   }
 }
@@ -267,61 +270,63 @@ input{
     color: rgba($textBaseColor, 0.2);
   }
   // セレクトボックスに下矢印をつけるカスタマイズ
-  // .item__input に .custom-select を付け足す
-  // .custom-select {
-  //   width: 100%;
-  //   position: relative;
-  //   select {
-  //     padding-right: 50px;
-  //     background-color: #fff;
-  //   }
-  //   // &::before,
-  //   // &::after {
-  //   //   content: "";
-  //   //   width: 0;
-  //   //   height: 0;
-  //   //   border: 6px solid transparent;
-  //   //   border-top-color: $textBaseColor;
-  //   //   position: absolute;
-  //   //   right: 12px;
-  //   //   // top: calc(50% - 3px);
-  //   //   top: 15px;
-  //   //   z-index: 999;
-  //   //   pointer-events: none;
-  //   //   cursor: pointer;
-  //   // }
-  //   // &::after {
-  //   //   border-top-color:#fff;
-  //   //   top: 14px;
-  //   // }
-  //   &::before {
-  //     content: '';
-  //     width: 40px;
-  //     height: 100%;
-  //     background-image: url(./assets/images/common/icon-arrow3.svg);
-  //     background-repeat: no-repeat;
-  //     background-position: center center;
-  //     background-size: 10px;
-  //     position: absolute;
-  //     right: 0;
-  //     top: 0;
-  //     z-index: 1;
-  //     pointer-events: none;
-  //     cursor: pointer;
-  //   }
-  // }
-  // @include res_min() {
-  //   .custom-select {
-  //     flex: 0 0 350px !important;
-  //     select {
-  //       padding-right: 68px;
-  //       width: 350px;
-  //     }
-  //     &::before {
-  //       width: 53px;
-  //     }
-  //   }
-  // }
+  // select の親 に .custom-select を付け足す
+  .custom-select {
+    width: 100%;
+    position: relative;
+    select {
+      padding-right: 50px;
+      cursor: pointer;
+    }
+    //画像で
+    &::before{
+      content: "";
+      width: 54px;
+      height: 100%;
+      background-color: rgba($textBaseColor, 1);
+      -webkit-mask-image: url(./assets/images/common/icon-arrow-toggle.svg);
+              mask-image: url(./assets/images/common/icon-arrow-toggle.svg);
+      -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+              mask-position: center;
+      -webkit-mask-size: 10px;
+              mask-size: 10px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 3;
+      pointer-events: none;
+      cursor: pointer;
+    }
+    //三角形で
+    // &::after {
+    //   content: "";
+    //   width: 0;
+    //   height: 0;
+    //   border: 6px solid transparent;
+    //   border-top-color: $textBaseColor;
+    //   position: absolute;
+    //   right: 12px;
+    //   // top: calc(50% - 3px);
+    //   top: 15px;
+    //   z-index: 999;
+    //   pointer-events: none;
+    //   cursor: pointer;
+    // }
+  }
+  @include res_min() {
+    .custom-select {
+      // flex: 0 0 350px !important;
+      select {
+        padding-right: 68px;
+        // width: 350px;
+      }
+      &::before {
+        width: 63px;
+      }
+    }
+  }
 
 
   // ファイルタイプ：カスタマイズ

@@ -95,10 +95,10 @@ gulp.task("imagemin", function () {
     .pipe(
         imagemin([
             pngquant({
-            quality: [.70, .85], // 画質
+            quality: [.90, .95], // 画質
             speed: 1 // スピード
             }),
-            mozjpeg({ quality: 85 }), // 画質
+            mozjpeg({ quality: 90 }), // 画質
             imagemin.svgo(),
             imagemin.optipng(),
             imagemin.gifsicle({ optimizationLevel: 3 }) // 圧縮率

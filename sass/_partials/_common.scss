@@ -25,11 +25,13 @@
 //メインコンテンツ
 .main{
   background-color: #fff;
+  position: relative;
   z-index: 1;
 }
 //ページごとに背景色を変える
 .archive:not(:is(.category,.term-custom)),
-.recruit.entry{
+.recruit.entry,
+.custom-list{
   .main{
     background-color: rgba($gray, 1);
   }
@@ -96,16 +98,6 @@
   .side-column{
     padding: 40px 15px 25px;
     background-color: rgba($gray, 1);
-    //fixed - サイドに固定
-    & > *.is-fixed{
-      padding: 25px;
-      width: 100%;
-      background-color: rgba($gray, 1);
-      position: fixed;
-      left: 0;
-      top: 57px;
-      z-index: 2;
-    }
   }
   //main
   .main-column{
@@ -136,6 +128,7 @@
     .side-column{
       padding: 30px 0 100px;
       background-color: rgba($gray, 1);
+      position: relative;
       & > *{
         margin: 0 auto;
         width: clamp(140px, 15.81vw, 215px);
@@ -145,12 +138,16 @@
         padding-top: 65px;
       }
       //fixed - サイドに固定
-      & > *.is-fixed{
-        padding: 0;
-        width: clamp(140px, 15.81vw, 215px);
-        left: calc( (clamp(250px, 18.75vw, 360px) - clamp(140px, 15.81vw, 215px)) /2 );
-        top: 130px;
-      }
+      // & > *.is-fixed{
+      //   width: clamp(140px, 15.81vw, 215px);
+      //   background-color: rgba($gray, 1);
+      //   position: fixed;
+      //   position: -webkit-sticky;
+      //   position: sticky;
+      //   left: calc( (clamp(250px, 18.75vw, 360px) - clamp(140px, 15.81vw, 215px)) /2 );
+      //   top: 130px;
+      //   z-index: 2;
+      // }
     }
     //main
     .main-column{
@@ -182,8 +179,10 @@
   }
 }
 //個別にグレー背景にする
-.archive:not(.term-custom) .sec-bread-navi,
-.contact .sec-bread-navi{
+.archive:not(:is(.category,.term-custom)) .sec-bread-navi,
+.contact .sec-bread-navi,
+.entry .sec-bread-navi,
+.custom-list .sec-bread-navi{
   background-color: rgba($gray, 1);
 }
 @include res_min(){
@@ -194,11 +193,12 @@
       margin-left: min(50px, 2.6vw);
     }
     //ページごと
-    .sec.contact + &{
+    .sec.contact + &,
+    .sec.entry + &{
       margin-top: 0;
     }
     @include res_min( map-get($BP, xl) ){
-      .recruit &{
+      .recruit:not(.entry) &{
         .bread-navi{
           padding-left: 50px;
           padding-right: 50px;
@@ -578,18 +578,28 @@
 
 
 //マウスストーカー（マウス追随）
-#mouse-stkr{
+.cursor,
+.follower {
+  position: absolute;
+  top: -110px;
+  left: -80px;
+  border-radius: 50%;
+  // pointer-events: none;
+}
+
+.cursor {
+  z-index: 10;
+}
+
+.follower {
+  width: 0;
+  height: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  top: -10px;
-  left: 0px;
-  width: 0;
-  height: 0;
-  background: rgba($linkColor, 0.5);
-  border-radius: 50%;
-  transition: 0.6s;
+  background: rgba($mainColor, 0);
+  // transition: transform linear 0.2s, width ease 0.1s, height ease 0.1s;
+  transition: 0.3s;
   transition-timing-function: ease-out;
   pointer-events: none;
   z-index: 9;
@@ -602,14 +612,12 @@
     transition: 0.3s;
     transition-timing-function: ease-out;
   }
-  &.is-active{
-    // top: -110px;
-    // left: -80px;
+  &.is-active {
     width: 160px;
     height: 160px;
+    background-color: rgba($mainColor, 1);
     transition: 0.3s;
     transition-timing-function: ease-out;
-    background-color: rgba($mainColor, 1);
     &::after{
       font-size: 2.2rem;
     }

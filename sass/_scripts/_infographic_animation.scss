@@ -1,0 +1,195 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+@use '../_partials/common' as *;
+
+
+// 参考：https://coco-factory.jp/ugokuweb/move01-cat/graph/
+
+
+/* ------------------------------------
+//  円グラフ
+// ----------------------------------*/
+/*円グラフがスマホでつぶれないようにする*/
+.chart-area{
+	position: relative;
+	width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+
+/* ------------------------------------
+//  棒グラフ
+// ----------------------------------*/
+//カラー
+.color-gray0{
+  background-color: rgba($gray, 0.8);
+}
+.color-gray1{
+  background-color: rgba($gray, 1);
+}
+.color-gray2{
+  background-color: rgba($gray, 1);
+}
+.color-gray3{
+  background-color: rgba(#606060, 1);
+}
+.color-gray4{
+  background-color: rgba(#2E2E2E, 1);
+}
+.color-red{
+  background-color: rgba($mainColor, 1);
+}
+
+//ヨコグラフ
+@-webkit-keyframes expand {
+	from { width: 0%; }
+	  to { width: 100%; }
+}
+@keyframes expand {
+	from { width: 0%; }
+	  to { width: 100%; }
+}
+.graph-horizon{
+  .chart {
+    overflow: hidden;
+    width: 0%;
+    -webkit-animation: expand 1s ease-in-out 0.3s forwards;
+            animation: expand 1s ease-in-out 0.3s forwards;
+  }
+  //表示グラフ
+  .block {
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    @include res_min(){
+      height: 115px;
+    }
+    color: #fff;
+    font-size: .75em;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity, .3s ease 0.5s;
+  }
+  //数字位置
+  .data-value {
+    font-size: 3rem;
+    line-height: 1;
+  }
+  .block:last-of-type{
+    .data-value {
+      color: rgba($textBaseColor, 1);
+    }
+  }
+}
+
+//タテグラフ
+@-webkit-keyframes expand2 {
+	from { height: 0%; }
+	  to { height: 100%; }
+}
+@keyframes expand2 {
+	from { height: 0%; }
+	  to { height: 100%; }
+}
+.graph-vertical{
+  .chart {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    max-width: 100%;
+    height: 200px;
+    @include flex(nowrap, flex-start, flex-end);
+    gap: 20px;
+  }
+  //表示グラフ
+  .block {
+    display: block;
+    width: 100%;
+    height: 0;
+    position: relative;
+    transition: all 1s 0.3s ease-in-out;
+  }
+  //ラベル位置
+  .data-label{
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0;
+    position: absolute;
+    bottom: -1.6em;
+    left: 50%;
+    transform: translateX(-50%);
+    @include res_min(){
+      font-size: 2.2rem;
+      bottom: -50px;
+    }
+  }
+  //数字位置
+  .data-value {
+    font-size: 2.6rem;
+    position: absolute;
+    top: calc((1em + 5px) * -1);
+    left: 50%;
+    transform: translateX(-50%);
+    &::after{
+      font-size: 1.1rem;
+      margin-left: 3px;
+    }
+    @include res_min(){
+      font-size: 5.2rem;
+      top: calc((1em + 12px) * -1);
+      &::after{
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+//2バー（新卒・キャリア、文理割合など）
+.data-set-2bars{
+  .graph-vertical{
+    .chart {
+      margin-left: auto;
+      margin-right: auto;
+      gap: 25px;
+      max-width: 155px;
+      height: 120px;
+    }
+    //ラベル位置
+    .data-label{
+      font-size: 2rem;
+      font-weight: 500;
+    }
+    //数字位置
+    .data-value {
+      font-size: 4rem;
+      &::after{
+        font-size: 1.8rem;
+        margin-left: 6px;
+      }
+    }
+  }
+}
+@include res_min(){
+  .data-set-2bars{
+    .graph-vertical{
+      .chart {
+        max-width: 255px;
+        height: 240px;
+      }
+      //ラベル位置
+      .data-label{
+        font-size: 2.8rem;
+      }
+      //数字位置
+      .data-value {
+        font-size: 5.2rem;
+      }
+    }
+  }
+}

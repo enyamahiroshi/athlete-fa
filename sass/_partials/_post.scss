@@ -36,6 +36,10 @@
     display: block;
     margin: 0 14px;
   }
+  //非表示
+  .new-graduates &{
+    display: none;
+  }
 }
 //タイトル
 .post-title{
@@ -54,8 +58,8 @@
 ---------------------------------------------------------------- */
 // 記事リスト
 .post-list{
-  display: grid;
-  gap: 0;
+  // display: grid;
+  // gap: 0;
   //記事リスト - 各ポスト
   .post-list__item{
     border-bottom: 1px solid rgba($textBaseColor, 0.15);
@@ -140,6 +144,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 0.8em 1.2em;
+  z-index: 2;
   .cat-item{
     a{
       padding: 0 25px;
@@ -200,6 +205,9 @@
 @include res_min(){
   .category-list{
     gap: 12px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 130px;
     .cat-item{
       a{
         padding: 0 min(35px, 1.85vw);

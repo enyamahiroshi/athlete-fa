@@ -336,6 +336,11 @@
     @include res_min( map-get($BP, xl) ){
       grid-template-columns: repeat(4, 1fr);
     }
+    &.--3column{
+      @include res_min( map-get($BP, xl) ){
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
     gap: 0 22px;
     .link-item01{
       padding: 0 65px 0 20px;
@@ -497,6 +502,20 @@
       font-size: 1.8rem;
     }
   }
+  &:link, &:visited{
+    color: rgba($textBaseColor, 1);
+  }
+  &:hover, &:active{
+    .button-r-link-small{
+      &::after{
+        background-color: rgba($mainColor, 1);
+        border-color: rgba($mainColor, 1);
+      }
+      &::before{
+        background-color: rgba(#fff, 1);
+      }
+    }
+  }
 }
 @include res_min(){
   .cta-recruit{
@@ -511,6 +530,7 @@
 //イントロ商品紹介
 .sec-intro-products-info-1{
   padding-top: 150px;
+  background-color: rgba($gray, 1);
   background-image: url(./assets/images/common/bg-sec-intro-products-info-1.svg);
   background-repeat: no-repeat;
   background-position: right bottom;
@@ -527,8 +547,8 @@
 .sec-intro-products-info-2{
   // padding-top: 110px;
   padding-top: 0;
-  // padding-bottom: 70px;
-  padding-bottom: 0;
+  padding-bottom: 70px;
+  background-color: rgba($gray, 1);
   background-image: url(./assets/images/common/bg-sec-intro-products-info-2.svg);
   background-repeat: no-repeat;
   background-position: right top;
@@ -587,7 +607,7 @@
 //GSAP横スクロール
 .horizon-slider{
   position: relative;
-  z-index: -1;
+  // z-index: -1;
   padding-top: 20px;
   // @media (max-width: 424px){
   //   padding-top: 15px;
@@ -601,8 +621,8 @@
   // overflow: hidden;
   position: relative;
   width: 100%;
-  height: calc(100vh - 57px - 86px);
-  height: calc(100dvh - 57px - 86px);
+  // height: calc(100vh - 57px - 86px);
+  // height: calc(100dvh - 57px - 86px);
   &::after{
     content: '';
     width: calc(100% + 30px);
@@ -619,26 +639,29 @@
     z-index: 1;
   }
   .horizon-slider__container__inner{
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+    // height: 100%;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
     display: flex;
     align-items: center;
     align-items: flex-start;
+    flex-direction: column;
+    row-gap: clamp(50px, 16vw, 200px);
   }
   .slider-item{
-    flex-shrink: 0;
-    padding: 0 25px;
-    @media (max-width: 424px){
-      padding: 0 15px;
-    }
+    // flex-shrink: 0;
+    // padding: 0 25px;
+    // padding: 0 15px;
+    // @media (max-width: 424px){
+    //   padding: 0 15px;
+    // }
     width: calc(100vw - 30px);
     height: 100%;
     position: relative;
     @include flex(nowrap, flex-start, stretch);
     @media (min-width: 500px){
-      padding: 0 40px;
+      padding: 0 20px;
     }
     .inner{
       @include flex(nowrap, flex-start, stretch);
@@ -649,14 +672,17 @@
       max-width: 100%;
       height: 220px;
       height: 62.32vw;
-      max-height: 450px;
-      @media (max-width: 424px){
-        max-height: 140px;
-      }
+      // max-height: 450px;
+      max-height: 300px;
+      // @media (max-width: 424px){
+      //   max-height: 140px;
+      // }
       text-align: center;
       img{
-        width: auto;
+        width: 100%;
         height: 100%;
+        -o-object-fit: contain;
+           object-fit: contain;
       }
     }
     .slider-item__data__title{
@@ -689,11 +715,44 @@
     .button-r-link-large{
       margin-top: clamp(5px, 2.8vw, 20px);
     }
+    //blank：スライダー前後に挿入して余白を作るため
+    &.slider-item--blank{
+      display: none;
+    }
   }
 }
-//GSAP: onEnter
-.horizon-slider__container{
-  &.is-enter{
+
+@include res_min(){
+  .horizon-slider__container{
+    height: calc(100vh - 57px - 86px);
+    height: calc(100dvh - 57px - 86px);
+    .horizon-slider__container__inner{
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      flex-direction: row;
+      row-gap: 0;
+    }
+    .slider-item{
+      flex-shrink: 0;
+      //blank：スライダー前後に挿入して余白を作るため
+      &.slider-item--blank{
+        display: block;
+        width: 10vw;
+      }
+    }
+  }
+  //GSAP: onEnter
+  .sec-intro-products-info-2{
+    &.is-enter{
+      .title02{
+        font-size: calc(5rem * 0.8);;
+        &::before{
+          font-size: calc(1.6rem * 0.8);
+        }
+      }
+    }
   }
 }
 @include res_min( map-get($BP, lg) ){
@@ -748,6 +807,7 @@
       }
       .slider-item__image{
         flex-basis: 55%;
+        max-height: 445px;
       }
       .slider-item__data{
         flex-basis: calc(45% - clamp(15px, 4.23vw, 55px));
@@ -799,8 +859,14 @@
     }
   }
   //GSAP: onEnter
-  .horizon-slider__container{
+  .sec-intro-products-info-2{
     &.is-enter{
+      .title02{
+        font-size: calc(8rem * 0.8);;
+        &::before{
+          font-size: calc(1.6rem * 0.8);
+        }
+      }
     }
   }
 }
@@ -955,7 +1021,6 @@
     padding-left: 32px;
     padding-top: 30px;
     padding-bottom: 30px;
-
     border-bottom: 1px solid rgba($textBaseColor, 0.15);
     &:first-of-type{
       border-top: 1px solid rgba($textBaseColor, 0.15);
@@ -1034,6 +1099,35 @@
         padding: 34px 50px 34px 40px;
         @include flex(nowrap, flex-start, center);
         position: relative;
+        &.is-active{
+          em{
+            padding-left: 10px;
+            color: rgba($mainColor, 1);
+          }
+          .icon{
+            &::before{
+              width: 100%;
+              height: 100%;
+              background-color: rgba($mainColor, 1);
+            }
+            &::after{
+              width: 14px;
+              height: 8px;
+              background-color: #fff;
+              -webkit-mask-image: url(./assets/images/common/icon-arrow-right.svg);
+                      mask-image: url(./assets/images/common/icon-arrow-right.svg);
+              -webkit-mask-repeat: no-repeat;
+                      mask-repeat: no-repeat;
+              -webkit-mask-position: center;
+                      mask-position: center;
+              -webkit-mask-size: 100%;
+                      mask-size: 100%;
+            }
+          }
+          .recruit-link-item__image{
+            opacity: 1;
+          }
+        }
       }
       em{
         font-size: 2.2rem;
@@ -1091,36 +1185,6 @@
         transform: translateY(calc(-50% + (65px / 2)));
         opacity: 0;
         @include transition(all, 0.3);
-      }
-      //is-active
-      &.is-active{
-        em{
-          padding-left: 10px;
-          color: rgba($mainColor, 1);
-        }
-        .icon{
-          &::before{
-            width: 100%;
-            height: 100%;
-            background-color: rgba($mainColor, 1);
-          }
-          &::after{
-            width: 14px;
-            height: 8px;
-            background-color: #fff;
-            -webkit-mask-image: url(./assets/images/common/icon-arrow-right.svg);
-                    mask-image: url(./assets/images/common/icon-arrow-right.svg);
-            -webkit-mask-repeat: no-repeat;
-                    mask-repeat: no-repeat;
-            -webkit-mask-position: center;
-                    mask-position: center;
-            -webkit-mask-size: 100%;
-                    mask-size: 100%;
-          }
-        }
-        .recruit-link-item__image{
-          opacity: 1;
-        }
       }
     }
 }
@@ -1268,7 +1332,7 @@
       content: '';
       width: 14px;
       height: 8px;
-      background-color: rgba(255,255,255, 1);
+      background-color: rgba(#fff, 1);
       -webkit-mask-image: url(./assets/images/common/icon-arrow-right.svg);
               mask-image: url(./assets/images/common/icon-arrow-right.svg);
       -webkit-mask-repeat: no-repeat;
@@ -1287,7 +1351,7 @@
       &::after{
         width: 14px;
         height: 12px;
-        background-color: rgba(255,255,255, 1);
+        background-color: rgba(#fff, 1);
         -webkit-mask-image: url(./assets/images/common/icon-blank.svg);
         mask-image: url(./assets/images/common/icon-blank.svg);
         -webkit-mask-repeat: no-repeat;
@@ -1567,7 +1631,7 @@
   //地球儀背景（左に配置）
   &::before{
     content: '';
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background-image: url(./assets/images/common/bg-earth-1.svg);
     background-repeat: no-repeat;
@@ -1681,7 +1745,6 @@
   .custom-flow{
     margin-top: 160px;
     text-align: left;
-
     overflow: hidden;
   }
 }
@@ -1777,13 +1840,14 @@
 }
 @include res_min( map-get($BP, lg) ){
   .flow-list{
-    display: block;
     @include flex(wrap, flex-start, stretch);
     flex-direction: row;
     display: grid;
+    // max-width: 800px;
+    max-width: 100%;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     @include res_min( map-get($BP, xl) ){
-      grid-template-columns: repeat(6, 180px);
+      grid-template-columns: repeat(6, minmax(150px, 180px));
     }
     gap: 50px 0;
     margin-left: -20px;
@@ -2084,6 +2148,7 @@
       color: rgba($mainColor, 1);
     }
     span{
+      font-family: $ff-go;
       font-size: 1.6rem;
       font-weight: 400;
       letter-spacing: 0.05em;
@@ -2294,6 +2359,7 @@
   background-repeat: no-repeat;
   background-position: center top;
   background-size: 90%;
+  overflow: hidden;
 }
 @include res_min(){
   .sec-future-arts{
@@ -2315,8 +2381,20 @@
   height: 86dvh;
   position: relative;
   z-index: 2;
+  //ループスライダー
+  .loop-slider-wrap{
+    margin-top: 25px;
+    width: 100vw;
+    mix-blend-mode: overlay;
+    .loop-slider{
+      img{
+        height: 70px;
+      }
+    }
+  }
   .mv-recruit__recruit-name{
     font-size: 2rem;
+    font-weight: 500;
     line-height: 1;
     color: #fff;
     text-align: center;
@@ -2324,7 +2402,7 @@
   .mv-recruit__catch-copy{
     margin-top: 25px;
     font-size: clamp(2rem, 5.8vw, 2.8rem);
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.5;
     letter-spacing: 0;
     color: #fff;
@@ -2333,18 +2411,23 @@
   .button-wrap{
     margin-top: 30px;
     margin-bottom: 130px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    // display: grid;
+    // grid-template-columns: repeat(2, 1fr);
+    flex-wrap: nowrap;
     gap: 0;
   }
     .button-r-link-large{
-      margin-bottom: 0;
+      margin: 0 -5px;
       font-size: 1.4rem;
       font-weight: 400;
       white-space: unset;
       transform: scale(0.8);
+      white-space: nowrap;
       .cta-entry__button__text{
         width: 100%;
+        em{
+          font-weight: 600;
+        }
         img{
           width: 120px;
         }
@@ -2439,6 +2522,16 @@
     padding-right: 50px;
     height: 100vh;
     height: 100dvh;
+    //ループスライダー
+    .loop-slider-wrap{
+      margin-top: 55px;
+      width: calc(100% + 100px);
+      .loop-slider{
+        img{
+          height: 92px;
+        }
+      }
+    }
     .mv-recruit__recruit-name{
       font-size: 2.8rem;
     }
@@ -2451,10 +2544,19 @@
     .button-wrap{
       margin-top: 50px;
       margin-bottom: 200px;
+      @include res_min( map-get($BP, lg) ){
+        margin-top: 20px;
+        margin-bottom: 140px;
+        @include res_min( map-get($BP, xl) ){
+          margin-top: 45px;
+          margin-bottom: 70px;
+        }
+      }
       gap: 40px;
     }
       .button-r-link-large{
-        margin-bottom: 0;
+        justify-content: space-between;
+        margin: 0;
         font-size: 1.8rem;
         transform: scale(1);
         .cta-entry__button__text{
@@ -2538,30 +2640,6 @@
   }
 }
 
-//ループスライダー
-.loop-slider-wrap{
-  margin-top: 25px;
-  width: 100vw;
-  mix-blend-mode: overlay;
-}
-.loop-slider{
-  img{
-    height: 70px;
-  }
-}
-@include res_min(){
-  .loop-slider-wrap{
-    margin-top: 55px;
-    width: 100vw;
-    mix-blend-mode: overlay;
-  }
-  .loop-slider{
-    img{
-      height: 92px;
-    }
-  }
-}
-
 //future arts
 .future-arts-concept{
   text-align: center;
@@ -2637,7 +2715,7 @@
       height: 100%;
       background-image: url(./assets/images/recruit/bg-future-arts-contents.svg);
       background-repeat: no-repeat;
-      background-position: center;
+      background-position: right center;
       background-size: 100% 68%;
       position: absolute;
       left: 50%;
@@ -2919,7 +2997,7 @@ p.staff-data__text{
     }
   }
   .staff-data__meta{
-    margin-top: 25px;
+    margin-top: 0;
   }
   .staff-position{
     @include res_min( map-get($BP, xl) ){
@@ -3061,8 +3139,8 @@ p.staff-data__text{
 
 .sec-job-description-images{
   margin-top: 50px;
-  margin-left: -15px;
-  margin-right: -15px;
+  padding-left: 0;
+  padding-right: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
@@ -3175,14 +3253,17 @@ p.staff-data__text{
 
 
 //CTA entry
-.sec-cta-entry,
-.sec-cta-entry2{
-  padding-top: 50px;
-  padding-bottom: 50px;
+.sec-cta-entry{
   margin-top: 60px;
-  background-color: rgba($mainColor, 1);
   overflow: hidden;
+  position: relative;
+  z-index: 2;
   .cta-entry{
+    display: block;
+    padding: 60px 15px 40px;
+    margin-left: -15px;
+    margin-right: -15px;
+    background-color: rgba($mainColor, 1);
     .title02{
       margin-bottom: 40px;
       color: rgba(#fff, 1);
@@ -3194,11 +3275,35 @@ p.staff-data__text{
         color: rgba(#fff, 1);
       }
     }
+    .cta-titles{
+      margin-bottom: 40px;
+      .cta-titles__title{
+        font-size: 2.8rem;
+        text-align: center;
+      }
+      .cta-titles__text{
+        margin-top: 25px;
+        text-align: center;
+      }
+    }
+    &.cta-entry--black{
+      background-color: rgba($textBaseColor, 1);
+    }
+    &:link, &:visited{
+      color: rgba(#fff, 1);
+    }
+  }
+  .internship &{
+    margin-top: 0;
   }
 }
-.sec-cta-entry2{
+.sec-cta-entry-column{
   padding-top: 0;
   padding-bottom: 0;
+  margin-top: 60px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
   .cta-entry__button{
     &:not(:first-of-type){
       border-top: 1px solid #fff;
@@ -3206,18 +3311,25 @@ p.staff-data__text{
     padding: 25px 25px 20px;
     margin-left: -15px;
     margin-right: -15px;
+    background-color: rgba($mainColor, 1);
     justify-content: space-between;
     overflow: hidden;
   }
 }
 @include res_min(){
-  .sec-cta-entry,
-  .sec-cta-entry2{
-    padding-top: 90px;
-    padding-bottom: 90px;
+  .sec-cta-entry{
     margin-top: 140px;
     .cta-entry{
-      @include flex(nowrap, space-between, center);
+      padding: 90px 50px;
+      margin-left: -50px;
+      margin-right: -50px;
+      max-width: none;
+      .inner{
+        @include res_min( map-get($BP, lg) ){
+          @include maxW( map-get($maxSize, base) );
+        }
+        @include flex(nowrap, space-between, center);
+      }
       .title02{
         margin-bottom: 0;
         text-align: left;
@@ -3227,11 +3339,38 @@ p.staff-data__text{
           font-size: 2.2rem;
         }
       }
+      .cta-titles{
+        margin-bottom: 0;
+        .cta-titles__title{
+          font-size: 3.2rem;
+          text-align: left;
+        }
+        .cta-titles__text{
+          padding-right: 30px;
+          margin-top: 20px;
+          text-align: left;
+        }
+      }
+      &.cta-entry--black{
+        background-color: rgba($textBaseColor, 1);
+      }
+      .cta-entry__button{
+        flex-shrink: 0;
+        transform: translate(20px, 14px);
+      }
+      &:hover, &:active{
+        @include transition();
+        opacity: 0.8;
+        .cta-entry__button{
+          opacity: 1;
+        }
+      }
     }
   }
-  .sec-cta-entry2{
+  .sec-cta-entry-column{
     padding: 0;
     margin-top: 100px;
+    margin-top: 140px;
     margin-left: 0;
     margin-right: 0;
     @include flex(nowrap, space-between, stretch);
@@ -3258,6 +3397,7 @@ p.staff-data__text{
   @include flex(nowrap, center, center);
   gap: 0;
   color: rgba(#fff, 1);
+  @include transition(all, 0.15);
   &:hover{
     opacity: 0.8;
     color: rgba(#fff, 1);
@@ -3265,6 +3405,9 @@ p.staff-data__text{
   .cta-entry__button__text{
     font-size: 2.2rem;
     line-height: 1.5;
+    em{
+      font-weight: 600;
+    }
     img{
       width: auto;
       height: 25px;
@@ -3336,7 +3479,7 @@ p.staff-data__text{
       transform: translate(-50%,-50%);
       z-index: -1;
     }
-    //通常アイコン（右矢印）
+    //通常アイコン（通常右矢印）
     &::after {
       content: '';
       width: 14px;
@@ -3356,6 +3499,13 @@ p.staff-data__text{
       transform: translate(-50%,-50%) rotate(20deg);
       z-index: 2;
     }
+    //Blankアイコン（blank）
+    &.icon--blank::after {
+      width: 20px;
+      height: 15px;
+      -webkit-mask-image: url(./assets/images/common/icon-blank.svg);
+              mask-image: url(./assets/images/common/icon-blank.svg);
+    }
   }
   //blank
   &[target="_blank"]{
@@ -3363,8 +3513,8 @@ p.staff-data__text{
       //blankアイコン
       &::after {
         content: '';
-        width: 17px;
-        height: 14px;
+        width: 20px;
+        height: 15px;
         background-color: rgba($textBaseColor, 1);
         -webkit-mask-image: url(./assets/images/common/icon-blank.svg);
                 mask-image: url(./assets/images/common/icon-blank.svg);
@@ -3386,7 +3536,7 @@ p.staff-data__text{
 @include res_min(){
   .cta-entry__button{
     gap: 5px;
-    width: 100%;
+    // width: 100%;
     .cta-entry__button__text{
       width: 100%;
       font-size: 2.5rem;
@@ -3405,6 +3555,8 @@ p.staff-data__text{
 .sec-cta-contact-recruit{
   padding-top: 40px;
   padding-bottom: 40px;
+  position: relative;
+  z-index: 2;
 }
 .cta-contact-recruit{
   margin-top: 30px;
@@ -3590,6 +3742,813 @@ p.staff-data__text{
 
 
 /* ----------------------------------------------------------------
+  数字でわかるアスリートFA
+---------------------------------------------------------------- */
+.sec-data{
+  padding-top: 60px;
+  padding-bottom: 60px;
+  &:nth-of-type(even){
+    background-color: rgba($gray, 1);
+  }
+  .title08{
+    margin-bottom: 40px;
+  }
+}
+@include res_min(){
+  .sec-data{
+    padding-top: 120px;
+    padding-bottom: 170px;
+    .title08{
+      margin-bottom: 80px;
+    }
+  }
+}
+.sec-data + .button-wrap{
+  margin-top: 50px;
+}
+@include res_min(){
+  .sec-data + .button-wrap{
+    margin-top: 120px;
+  }
+}
+
+//データのセット
+.data-set{
+  background-color: rgba(#fff, 1);
+  border-bottom: 3px solid rgba($textBaseColor, 1);
+  .data-set__title{
+    padding: 20px 20px 0;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+}
+@include res_min(){
+  .data-set{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    .data-set__title{
+      padding: 25px 30px 0;
+      margin-bottom: auto;
+      font-size: 2.8rem;
+    }
+  }
+}
+
+//各データ最小単位：ベース設定
+.data-item{
+  display: flex;
+  align-items: baseline;
+  font-size: 2.4rem;
+  line-height: 1;
+  & > *{
+    white-space: nowrap;
+  }
+  //ラベル
+  .data-label{
+    margin-bottom: 0.25em;
+    small{
+      font-size: 64.3%;
+    }
+  }
+  //値
+  .data-value{
+    @extend .ff-en;
+    font-size: 5rem;
+    font-weight: 600;
+    line-height: 1;
+    //ラベル
+    &::before{
+      content: attr(data-label);
+      font-family: $ff-go;
+      margin-right: 0.2em;
+      font-size: 54%;
+      font-weight: 500;
+      vertical-align: middle;
+    }
+    //単位
+    &::after{
+      content: attr(data-unit);
+      font-family: $ff-go;
+      margin-left: 0.3em;
+      font-size: 35%;
+      font-weight: 500;
+      vertical-align: 0em
+    }
+  }
+}
+@include res_min(){
+  .data-item{
+    //ラベル
+    .data-label{
+      margin-bottom: 0.25em;
+      small{
+        font-size: 64.3%;
+      }
+    }
+    //値
+    .data-value{
+      font-size: 5.2rem;
+    }
+  }
+}
+
+//データ単位のレイアウト
+.data-set__content{
+  margin: 30px 20px;
+  @include res_min(){
+    margin: 30px;
+  }
+  position: relative;
+
+  //基本レイアウト
+  &.--flex-s_between{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    .data-icon{
+      height: 70px;
+      @include res_min(){
+        height: 100px;
+      }
+      img{
+        width: auto;
+        height: 100%;
+      }
+    }
+  }
+  &.--flex-end{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 40px;
+    .data-icon{
+      height: 70px;
+      @include res_min(){
+        height: 100px;
+      }
+      img{
+        width: auto;
+        height: 100%;
+      }
+    }
+  }
+
+  //---個別レイアウト
+  //設立
+  &.data-set-company{
+    margin-bottom: 10px;
+  }
+  @include res_min(){
+    &.data-set-company{
+      margin-top: 0;
+      margin-bottom: 15px;
+      justify-content: flex-end;
+      .data-icon{
+        margin-right: 20px;
+        margin-bottom: 10px;
+        height: 84px;
+      }
+      .data-value{
+        font-size: 8rem;
+      }
+    }
+  }
+  //売上比率
+  &.data-set-uriagehiritsu{ //売上比率
+    display: block;
+    .data-item:last-of-type{
+      margin-left: auto;
+      justify-content: flex-end;
+    }
+  }
+  @include res_min(){
+    &.data-set-uriagehiritsu{ //売上比率
+      .chart-area{
+        margin-top: -10px;
+        margin-bottom: -20px;
+        height: 240px;
+      }
+    }
+  }
+  //部門別人員割合　棒グラフ
+  &.data-set-bumonbetsu{
+    display: block;
+    margin-top: 40px;
+    padding-bottom: 20px;
+  }
+  @include res_min(){
+    &.data-set-bumonbetsu{
+      margin-top: 0;
+      padding-bottom: 70px;
+      .chart{
+        height: 400px;
+      }
+    }
+  }
+  //勤務地
+  &.data-set-kinmuchi{
+    margin-bottom: 0;
+    text-align: center;
+    .img-naganoken-map{
+      img{
+        margin: 0 auto;
+        width: 147px;
+      }
+    }
+    .data-item{
+      display: inline-flex;
+      margin: 30px auto;
+    }
+  }
+  @include res_min(){
+    &.data-set-kinmuchi{
+      margin-top: 70px;
+      margin-bottom: 40px;
+      .data-item{
+        margin-top: 34px;
+        .data-value{
+          font-size: 8rem;
+          &::before{
+            display: block;
+            margin: 0 0 15px;
+            font-size: 2.8rem
+          }
+        }
+      }
+    }
+  }
+  //出張比率
+  &.data-set-syuchohiritsu{
+  }
+  @include res_min(){
+    &.data-set-syuchohiritsu{
+      margin: 20px 90px 60px;
+      padding-right: 100px;
+      .chart{
+        overflow: visible;
+      }
+      .block{
+        overflow: visible;
+        &.color-gray1{
+          position: relative;
+          &::before{
+            content: '';
+            width: 40px;
+            height: 1px;
+            background-color: rgba($textBaseColor, 1);
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateX(-50%);
+          }
+          .data-value{
+            transform: translateX(103%);
+          }
+        }
+      }
+    }
+  }
+  //滞在日数
+  &.data-set-taizai{
+    @include flex(nowrap, flex-start, flex-start);
+    flex-direction: column;
+    gap: 5px;
+    .data-item{
+      @include flex(nowrap, flex-start, center);
+      .img-taizai{
+        flex: 0 0 auto;
+        margin-top: 7px;
+        margin-right: 15px;
+        white-space: nowrap;
+        img{
+          width: auto;
+          height: 45px;
+        }
+      }
+      .data-value{
+        font-size: 3.3rem;
+        white-space: nowrap;
+        &::before{
+          margin-right: 0;
+        }
+        &::after{
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+  @include res_min(){
+    &.data-set-taizai{
+      margin-left: auto;
+      margin-right: auto;
+      display: inline-flex;
+      gap: 0;
+      .data-item{
+        .img-taizai{
+          margin-right: 38px;
+          img{
+            width: 210px;
+            height: auto;
+          }
+        }
+        .data-value{
+          font-size: 5.2rem;
+          &::before{
+            margin-right: 8px;
+          }
+          &::after{
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+  //2バー（新卒・キャリア、文理割合など）
+  &.data-set-2bars{
+    padding-top: 50px;
+    padding-bottom: 30px;
+    .graph-vertical .block{
+      &::before{
+        content: '';
+        width: 60px;
+        height: 64px;
+        background-size: cover;
+        position: absolute;
+      }
+      &.bar-newgrads{ //新卒マーク
+        &::before{
+          background-image: url(./assets/images/data/icon-newgrads.svg);
+          left: -70px;
+          top: -60px;
+        }
+      }
+      &.bar-career{ //キャリアマーク
+        &::before{
+          background-image: url(./assets/images/data/icon-career.svg);
+          right: -75px;
+          top: -60px;
+        }
+      }
+      &.bar-humanities{ //文系マーク
+        &::before{
+          background-image: url(./assets/images/data/icon-humanities.svg);
+          left: -70px;
+          top: -60px;
+        }
+      }
+      &.bar-science{ //理系マーク
+        &::before{
+          background-image: url(./assets/images/data/icon-science.svg);
+          right: -75px;
+          top: -60px;
+        }
+      }
+    }
+  }
+  @include res_min(){
+    &.data-set-2bars{
+      padding-top: 110px;
+      padding-bottom: 50px;
+      .graph-vertical .block{
+        &::before{
+          width: 120px;
+          height: 127px;
+        }
+        &.bar-newgrads{ //新卒マーク
+          &::before{
+            left: -137px;
+            top: -112px;
+          }
+        }
+        &.bar-career{ //キャリアマーク
+          &::before{
+            right: -125px;
+            top: -146px;
+          }
+        }
+        &.bar-humanities{ //文系マーク
+          &::before{
+            left: -130px;
+            top: -134px;
+          }
+        }
+        &.bar-science{ //理系マーク
+          &::before{
+            right: -140px;
+            top: -113px;
+          }
+        }
+      }
+    }
+  }
+  //年齢費
+  &.data-set-nenreihi{
+    .data-count-1,
+    .data-count-2,
+    .data-count-3,
+    .data-count-4{
+      position: absolute;
+      .data-value{
+        font-size: 2.4rem;
+      }
+    }
+    .data-count-1{
+      top: 5px;
+      left: calc(50% + 83px);
+    }
+    .data-count-2{
+      bottom: 30px;
+      left: calc(50% + 95px);
+    }
+    .data-count-3{
+      bottom: 0;
+      left: calc(50% - 136px);
+    }
+    .data-count-4{
+      top: 1px;
+      left: calc(50% - 160px);
+    }
+    .data-count-age{ //平均年齢
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 50%;
+      top: 47%;
+      transform: translate(-50%,-50%);
+      .data-label{ //ロゴマーク
+        width: 60px;
+      }
+      .data-value{
+        font-size: 3.8rem;
+        text-align: center;
+        &::before{
+          display: block;
+          margin-top: 0.5em;
+          margin-right: 0;
+          margin-bottom: 0.2em;
+          font-size: 48%;
+        }
+      }
+    }
+  }
+  @include res_min(){
+    &.data-set-nenreihi{
+      margin-top: 50px;
+      margin-bottom: 60px;
+      .chart-area{
+        height: 360px;
+      }
+      .data-count-1,
+      .data-count-2,
+      .data-count-3,
+      .data-count-4{
+        .data-value{
+          font-size: 5.2rem;
+        }
+      }
+      .data-count-1{
+        top: 7px;
+        left: calc(50% + 170px);
+      }
+      .data-count-2{
+        bottom: 30px;
+        left: calc(50% + 185px);
+      }
+      .data-count-3{
+        bottom: 0;
+        left: calc(50% - 326px);
+      }
+      .data-count-4{
+        top: 56px;
+        left: calc(50% - 390px);
+      }
+      .data-count-age{ //平均年齢
+        .data-label{ //ロゴマーク
+          width: 92px;
+        }
+        .data-value{
+          font-size: 5.2rem;
+          &::before{
+            margin-top: 6px;
+            margin-bottom: 10px;
+            font-size: 2.8rem;
+          }
+        }
+      }
+    }
+  }
+  //社員出身地割合
+  &.data-set-syusinchi{
+    margin: 30px 0 30px 25px;
+    position: relative;
+    .data-item{
+      position: absolute;
+      .data-value{
+        font-size: 5vw;
+      }
+      &.data-tohoku{
+        left: 76%;
+        top: 43.5%;
+      }
+      &.data-kanto{
+        left: 71%;
+        top: 61.5%;
+      }
+      &.data-chubu{
+        right: 70%;
+        top: 27%;
+        .data-label{
+          font-size: 1.3rem;
+          small{
+            margin-left: -0.3em;
+            margin-right: -0.5em;
+          }
+        }
+      }
+      &.data-nagano{
+        right: 59.5%;
+        top: 46%;
+      }
+      &.data-kinki{
+        left: 58%;
+        top: 84%;
+      }
+      &.data-chugoku-shikoku{
+        right: 83%;
+        top: 55%;
+      }
+      &.data-kyushu{
+        left: 26.5%;
+        top: 91.5%;
+      }
+    }
+  }
+  @include res_min(){
+    &.data-set-syusinchi{
+      margin: -50px 0 60px 25px;
+      position: relative;
+      .map-area{
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 900px;
+      }
+      .data-item{
+        position: absolute;
+        .data-value{
+          font-size: 5.2rem;
+        }
+        &.data-tohoku{
+          left: 70%;
+          top: 43%;
+        }
+        &.data-kanto{
+          left: 66%;
+          top: 61.5%;
+        }
+        &.data-chubu{
+          right: 65%;
+          .data-label{
+            font-size: 2.8rem;
+          }
+        }
+        &.data-nagano{
+          right: 57.5%;
+          top: 46.5%;
+        }
+        &.data-kinki{
+          left: 55.5%;
+        }
+        &.data-chugoku-shikoku{
+          right: 75.5%;
+        }
+        &.data-kyushu{
+          left: 31.5%;
+        }
+      }
+    }
+  }
+  //働きやすさ内
+  &.data-set-heikinkinzokunensu{}
+  &.data-set-teichakuritsu{}
+  @include res_min(){
+    &.data-set-teichakuritsu{
+      gap: 60px;
+    }
+  }
+  &.data-set-rishokuritsu{}
+  &.data-set-heikinzangyojikan{
+    .data-icon{
+      margin-left: 5px;
+    }
+  }
+  &.data-set-yukyuheikinsyutokunissu{}
+  &.data-set-yukyusyutokuritsu{
+    @include flex(nowrap, center, flex-end);
+    gap: 20px;
+    .chart-area{
+      width: 140px;
+      height: 140px;
+    }
+  }
+  @include res_min(){
+    &.data-set-yukyuheikinsyutokunissu{}
+    &.data-set-yukyusyutokuritsu{
+      @include flex(nowrap, center, flex-end);
+      gap: 10px;
+      margin-right: 0;
+      .chart-area{
+        width: 120px;
+        height: 120px;
+      }
+    }
+  }
+  &.data-set-fukkiritsu{}
+  //主な出張先
+  &.data-set-business-trip{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    .business-trip{
+      text-align: center;
+    }
+    .business-trip__title{
+      margin-bottom: 20px;
+      font-size: 2rem;
+      font-weight: 500;
+      text-align: center;
+      &::after{
+        content: attr(data-sub);
+        @extend .ff-en;
+        display: block;
+        font-size: 50%;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        color: rgba($mainColor, 1);
+        margin-top: 0.2em;
+      }
+    }
+    .business-trip__list{
+      margin-top: 1em;
+      @include flex(wrap, center, stretch);
+      gap: 1em;
+      li{
+        font-size: 1.8rem;
+        line-height: 1;
+      }
+    }
+    .business-trip__other{
+      margin-top: 1em;
+    }
+  }
+  @include res_min(){
+    &.data-set-business-trip{
+      margin-top: 20px;
+      margin-bottom: 50px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      .business-trip__title{
+        margin-bottom: 25px;
+        font-size: 2.8rem;
+      }
+      .business-trip__list{
+        li{
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}
+
+
+//大枠のレイアウト
+.data-layout{
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+
+  //個別レイアウト
+  &.data-layout-company{ //売上比率
+  }
+  &.data-layout-environment{ //働きやすさ
+    .--flex-s_between,
+    .--flex-end{
+      margin-bottom: 10px;
+    }
+    .data-item{
+      .data-value{
+        &::before,
+        &::after{
+          font-size: 35%;
+          vertical-align: 0;
+        }
+      }
+    }
+  }
+}
+@include res_min(){
+  .data-layout{
+    display: grid;
+    grid-auto-flow: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 40px;
+    // align-items: flex-start;
+
+    //個別レイアウト
+    &.data-layout-company{ //会社について
+      grid-template-columns: 42% auto;
+      .set-uriagehiritsu{
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+      }
+      .set-bumonbetsu{
+        grid-row: 1 / 3;
+        grid-column: 2 / 3;
+        align-self: stretch;
+      }
+    }
+    &.data-layout-place{ //働く場所
+      grid-template-columns: 32% auto;
+      .set-kinmuchi{
+        grid-row: 1 / 3;
+        grid-column: 1 / 2;
+      }
+      .set-syuchohiritsu{
+        grid-row: 1 / 2;
+        grid-column: 2 / 3;
+      }
+      .set-taizai{
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+      }
+      .set-business-trip{
+        grid-row: 3 / 4;
+        grid-column: 1 / 3;
+      }
+    }
+    &.data-layout-employee{ //働く人たち
+      .set-nenreihi{
+        grid-row: 2 / 3;
+        grid-column: 1 / 3;
+      }
+      .set-syusinchi{
+        grid-row: 3 / 4;
+        grid-column: 1 / 3;
+      }
+    }
+    &.data-layout-environment{ //働きやすさ
+      .--flex-s_between,
+      .--flex-end{
+        margin-bottom: 30px;
+      }
+      .data-set__content{
+        margin-top: 60px;
+      }
+      .data-item{
+        .data-value{
+          font-size: 8rem;
+        }
+      }
+      .set-heikinkinzokunensu{
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+      }
+      .set-teichakuritsu{
+        grid-row: 1 / 2;
+        grid-column: 2 / 3;
+      }
+      .set-rishokuritsu{
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+      }
+      .set-heikinzangyojikan{
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+      }
+    }
+    &.data-layout-environment2{
+      margin-top: 40px;
+      grid-template-columns: repeat(3, 1fr);
+      .data-set__content{
+        .data-icon{
+          height: 84px;
+        }
+      }
+      .data-item{
+        .data-value{
+          font-size: 8rem;
+        }
+      }
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------
   インタビュー
 ---------------------------------------------------------------- */
 .mv-interview{
@@ -3612,9 +4571,9 @@ p.staff-data__text{
 }
 @include res_min( map-get($BP, lg) ){
   .mv-interview{
-    padding-top: 60px;
+    padding-top: 187px;
     padding-bottom: 60px;
-    margin-top: 127px;
+    // margin-top: 127px;
     // height: calc(100vh - 127px);
     // height: calc(100dvh - 127px);
     // display: flex;
@@ -3983,6 +4942,23 @@ p.staff-data__text{
 @include res_min(){
   .interview-message{
     margin-top: 160px;
+    position: relative;
+    &::before{
+      content: '';
+      width: 100%;
+      height: 50.5vw;
+      max-height: 606px;
+      background-color: rgba($gray, 1);
+      position: absolute;
+      left: 50%;;
+      bottom: -7vw;
+      @include res_min( map-get($BP, lg) ){
+        height: 606px;
+        bottom: -105px;
+      }
+      transform: translateX(-50%);
+      // z-index: -1;
+    }
   }
   .message-title{
     font-size: 2.8rem;
@@ -4000,20 +4976,20 @@ p.staff-data__text{
     margin: 50px auto 0;
     position: relative;
     z-index: 1;
-    &::before{
-      content: '';
-      width: 100vw;
-      height: 98.7%;
-      background-color: rgba($gray, 1);
-      position: absolute;
-      left: 50%;;
-      bottom: -12.3%;
-      @include res_min( map-get($BP, xl) ){
-        bottom: -110px;
-      }
-      transform: translateX(-50%);
-      z-index: -1;
-    }
+    // &::before{
+    //   content: '';
+    //   width: calc(100vw - 15px);
+    //   height: 98.7%;
+    //   background-color: rgba(blue, 0.5);
+    //   position: absolute;
+    //   left: 50%;;
+    //   bottom: -12.3%;
+    //   @include res_min( map-get($BP, xl) ){
+    //     bottom: -110px;
+    //   }
+    //   transform: translateX(-50%);
+    //   z-index: -1;
+    // }
   }
 }
 
@@ -4044,24 +5020,49 @@ p.staff-data__text{
       }
       position: relative;
       z-index: 1;
-      &::before{
-        content: '';
-        width: 100vw;
-        height: 100%;
-        background-image: url(./assets/images/recruit/bg-other-interview.svg);
-        background-repeat: no-repeat;
-        background-position: center top 37%;
-        background-size: 100%;
-        position: absolute;
-        left: 50%;
-        top: 0;
-        transform: translateX(-50%);
-        z-index: -1;
-      }
+      // &::before{
+      //   content: '';
+      //   width: 100vw;
+      //   height: 100%;
+      //   background-image: url(./assets/images/recruit/bg-other-interview.svg);
+      //   background-repeat: no-repeat;
+      //   background-position: center top 37%;
+      //   background-size: 100%;
+      //   position: absolute;
+      //   left: 50%;
+      //   top: 0;
+      //   transform: translateX(-50%);
+      //   z-index: -1;
+      // }
     }
     .button-wrap{
       margin-top: 155px;
     }
+  }
+}
+
+//ループスライダー（その他のインタビュー内）
+.staff-interview-wrapper{
+  .loop-slider-wrap{
+    display: none;
+  }
+}
+@include res_min(){
+  .staff-interview-wrapper{
+    position: relative;
+    .loop-slider-wrap{
+      display: block;
+      // margin-top: 25px;
+      width: 100%;
+      position: absolute;
+      top: 37%;
+      transform: translateY(-50%);
+    }
+    // .loop-slider{
+    //   img{
+    //     height: 70px;
+    //   }
+    // }
   }
 }
 
@@ -4114,6 +5115,266 @@ p.staff-data__text{
     }
   }
 }
+
+
+
+/* ----------------------------------------------------------------
+  インターンシップ情報
+---------------------------------------------------------------- */
+.internship{
+  .sec-cta-contact-recruit + .button-wrap{
+    margin: 30px auto 60px;
+  }
+}
+@include res_min(){
+  .internship{
+    .sec-cta-contact-recruit + .button-wrap{
+      margin: 15px auto 50px;
+    }
+  }
+}
+
+.mv-internship{
+  padding: 57px 30px 0;
+  height: 100vh;
+  height: 100dvh;
+  background-image: url(./assets/images/internship/bg-mv-internship.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  @include flex(nowrap, center, center);
+  flex-direction: column;
+  .mv-title{
+    margin-left: -0.25em;
+    @extend .ff-en;
+    font-size: clamp(3rem, 12vw, 10rem);
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1;
+    text-align: center;
+  }
+  .mv-maincopy{
+    margin-top: 1.4em;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .mv-text{
+    margin-top: 3em;
+    max-width: 1200px;
+    font-size: 1.4rem;
+    line-height: 1.7;
+  }
+}
+@include res_min(){
+  .mv-internship{
+    padding-left: 50px;
+    padding-right: 50px;
+    @include res_min( map-get($BP, lg) ){
+      padding-top: 127px;
+    }
+    .mv-text{
+      @include res_min( map-get($BP, lg) ){
+        margin-top: min(128px, 12vw);
+      }
+      font-size: 1.6rem;
+      line-height: 2;
+    }
+  }
+}
+
+.sec-internship{
+  padding-bottom: 80px;
+}
+@include res_min( map-get($BP, lg) ){
+  .sec-internship{
+    padding-bottom: 190px;
+  }
+}
+
+.internship-block{
+  margin-top: 60px;
+	.internship-block__data{
+    .internship-block__data__number{
+      img{
+        width: 100px;
+      }
+    }
+    .internship-block__data__title{
+      margin-top: 8px;
+      font-size: 2.2rem;
+    }
+		.internship-block__data__text{
+      margin-top: 15px;
+		}
+	}
+	.internship-block__image{
+    margin-top: 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+	}
+}
+@include res_min(){
+  .internship-block{
+    @include maxW( map-get($maxSize, xl) );
+    & + &{
+      margin-top: 120px;
+    }
+    .internship-block__data{
+      .internship-block__data__number{
+        img{
+          width: 142px;
+        }
+      }
+      .internship-block__data__title{
+        margin-top: 12px;
+        font-size: 2.8rem;
+      }
+      .internship-block__data__text{
+        margin-top: 25px;
+      }
+    }
+    .internship-block__image{
+      margin-top: 20px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    @include res_min( map-get($BP, lg) ){
+      margin-top: 100px;
+      & + &{
+        margin-top: 157px;
+      }
+      display: grid;
+      grid-template-columns: repeat(2, 50%);
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      .internship-block__data{
+        padding: 0 min(4.22vw, 80px) 0 0;
+        @include res_min( map-get($BP, lg) ){
+          padding: 0 min(4.22vw, 80px) 0 min(7.7vw, 150px);
+        }
+        .internship-block__data__text:first-of-type{
+          margin-top: 30px;
+        }
+      }
+      .internship-block__image{
+        margin-top: 0;
+      }
+      //交互
+      &:nth-of-type(even){
+        .internship-block__data{
+          order: 2;
+          padding: 0 0 0 min(4.22vw, 80px);
+          @include res_min( map-get($BP, lg) ){
+            padding: 0 min(7.7vw, 150px) 0 min(4.22vw, 80px);
+          }
+        }
+        .internship-block__image{
+          order: 1;
+        }
+        &::before{
+          transform: translateX(-50%) scale(-1,1);
+        }
+      }
+    }
+
+  }
+}
+
+
+.sec-voice{
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: rgba($gray, 1);
+}
+@include res_min( map-get($BP, lg) ){
+  .sec-voice{
+    padding-top: 90px;
+    padding-bottom: 150px;
+  }
+}
+
+.voice-list{
+  margin-top: 30px;
+  @include flex(wrap, flex-start, stretch);
+  flex-direction: column;
+  gap: 20px;
+  .voice{
+    border: 1px solid rgba($textBaseColor, 1);
+    background-color: #fff;
+  }
+    .voice__text{
+      padding: 20px;
+    }
+    .voice__data{
+      border-top: 1px solid rgba($textBaseColor, 1);
+      padding: 30px 20px 20px;
+    }
+      .voice__data__image{
+        line-height: 1;
+        text-align: center;
+        img{
+          margin: auto;
+          width: 60%;
+          max-width: 200px;
+          border-radius: 50%;
+          border: 1px solid rgba($textBaseColor, 1);
+        }
+      }
+      .voice__data__meta{
+        margin-top: 10px;
+      }
+      .voice__data__meta__name{}
+      .voice__data__meta__more{
+        margin-top: 0.5em;
+      }
+}
+@include res_min( map-get($BP, lg) ){
+  .voice-list{
+    margin-top: 50px;
+    // @include flex(wrap, flex-start, stretch);
+    // flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    .voice{
+      // flex-basis: calc(50% - 20px);
+      // @include flex(nowrap, flex-end, stretch);
+      // flex-direction: column;
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 2;
+      gap: 0;
+    }
+      .voice__text{
+        padding: 30px 33px;
+      }
+      .voice__data{
+        padding: 25px 33px;
+        // margin-top: auto;
+        @include flex(nowrap, flex-start, center);
+        gap: 35px;
+      }
+        .voice__data__image{
+          img{
+            width: 88px;
+          }
+        }
+        .voice__data__meta{
+          margin-top: 0;
+        }
+        .voice__data__meta__name{}
+        .voice__data__meta__more{
+          margin-top: 0.5em;
+        }
+  }
+}
+
 
 
 /* ----------------------------------------------------------------

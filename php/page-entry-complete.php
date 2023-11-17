@@ -1,7 +1,7 @@
 <?php
 /**
  * From Action
- * 
+ *
  */
 $objApp = new Entry();
 $objApp->thanks();
@@ -22,7 +22,7 @@ $objApp->thanks();
     <p class="form-complete-message"><strong>エントリーありがとうございました。</strong></p>
     <p class="form-complete-message">後日担当者より返信させていただきます。<br>お手数をおかけしますが、3営業日以上経っても返信がない場合は、<br>再度お問い合わせいただくか、お電話でのご連絡をお願いいたします。</p>
     <div class="button-wrap">
-      <a href="<?php echo esc_url(home_url()); ?>" class="button-r-link-large button-circle-ani">
+      <a href="<?php echo esc_url(home_url()); ?>/" class="button-r-link-large button-circle-ani">
         トップページへ戻る
         <span class="svg-area">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">

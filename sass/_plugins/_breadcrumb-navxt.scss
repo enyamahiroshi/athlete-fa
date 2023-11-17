@@ -20,23 +20,23 @@
   padding-bottom: 1em;
   font-size: 1.3rem;
   line-height: 1.4;
-  @include flex(nowrap, flex-start, stretch);
+  @include flex(wrap, flex-start, stretch);
   gap: 5px;
   overflow: hidden;
   span {
-    white-space: nowrap;
+    // white-space: nowrap;
     a {
       @include flex(nowrap, flex-start, center);
       gap: 5px;
       &::after {
         content: '';
-        width: 8px;
-        height: 5px;
+        width: 10px;
+        height: 6px;
         background-image: url(./assets/images/common/icon-arrow-toggle.svg);
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100%;
-        transform: rotate(-90deg) translateX(-1px);
+        transform: rotate(-90deg) translateX(-1px) scale(0.8);
       }
       &:link, &:visited {
         text-decoration: none;
@@ -65,8 +65,7 @@
       a {
         gap: 10px;
         &::after {
-          width: 10px;
-          height: 6px;
+          transform: rotate(-90deg) translateX(-1px) scale(1);
         }
       }
     }

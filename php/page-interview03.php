@@ -49,7 +49,7 @@ get_header(); ?>
           <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/interview/<?php echo $slag; ?>/img-qa03.jpg" alt="" width="960" height="640">
         </figure>
         <div class="qa__data">
-          <h2 class="qa__data__q">仕事の面白さ、やりがい、これからの目標をお教えください。</h2>
+          <h2 class="qa__data__q">仕事の面白さ、やりがい、これからの目標を教えてください。</h2>
           <strong class="qa__data__a-title">装置の旅立ちを見送りながら、仕事への達成感を噛みしめます。</strong>
           <p class="qa__data__a__text">装置の調整はμm（マイクロメートル＝1000分の1ミリ）単位で行う箇所もあり、とても細かい調整のため難易度が高く時間がかかってしまうこともありますが、社内の規格に収められた時は達成感を感じます。自分の担当した装置で製作された製品が身近な機器に使用されていることもあり、世の中の役に立っているという実感も大きいです。無事に社内検収に合格し、トラックに載せて装置の旅立ちを見送る時には、ひと仕事を終えたやりがいを感じます。<br>これからは装置にさらなる愛情を注ぐことで、装置に起きている不具合の早期発見、早期治療ができる調整役を目指したいと思います。また、装置調整のため、お客様の工場に入り、直接指導をする先輩の姿を見ると、自分もいつかは…と夢が膨らみます。</p>
         </div>
@@ -68,55 +68,65 @@ get_header(); ?>
     <?php //その他のインタビュー ?>
     <section class="sec sec-full sec-other-interview">
       <h2 class="interview-title">その他のインタビュー</h2>
-      <div class="staff-interview">
-        <a href="<?php echo esc_url(home_url()); ?>/recruit/interview01" class="staff-data">
-          <figure class="staff-data__image">
-            <div class="staff-data__photo">
-              <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/staff/img-staff-card-image01.jpg" alt="" width="418" height="590">
+      <div class="staff-interview-wrapper">
+        <?php //ループスライダー ?>
+        <div class="loop-slider-wrap">
+          <div class="loop-slider js-loop-slider">
+            <div class="slider-item">
+              <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/bg-other-interview.svg" alt="" width="4140" height="132">
             </div>
-            <div class="staff-data__name">I.N.</div>
-            <div class="staff-data__sub"><span>Since 2020</span><span>Design</span></div>
-          </figure>
-          <p class="staff-data__text">精密動作を可能とする機構設計、おもしろさと社会への貢献を実感</p>
-          <div class="staff-data__meta">
-            <div class="staff-position">設計部 設計グループ</div>
-            <div class="staff-join">2020年新卒入社</div>
           </div>
-        </a>
-        <a href="<?php echo esc_url(home_url()); ?>/recruit/interview02" class="staff-data">
-          <figure class="staff-data__image">
-            <div class="staff-data__photo">
-              <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/staff/img-staff-card-image02.jpg" alt="" width="418" height="590">
+        </div>
+        <div class="staff-interview">
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/interview01/" class="staff-data">
+            <figure class="staff-data__image">
+              <div class="staff-data__photo">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/staff/img-staff-card-image01.jpg" alt="" width="418" height="590">
+              </div>
+              <div class="staff-data__name">I.N.</div>
+              <div class="staff-data__sub"><span>Since 2020</span><span>Design</span></div>
+            </figure>
+            <p class="staff-data__text">精密動作を可能とする機構設計、おもしろさと社会への貢献を実感</p>
+            <div class="staff-data__meta">
+              <div class="staff-position">設計部 設計グループ</div>
+              <div class="staff-join">2020年新卒入社</div>
             </div>
-            <div class="staff-data__name">Y.W.</div>
-            <div class="staff-data__sub"><span>Since 2021</span><span></span>System Control</div>
-          </figure>
-          <p class="staff-data__text">風通しのよい環境が魅力、仲間とともに頼れる技術者を目指す</p>
-          <div class="staff-data__meta">
-            <div class="staff-position">製造部 制御グループ</div>
-            <div class="staff-join">2021年新卒入社</div>
-          </div>
-        </a>
-        <?php /*
-        <a href="<?php echo esc_url(home_url()); ?>/recruit/interview03" class="staff-data">
-          <figure class="staff-data__image">
-            <div class="staff-data__photo">
-              <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/staff/img-staff-card-image03.jpg" alt="" width="418" height="590">
+          </a>
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/interview02/" class="staff-data">
+            <figure class="staff-data__image">
+              <div class="staff-data__photo">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/staff/img-staff-card-image02.jpg" alt="" width="418" height="590">
+              </div>
+              <div class="staff-data__name">Y.W.</div>
+              <div class="staff-data__sub"><span>Since 2021</span><span></span>System Control</div>
+            </figure>
+            <p class="staff-data__text">風通しのよい環境が魅力、仲間とともに頼れる技術者を目指す</p>
+            <div class="staff-data__meta">
+              <div class="staff-position">製造部 制御グループ</div>
+              <div class="staff-join">2021年新卒入社</div>
             </div>
-            <div class="staff-data__name">Y.K.</div>
-            <div class="staff-data__sub"><span>Since 2021</span><span>Manufacturing</span></div>
-          </figure>
-          <p class="staff-data__text">装置に命を吹き込むものづくり精神、困難を乗り越えた先に喜びを実感</p>
-          <div class="staff-data__meta">
-            <div class="staff-position">製造部 製造グループ</div>
-            <div class="staff-join">2021年新卒入社</div>
-          </div>
-        </a>
-        */ ?>
+          </a>
+          <?php /*
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/interview03/" class="staff-data">
+            <figure class="staff-data__image">
+              <div class="staff-data__photo">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/staff/img-staff-card-image03.jpg" alt="" width="418" height="590">
+              </div>
+              <div class="staff-data__name">Y.K.</div>
+              <div class="staff-data__sub"><span>Since 2021</span><span>Manufacturing</span></div>
+            </figure>
+            <p class="staff-data__text">装置に命を吹き込むものづくり精神、困難を乗り越えた先に喜びを実感</p>
+            <div class="staff-data__meta">
+              <div class="staff-position">製造部 製造グループ</div>
+              <div class="staff-join">2021年新卒入社</div>
+            </div>
+          </a>
+          */ ?>
+        </div>
       </div>
 
-      <div class="button-wrap">
-        <a href="<?php echo esc_url(home_url()); ?>/recruit/new-graduates" class="button-r-link-large button-circle-ani">
+      <div class="button-wrap --list">
+        <a href="<?php echo esc_url(home_url()); ?>/recruit/new-graduates/" class="button-r-link-large button-circle-ani">
           <span>新卒採用ページへ戻る</span>
           <span class="svg-area">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
@@ -124,7 +134,7 @@ get_header(); ?>
             </svg>
           </span>
         </a>
-        <a href="<?php echo esc_url(home_url()); ?>/recruit/career" class="button-r-link-large button-circle-ani">
+        <a href="<?php echo esc_url(home_url()); ?>/recruit/career/" class="button-r-link-large button-circle-ani">
           <span>キャリア採用ページへ戻る</span>
           <span class="svg-area">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">

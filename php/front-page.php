@@ -26,8 +26,8 @@
         <div class="cta-recruit__title">RECRUIT</div>
         <div class="cta-recruit__text">共に挑戦する仲間を募集しています。</div>
         <div class="cta-recruit__navi">
-          <a href="<?php echo esc_url(home_url()); ?>/recruit/new-graduates" class="button-r-link-small">新卒採用</a>
-          <a href="<?php echo esc_url(home_url()); ?>/recruit/career" class="button-r-link-small">キャリア採用</a>
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/new-graduates/" class="button-r-link-small">新卒採用</a>
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/career/" class="button-r-link-small">キャリア採用</a>
         </div>
       </div>
     </section>
@@ -39,7 +39,7 @@
             <em class="italic">Create Future Arts</em><br>私たちは未来につながる技術を創造します
           </h2>
           <p class="block-item-text">私たちのものづくりにおいて、Future Arts(未来につながる技術)は現在から未来への架け橋となる技術を意味します。<br>私たちはFuture Artsの創造を通して、お客様のビジネスの可能性を広げるチカラになるとともに豊かな社会に貢献します。</p>
-          <a href="<?php echo esc_url(home_url()); ?>/archives/category/products" class="button-r-link-large button-circle-ani">
+          <a href="<?php echo esc_url(home_url()); ?>/archives/category/products/" class="button-r-link-large button-circle-ani">
             製品情報
             <span class="svg-area">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
@@ -65,6 +65,8 @@
         <section class="horizon-slider">
           <div class="horizon-slider__container">
             <div class="horizon-slider__container__inner">
+              <?php //slide item -- blank ?>
+              <section class="slider-item slider-item--blank"></section>
               <?php //slide item ?>
               <section class="slider-item">
                 <div class="inner">
@@ -76,7 +78,7 @@
                       ボールマウンタ
                     </h2>
                     <p class="slider-item__data__text">微小はんだボールをウェハや基板の上に配列させるための装置です。<br>はんだボール配列には当社独自の技術を採用し高スループットの生産性を実現しています。<br>最終製品はデータセンタ(DC)/ハイパフォーマンスコンピュータ(HPC)/5G等最先端のデバイスに展開されています。</p>
-                    <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
+                    <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter/" class="button-r-link-large button-circle-ani">
                       <span>詳しく見る</span>
                       <span class="svg-area">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
@@ -98,7 +100,7 @@
                       ボンディング
                     </h2>
                     <p class="slider-item__data__text">フリップチップボンダおよびダイボンダは、幅広いラインナップ(R＆D～量産機)をご用意しており、フォトニクス/LD/イメージセンサを始めとした各種アプリケーションおよび各種実装プロセス向けに、高精度・高スループット装置として提供しています。</p>
-                    <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
+                    <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter/" class="button-r-link-large button-circle-ani">
                       <span>詳しく見る</span>
                       <span class="svg-area">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
@@ -120,7 +122,7 @@
                       カスタム
                     </h2>
                     <p class="slider-item__data__text">長年にわたり培った豊富な要素技術を組み合わせ、安全性と信頼性を確保し、多岐にわたるお客様のニーズを満たす新しい装置を生み出していきます。</p>
-                    <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter" class="button-r-link-large button-circle-ani">
+                    <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter/" class="button-r-link-large button-circle-ani">
                       <span>詳しく見る</span>
                       <span class="svg-area">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
@@ -131,6 +133,8 @@
                   </div>
                 </div>
               </section>
+              <?php //slide item -- blank ?>
+              <section class="slider-item slider-item--blank"></section>
             </div><?php //horizon-slider__container__inner ?>
           </div><?php // #horizon-slider__container ?>
         </section><?php // horizon-slider ?>
@@ -168,12 +172,17 @@
       </div>
     </section>
 
+
+
+
+
+
     <?php //新卒採用 ?>
     <section class="sec sec-full sec-new-graduate">
       <div class="contents-wrap">
         <div class="sec-header">
           <h2 class="title04" data-sub="new &#10;graduate">新卒採用</h2>
-          <a href="<?php echo esc_url(home_url()); ?>/recruit/new-graduates" class="button-r-link-large button-circle-ani">
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/new-graduates/" class="button-r-link-large button-circle-ani">
             新卒採用トップ
             <span class="svg-area">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
@@ -184,7 +193,7 @@
         </div>
         <div class="recruit-link-area">
           <?php //採用項目リンク ?>
-          <a href="<?php echo esc_url(home_url()); ?>/recruit/" class="recruit-link-item mouse-stkr-target">
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/" class="recruit-link-item">
             <div class="recruit-link-item__link">
               <em>職種紹介</em><span>Occupation</span><i class="icon"></i>
             </div>
@@ -193,7 +202,7 @@
             </figure>
           </a>
           <?php //採用項目リンク ?>
-          <a href="<?php echo esc_url(home_url()); ?>/recruit/data" class="recruit-link-item mouse-stkr-target">
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/data/" class="recruit-link-item">
             <div class="recruit-link-item__link">
               <em>数字でわかるアスリートFA</em><span>Data</span><i class="icon"></i>
             </div>
@@ -202,7 +211,7 @@
             </figure>
           </a>
           <?php //採用項目リンク ?>
-          <a href="<?php echo esc_url(home_url()); ?>/recruit/internship" class="recruit-link-item mouse-stkr-target">
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/internship/" class="recruit-link-item">
             <div class="recruit-link-item__link">
               <em>インターンシップ情報</em><span>Internship</span><i class="icon"></i>
             </div>
@@ -211,7 +220,7 @@
             </figure>
           </a>
           <?php //採用項目リンク ?>
-          <a href="<?php echo esc_url(home_url()); ?>/recruit/job-description" class="recruit-link-item mouse-stkr-target">
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/job-description/" class="recruit-link-item">
             <div class="recruit-link-item__link">
               <em>新卒募集要項</em><span>Requirements</span><i class="icon"></i>
             </div>
@@ -222,11 +231,12 @@
         </div>
       </div>
     </section>
-    <div id="mouse-stkr"></div><?php //マウスストーカー ?>
+    <div id="cursor" class="cursor"></div>
+    <div id="follower" class="follower"></div>
 
     <?php //キャリア採用 ?>
     <section class="sec sec-medium sec-career">
-      <a href="<?php echo esc_url(home_url()); ?>/recruit/career" class="link-to-career">
+      <a href="<?php echo esc_url(home_url()); ?>/recruit/career/" class="link-to-career">
         <div class="link-to-career__data">
           <h2 class="title04" data-sub="career">キャリア採用</h2>
           <p class="link-to-career__text">アスリートFAではキャリア人材の採用を随時行っています。<br>経験を活かし、新しい挑戦を始めましょう。</p>
@@ -251,7 +261,7 @@
         <span>新卒採用</span>
         <figure class="button-mynavi"></figure>
       </a>
-      <a href="<?php echo esc_url(home_url()); ?>/recruit/entry" class="recruit-links__button">
+      <a href="<?php echo esc_url(home_url()); ?>/recruit/entry/" class="recruit-links__button">
         <span>キャリア採用</span>
         エントリーフォーム
       </a>
@@ -263,25 +273,25 @@
       <p class="intro-text">当社は自動化設備、省力化設備を製作する専門企業として1988年に設立いたしました。<br>以来、積み重ねてきた技術力をバックボーンに、今と未来をつなぐ技術者集団として工場の自動化に貢献しています。</p>
       <?php //ページリンク ?>
       <div class="page-link">
-        <a href="<?php echo esc_url(home_url()); ?>/company/message" class="link-item01 page-link__item">
+        <a href="<?php echo esc_url(home_url()); ?>/company/message/" class="link-item01 page-link__item">
           <div class="link-content">
             <em class="main-text">社長メッセージ</em><span class="sub-text">Message</span>
           </div>
           <i class="icon"></i>
         </a>
-        <a href="<?php echo esc_url(home_url()); ?>/company/about" class="link-item01 page-link__item">
+        <a href="<?php echo esc_url(home_url()); ?>/company/about/" class="link-item01 page-link__item">
           <div class="link-content">
             <em class="main-text">会社概要</em><span class="sub-text">Profile</span>
           </div>
           <i class="icon"></i>
         </a>
-        <a href="<?php echo esc_url(home_url()); ?>/company/mission" class="link-item01 page-link__item">
+        <a href="<?php echo esc_url(home_url()); ?>/company/mission/" class="link-item01 page-link__item">
           <div class="link-content">
             <em class="main-text">経営理念・方針</em><span class="sub-text">Philosophy</span>
           </div>
           <i class="icon"></i>
         </a>
-        <a href="<?php echo esc_url(home_url()); ?>/company/history" class="link-item01 page-link__item">
+        <a href="<?php echo esc_url(home_url()); ?>/company/history/" class="link-item01 page-link__item">
           <div class="link-content">
             <em class="main-text">沿革</em><span class="sub-text">History</span>
           </div>
@@ -298,7 +308,7 @@
         <div class="layout-block__left">
           <h2 class="title02 --data-sub-ja" data-sub="お知らせ">News</h2>
           <div class="button-wrap --right">
-            <a href="<?php echo esc_url(home_url()); ?>/news" class="button-r-link-large button-circle-ani">
+            <a href="<?php echo esc_url(home_url()); ?>/news/" class="button-r-link-large button-circle-ani">
               <span>一覧を見る</span>
               <span class="svg-area">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
