@@ -5,8 +5,8 @@
     </header>
 
     <div class="has-column js-fix-area">
-      <aside class="side-column js-fix-wrapper">
-        <ul class="category-list js-positionNav js-fix-item">
+      <aside class="side-column">
+        <ul class="category-list js-positionNav">
           <li class="cat-item is-active"><a href="#history1980">1980～</a></li>
           <li class="cat-item"><a href="#history1990">1990～</a></li>
           <li class="cat-item"><a href="#history2000">2000～</a></li>

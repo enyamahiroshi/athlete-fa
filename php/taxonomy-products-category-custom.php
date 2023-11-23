@@ -6,8 +6,8 @@
     </header>
 
     <div class="has-column js-fix-area">
-      <aside class="side-column side-column--products js-fix-wrapper">
-        <ul class="category-list js-positionNav js-fix-item">
+      <aside class="side-column side-column--products">
+        <ul class="category-list js-positionNav">
           <li class="cat-item is-active"><a href="#features">サービスの特徴</a></li>
           <li class="cat-item"><a href="#flow">導入までの流れ</a></li>
           <li class="cat-item"><a href="#case">カスタム事例</a></li>

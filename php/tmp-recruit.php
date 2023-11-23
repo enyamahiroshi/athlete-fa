@@ -364,10 +364,38 @@ get_header(); ?>
     </figure>
     <?php endif; ?>
 
+    <section class="sec sec-full sec-join-our-team-recruit">
+      <?php //loop slider ?>
+      <div class="scroll-infinity">
+        <div class="scroll-infinity__wrap">
+          <ul class="scroll-infinity__list scroll-infinity__list--left">
+            <li class="scroll-infinity__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/loop-slider/img001.jpg" alt="" width="400" height="400"></li>
+            <li class="scroll-infinity__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/loop-slider/img002.jpg" alt="" width="400" height="400"></li>
+            <li class="scroll-infinity__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/loop-slider/img003.jpg" alt="" width="400" height="400"></li>
+            <li class="scroll-infinity__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/loop-slider/img004.jpg" alt="" width="400" height="400"></li>
+            <li class="scroll-infinity__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/loop-slider/img005.jpg" alt="" width="400" height="400"></li>
+            <li class="scroll-infinity__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/loop-slider/img006.jpg" alt="" width="400" height="400"></li>
+            <li class="scroll-infinity__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/loop-slider/img007.jpg" alt="" width="400" height="400"></li>
+          </ul>
+          <ul class="scroll-infinity__list scroll-infinity__list--left">
+            <li class="scroll-infinity__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/loop-slider/img001.jpg" alt="" width="400" height="400"></li>
+            <li class="scroll-infinity__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/loop-slider/img002.jpg" alt="" width="400" height="400"></li>
+            <li class="scroll-infinity__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/loop-slider/img003.jpg" alt="" width="400" height="400"></li>
+            <li class="scroll-infinity__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/loop-slider/img004.jpg" alt="" width="400" height="400"></li>
+            <li class="scroll-infinity__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/loop-slider/img005.jpg" alt="" width="400" height="400"></li>
+            <li class="scroll-infinity__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/loop-slider/img006.jpg" alt="" width="400" height="400"></li>
+            <li class="scroll-infinity__item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/loop-slider/img007.jpg" alt="" width="400" height="400"></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <?php /* 会社紹介動画 - 一時ストップ
     <section class="sec sec-medium sec-movie-company-information">
       <h2 class="title07" data-sub="Movie">会社紹介動画</h2>
       <figure class="movie-cover js-modal-video">
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/cover-movie-company-information.jpg" alt="" width="980" height="552">
       </figure>
     </section>
+    */ ?>
 <?php get_footer("recruit"); ?>

@@ -5,8 +5,8 @@
     </header>
 
     <div class="has-column js-fix-area">
-      <aside class="side-column js-fix-wrapper">
-        <ul class="category-list js-positionNav js-fix-item">
+      <aside class="side-column">
+        <ul class="category-list js-positionNav">
           <li class="cat-item is-active"><a href="#bland">ブランド</a></li>
           <li class="cat-item"><a href="#philosophy">経営理念</a></li>
           <li class="cat-item"><a href="#policy">経営方針</a></li>

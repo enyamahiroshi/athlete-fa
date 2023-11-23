@@ -112,28 +112,28 @@ window.addEventListener("scroll", function() {
     }
   });
 
-  //サイドナビ固定
-  // const $sideCateNav = $('.side-column');
-
-  // $(window).on('load resize scroll', function () {
-  //   if ($sideCateNav.length) {
-  //     if (window.matchMedia("(max-width: " + mqueryLG + ")").matches) {
-  //       const $fixedTiming = $sideCateNav.offset().top - 57;
-  //       if ($(this).scrollTop() > $fixedTiming) {
-  //         $sideCateNav.addClass($aadclass);
-  //       } else {
-  //         $sideCateNav.removeClass($aadclass);
-  //       }
-  //     } else {
-  //       const $fixedTiming = $sideCateNav.offset().top - 100;
-  //       if ($(this).scrollTop() > $fixedTiming) {
-  //         $sideCateNav.addClass($aadclass);
-  //       } else {
-  //         $sideCateNav.removeClass($aadclass);
-  //       }
-  //     }
-  //   }
-  // });
+  //サイドナビの変化
+  const $sideCateNav = $('.side-column');
+  $(window).on('load resize scroll', function () {
+    if ($sideCateNav.length) {
+      if (window.matchMedia("(max-width: " + mqueryLG + ")").matches) {
+        const $fixedTiming = $sideCateNav.offset().top - 58;
+        if ($(this).scrollTop() > $fixedTiming) {
+          $sideCateNav.addClass($aadclass);
+        } else {
+          $sideCateNav.removeClass($aadclass);
+        }
+      } else {
+        $sideCateNav.removeClass($aadclass);
+        // const $fixedTiming = $sideCateNav.offset().top - 127;
+        // if ($(this).scrollTop() > $fixedTiming) {
+        //   $sideCateNav.addClass($aadclass);
+        // } else {
+        //   $sideCateNav.removeClass($aadclass);
+        // }
+      }
+    }
+  });
 
   // pagetop固定
   const $pageTop = $('.button-page-top');
@@ -147,40 +147,6 @@ window.addEventListener("scroll", function() {
       $pageTop.removeClass($aadclass);
     }
   });
-
-
-  /* --------------------------------------------------
-    特定の範囲内で要素を固定
-  -------------------------------------------------- */
-  // $(window).on('load scroll', function() {
-  //   fix_element();
-  // });
-
-  // function fix_element() {
-  //   // 固定配置に使用する要素
-  //   var $fixWrapper = $('.js-fix-wrapper');
-  //   var $fix = $('.js-fix-item');
-  //   var $fixArea = $('.js-fix-area');
-
-  //   // 要素がある場合のみ処理
-  //   if($fixWrapper.length && $fix.length && $fixArea.length) {
-  //     var fixTop = $fixWrapper.offset().top;
-  //     var fixEnd = $fixArea.offset().top + $fixArea.height();
-  //     var fixHeight = $fix.height();
-  //     var winScroll = $(window).scrollTop();
-  //     var winheight = $(window).height();
-  //     // 開始位置を通過する前
-  //     if(winScroll < fixTop) {
-  //       $fix.removeClass($aadclass);
-  //     // 終了位置を通過した後
-  //     } else if(winScroll > fixEnd - fixHeight) {
-  //       $fix.removeClass($aadclass);
-  //     // 対象範囲内の場合
-  //     } else {
-  //       $fix.addClass($aadclass);
-  //     }
-  //   }
-  // }
 
 
   /* --------------------------------------------------

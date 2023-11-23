@@ -5,8 +5,8 @@
     </header>
 
     <div class="has-column js-fix-area">
-      <aside class="side-column js-fix-wrapper">
-        <ul class="category-list js-fix-item">
+      <aside class="side-column">
+        <ul class="category-list">
           <li class="cat-item is-active"><a href="<?php echo esc_url(home_url()); ?>/news/">すべて</a>
           <?php
           $args = array(

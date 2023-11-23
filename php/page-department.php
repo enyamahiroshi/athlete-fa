@@ -5,8 +5,8 @@
     </header>
 
     <div class="has-column js-fix-area">
-      <aside class="side-column js-fix-wrapper">
-        <ul class="category-list js-positionNav js-fix-item">
+      <aside class="side-column">
+        <ul class="category-list js-positionNav">
           <li class="cat-item is-active"><a href="#development">開発部</a></li>
           <li class="cat-item"><a href="#designing">設計部</a></li>
           <li class="cat-item"><a href="#manufacturing">製造部</a></li>

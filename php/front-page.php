@@ -74,7 +74,7 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-01.png" alt="ボールマウンタ" width="724" height="445">
                   </figure>
                   <div class="slider-item__data">
-                    <h2 class="slider-item__data__title" data-num="01">
+                    <h2 class="slider-item__data__title" data-num="01" data-name="Ball&#10;mounter">
                       ボールマウンタ
                     </h2>
                     <p class="slider-item__data__text">微小はんだボールをウェハや基板の上に配列させるための装置です。<br>はんだボール配列には当社独自の技術を採用し高スループットの生産性を実現しています。<br>最終製品はデータセンタ(DC)/ハイパフォーマンスコンピュータ(HPC)/5G等最先端のデバイスに展開されています。</p>
@@ -96,7 +96,7 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-02.png" alt="ボンディング" width="724" height="445">
                   </figure>
                   <div class="slider-item__data">
-                    <h2 class="slider-item__data__title" data-num="02">
+                    <h2 class="slider-item__data__title" data-num="02" data-name="Bonding">
                       ボンディング
                     </h2>
                     <p class="slider-item__data__text">フリップチップボンダおよびダイボンダは、幅広いラインナップ(R＆D～量産機)をご用意しており、フォトニクス/LD/イメージセンサを始めとした各種アプリケーションおよび各種実装プロセス向けに、高精度・高スループット装置として提供しています。</p>
@@ -118,7 +118,7 @@
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-03.png" alt="カスタム" width="724" height="445">
                   </figure>
                   <div class="slider-item__data">
-                    <h2 class="slider-item__data__title" data-num="03">
+                    <h2 class="slider-item__data__title" data-num="03" data-name="Custom">
                       カスタム
                     </h2>
                     <p class="slider-item__data__text">長年にわたり培った豊富な要素技術を組み合わせ、安全性と信頼性を確保し、多岐にわたるお客様のニーズを満たす新しい装置を生み出していきます。</p>

@@ -13,7 +13,7 @@
           <p class="president__message__catchcopy" data-sub="Create Future Arts">
             <strong>未来につながる技術の創造</strong>
           </p>
-          <div class="president__message__sign">代表取締役社長<em>山㟢 晋</em></div>
+          <div class="president__message__sign">代表取締役社長<em>山崎 晋</em></div>
         </div>
         <figure class="president__image">
           <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/message/img-president.jpg" alt="" width="570" height="808">

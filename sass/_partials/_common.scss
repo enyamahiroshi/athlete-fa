@@ -96,8 +96,28 @@
   z-index: 0;
   //side
   .side-column{
-    padding: 40px 15px 25px;
+    // padding: 40px 15px 25px;
+    padding: 25px 15px 20px;
     background-color: rgba($gray, 1);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 57px;
+    z-index: 9;
+    @include transition();
+    //固定時にサイズ変更
+    &.is-fixed{
+      padding: 15px 15px 10px;
+      .category-list{
+        // grid-template-columns: repeat(auto-fill, minmax(100px,1fr));
+        gap: 10px;
+        .cat-item{
+          a{
+            height: 26px;
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
   }
   //main
   .main-column{
@@ -129,6 +149,20 @@
       padding: 30px 0 100px;
       background-color: rgba($gray, 1);
       position: relative;
+      top: auto;
+      //固定時にサイズ変更 をスマホ時以外はリセット
+      &.is-fixed{
+        padding: 30px 0 100px;
+        .category-list{
+          gap: 12px;
+          .cat-item{
+            a{
+              height: 36px;
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
       & > *{
         margin: 0 auto;
         width: clamp(140px, 15.81vw, 215px);

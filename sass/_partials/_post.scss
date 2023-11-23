@@ -175,15 +175,6 @@
         background-color: rgba(#fff, 0);
         color: rgba($textBaseColor, 1);
       }
-      &:hover, &:active{
-        padding-left: 40px;
-        opacity: 1;
-        background-color: rgba(#fff, 1);
-        color: rgba($mainColor, 1);
-        &::before{
-          background-color: rgba($mainColor, 1);
-        }
-      }
     }
     //カレント
     &.current-cat a,
@@ -216,6 +207,12 @@
         }
         &:hover, &:active{
           padding-left: min(50px, calc(1.85vw + 15px));
+          opacity: 1;
+          background-color: rgba(#fff, 1);
+          color: rgba($mainColor, 1);
+          &::before{
+            background-color: rgba($mainColor, 1);
+          }
         }
       }
       //カレント

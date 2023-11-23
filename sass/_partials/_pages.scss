@@ -18,26 +18,6 @@
     margin-right: auto;
     width: 100%;
   }
-  //右下にスラッグ表示
-  &::after{
-    content: attr(data-sub);
-    font-family: $ff-en;
-    letter-spacing: -0.025em;
-    font-size: clamp(2rem, 15vw, 11.25em);
-    font-weight: 600;
-    color: rgba(#fff, 1);
-    line-height: 1;
-    text-transform: capitalize;
-    text-align: right;
-    white-space: nowrap;
-    width: 70%;
-    overflow: hidden;
-    position: absolute;
-    // right: 3px;
-    right: 0;
-    bottom: -0.2em;
-    z-index: -1;
-  }
   //地球儀背景
   &.--bg-earth::before{
     content: '';
@@ -100,7 +80,23 @@
     }
     //右下にスラッグ表示
     &::after{
+      content: attr(data-sub);
       width: calc(100% - clamp(250px,18.75vw,360px));
+      font-family: $ff-en;
+      letter-spacing: -0.025em;
+      font-size: clamp(2rem, 15vw, 11.25em);
+      font-weight: 600;
+      color: rgba(#fff, 1);
+      line-height: 1;
+      text-transform: capitalize;
+      text-align: right;
+      white-space: nowrap;
+      overflow: hidden;
+      position: absolute;
+      // right: 3px;
+      right: 0;
+      bottom: -0.2em;
+      z-index: -1;
     }
     //地球儀背景
     &.--bg-earth::before{
@@ -400,7 +396,6 @@
   position: relative;
   z-index: 0;
   .mv__movie{
-    background-color: $textBaseColor;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -410,7 +405,12 @@
     bottom: 0;
     z-index: -1;
     overflow: hidden;
+    //スマホ時は背景画像
+    background-image: url(./assets/images/home/bg-mv-sp.jpg);
+    background-position: 37% center;
+    background-size: cover;
     .mv__movie__video{
+      display: none;
       width: 100%;
       height: 100%;
       -o-object-fit: cover;
@@ -420,7 +420,7 @@
     }
     //動画の上に網掛け
     &::after{
-      content: '';
+      content: none;
       width: 100%;
       height: 100%;
       background-image: url(./assets/images/common/bg-amikake.png);
@@ -452,6 +452,16 @@
 }
 @include res_min( map-get($BP, md) ){
   .mv{
+    .mv__movie{
+      background-color: $textBaseColor;
+      .mv__movie__video{
+        display: block;
+      }
+      //動画の上に網掛け
+      &::after{
+        content: '';
+      }
+    }
     //グラデ
     &::before{
       content: '';
@@ -542,7 +552,8 @@
   .cta-recruit{
     left: auto;
     right: 30px;
-    bottom: 30px;
+    // bottom: 30px;
+    bottom: min(64px, 5vw);
     transform: translate(0, 0);
   }
 }
@@ -715,6 +726,8 @@
       font-weight: 600;
       letter-spacing: 0;
       line-height: 1.4;
+      position: relative;
+      z-index: 1;
       &::before{
         content: attr(data-num);
         margin-right: 20px;
@@ -722,6 +735,48 @@
         font-size: 3.2rem;
         font-weight: 600;
       }
+      //個別に背景にテキスト画像追加
+      &::after{
+        content: attr(data-name);
+        width: auto;
+        height: auto;
+        font-family: $ff-en;
+        font-size: clamp(5rem, 14vw, 10rem);
+        letter-spacing: -0.025em;
+        line-height: 0.7;
+        color: #E6E6E6;
+        mix-blend-mode: multiply;
+        white-space: pre; //data属性に「&#10;」を入れて改行する
+        position: absolute;
+        right: 2%;
+        bottom: -0.1em;
+        z-index: -1;
+        pointer-events: none;
+        // ▼背景画像の場合
+        // content: '';
+        // width: 150%;
+        // height: 100%;
+        // height: 500px;
+        // // background-color: rgba($mainColor, 0.4);
+        // background-repeat: no-repeat;
+        // background-position: center bottom;
+        // background-size: 100%;
+        // position: absolute;
+        // left: 50%;
+        // bottom: 18%;
+        // transform: translateX(-50%);
+        // z-index: -1;
+        // pointer-events: none;
+      }
+      // &[data-num="01"]::after{
+      //   background-image: url(./assets/images/home/txt-our-products-1.svg);
+      // }
+      // &[data-num="02"]::after{
+      //   background-image: url(./assets/images/home/txt-our-products-2.svg);
+      // }
+      // &[data-num="03"]::after{
+      //   background-image: url(./assets/images/home/txt-our-products-3.svg);
+      // }
     }
     .slider-item__data__text{
       margin-top: clamp(5px, 2.8vw, 20px);
@@ -838,10 +893,17 @@
         margin-top: 0;
         padding-bottom: 13px;
         font-size: clamp(1.125rem, -0.2583rem + 2.8819vw, 3.2rem);
-        position: relative;
         &::before{
           margin-right: 24px;
           font-size: clamp(1.125rem, -1.8583rem + 6.2153vw, 5.6rem);
+        }
+        //個別に背景にテキスト画像追加
+        &::after{
+          font-size: 16.9rem;
+          left: 50%;
+          right: auto;
+          bottom: 18%;
+          transform: translateX(-50%);
         }
       }
       .slider-item__data__text{
@@ -850,31 +912,6 @@
       }
       .button-r-link-large{
         margin-top: clamp(15px, 3.08vw, 40px);
-      }
-      //個別に背景にテキスト画像追加
-      .slider-item__data__title::after{
-        content: '';
-        width: 150%;
-        height: 100%;
-        height: 500px;
-        background-repeat: no-repeat;
-        background-position: center bottom;
-        background-size: 100%;
-        position: absolute;
-        left: 50%;
-        bottom: 18%;
-        transform: translateX(-50%);
-        z-index: -1;
-        pointer-events: none;
-      }
-      .slider-item__data__title[data-num="01"]::after{
-        background-image: url(./assets/images/home/txt-our-products-1.svg);
-      }
-      .slider-item__data__title[data-num="02"]::after{
-        background-image: url(./assets/images/home/txt-our-products-2.svg);
-      }
-      .slider-item__data__title[data-num="03"]::after{
-        background-image: url(./assets/images/home/txt-our-products-3.svg);
       }
     }
   }
@@ -2425,8 +2462,15 @@
     margin-top: 25px;
     width: 100vw;
     mix-blend-mode: overlay;
+    overflow: hidden;
     .loop-slider{
+      opacity: 0;
+      &.is-action{
+        opacity: 1;
+      }
       img{
+        width: auto;
+        max-width: unset;
         height: 70px;
       }
     }
@@ -3190,6 +3234,13 @@ p.staff-data__text{
     margin-top: 75px;
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+.sec-join-our-team-recruit{}
+@include res_min( map-get($BP, md) ){
+  .sec-join-our-team-recruit{
+    padding-top: 80px;
   }
 }
 

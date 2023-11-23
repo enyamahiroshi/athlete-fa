@@ -5,8 +5,8 @@
     </header>
 
     <div class="has-column js-fix-area">
-      <aside class="side-column js-fix-wrapper">
-        <ul class="category-list js-positionNav js-fix-item">
+      <aside class="side-column">
+        <ul class="category-list js-positionNav">
           <li class="cat-item is-active"><a href="#outline">会社概要</a></li>
           <li class="cat-item"><a href="#access">アクセス</a></li>
         </ul>
@@ -32,7 +32,7 @@
             <tr>
               <th>代表者</th>
               <td>
-                <p>代表取締役社長　山㟢晋</p>
+                <p>代表取締役社長　山崎晋</p>
               </td>
             </tr>
             <tr>
@@ -98,7 +98,7 @@
             <div class="access__data">
               <div class="access__data__title">第二工場</div>
               <p>〒392-0012<br>長野県諏訪市四賀2930-1</p>
-              <p></span><a href="https://maps.app.goo.gl/cA3hB8PFXt1N2xdd8" target="_blank" rel="noopener noreferrer" class="ff-en after-icon after-icon--map">Google Map</a></p>
+              <p></span><a href="https://maps.app.goo.gl/BCdhpAB8PQP89Aim7" target="_blank" rel="noopener noreferrer" class="ff-en after-icon after-icon--map">Google Map</a></p>
             </div>
             <figure class="access__image">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/about/img-company-daini.jpg" alt="" width="687" height="457">

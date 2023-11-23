@@ -77,10 +77,9 @@ $headerHighPC: 127;
   グローバルメニュー
 ---------------------------------------------------------------- */
 .global-menu{
-  @include transition(opacity);
+  transition: opacity ease-in-out 0.3s;
   @include flex(nowrap, flex-start, stretch);
   flex-direction: column;
-
   opacity: 0;
   padding: 92px 15px 120px;
   background-color: $gray;
@@ -92,6 +91,18 @@ $headerHighPC: 127;
   top:  0;
   pointer-events: none;
   z-index: 9;
+  .menu-item:not(.menu-item-has-children){
+    a{
+      display: block;
+      padding: 20px 15px;
+    }
+  }
+  .menu-item.menu-item-has-children{
+    a{
+      display: inline-flex;
+      padding: 20px 15px;
+    }
+  }
 }
 @include res_min( map-get($BP, lg) ){
   .global-menu{
@@ -105,6 +116,16 @@ $headerHighPC: 127;
     pointer-events: visible;
     position: relative;
     top: auto;
+    .menu-item:not(.menu-item-has-children){
+      a{
+        padding: 0;
+      }
+    }
+    .menu-item.menu-item-has-children{
+      a{
+        padding: 0;
+      }
+    }
   }
 }
 
@@ -769,18 +790,6 @@ body.is-open{
   pointer-events: visible;
   // overscroll-behavior-y: contain;
   // overflow-y: auto;
-  .menu-item:not(.menu-item-has-children){
-    a{
-      display: block;
-      padding: 20px 15px;
-    }
-  }
-  .menu-item.menu-item-has-children{
-    a{
-      display: inline-flex;
-      padding: 20px 15px;
-    }
-  }
   //サブメニュー
   .sub-menu{
     margin-top: -10px;
