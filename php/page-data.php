@@ -34,8 +34,8 @@
               <span class="counter data-value" data-label="国内" data-unit="%" data-num="20">0</span>
             </div>
             <?php //円グラフ ?>
-            <div class="data-item chart-area js-data-circle-uriagehiritsu">
-              <canvas id="data-circle-uriagehiritsu"></canvas>
+            <div class="data-item chart-area">
+              <canvas id="data-circle-uriagehiritsu" class="js-data-circle-uriagehiritsu"></canvas>
             </div>
             <?php //カウント ?>
             <div class="data-item js-start-counter">
@@ -234,8 +234,8 @@
           <h3 class="data-set__title">年齢構成比</h3>
           <div class="data-set__content data-set-nenreihi">
             <?php //ドーナツ円グラフ ?>
-            <div class="data-item chart-area js-chart-doughnut-nenreikoseihi">
-              <canvas id="chart-doughnut-nenreikoseihi"></canvas>
+            <div class="data-item chart-area">
+              <canvas id="chart-doughnut-nenreikoseihi" class="js-chart-doughnut-nenreikoseihi"></canvas>
               <?php //カウント ?>
               <div class="data-item data-count-1 js-start-counter">
                 <span class="counter data-value" data-label="20代" data-unit="%" data-num="24">0</span>
@@ -391,8 +391,8 @@
           <h3 class="data-set__title">有給休暇取得率</h3>
           <div class="data-set__content data-set-yukyusyutokuritsu">
             <?php //円グラフ ?>
-            <div class="data-item chart-area js-data-circle-yukyusyutokuritsu">
-              <canvas id="data-circle-yukyusyutokuritsu"></canvas>
+            <div class="data-item chart-area">
+              <canvas id="data-circle-yukyusyutokuritsu" class="js-data-circle-yukyusyutokuritsu"></canvas>
             </div>
             <?php //カウント ?>
             <div class="data-item js-start-counter">

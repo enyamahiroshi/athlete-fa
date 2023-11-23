@@ -28,7 +28,7 @@ a{
 a img{
   opacity: 1;
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   a img{
    @include transition(opacity);
     -webkit-backface-visibility: hidden;
@@ -115,7 +115,7 @@ a img{
     }
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .button-wrap{
     gap: 1.5em 3.5em;
     padding: 10px 0;
@@ -214,7 +214,7 @@ a img{
     }
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .button{
     // 基本
     min-height: 60px;
@@ -348,7 +348,7 @@ a img{
     }
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .link-item01{
     padding: 38px 65px 38px 20px;
     @include transition(all, 0.3);
@@ -574,7 +574,7 @@ svg.circle-ani{
   position: relative;
   z-index: 1;
   overflow: hidden;
-  @include res_min(){
+  @include res_min( map-get($BP, md) ){
     overflow: visible;
   }
   .svg-area{
@@ -597,7 +597,7 @@ svg.circle-ani{
     transition: all cubic-bezier(0.35, 0.01, 0, 0.98) 1.5s;
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .button-circle-ani{
     &:hover{
       //広がりながら消える丸
@@ -776,7 +776,7 @@ a[target="_blank"]:not(:is(.no-blank-image, .button-r-link-large, .cta-entry__bu
     text-decoration: none;
   }
 }
-// @include res_min(){
+// @include res_min( map-get($BP, md) ){
 //   .link-tel{
 //     pointer-events: none;
 //   }

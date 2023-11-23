@@ -69,7 +69,7 @@ get_header(); ?>
       <?php endif; ?>
       <?php //CTAボタン ?>
       <?php if( is_page('new-graduates') ): ?>
-      <a href="<?php echo esc_url(home_url()); ?>/recruit/internship/" class="cta-recruit --new-graduates">
+      <a href="<?php echo esc_url(home_url()); ?>/recruit/internship/" class="cta-recruit cta-recruit--button --new-graduates">
         <div class="cta-recruit__title">INTERNSHIP</div>
         <div class="cta-recruit__subtext">アスリートFAを体験する！</div>
         <div class="cta-recruit__text">インターンシップ情報</div>
@@ -78,7 +78,7 @@ get_header(); ?>
         </div>
       </a>
       <?php elseif( is_page('career') ): ?>
-      <a href="<?php echo esc_url(home_url()); ?>/recruit/entry/" class="cta-recruit">
+      <a href="<?php echo esc_url(home_url()); ?>/recruit/entry/" class="cta-recruit cta-recruit--button">
         <div class="cta-recruit__title">ENTRY</div>
         <div class="cta-recruit__text">エントリーフォーム</div>
         <div class="cta-recruit__navi">
@@ -127,7 +127,7 @@ get_header(); ?>
           <p class="future-arts__data__text">社名の通り、スポーツ用品メーカー､､､ではありません。<br>アスリートFA株式会社は、長野県諏訪市で工場自動化設備（FA装置）の開発、設計、製造、販売を行っている会社です。社名には弊社が属する産業技術のフィールドにおいて、アスリートのように力強く限界に挑戦し続け、Future Arts（未来につながる技術）の創造を成し遂げ続けたい、という思いが込められています。そして、その中で培われた技術力で、お客様の未到達領域への挑戦をサポートすることこそが我々の使命だと考えています。</p>
         </div>
         <figure class="future-arts__image">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/<?php echo $catSlug; ?>/img-future-arts-image01.jpg" alt="" width="750" height="531">
+          <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/<?php echo $catSlug; ?>/img-future-arts-image01.jpg" alt="" width="750" height="531">
         </figure>
       </div>
       <div class="future-arts">
@@ -142,7 +142,7 @@ get_header(); ?>
           <p class="future-arts__data__text">が、私たち社員ひとりひとりに求められています。</p>
         </div>
         <figure class="future-arts__image">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/<?php echo $catSlug; ?>/img-future-arts-image02.jpg" alt="" width="750" height="531">
+          <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/<?php echo $catSlug; ?>/img-future-arts-image02.jpg" alt="" width="750" height="531">
         </figure>
       </div>
       <div class="future-arts">
@@ -151,7 +151,7 @@ get_header(); ?>
           <p class="future-arts__data__text"><?php if( is_page('new-graduates') ){ echo '装置の開発から設計、製造に至るまで、ありとあらゆる場面で新しい技術に触れることになります。新たなことへのチャレンジは決して楽な道のりではありませんし、苦悩することもあります。でも大丈夫。行き詰ったときには声をかけてください。必ず先輩社員や周りの仲間たちが力になってくれます。<br>私たちと一緒にFuture Artsの創造をしてみませんか？'; } elseif( is_page('career') ){ echo '技術の進歩、社会的背景に伴い、企業のあり方や人々の働き方は日々変化を続けています。これからの時代を生き抜く持続可能な企業であり続けるために、弊社も一歩ずつ着実に成長を重ねていかなければなりません。社会に対してより存在意義のある会社になるために、従業員にとってより働きやすい会社となるために、多様な人材の価値観を取り入れ、新しい風を吹かせていきたいと考えています。アスリートFAの未来への一歩に、ぜひあなたの力を貸してください。'; } ?></p>
         </div>
         <figure class="future-arts__image">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/<?php echo $catSlug; ?>/img-future-arts-image03.jpg" alt="" width="750" height="531">
+          <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/<?php echo $catSlug; ?>/img-future-arts-image03.jpg" alt="" width="750" height="531">
         </figure>
       </div>
     </section>

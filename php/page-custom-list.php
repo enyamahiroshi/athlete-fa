@@ -9,7 +9,7 @@
     <?php
     $args = array(
       'post_type' => 'products',
-      'posts_per_page' => 12,
+      'posts_per_page' => 30,
       'tax_query' => array(
         array(
           'taxonomy' => 'products-category',
@@ -29,20 +29,25 @@
         $tag_name = $termTagTax[0]->name;
         $tag_slug = $termTagTax[0]->slug;
         //カスタムフィールドより
-        $imageID = get_field('product-image');
-        if($imageID){
-          $imageSRC = wp_get_attachment_image_src($imageID, 'medium');
-        }
+        $mainImg = SCF::get('product-image');
         ?>
         <li class="product-list__item">
           <a href="<?php the_permalink(); ?>" class="product-link">
             <h2 class="product-name"><?php the_title(); ?></h2>
             <div class="product-item-data">
               <figure class="product-item-image">
-                <img src="<?php echo $imageSRC[0]; ?>" >
+                <?php
+                if($mainImg){
+                  echo wp_get_attachment_image($mainImg, 'medium');
+                } else {
+                  echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/common/no-image.png" alt="" width="1840" height="1226">';
+                }
+                ?>
               </figure>
-              <ul class="product-tags">
-                <li class="product-tag"><?php echo $tag_name; ?></li>
+              <ul class="product-tag">
+              <?php foreach ($termTagTax as $termTag): ?>
+                <li class="product-tag__name"><?php echo $termTag->name; ?></li>
+              <?php endforeach; ?>
               </ul>
               <span class="button-r-link-large button-circle-ani">
                 <span class="svg-area">

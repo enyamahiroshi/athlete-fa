@@ -49,7 +49,7 @@ textarea {
     // background-color: #f1f1f1;
   }
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   label {}
   input:is([type="email"],[type="number"],[type="password"],[type="search"],[type="tel"],[type="text"],[type="url"]),
   select,
@@ -63,7 +63,7 @@ textarea {
   width: 100%;
   min-height: 10em;
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   textarea {
     min-height: 26em;
   }
@@ -72,7 +72,7 @@ textarea {
 input{
   &.size-small{
     width: 9em;
-    @include res_min() {
+    @include res_min( map-get($BP, md) ) {
       width: 18em;
     }
   }
@@ -97,7 +97,7 @@ input{
 .form-contents{
   margin-top: 15px;
   font-size: 1.6rem;
-  @include res_min() {
+  @include res_min( map-get($BP, md) ) {
     font-size: 1.7rem;
   }
 
@@ -113,7 +113,7 @@ input{
     }
     position: relative;
   }
-  @include res_min() {
+  @include res_min( map-get($BP, md) ) {
     .item {
       padding: 35px 0;
       @include flex(nowrap, flex-start, stretch);
@@ -131,7 +131,7 @@ input{
       font-size: 0.88em;
     }
   }
-  @include res_min() {
+  @include res_min( map-get($BP, md) ) {
     .item__label {
       flex: 0 0 32%;
       padding: 0 1em 0 0;
@@ -156,7 +156,7 @@ input{
       }
     }
   }
-  @include res_min() {
+  @include res_min( map-get($BP, md) ) {
     .item__input {
       flex: 1 1 68%;
       .item__input__block{
@@ -207,7 +207,7 @@ input{
           position: absolute;
           top: 0.2em;
           left: 0;
-          @include res_min() {
+          @include res_min( map-get($BP, md) ) {
             top: 0.25em;
           }
         }
@@ -315,7 +315,7 @@ input{
     //   cursor: pointer;
     // }
   }
-  @include res_min() {
+  @include res_min( map-get($BP, md) ) {
     .custom-select {
       // flex: 0 0 350px !important;
       select {
@@ -353,7 +353,7 @@ input{
     font-size: 1.5rem;
     line-height: 1.3;
   }
-  @include res_min() {
+  @include res_min( map-get($BP, md) ) {
     .custom-file{
       padding: 15px 34px;
       margin-top: -22px;
@@ -370,7 +370,7 @@ input{
 // 個人情報同意
 // ---------------------------------------*/
   .item--privacy_policy{}
-  @include res_min() {
+  @include res_min( map-get($BP, md) ) {
     .item--privacy_policy{
       flex-direction: column;
       -moz-row-gap: 32px;
@@ -416,7 +416,7 @@ input{
       }
     }
   }
-  @include res_min() {
+  @include res_min( map-get($BP, md) ) {
     .include-privacy_policy{
       padding: 20px 14px 20px 0;
       margin-top: 0;
@@ -452,7 +452,7 @@ input{
   .button-wrap{
     margin-top: 50px;
   }
-  @include res_min() {
+  @include res_min( map-get($BP, md) ) {
     .button-wrap{
       margin-top: 55px;
       .button--gray{
@@ -490,7 +490,7 @@ input{
     .item__label {
       font-weight: 500;
     }
-    @include res_min() {
+    @include res_min( map-get($BP, md) ) {
       .item__label {
         margin-top: 0;
       }
@@ -505,7 +505,7 @@ input{
         }
       }
     }
-    @include res_min() {
+    @include res_min( map-get($BP, md) ) {
       .item__input {
         .item__input__block{
           &:first-of-type{

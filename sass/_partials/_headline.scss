@@ -31,7 +31,7 @@
     letter-spacing: 0.05em;
   }
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   .title01 {
     font-size: 2rem;
     .italic{
@@ -69,7 +69,7 @@
     letter-spacing: 0.05em;
   }
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   .title02{
     font-size: 8rem;
     &::before{
@@ -99,7 +99,7 @@
     margin-bottom: 14px;
   }
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   .title04{
     font-size: 3.2rem;
     &::before{
@@ -124,7 +124,7 @@
     margin-bottom: 15px;
   }
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   .title05{
     margin-bottom: 60px;
     &:not(:first-of-type){
@@ -163,7 +163,7 @@
     top: 8px;
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .title06{
     &::before{
       margin-bottom: 12px;
@@ -185,7 +185,7 @@
     letter-spacing: 0.05em;
   }
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   .title07{
     font-size: 3.2rem;
     &::before{
@@ -209,7 +209,7 @@
     margin-top: 0.2em;
   }
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   .title08{
     font-size: 3.2rem;
   }
@@ -224,7 +224,7 @@
     margin-top: 0;
   }
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   .title09{
     font-size: 2.8rem;
   }

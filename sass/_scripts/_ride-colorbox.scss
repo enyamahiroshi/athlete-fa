@@ -53,7 +53,7 @@
   background-position: center !important;
   opacity: 0.7 !important;
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   #cboxClose{
     background-size: auto !important;
     width:80px !important;

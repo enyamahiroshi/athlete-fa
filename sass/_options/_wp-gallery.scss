@@ -42,7 +42,7 @@
   .gallery-caption { //キャプション
   }
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   .gallery { //ギャラリーを囲むボックス
     max-width: 1000px;
     padding: 0;

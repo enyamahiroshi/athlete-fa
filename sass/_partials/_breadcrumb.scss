@@ -45,7 +45,7 @@
     }
   }
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   .breadcrumb-navi {
     padding: 13px 18px;
     margin-left: 0;

@@ -75,7 +75,7 @@
             <tr>
               <th>取引先銀行</th>
               <td>
-                <p>八十二銀行諏訪<br>三井住友銀行諏訪<br>商工中金諏訪<br>長野銀行諏訪<br>諏訪信用金庫飯島</p>
+                <p>八十二銀行諏訪支店<br>三井住友銀行諏訪支店<br>商工中金諏訪支店<br>長野銀行諏訪支店<br>諏訪信用金庫飯島支店</p>
               </td>
             </tr>
           </table>
@@ -98,7 +98,7 @@
             <div class="access__data">
               <div class="access__data__title">第二工場</div>
               <p>〒392-0012<br>長野県諏訪市四賀2930-1</p>
-              <p></span><a href="https://maps.app.goo.gl/dnEMheRagnespc1Z7" target="_blank" rel="noopener noreferrer" class="ff-en after-icon after-icon--map">Google Map</a></p>
+              <p></span><a href="https://maps.app.goo.gl/cA3hB8PFXt1N2xdd8" target="_blank" rel="noopener noreferrer" class="ff-en after-icon after-icon--map">Google Map</a></p>
             </div>
             <figure class="access__image">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/about/img-company-daini.jpg" alt="" width="687" height="457">

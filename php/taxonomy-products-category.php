@@ -6,45 +6,34 @@
     </header>
 
     <section class="sec sec-medium">
-    <?php
-    $taxonomy = get_query_var('taxonomy');
-    $term = get_query_var('term');
-    $args = array(
-      'post_type' => 'products',
-      'posts_per_page' => 3,
-      'tax_query' => array(
-        array(
-          'taxonomy' => $taxonomy,
-          'field' => 'slug',
-          'terms' => array($term),
-        ),
-      ),
-      'paged' => $paged,
-    );
-    $the_query = new WP_Query( $args );
-    if( $the_query->have_posts() ): ?>
+    <?php if( have_posts() ): ?>
       <ul class="product-list">
-        <?php while( $the_query->have_posts() ): $the_query->the_post(); ?>
+        <?php while( have_posts() ): the_post(); ?>
         <?php
         //カスタム投稿タイプのタクソノミーからタームを抽出
         $termTagTax = get_the_terms(get_the_ID(), 'products-tag');
         $tag_name = $termTagTax[0]->name;
         $tag_slug = $termTagTax[0]->slug;
         //カスタムフィールドより
-        $imageID = get_field('product-image');
-        if($imageID){
-          $imageSRC = wp_get_attachment_image_src($imageID, 'medium');
-        }
+        $mainImg = SCF::get('product-image');
         ?>
         <li class="product-list__item">
           <a href="<?php the_permalink(); ?>" class="product-link">
             <h2 class="product-name"><?php the_title(); ?></h2>
             <div class="product-item-data">
               <figure class="product-item-image">
-                <img src="<?php echo $imageSRC[0]; ?>" >
+                <?php
+                if($mainImg){
+                  echo wp_get_attachment_image($mainImg, 'medium');
+                } else {
+                  echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/common/no-image.png" alt="" width="1840" height="1226">';
+                }
+                ?>
               </figure>
-              <ul class="product-tags">
-                <li class="product-tag"><?php echo $tag_name; ?></li>
+              <ul class="product-tag">
+              <?php foreach ($termTagTax as $termTag): ?>
+                <li class="product-tag__name"><?php echo $termTag->name; ?></li>
+              <?php endforeach; ?>
               </ul>
               <span class="button-r-link-large button-circle-ani">
                 <span class="svg-area">
@@ -68,7 +57,7 @@
 
       //WP_Queryでメインクエリではないループを使用している場合必要（'paged' => $paged,も）
       $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
-      $GLOBALS['wp_query']->max_num_pages = $the_query->max_num_pages;
+      // $GLOBALS['wp_query']->max_num_pages = $the_query->max_num_pages;
 
       the_posts_pagination(
         array(

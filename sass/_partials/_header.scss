@@ -249,7 +249,7 @@ $headerHighPC: 127;
         position: relative;
         //ラベルとして利用する.menu-item
         &.link-label > a{
-          pointer-events: visible;
+          // pointer-events: visible;
         }
         a{
           &:hover, &:active{

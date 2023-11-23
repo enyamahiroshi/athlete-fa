@@ -17,7 +17,7 @@
   font-weight: 500;
   line-height: 1;
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .post-date{
   }
 }
@@ -47,7 +47,7 @@
   font-size: 1.6rem;
   line-height: 1.5;
   @include transition();
-  @include res_min(){
+  @include res_min( map-get($BP, md) ){
     font-size: 1.8rem;
   }
 }
@@ -114,7 +114,7 @@
     }
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .post-list{
     .post-list__item{
       //リンク
@@ -202,7 +202,7 @@
     }
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .category-list{
     gap: 12px;
     position: -webkit-sticky;
@@ -317,7 +317,7 @@ $pageNBtnL: 40;
     }
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .navigation.pagination{
     margin-top: 86px;
     .nav-links{
@@ -457,7 +457,7 @@ $pageNBtnL: 40;
     }
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .post-navi{
     margin-top: 110px;
 
@@ -488,7 +488,7 @@ $pageNBtnL: 40;
 //まだ記事はありません
 .not-post{
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .not-post{
   }
 }
@@ -528,15 +528,20 @@ $pageNBtnL: 40;
 }
 .product-tag{
   margin-top: 10px;
-  background-color: rgba($textBaseColor, 1);
-  font-family: $ff-en;
-  font-size: 1.6rem;
-  letter-spacing: 0;
-  color: rgba(#fff, 1);
-  text-align: center;
-  @include transition();
+  .product-tag__name{
+    &:not(:first-of-type){
+      margin-top: 6px;
+    }
+    background-color: rgba($textBaseColor, 1);
+    font-family: $ff-en;
+    font-size: 1.6rem;
+    letter-spacing: 0;
+    color: rgba(#fff, 1);
+    text-align: center;
+    @include transition();
+  }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .product-name{
     margin-top: 15px;
     font-size: 6rem;
@@ -545,7 +550,9 @@ $pageNBtnL: 40;
     font-size: 2rem;
   }
   .product-tag{
-    font-size: 1.8rem;
+    .product-tag__name{
+      font-size: 1.8rem;
+    }
   }
 }
 
@@ -562,6 +569,11 @@ $pageNBtnL: 40;
       @include flex(nowrap, flex-start, stretch);
       flex-direction: column-reverse;
       position: relative;
+      .product-name{
+        br{
+          display: none;
+        }
+      }
       &:link, &:visited{
         color: rgba($textBaseColor, 1);
       }
@@ -570,7 +582,9 @@ $pageNBtnL: 40;
           color: rgba($mainColor, 1);
         }
         .product-tag{
-          background-color: rgba($mainColor, 1);
+          .product-tag__name{
+            background-color: rgba($mainColor, 1);
+          }
         }
         //丸ボタンアニメーション：ホバー設定
         .button-r-link-large{
@@ -613,13 +627,19 @@ $pageNBtnL: 40;
         left: 50%;
         transform: translate(-50%,-50%);
         z-index: -1;
+        img{
+          width: 100%;
+          height: 100%;
+          -o-object-fit: cover;
+             object-fit: cover;
+        }
       }
-      .product-tags{
+      .product-tag{
         display: inline-flex;
         flex-direction: column;
         gap: 3px;
         margin: 10px 0 0 -10px;
-        .product-tag{
+        .product-tag__name{
           padding-left: 10px;
           padding-right: 10px;
           margin-top: 0;
@@ -715,9 +735,9 @@ $pageNBtnL: 40;
           width: 85%;
           height: 85%;
         }
-        .product-tags{
+        .product-tag{
           margin: 23px 0 0 -8px;
-          .product-tag{
+          .product-tag__name{
             padding-left: 18px;
             padding-right: 18px;
             margin-top: 0;
@@ -739,7 +759,7 @@ $pageNBtnL: 40;
     &.product-list--archive{
       margin-top: 0;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0 32px;
+      gap: 70px 32px;
       //各アイテム
       .product-list__item{
         //イメージ+tag表示

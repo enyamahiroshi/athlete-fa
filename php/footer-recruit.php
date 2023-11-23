@@ -34,7 +34,7 @@
 </section>
 <?php elseif( is_page( 'internship' ) ): ?>
 <section class="sec sec-small sec-cta-entry">
-  <a href="https://job.mynavi.jp/24/pc/search/corp91106/outline.html" target="_blank" rel="noopener noreferrer" class="cta-entry cta-entry--black no-blank-image">
+  <a href="https://job.mynavi.jp/25/pc/search/corp91106/is.html" target="_blank" rel="noopener noreferrer" class="cta-entry cta-entry--black no-blank-image">
     <div class="inner">
       <div class="cta-titles">
         <h2 class="cta-titles__title">インターンシップ<br>お申込み</h2>
@@ -79,7 +79,7 @@
   <p class="info-text">ご不明点などはお気軽にご連絡ください。お電話もしくはお問い合わせフォームにて承っております。</p>
   <div class="cta-contact-recruit">
     <div class="cta-item cta-item--tel">
-      <p class="cta-item__tel"><span>TEL:</span>0266-53-3369</p>
+      <p class="cta-item__tel"><span>TEL:</span><a href="tel:0266-53-3369">0266-53-3369</a></p>
       <p class="cta-item__sub">採用担当宛</p>
     </div>
     <div class="cta-item cta-item--link">

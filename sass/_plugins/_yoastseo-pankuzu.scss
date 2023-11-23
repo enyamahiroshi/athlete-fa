@@ -51,7 +51,7 @@
     &.breadcrumb_last {}
   }
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   .bread-navi {
     padding-bottom: 25px;
     font-size: 1.5rem;

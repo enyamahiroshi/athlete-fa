@@ -67,7 +67,7 @@ $bg-hover: $mainColor;
   padding: 0 20px;
   white-space: nowrap;
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   // wrap
   .wp-pagenavi {
     margin: 5em auto 1em;

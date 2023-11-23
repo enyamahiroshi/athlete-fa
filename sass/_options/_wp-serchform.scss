@@ -31,7 +31,7 @@
     }
   }
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   #searchform {
     width: auto;
     margin-right: 10px;

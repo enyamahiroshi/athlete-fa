@@ -73,7 +73,7 @@
 .flex-direction-nav{
   display: none;
 }
-@include res_min() {
+@include res_min( map-get($BP, md) ) {
   // ▼▼▼ ギャラリープラグイン「」のスタイルを上書き ▼▼▼
   // ギャラリーコンテンツ外枠
   .flexslider{

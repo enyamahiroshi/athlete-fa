@@ -53,53 +53,33 @@ window.addEventListener("scroll", function() {
 });
 
 
-/* --------------------------------------------------
-  スクロールに応じてメニューの状態を変化する
-  参考下記でネイティブJSに書き換えた
-  https://www.rootstyledesign.com/blog/%E3%80%90jquery%E3%80%91%E3%82%B9%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%9F%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E3%81%AB%E5%BF%9C%E3%81%98%E3%81%A6%E5%A4%89%E5%8C%96%E3%81%99%E3%82%8B%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC
--------------------------------------------------- */
-const presentTop = [];
-const activeClass = "is-active";
-
-function presentCheck() {
-  const headerHeight = document.querySelector(".js-positionNav").offsetHeight;
-  const targets = document.querySelectorAll(".js-positionNav-target");
-
-  for (let i = 0; i < targets.length; i++) {
-    const targetOffsetTop = targets[i].offsetTop - headerHeight;
-    presentTop[i] = Math.round(targetOffsetTop);
-  }
-}
-
-function scAnime() {
-  const scrollTop = document.documentElement.scrollTop;
-  const navBlocks = document.querySelectorAll(".js-positionNav li");
-
-  for (let i = 0; i < navBlocks.length; i++) {
-    navBlocks[i].classList.remove(activeClass);
-  }
-
-  for (let i = 0; i < presentTop.length; i++) {
-    if (scrollTop >= 0 && scrollTop < presentTop[i]) {
-      navBlocks[0].classList.add(activeClass);
-      break;
-    } else if (scrollTop >= presentTop[i] && (i === presentTop.length - 1 || scrollTop < presentTop[i + 1])) {
-      navBlocks[i].classList.add(activeClass);
-      break;
-    }
-  }
-}
-
-window.addEventListener('load', presentCheck);
-window.addEventListener('resize', presentCheck);
-window.addEventListener('scroll', scAnime);
-
-
-
 /* ----------------------------------------------------------------------------------- */
 //jQuery
 /* ----------------------------------------------------------------------------------- */
 (function ($) {
+
+  /* --------------------------------------------------
+    スクロールによるメニューの変化
+    https://web-creates.com/code/jquery-menu-change/
+  -------------------------------------------------- */
+  $(window).on('load scroll resize', function () {
+
+    var st = $(window).scrollTop();
+    var wh = $(window).height();
+
+    $('.js-positionNav-target').each(function (i) {
+      var tg = $(this).offset().top;
+      var id = $(this).attr('id');
+
+      if (st > tg - wh + (wh / 1.2)) {
+        $(".js-positionNav li").removeClass("is-active");
+        var link = $(".js-positionNav li a[href *= " + id +"]").parent("li");
+        $(link).addClass("is-active");
+      }
+    });
+
+  });
+
 
   /* --------------------------------------------------
     スクロールで処理

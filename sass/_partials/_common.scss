@@ -36,7 +36,7 @@
     background-color: rgba($gray, 1);
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .main{}
 }
 
@@ -54,7 +54,7 @@
 .sec-wide{}
 .sec-medium{}
 .sec-small{}
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .sec{
     padding-left: 50px;
     padding-right: 50px;
@@ -185,7 +185,7 @@
 .custom-list .sec-bread-navi{
   background-color: rgba($gray, 1);
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .sec-bread-navi{
     margin-top: 200px;
     //複数カラム内
@@ -216,12 +216,12 @@
 
 // SPで表示
 .sp{}
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .sp{ display: none; }
 }
 // PCで表示
 .pc{ display: none; }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .pc{ display: inline; }
 }
 
@@ -272,7 +272,7 @@
       color: rgba($textBaseColor, 1);
     }
   }
-  @include res_min(){
+  @include res_min( map-get($BP, md) ){
     //個別に変更
     html[lang="ja"] .home .global-menu & > a,
     html[lang="ja"] .page-template-tmp-recruit .global-menu & > a{
@@ -314,7 +314,7 @@
     margin-top: 26px;
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .block-layout1{
     justify-content: space-between;
     align-items: center;
@@ -365,7 +365,7 @@
     font-weight: 500;
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .tbl1{
     th, td{
       display: table-cell;
@@ -405,7 +405,7 @@
     padding-right: 1em;
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .tbl2{
     th,
     td{
@@ -528,7 +528,7 @@
             mask-size: auto;
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .page-top{
     display: contents;
   }
@@ -569,7 +569,7 @@
   padding-top: 40px;
   margin-top: -40px;
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .anchor{
     padding-top: 80px;
     margin-top: -80px;

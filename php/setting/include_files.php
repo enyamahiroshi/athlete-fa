@@ -29,8 +29,13 @@ function import_files_to_footer() {
     wp_enqueue_script( 'Infiniteslidev2', get_stylesheet_directory_uri() . '/assets/js/infiniteslidev2.min.js', true, array());
     wp_enqueue_script( 'runInfiniteslidev2', get_stylesheet_directory_uri() . '/assets/js/run-infiniteslidev2.min.js', true, array());
   }
+  //パララックス
+  if(is_parent_slug('recruit')){
+    wp_enqueue_script( 'simpleParallax', get_stylesheet_directory_uri() . '/assets/js/simpleParallax.min.js', true, array());
+    wp_enqueue_script( 'runSimpleParallax', get_stylesheet_directory_uri() . '/assets/js/run-simpleParallax.min.js', true, array());
+  }
   //インフォグラフィック data
-  if(is_parent_slug('data')){
+  if(is_page('data')){
     wp_enqueue_script( 'inviewJS', get_stylesheet_directory_uri() . '/assets/js/jquery.inview.min.js', true, array());
     wp_enqueue_script( 'numerator', get_stylesheet_directory_uri() . '/assets/js/jquery-numerator.min.js', true, array());
     wp_enqueue_script( 'chartJS', get_stylesheet_directory_uri() . '/assets/js/Chart.min.js', true, array());

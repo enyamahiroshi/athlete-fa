@@ -10,48 +10,73 @@ get_template_part( 'setting/customize-block-editer' );
 // 表示件数制御
 // -1ですべて表示
 
-add_action('pre_get_posts','my_pre_get_posts');
 function my_pre_get_posts( $query ) {
 
   if(is_admin() || ! $query -> is_main_query()) { return; } //ダッシュボードはスルー
 
-  // if($query -> is_front_page()) { //フロントページ
+  // //フロントページ
+  // if($query -> is_front_page()) {
   //   $query -> set('posts_per_page', 10); //表示件数
+  //   return;
   // }
-  // if($query->is_home()){ // アーカイブページ
+  // // アーカイブページ
+  // if($query->is_home()){
   //   $query->set( 'posts_per_page', 1); //表示件数
+  //   return;
   // }
-  // if($query->is_month()){ // 月別アーカイブ
+  // // 月別アーカイブ
+  // if($query->is_month()){
   //   $query->set('posts_per_page', -1); //表示件数
+  //   return;
   // }
-  // if($query->is_year()){ // 年別アーカイブ
+  // // 年別アーカイブ
+  // if($query->is_year()){
   //   $query->set('posts_per_page', 10); //表示件数
+  //   return;
   // }
-  // if($query->is_author()){ // 作成者アーカイブ
+  // // 作成者アーカイブ
+  // if($query->is_author()){
   //   $query->set('posts_per_page', 10); //表示件数
+  //   return;
   // }
-  // if($query->is_category()){ // カテゴリーアーカイブ
+  // // カテゴリーアーカイブ
+  // if($query->is_category()){
   //   $query->set('posts_per_page', 10); //表示件数
+  //   return;
   // }
-  // if($query->is_search()){ // 検索結果ページ
+  // // 検索結果ページ
+  // if($query->is_search()){
   //   $query->set('posts_per_page', 10); //表示件数
+  //   return;
   // }
-  // if($query->is_page('journal')){ // 固定ページ
-  // $query->set('posts_per_page', 2); //表示件数
+  // // 固定ページ
+  // if($query->is_page('journal')){
+  //   $query->set('posts_per_page', 2); //表示件数
+  //   return;
   // }
-  //カスタム投稿タイプのアーカイブ
-  if($query -> is_post_type_archive()){
-  $query -> set('posts_per_page', 10); //表示件数
-    // $query -> set('order', 'ASC'); //昇順
-    // $query -> set('orderby', 'date'); //日
-  }
-  //カスタムタクソノミーのアーカイブ
-  // if($query -> is_tax()){
-  // $query -> set('posts_per_page', 2); //表示件数
-  //   $query -> set('order', 'ASC'); //昇順
+  // // カスタム投稿タイプのアーカイブ
+  // if($query -> is_post_type_archive()){
+  //   $query -> set('posts_per_page', 10); //表示件数
+  //   $query -> set('order', 'ASC'); //ASC:昇順, DESC:降順
   //   $query -> set('orderby', 'date'); //日
+  //   return;
   // }
+  //カスタムタクソノミーのアーカイブ
+  if($query -> is_tax('products-category', 'custom')){ //カテゴリー：カスタムのみ
+    $query -> set('posts_per_page', 12); //表示件数
+    $query -> set('order', 'DESC'); //ASC:昇順, DESC:降順
+    // $query -> set('orderby', 'date'); //日
+    return;
+  }
+  if($query -> is_tax()){
+    $query -> set('posts_per_page', 30); //表示件数
+    // $query -> set('order', 'ASC'); //ASC:昇順, DESC:降順
+    // $query -> set('orderby', 'date'); //日
+    return;
+  }
 }
+add_action('pre_get_posts','my_pre_get_posts');
+
 
 // the_posts_pagination で吐き出すページネーションの整形
 function cut_screen_reader_text($template) {

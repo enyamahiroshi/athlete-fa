@@ -6,15 +6,30 @@
 
     <section class="sec sec-medium">
       <ul class="product-list product-list--archive">
+        <?php
+          $terms = get_terms(
+            'products-category',
+            'hide_empty=0'
+          );
+          foreach ( $terms as $term ):
+            $term_id = $term->term_id;
+            $productCatImg = SCF::get_term_meta($term_id, 'products-category', 'product-category-image');
+        ?>
         <li class="product-list__item">
-          <a href="<?php echo esc_url(home_url()); ?>/products/products-category/ball-mounter/" class="product-link">
-            <h2 class="product-name">ボールマウンタ</h2>
+          <a href="<?php echo get_term_link($term->slug, 'products-category'); ?>" class="product-link">
+            <h2 class="product-name"><?php echo $term->name; ?></h2>
             <div class="product-lead">
-              <p>微小はんだボールをウェハや基板の上に配列させるための装置です。はんだボール配列には当社独自の技術を採用し高スループットの生産性を実現しています。最終製品はデータセンタ(DC)/ハイパフォーマンスコンピュータ(HPC)/5G等最先端のデバイスに展開されています。</p>
+              <p><?php echo esc_html($term->description); ?></p>
             </div>
             <div class="product-item-data">
               <figure class="product-item-image">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/products/img-products-archive-01.jpg" alt="ボールマウンタ" width="309" height="245">
+              <?php
+                if($productCatImg){
+                  echo wp_get_attachment_image($productCatImg, 'medium');
+                } else {
+                  echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/common/no-image.png" alt="" width="1840" height="1226">';
+                }
+              ?>
               </figure>
               <span class="button-r-link-large button-circle-ani">
                 <span class="svg-area">
@@ -26,46 +41,7 @@
             </div>
           </a>
         </li>
-        <li class="product-list__item">
-          <a href="<?php echo esc_url(home_url()); ?>/products/products-category/bonding/" class="product-link">
-            <h2 class="product-name">ボンディング</h2>
-            <div class="product-lead">
-              <p>フリップチップボンダおよびダイボンダは、幅広いラインナップ(R＆D～量産機)をご用意しており、フォトニクス/LD/イメージセンサを始めとした各種アプリケーションおよび各種実装プロセス向けに、高精度・高スループット装置として提供しています。</p>
-            </div>
-            <div class="product-item-data">
-              <figure class="product-item-image">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/products/img-products-archive-02.jpg" alt="ボンディング" width="309" height="245">
-              </figure>
-              <span class="button-r-link-large button-circle-ani">
-                <span class="svg-area">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
-                    <circle cx="50%" cy="50%" r="28" class="circle-ani">
-                  </circle></svg>
-                </span>
-              </span>
-            </div>
-          </a>
-        </li>
-        <li class="product-list__item">
-          <a href="<?php echo esc_url(home_url()); ?>/products/products-category/custom/" class="product-link">
-            <h2 class="product-name">カスタム</h2>
-            <div class="product-lead">
-              <p>長年に渡り培った豊富な要素技術を組み合わせ、安全性と信頼性を確保し、多岐にわたるお客様のニーズを満たす新しい装置を生み出していきます。</p>
-            </div>
-            <div class="product-item-data">
-              <figure class="product-item-image">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/products/img-products-archive-03.jpg" alt="カスタム" width="309" height="245">
-              </figure>
-              <span class="button-r-link-large button-circle-ani">
-                <span class="svg-area">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
-                    <circle cx="50%" cy="50%" r="28" class="circle-ani">
-                  </circle></svg>
-                </span>
-              </span>
-            </div>
-          </a>
-        </li>
+        <?php endforeach; ?>
       </ul>
       <section class="sec-bread-navi">
         <?php //Breadcrumb NavXT

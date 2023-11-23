@@ -13,7 +13,7 @@
     font-weight: inherit;
     line-height: 1.75;
   }
-  @include res_min(){
+  @include res_min( map-get($BP, md) ){
     h1, h2, h3, h4, h5, h6{
       margin-top: 2em;
     }
@@ -22,7 +22,7 @@
   h2{
     font-size: 2.2rem;
   }
-  @include res_min(){
+  @include res_min( map-get($BP, md) ){
     h2{
       margin-top: calc(60px * 0.7);
       font-size: 2.5rem;
@@ -31,7 +31,7 @@
   h3{
     font-size: 2.1rem;
   }
-  @include res_min(){
+  @include res_min( map-get($BP, md) ){
     h3{
       margin-top: calc(60px * 0.7);
       font-size: 2.2rem;
@@ -40,7 +40,7 @@
   h4{
     font-size: 2rem;
   }
-  @include res_min(){
+  @include res_min( map-get($BP, md) ){
     h4{
       margin-top: calc(40px * 0.7);
       font-size: 2rem;
@@ -50,7 +50,7 @@
   h6{
     font-size: 1.6rem;
   }
-  @include res_min(){
+  @include res_min( map-get($BP, md) ){
     h5,
     h6{
       margin-top: calc(40px * 0.7);
@@ -65,7 +65,7 @@
       margin: calc(1em * 0.7) 0 0;
     }
   }
-  @include res_min(){
+  @include res_min( map-get($BP, md) ){
     p{
       &:not(:first-of-type){
       }
@@ -93,7 +93,7 @@
   //   margin: 1em 0 0;
   //   vertical-align: bottom;
   // }
-  // @include res_min(){
+  // @include res_min( map-get($BP, md) ){
   //   img{
   //     margin-top: 1.5em;
   //   }
@@ -210,7 +210,7 @@
     th,
     td{
       padding: 0.6em 0.7em;
-      @include res_min() {
+      @include res_min( map-get($BP, md) ) {
         padding: 0.9em 1.5em;
       }
       border: none;
@@ -312,7 +312,7 @@
     top: 50%;
     transform: translateY(-50%);
   }
-  @include res_min() {
+  @include res_min( map-get($BP, md) ) {
     padding: 36px 80px 36px 20px !important;
     &::before{
       right: 20px;
@@ -361,7 +361,7 @@
     margin-top: 13px;
     font-size: 1.6rem;
     line-height: 1.5;
-    @include res_min() {
+    @include res_min( map-get($BP, md) ) {
       font-size: 1.8rem;
     }
   }
@@ -380,7 +380,7 @@
     &:hover{
       color: rgba($mainColor, 1) !important;
       &::before{
-        @include res_min() {
+        @include res_min( map-get($BP, md) ) {
           -webkit-mask-position: right 28px center;
           mask-position: right 28px center;
         }

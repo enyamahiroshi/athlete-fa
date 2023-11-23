@@ -42,36 +42,57 @@
 }
 
 //ヨコグラフ
-@-webkit-keyframes expand {
-	from { width: 0%; }
-	  to { width: 100%; }
+@-webkit-keyframes expand-horizon {
+	0% {
+    opacity: 0;
+    width: 0%;
+  }
+  50% {
+    opacity: 0;
+    width: 50%;
+  }
+  100% {
+    opacity: 0;
+    width: 100%;
+  }
 }
-@keyframes expand {
-	from { width: 0%; }
-	  to { width: 100%; }
+@keyframes expand-horizon {
+	0% {
+    opacity: 0;
+    width: 0%;
+  }
+  50% {
+    opacity: 0;
+    width: 50%;
+  }
+  100% {
+    opacity: 1;
+    width: 100%;
+  }
 }
 .graph-horizon{
   .chart {
-    overflow: hidden;
+    // overflow: hidden;
+    opacity: 0;
     width: 0%;
-    -webkit-animation: expand 1s ease-in-out 0.3s forwards;
-            animation: expand 1s ease-in-out 0.3s forwards;
+    height: 115px;
+    -webkit-animation: expand-horizon 1s ease-in-out 0.3s forwards;
+            animation: expand-horizon 1s ease-in-out 0.3s forwards;
   }
   //表示グラフ
   .block {
-    display: block;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80px;
-    @include res_min(){
+    @include res_min( map-get($BP, md) ){
       height: 115px;
     }
     color: #fff;
     font-size: .75em;
     float: left;
     position: relative;
-    overflow: hidden;
+    // overflow: hidden;
     opacity: 1;
     transition: opacity, .3s ease 0.5s;
   }
@@ -88,11 +109,11 @@
 }
 
 //タテグラフ
-@-webkit-keyframes expand2 {
+@-webkit-keyframes expand-vertical {
 	from { height: 0%; }
 	  to { height: 100%; }
 }
-@keyframes expand2 {
+@keyframes expand-vertical {
 	from { height: 0%; }
 	  to { height: 100%; }
 }
@@ -125,7 +146,7 @@
     bottom: -1.6em;
     left: 50%;
     transform: translateX(-50%);
-    @include res_min(){
+    @include res_min( map-get($BP, md) ){
       font-size: 2.2rem;
       bottom: -50px;
     }
@@ -141,7 +162,7 @@
       font-size: 1.1rem;
       margin-left: 3px;
     }
-    @include res_min(){
+    @include res_min( map-get($BP, md) ){
       font-size: 5.2rem;
       top: calc((1em + 12px) * -1);
       &::after{
@@ -175,7 +196,7 @@
     }
   }
 }
-@include res_min(){
+@include res_min( map-get($BP, md) ){
   .data-set-2bars{
     .graph-vertical{
       .chart {
