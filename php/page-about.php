@@ -4,7 +4,7 @@
       <h1 class="page-header__title" data-sub="<?php the_title(); ?>">Company Profile</h1>
     </header>
 
-    <div class="has-column js-fix-area">
+    <div class="has-column">
       <aside class="side-column">
         <ul class="category-list js-positionNav">
           <li class="cat-item is-active"><a href="#outline">会社概要</a></li>

@@ -59,6 +59,31 @@ window.addEventListener("scroll", function() {
 (function ($) {
 
   /* --------------------------------------------------
+  ページローディング処理：ふわっと表示(https://note.spiqa.design/4676/#%E7%B0%A1%E5%8D%98%E3%81%AB%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89)
+  -------------------------------------------------- */
+  //ローディング時の動き
+  $(window).on('load', function () {
+    setTimeout(function(){
+      //bodyに付けているfadeのクラスを取る
+      $('body').removeClass('js-page-loading');
+    }, 300);
+  });
+  //ページ内リンク、target属性がない場合のaタグが押された時
+  $('a:not([href^="#"]):not([target])').on('click', function(e){
+    e.preventDefault();
+    link = $(this).attr('href');
+    if (link !== '') {
+      //bodyにフェードアウトさせるためのクラスを付与
+      $('body').addClass('js-page-fadeout');
+      setTimeout(function(){
+        window.location = link;
+      }, 300);
+    }
+    return false;
+  });
+
+
+  /* --------------------------------------------------
     スクロールによるメニューの変化
     https://web-creates.com/code/jquery-menu-change/
   -------------------------------------------------- */

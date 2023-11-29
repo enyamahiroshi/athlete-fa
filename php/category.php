@@ -4,7 +4,7 @@
       <h1 class="page-header__title" data-sub="お知らせ">News</h1>
     </header>
 
-    <div class="has-column js-fix-area">
+    <div class="has-column">
       <aside class="side-column">
         <ul class="category-list">
           <li class="cat-item"><a href="<?php echo esc_url(home_url()); ?>/news/">すべて</a>

@@ -4,7 +4,7 @@
       <h1 class="page-header__title" data-sub="お知らせ">News</h1>
     </header>
 
-    <div class="has-column js-fix-area">
+    <div class="has-column">
       <aside class="side-column">
         <ul class="category-list">
           <li class="cat-item is-active"><a href="<?php echo esc_url(home_url()); ?>/news/">すべて</a>
@@ -21,17 +21,46 @@
       </aside><?php //.side-column ?>
 
       <section class="main-column">
-
-        <?php //記事リスト
+        <?php
         $args = array(
-          'post_type' => 'post',
-          // 'posts_per_page' => '-1',
-          // 'category_name' => 'cat_slug',
+          'posts_per_page' => 10,
+          'ignore_sticky_posts' => 1,
+          'paged' => $paged,
         );
-        get_template_part( 'block/post_list', null, $args );
+        $the_query = new WP_Query( $args );?>
+        <?php
+        if( $the_query->have_posts() ):
         ?>
+        <ul class="post-list">
+          <?php
+          while( $the_query->have_posts() ): $the_query->the_post();
+          $category = get_the_category();
+          $cat_name = $category[0]->cat_name;
+          $cat_slug = $category[0]->category_nicename;
+          ?>
+          <li class="post-list__item">
+            <a href="<?php the_permalink(); ?>" class="post-link">
+              <div class="post-meta">
+                <div class="post-date"><?php the_time('Y.m.d'); ?></div>
+                <div class="post-category post-category--<?php echo $cat_slug; ?>"><?php echo $cat_name; ?></div>
+              </div>
+              <h2 class="post-title"><?php the_title(); ?></h2>
+            </a>
+          </li>
+          <?php endwhile; ?>
+        </ul>
+        <?php else: ?>
+        <ul class="post-list">
+          <li><div class="not-post">まだ記事はありません。</div></li>
+        </ul>
+        <?php endif; wp_reset_postdata(); ?>
 
         <?php //ページネーション
+
+        //WP_Queryでメインクエリではないループを使用している場合必要（'paged' => $paged,も）
+        $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+        $GLOBALS['wp_query']->max_num_pages = $the_query->max_num_pages;
+
         the_posts_pagination(
           array(
             'mid_size' => 1, // 現在ページの左右に表示するページ番号の数

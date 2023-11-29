@@ -4,7 +4,7 @@
       <h1 class="page-header__title" data-sub="<?php the_title(); ?>"><?php echo $slug = get_post(get_the_ID())->post_name; ?></h1>
     </header>
 
-    <div class="has-column js-fix-area">
+    <div class="has-column">
       <aside class="side-column">
         <ul class="category-list js-positionNav">
           <li class="cat-item is-active"><a href="#history1980">1980～</a></li>

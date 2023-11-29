@@ -104,15 +104,72 @@ get_header(); ?>
             </a>
           </div>
         </div>
-        <?php //記事リスト
-        $args = array(
-          'post_type' => 'post',
-          'posts_per_page' => '3',
-          'category_name' => $catSlug,
-        );
-        get_template_part( 'block/post_list', null, $args );
-        ?>
-        <?php //the_content(); ?>
+
+        <ul class="post-list">
+          <?php //記事リスト（先頭固定記事のみ）
+          $args = array(
+            'post_type' => 'post',
+            'post__in' => get_option('sticky_posts'), // 先頭固定のみ
+            'posts_per_page' => '-1',
+            'category_name' => $catSlug,
+          );
+          ?>
+          <?php
+          $the_query = new WP_Query( $args );
+          if( $the_query->have_posts() ):
+          $sticky = get_option('sticky_posts');
+          if ( !empty($sticky) ):
+          while( $the_query->have_posts() ):
+          $the_query->the_post();
+          $category = get_the_category();
+          $cat_name = $category[0]->cat_name;
+          $cat_slug = $category[0]->category_nicename;
+          ?>
+          <li class="post-list__item">
+            <a href="<?php the_permalink(); ?>" class="post-link">
+              <div class="post-meta">
+                <div class="post-date"><?php the_time('Y.m.d'); ?></div>
+                <div class="post-category post-category--<?php echo $cat_slug; ?>"><?php echo $cat_name; ?></div>
+              </div>
+              <h2 class="post-title"><?php the_title(); ?></h2>
+            </a>
+          </li>
+          <?php endwhile; ?>
+          <?php endif; endif; wp_reset_postdata(); ?>
+
+          <?php //記事リスト（先頭固定記事は除外）
+          $args = array(
+            'post_type' => 'post',
+            'ignore_sticky_posts' => 1,
+            'post__not_in' => get_option('sticky_posts'), // 先頭固定は除外
+            'posts_per_page' => '3',
+            'category_name' => $catSlug,
+          );
+          ?>
+          <?php
+          $the_query = new WP_Query( $args );
+          if( $the_query->have_posts() ):
+          while( $the_query->have_posts() ):
+          $the_query->the_post();
+          $category = get_the_category();
+          $cat_name = $category[0]->cat_name;
+          $cat_slug = $category[0]->category_nicename;
+          ?>
+          <li class="post-list__item">
+            <a href="<?php the_permalink(); ?>" class="post-link">
+              <div class="post-meta">
+                <div class="post-date"><?php the_time('Y.m.d'); ?></div>
+                <div class="post-category post-category--<?php echo $cat_slug; ?>"><?php echo $cat_name; ?></div>
+              </div>
+              <h2 class="post-title"><?php the_title(); ?></h2>
+            </a>
+          </li>
+          <?php endwhile; ?>
+          <?php else: ?>
+          <li><div class="not-post">まだ記事はありません。</div></li>
+          <?php endif; wp_reset_postdata(); ?>
+        </ul>
+
       </div>
     </section>
 

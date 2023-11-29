@@ -5,7 +5,7 @@
       <p class="page-header__title-sub"><strong><?php single_term_title(); ?></strong></p>
     </header>
 
-    <div class="has-column js-fix-area">
+    <div class="has-column">
       <aside class="side-column side-column--products">
         <ul class="category-list js-positionNav">
           <li class="cat-item is-active"><a href="#features">サービスの特徴</a></li>
@@ -177,38 +177,14 @@
         <?php //その他実績装置 ?>
         <div id="other" class="custom-other js-positionNav-target">
           <h2 class="title05">その他実績装置</h2>
-          <ul class="list-disc custom-other-list">
-            <li>ＡＧシンタ対応加熱加圧装置</li>
-            <li>ＵＶ樹脂転写装置</li>
-            <li>ハイブリッドＩＣ組立システム</li>
-            <li>樹脂封止硬化装置</li>
-            <li>パネル検査装置</li>
-            <li>ＩＣテストハンドラ</li>
-            <li>圧力計組立装置</li>
-            <li>外観検査装置</li>
-            <li>セラミック基板融着システム</li>
-            <li>素子用ダイボンダ</li>
-            <li>レーザマーキング装置</li>
-            <li>ＣＯＢ実装システム</li>
-            <li>異形部品インサータ</li>
-            <li>特殊大型ダイボンダ</li>
-            <li>半導体センサ組立システム</li>
-            <li>ポッティング装置</li>
-            <li>基板テープ剥がし機</li>
-            <li>車載用パワーモジュール組立システム</li>
-            <li>検査機能付きＰ＆Ｐ</li>
-            <li>ＨＥＭＴテストシステム</li>
-            <li>パターン認識応用システム</li>
-            <li>ＬＥＤ/ＰＤダイボンダ</li>
-            <li>ＡＣＦボンダ</li>
-            <li>レンズ組立システム</li>
-            <li>ＯＬＢボンダ</li>
-            <li>共晶ダイボンダ</li>
-            <li>ＩＣカード組立システム</li>
-            <li>地震センサ組付機</li>
-            <li>ソルダダイボンダ</li>
-            <li>ＰＷＢ接合システム</li>
-          </ul>
+          <div class="custom-other-list-wrap">
+          <?php
+          $the_postid = 526;//表示したい投稿または固定ページのIDを指定します
+          $the_content = get_post($the_postid)->post_content;
+          $the_content = apply_filters('the_content', $the_content);
+          echo $the_content; //取得したコンテンツを出力します
+          ?>
+          </div>
         </div>
 
         <section class="sec-bread-navi">

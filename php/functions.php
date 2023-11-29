@@ -21,7 +21,7 @@ function my_pre_get_posts( $query ) {
   // }
   // // アーカイブページ
   // if($query->is_home()){
-  //   $query->set( 'posts_per_page', 1); //表示件数
+  //   $query->set( 'posts_per_page', 5); //表示件数
   //   return;
   // }
   // // 月別アーカイブ
@@ -125,6 +125,8 @@ function add_posttype_classes( $classes ) {
       }
     }
   }
+
+  $classes[] = 'js-page-loading'; //ページローディング用に付与
   return $classes;
 }
 

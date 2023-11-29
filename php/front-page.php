@@ -39,7 +39,7 @@
             <em class="italic">Create Future Arts</em><br>私たちは未来につながる技術を創造します
           </h2>
           <p class="block-item-text">私たちのものづくりにおいて、Future Arts(未来につながる技術)は現在から未来への架け橋となる技術を意味します。<br>私たちはFuture Artsの創造を通して、お客様のビジネスの可能性を広げるチカラになるとともに豊かな社会に貢献します。</p>
-          <a href="<?php echo esc_url(home_url()); ?>/archives/category/products/" class="button-r-link-large button-circle-ani">
+          <a href="<?php echo esc_url(home_url()); ?>/products/" class="button-r-link-large button-circle-ani">
             製品情報
             <span class="svg-area">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
@@ -67,18 +67,41 @@
             <div class="horizon-slider__container__inner">
               <?php //slide item -- blank ?>
               <section class="slider-item slider-item--blank"></section>
-              <?php //slide item ?>
-              <section class="slider-item">
+              <?php //slide item -- loop term ?>
+              <?php
+                $terms = get_terms(
+                  array(
+                    'taxonomy'=>'products-category',
+                    'slug'=>array('ball-mounter','bonding','custom'),
+                    'hide_empty'=>0,
+                  )
+                );
+                foreach ( $terms as $term ):
+                  $term_id = $term->term_id;
+                  $term_slug = $term->slug;
+                  $productCatName = $term->name;
+                  $productCatDesc = $term->description;
+                  $productCatEn = SCF::get_term_meta($term_id, 'products-category', 'product-category-english');
+                  $productCatImg = SCF::get_term_meta($term_id, 'products-category', 'product-category-image');
+              ?>
+              <section class="slider-item count-item">
                 <div class="inner">
                   <figure class="slider-item__image">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-01.png" alt="ボールマウンタ" width="724" height="445">
+                  <?php
+                    if($productCatImg){
+                      echo wp_get_attachment_image($productCatImg, 'large');
+                    } else {
+                      echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/common/no-image.png" alt="" width="1840" height="1226">';
+                    }
+                  ?>
                   </figure>
                   <div class="slider-item__data">
-                    <h2 class="slider-item__data__title" data-num="01" data-name="Ball&#10;mounter">
-                      ボールマウンタ
+                    <h2 class="slider-item__data__title" data-name="Ball&#10;mounter">
+                      <?php if($productCatEn){ echo esc_html($productCatName); } ?>
+                      <span class="slider-item__data__cat_en"><?php if($productCatEn){ echo nl2br($productCatEn); } ?></span>
                     </h2>
-                    <p class="slider-item__data__text">微小はんだボールをウェハや基板の上に配列させるための装置です。<br>はんだボール配列には当社独自の技術を採用し高スループットの生産性を実現しています。<br>最終製品はデータセンタ(DC)/ハイパフォーマンスコンピュータ(HPC)/5G等最先端のデバイスに展開されています。</p>
-                    <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter/" class="button-r-link-large button-circle-ani">
+                    <p class="slider-item__data__text"><?php if($productCatDesc){ echo nl2br($productCatDesc); } ?></p>
+                    <a href="<?php echo get_term_link($term_slug, 'products-category'); ?>" class="button-r-link-large button-circle-ani">
                       <span>詳しく見る</span>
                       <span class="svg-area">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
@@ -89,50 +112,7 @@
                   </div>
                 </div>
               </section>
-              <?php //slide item ?>
-              <section class="slider-item">
-                <div class="inner">
-                  <figure class="slider-item__image">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-02.png" alt="ボンディング" width="724" height="445">
-                  </figure>
-                  <div class="slider-item__data">
-                    <h2 class="slider-item__data__title" data-num="02" data-name="Bonding">
-                      ボンディング
-                    </h2>
-                    <p class="slider-item__data__text">フリップチップボンダおよびダイボンダは、幅広いラインナップ(R＆D～量産機)をご用意しており、フォトニクス/LD/イメージセンサを始めとした各種アプリケーションおよび各種実装プロセス向けに、高精度・高スループット装置として提供しています。</p>
-                    <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter/" class="button-r-link-large button-circle-ani">
-                      <span>詳しく見る</span>
-                      <span class="svg-area">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
-                          <circle cx="50%" cy="50%" r="28" class="circle-ani">
-                        </svg>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </section>
-              <?php //slide item ?>
-              <section class="slider-item">
-                <div class="inner">
-                  <figure class="slider-item__image">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-our-products-03.png" alt="カスタム" width="724" height="445">
-                  </figure>
-                  <div class="slider-item__data">
-                    <h2 class="slider-item__data__title" data-num="03" data-name="Custom">
-                      カスタム
-                    </h2>
-                    <p class="slider-item__data__text">長年にわたり培った豊富な要素技術を組み合わせ、安全性と信頼性を確保し、多岐にわたるお客様のニーズを満たす新しい装置を生み出していきます。</p>
-                    <a href="<?php echo esc_url(home_url()); ?>/archives/product-category/ball-mounter/" class="button-r-link-large button-circle-ani">
-                      <span>詳しく見る</span>
-                      <span class="svg-area">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
-                          <circle cx="50%" cy="50%" r="28" class="circle-ani">
-                        </svg>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </section>
+              <?php endforeach; ?>
               <?php //slide item -- blank ?>
               <section class="slider-item slider-item--blank"></section>
             </div><?php //horizon-slider__container__inner ?>
@@ -172,11 +152,6 @@
       </div>
     </section>
 
-
-
-
-
-
     <?php //新卒採用 ?>
     <section class="sec sec-full sec-new-graduate">
       <div class="contents-wrap">
@@ -193,7 +168,7 @@
         </div>
         <div class="recruit-link-area">
           <?php //採用項目リンク ?>
-          <a href="<?php echo esc_url(home_url()); ?>/recruit/" class="recruit-link-item">
+          <a href="<?php echo esc_url(home_url()); ?>/recruit/department/" class="recruit-link-item">
             <div class="recruit-link-item__link">
               <em>職種紹介</em><span>Occupation</span><i class="icon"></i>
             </div>

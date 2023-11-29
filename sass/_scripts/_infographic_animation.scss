@@ -52,7 +52,7 @@
     width: 50%;
   }
   100% {
-    opacity: 0;
+    opacity: 1;
     width: 100%;
   }
 }
@@ -74,37 +74,48 @@
   .chart {
     // overflow: hidden;
     opacity: 0;
-    width: 0%;
+    width: 0;
     height: 115px;
-    -webkit-animation: expand-horizon 1s ease-in-out 0.3s forwards;
-            animation: expand-horizon 1s ease-in-out 0.3s forwards;
+    -webkit-animation: expand-horizon 1s ease-in-out 0.8s forwards;
+            animation: expand-horizon 1s ease-in-out 0.8s forwards;
   }
   //表示グラフ
   .block {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 0;
     height: 80px;
     @include res_min( map-get($BP, md) ){
       height: 115px;
     }
-    color: #fff;
     font-size: .75em;
     float: left;
     position: relative;
-    // overflow: hidden;
     opacity: 1;
-    transition: opacity, .3s ease 0.5s;
+    // transition: opacity 1s ease 0.3s;
+    transition: all 1s 0.3s ease-in-out;
   }
   //数字位置
   .data-value {
     font-size: 3rem;
     line-height: 1;
+    color: #fff;
   }
   .block:last-of-type{
     .data-value {
       color: rgba($textBaseColor, 1);
     }
+  }
+  //徐々に文字を表示
+  .color-gray1::before,
+  .data-value {
+    opacity: 0;
+    transition: all 1s 0.3s ease-in-out;
+  }
+  .color-gray1.is-active::before,
+  .data-value.is-active {
+    opacity: 1;
   }
 }
 

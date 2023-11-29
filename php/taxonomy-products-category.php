@@ -30,11 +30,13 @@
                 }
                 ?>
               </figure>
+              <?php if($termTagTax): ?>
               <ul class="product-tag">
               <?php foreach ($termTagTax as $termTag): ?>
                 <li class="product-tag__name"><?php echo $termTag->name; ?></li>
               <?php endforeach; ?>
               </ul>
+              <?php endif; ?>
               <span class="button-r-link-large button-circle-ani">
                 <span class="svg-area">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">

@@ -13,13 +13,17 @@
           );
           foreach ( $terms as $term ):
             $term_id = $term->term_id;
+            $term_slug = $term->slug;
+            $productCatName = $term->name;
+            $productCatDesc = $term->description;
+            $productCatEn = SCF::get_term_meta($term_id, 'products-category', 'product-category-english');
             $productCatImg = SCF::get_term_meta($term_id, 'products-category', 'product-category-image');
         ?>
         <li class="product-list__item">
-          <a href="<?php echo get_term_link($term->slug, 'products-category'); ?>" class="product-link">
-            <h2 class="product-name"><?php echo $term->name; ?></h2>
+          <a href="<?php echo get_term_link($term_slug, 'products-category'); ?>" class="product-link">
+            <h2 class="product-name"><?php if($productCatEn){ echo esc_html($productCatName); } ?></h2>
             <div class="product-lead">
-              <p><?php echo esc_html($term->description); ?></p>
+              <p><?php echo esc_html($productCatDesc); ?></p>
             </div>
             <div class="product-item-data">
               <figure class="product-item-image">

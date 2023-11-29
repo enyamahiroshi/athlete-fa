@@ -1,3 +1,13 @@
+<?php /* //記事リスト - これで任意のテンプレートファイルから読み込む
+$args = array(
+  'post_type' => 'post',
+  // 'posts_per_page' => '-1',
+  // 'category_name' => 'cat_slug',
+);
+get_template_part( 'block/post_list', null, $args );
+*/ ?>
+
+
 <?php
 $the_query = new WP_Query( $args );
 if( $the_query->have_posts() ):

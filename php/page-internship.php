@@ -43,7 +43,7 @@
       <h2 class="title09" data-sub="Voice">参加者の声</h2>
       <div class="voice-list">
         <div class="voice">
-          <p class="voice__text">意図しない結果に対する原因究明の大変さや、想定通りの結果が出た際の達成感をできる貴重な体験となりました。また、社員の方の働く姿を拝見し、将来エンジニアとして働くことへのイメージを具体的にするきっかけとなりました。</p>
+          <p class="voice__text">意図しない結果に対する原因究明の大変さや、想定通りの結果が出た際の達成感を実感できる貴重な体験となりました。また、社員の方の働く姿を拝見し、将来エンジニアとして働くことへのイメージを具体的にするきっかけとなりました。</p>
           <div class="voice__data">
             <figure class="voice__data__image">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/internship/icon-voice-001.svg" alt="" width="88" height="88">

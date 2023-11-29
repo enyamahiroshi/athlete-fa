@@ -22,32 +22,33 @@
         <div class="product-meta">
           <h1 class="product-name"><?php the_title(); ?></h1>
           <div class="product-category"><?php echo $cat_name; ?></div>
+          <?php if($termTagTax): ?>
           <ul class="product-tag">
           <?php foreach ($termTagTax as $termTag): ?>
             <li class="product-tag__name"><?php echo $termTag->name; ?></li>
           <?php endforeach; ?>
           </ul>
+          <?php endif; ?>
         </div>
         <figure class="product-main-image">
           <?php
           if($mainImg){
             echo wp_get_attachment_image($mainImg, 'full');
           } else {
-            echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/common/no-image.png" alt="" width="1840" height="1226">';
+            echo '<img class="no-image--border" src="' . get_stylesheet_directory_uri() . '/assets/images/common/no-image.png" alt="" width="1840" height="1226">';
           }
           ?>
         </figure>
       </div>
     </header>
 
-    <div class="has-column js-fix-area">
+    <div class="has-column">
       <aside class="side-column side-column--products">
         <ul class="category-list js-positionNav">
           <li class="cat-item is-active"><a href="#features">特徴</a></li>
           <li class="cat-item"><a href="#spec">基本仕様</a></li>
         </ul>
       </aside><?php //.side-column ?>
-
       <section class="main-column main-column--products-singular">
         <?php //特徴（ブロックエディタ） ?>
         <?php if($featuresTitle || $featuresText): ?>
@@ -58,12 +59,13 @@
         </div>
         <?php endif; ?>
 
-        <?php //基本仕様（カスタムフィールド） ?>
-        <?php if($spec1Title || $spec1Group): ?>
+<?php //基本仕様（カスタムフィールド） ?>
+<?php if($spec1Title || !empty($spec1Group[0]['spec-group1-label']) || $spec2Title || !empty($spec2Group[0]['spec-group2-label'])): ?>
         <h2 id="spec" class="title05 js-positionNav-target">基本仕様</h2>
         <div class="product-spec">
+<?php endif; ?>
           <?php if($spec1Title){ echo '<h3>' . $spec1Title . '</h3>'; } ?>
-          <?php if($spec1Group): ?>
+          <?php if(!empty($spec1Group[0]['spec-group1-label'])): ?>
           <table class="tbl2">
             <tbody>
               <?php foreach ( $spec1Group as $spec1 ): ?>
@@ -76,7 +78,7 @@
           </table>
           <?php endif; ?>
           <?php if($spec2Title){ echo '<h3>' . $spec2Title . '</h3>'; } ?>
-          <?php if($spec2Group): ?>
+          <?php if(!empty($spec2Group[0]['spec-group2-label'])): ?>
           <table class="tbl2">
             <tbody>
               <?php foreach ( $spec2Group as $spec2 ): ?>
@@ -88,8 +90,9 @@
             </tbody>
           </table>
           <?php endif; ?>
-          <?php endif; ?>
+<?php if($spec1Title || !empty($spec1Group[0]['spec-group1-label']) || $spec2Title || !empty($spec2Group[0]['spec-group2-label'])): ?>
         </div>
+<?php endif; ?>
 
         <div class="button-wrap --left">
           <a href="<?php echo esc_url(home_url()); ?>/products/" class="button-r-link-large button-circle-ani">
@@ -113,4 +116,15 @@
     </div><?php //.has-column ?>
     <?php endif; ?>
 
+    <?php //英語表記 ?>
+    <?php
+    $terms = get_the_terms($post->ID, 'products-category');
+    if($terms):
+      foreach($terms as $term):
+        $term_id = $term->term_id;
+        $productCatEn = SCF::get_term_meta($term_id, 'products-category', 'product-category-english');
+      endforeach;
+    endif;
+    ?>
+    <aside class="product-english-name"><span><?php if($productCatEn){ echo $productCatEn; } ?></span></aside>
 <?php get_footer(); ?>

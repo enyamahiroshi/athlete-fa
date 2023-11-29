@@ -4,8 +4,8 @@
       <h1 class="page-header__title" data-sub="<?php the_title(); ?>"><?php echo $slug = get_post(get_the_ID())->post_name; ?></h1>
     </header>
 
-    <div class="has-column js-fix-area">
-      <aside class="side-column">
+    <div class="has-column">
+      <aside class="side-column --no-sticky-sp">
         <ul class="category-list js-positionNav">
           <li class="cat-item is-active"><a href="#development">開発部</a></li>
           <li class="cat-item"><a href="#designing">設計部</a></li>

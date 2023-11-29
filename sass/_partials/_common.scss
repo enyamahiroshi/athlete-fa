@@ -4,6 +4,43 @@
 /* ----------------------------------------------------------------
   各ページ共通
 ---------------------------------------------------------------- */
+//ページローディング（ふわっと表示）: https://designstudiomaeda.com/20230414-2/
+body::after{
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color:#fff;/* 色を変えたい場合はこちら */
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;/* 変化させる時間はこちら */
+}
+body.js-page-loading::after,
+body.js-page-fadeout::after {
+  opacity: 1;
+}
+body.js-page-loading::after,
+body.js-page-fadeout::after {
+  -webkit-animation: fadein 1s ease 1s 1 forwards;
+  animation: fadein 1s ease 1s 1 forwards;
+}
+/* 先にIE用の記述 */
+@-webkit-keyframes fadein {
+  100% {
+    opacity: 0;
+  }
+}
+/* 通常のkeyframes */
+@keyframes fadein {
+  100% {
+    opacity: 0;
+  }
+}
+
+
 //左のプログレスバー
 .progress{
   position: fixed;
@@ -27,6 +64,7 @@
   background-color: #fff;
   position: relative;
   z-index: 1;
+  // overflow: hidden;
 }
 //ページごとに背景色を変える
 .archive:not(:is(.category,.term-custom)),
@@ -86,7 +124,6 @@
   }
 }
 
-
 //複数カラム表示レイアウト
 .has-column{
   display: grid;
@@ -96,7 +133,6 @@
   z-index: 0;
   //side
   .side-column{
-    // padding: 40px 15px 25px;
     padding: 25px 15px 20px;
     background-color: rgba($gray, 1);
     position: -webkit-sticky;
@@ -105,10 +141,9 @@
     z-index: 9;
     @include transition();
     //固定時にサイズ変更
-    &.is-fixed{
+    &.is-fixed:not(.--no-sticky-sp){
       padding: 15px 15px 10px;
       .category-list{
-        // grid-template-columns: repeat(auto-fill, minmax(100px,1fr));
         gap: 10px;
         .cat-item{
           a{
@@ -117,6 +152,11 @@
           }
         }
       }
+    }
+    //特定のページのSP時のみ sticky しない
+    &.--no-sticky-sp{
+      position: relative;
+      top: 0;
     }
   }
   //main

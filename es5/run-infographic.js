@@ -91,8 +91,9 @@ Chart.plugins.register({
 
 	//=========== 円グラフ ============//
 
+	//画面上に入ったら円グラフを描画
 	//▼売上比率
-	$('.js-data-circle-uriagehiritsu').on('inview', function (event, isInView) {//画面上に入ったらグラフを描画
+	$('.js-data-circle-uriagehiritsu').on('inview', function (event, isInView) {
 		if (isInView) {
 			const ctx = $("#data-circle-uriagehiritsu");//グラフを描画したい場所のid
 			const chart = new Chart( ctx,{
@@ -101,7 +102,7 @@ Chart.plugins.register({
 					labels:["海外","国内",], //データの名前
 					datasets:[{
 						label:"グラフのタイトル",//グラフのタイトル
-						backgroundColor:["#C80421", "#E6E6E6"],//グラフの背景色
+						backgroundColor:["#ba1e30", "#E6E6E6"],//グラフの背景色
 						data:["80","20",] //データ
 					}]
 				},
@@ -118,7 +119,9 @@ Chart.plugins.register({
 		}
 	});
 
-	$('.js-data-circle-yukyusyutokuritsu').on('inview', function (event, isInView) {//画面上に入ったらグラフを描画
+	//画面上に入ったら円グラフを描画
+	//▼有給休暇取得率
+	$('.js-data-circle-yukyusyutokuritsu').on('inview', function (event, isInView) {
 		if (isInView) {
 			const ctx = $("#data-circle-yukyusyutokuritsu");//グラフを描画したい場所のid
 			const chart = new Chart( ctx,{
@@ -127,7 +130,7 @@ Chart.plugins.register({
 					labels:["未消化","消化",], //データの名前
 					datasets:[{
 						label:"グラフのタイトル",//グラフのタイトル
-						backgroundColor:["#C80421", "#E6E6E6"],//グラフの背景色
+						backgroundColor:["#ba1e30", "#E6E6E6"],//グラフの背景色
 						data:["80","20",] //データ
 					}]
 				},
@@ -152,53 +155,54 @@ Chart.plugins.register({
 	});
 
 
-//=========== ドーナツグラフ ============//
-$('.js-chart-doughnut-nenreikoseihi').on('inview', function(event, isInView) {//画面上に入ったらグラフを描画
-	if (isInView) {
+	//=========== ドーナツグラフ ============//
+	//画面上に入ったらドーナツグラフを描画
+	$('.js-chart-doughnut-nenreikoseihi').on('inview', function(event, isInView) {
+		if (isInView) {
 
-		const ctx = $("#chart-doughnut-nenreikoseihi");//グラフを描画したい場所のid
-		const chart = new Chart( ctx,{
-			type:'doughnut',//グラフのタイプ
-			data:{//グラフのデータ
-			labels:["IT","営業","不動産","医療",],//データの名前
-			datasets:[{
-					// label:"職種別比率",//グラフのタイトル
-					backgroundColor:["#C80421", "#E0E0E0", "#AAAAAA", "#2E2E2E"],//グラフの背景色
-					data:["24","18","22","36",]//データ
-				}]
-			},
-			options: {//グラフのオプション
-				responsive: true,
-				maintainAspectRatio: false,//サイズ変更の際に、元のキャンバスのアスペクト比(width / height)を維持
-				cutoutPercentage: 65,//中央からの空円の太さ。グラフの太さ変更
-				legend:{
-					display: false//グラフの説明を表示
+			const ctx = $("#chart-doughnut-nenreikoseihi");//グラフを描画したい場所のid
+			const chart = new Chart( ctx,{
+				type:'doughnut',//グラフのタイプ
+				data:{//グラフのデータ
+				labels:["IT","営業","不動産","医療",],//データの名前
+				datasets:[{
+						// label:"職種別比率",//グラフのタイトル
+						backgroundColor:["#ba1e30", "#E0E0E0", "#AAAAAA", "#2E2E2E"],//グラフの背景色
+						data:["24","18","22","36",]//データ
+					}]
 				},
-				tooltips: false, //グラフへカーソルを合わせた際の詳細（ツールチップ）表示の設定
-				title: false, //上部タイトル表示の設定
-			}
-		});
+				options: {//グラフのオプション
+					responsive: true,
+					maintainAspectRatio: false,//サイズ変更の際に、元のキャンバスのアスペクト比(width / height)を維持
+					cutoutPercentage: 65,//中央からの空円の太さ。グラフの太さ変更
+					legend:{
+						display: false//グラフの説明を表示
+					},
+					tooltips: false, //グラフへカーソルを合わせた際の詳細（ツールチップ）表示の設定
+					title: false, //上部タイトル表示の設定
+				}
+			});
 
-	}
-});
+		}
+	});
 
 
 	/* --------------------------------------------------
 		タテヨコ棒グラフ
 		https://codepen.io/richardramsay/pen/ZKmQJv
 	-------------------------------------------------- */
-	$('.js-start-bar_chart').on('inview', function(event, isInView) {//画面上に入ったらグラフを描画
+	//画面上に入ったらグラフを描画
+	$('.js-start-bar_chart').on('inview', function(event, isInView) {
 		if (isInView) {
-
 			const cssStyle = $(this).data('type');
+			const dataValue = $(this).find('.data-value, .color-gray1');
 			$(this).find('.block').each(function() {
 				const text = $(this).data('num');
 				$(this).css(cssStyle, text + '%');
 			});
-
+			dataValue.addClass('is-active');
 		}
 	});
-
 
 
 })(jQuery);
