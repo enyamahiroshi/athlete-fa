@@ -6,7 +6,7 @@
 
     <div class="has-column">
       <aside class="side-column">
-        <ul class="category-list js-positionNav">
+        <ul class="category-list position-nav js-positionNav">
           <li class="cat-item is-active"><a href="#bland">ブランド</a></li>
           <li class="cat-item"><a href="#philosophy">経営理念</a></li>
           <li class="cat-item"><a href="#policy">経営方針</a></li>
@@ -40,7 +40,7 @@
           </div>
 
           <figure class="bland-catchcopy">
-            <em>Create Future Arts</em>
+            <img class="logo-create-future-arts" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/logo-create-future-arts.svg" alt="Create Future Arts" width="408.8" height="27.7">
           </figure>
           <div class="bland-item">
             <h3 class="bland-item__title"><em>F</em>uture <em>A</em>rts<span>（未来につながる技術）</span></h3>

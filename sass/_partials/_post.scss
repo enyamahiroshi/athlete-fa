@@ -153,6 +153,7 @@
       align-items: center;
       font-size: clamp(1.4rem, 1.3vw, 1.6rem);
       line-height: 1.1;
+      color: rgba($textBaseColor, 1);
       white-space: nowrap;
       margin: 0 auto;
       height: 36px;
@@ -175,11 +176,36 @@
         background-color: rgba(#fff, 0);
         color: rgba($textBaseColor, 1);
       }
+      //「:hover」が使用できない端末
+      @media (hover: none){
+        &:active{
+          padding-left: 40px;
+          opacity: 1;
+          background-color: rgba(#fff, 1);
+          color: rgba($mainColor, 1);
+          &::before{
+            background-color: rgba($mainColor, 1);
+          }
+        }
+      }
+      //「:hover」が使用できる端末
+      @media (hover: hover){
+        &:hover, &:active{
+          padding-left: min(50px, calc(1.85vw + 15px));
+          opacity: 1;
+          background-color: rgba(#fff, 1);
+          color: rgba($mainColor, 1);
+          &::before{
+            background-color: rgba($mainColor, 1);
+          }
+        }
+      }
     }
     //カレント
     &.current-cat a,
     &.is-active a{
       padding-left: 40px;
+      color: rgba($mainColor, 1);
       &::before{
         background-color: rgba($mainColor, 1);
       }
@@ -187,8 +213,23 @@
         background-color: rgba(#fff, 1);
         color: rgba($mainColor, 1);
       }
-      &:hover, &:active{
-        opacity: 1;
+    }
+  }
+  //サイドのリスト：ページ内アンカーリンク
+  &.position-nav{
+    .cat-item{
+      a{
+        padding-left: 40px;
+        //「:hover」が使用できない端末
+        @media (hover: none){
+          &::before{
+            background-color: rgba($mainColor, 1);
+          }
+          &:link, &:visited{
+            background-color: rgba(#fff, 1);
+            color: rgba($textBaseColor, 1);
+          }
+        }
       }
     }
   }
@@ -205,13 +246,10 @@
         &::before{
           left: min(35px, 1.85vw);
         }
-        &:hover, &:active{
-          padding-left: min(50px, calc(1.85vw + 15px));
-          opacity: 1;
-          background-color: rgba(#fff, 1);
-          color: rgba($mainColor, 1);
-          &::before{
-            background-color: rgba($mainColor, 1);
+        //「:hover」が使用できない端末
+        @media (hover: none){
+          &:active{
+            padding-left: min(50px, calc(1.85vw + 15px));
           }
         }
       }
@@ -219,6 +257,55 @@
       &.current-cat a,
       &.is-active a{
         padding-left: min(50px, calc(1.85vw + 15px));
+      }
+    }
+    //サイドのリスト：ページ内アンカーリンク
+    &.position-nav{
+      .cat-item{
+        a{
+          padding-left: min(50px, calc(1.85vw + 15px));
+        }
+        @include res_min( map-get($BP, lg) ){
+          //カレント
+          &.is-active a{
+            color: rgba($mainColor, 1);
+          }
+          &:not(.is-active){
+            a{
+              padding-left: min(35px, 1.85vw);
+              &::before{
+                background-color: rgba($mainColor, 0);
+              }
+              &:link, &:visited{
+                background-color: rgba(#fff, 0);
+              }
+              //「:hover」が使用できない端末
+              @media (hover: none){
+                &:active{
+                  padding-left: min(50px, calc(1.85vw + 15px));
+                  opacity: 1;
+                  background-color: rgba(#fff, 1);
+                  color: rgba($mainColor, 1);
+                  &::before{
+                    background-color: rgba($mainColor, 1);
+                  }
+                }
+              }
+              //「:hover」が使用できる端末
+              @media (hover: hover){
+                &:hover{
+                  padding-left: min(50px, calc(1.85vw + 15px));
+                  opacity: 1;
+                  background-color: rgba(#fff, 1);
+                  color: rgba($mainColor, 1);
+                  &::before{
+                    background-color: rgba($mainColor, 1);
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -529,6 +616,7 @@ $pageNBtnL: 40;
     &:not(:first-of-type){
       margin-top: 6px;
     }
+    width: 50%;
     background-color: rgba($textBaseColor, 1);
     font-family: $ff-en;
     font-size: 1.6rem;
@@ -548,6 +636,7 @@ $pageNBtnL: 40;
   }
   .product-tag{
     .product-tag__name{
+      width: 100%;
       font-size: 1.8rem;
     }
   }

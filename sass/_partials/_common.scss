@@ -16,25 +16,46 @@ body::after{
   z-index: 9999;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s ease;/* 変化させる時間はこちら */
+  // transition: opacity 2s ease 0s;/* 変化させる時間はこちら */
 }
-body.js-page-loading::after,
 body.js-page-fadeout::after {
-  opacity: 1;
+  -webkit-animation: fadeout 0.3s ease 0s 1 forwards;
+  animation: fadeout 0.3s ease 0s 1 forwards;
 }
-body.js-page-loading::after,
-body.js-page-fadeout::after {
-  -webkit-animation: fadein 1s ease 1s 1 forwards;
-  animation: fadein 1s ease 1s 1 forwards;
+@-webkit-keyframes fadeout {
+  0%{
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeout {
+  0%{
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+body.js-page-loading::after {
+  -webkit-animation: fadein 0.3s ease 0s 1 forwards;
+  animation: fadein 0.3s ease 0s 1 forwards;
 }
 /* 先にIE用の記述 */
 @-webkit-keyframes fadein {
+  0%{
+    opacity: 1;
+  }
   100% {
     opacity: 0;
   }
 }
 /* 通常のkeyframes */
 @keyframes fadein {
+  0%{
+    opacity: 1;
+  }
   100% {
     opacity: 0;
   }
@@ -67,9 +88,12 @@ body.js-page-fadeout::after {
   // overflow: hidden;
 }
 //ページごとに背景色を変える
-.archive:not(:is(.category,.term-custom)),
+.archive:not(:is(.category, .term-custom, .news-en, .tax-news-en-category)),
 .recruit.entry,
-.custom-list{
+.custom-list,
+.custom-list-en,
+.contact,
+.contact-en{
   .main{
     background-color: rgba($gray, 1);
   }
@@ -135,29 +159,11 @@ body.js-page-fadeout::after {
   .side-column{
     padding: 25px 15px 20px;
     background-color: rgba($gray, 1);
-    position: -webkit-sticky;
-    position: sticky;
-    top: 57px;
-    z-index: 9;
-    @include transition();
-    //固定時にサイズ変更
-    &.is-fixed:not(.--no-sticky-sp){
-      padding: 15px 15px 10px;
-      .category-list{
-        gap: 10px;
-        .cat-item{
-          a{
-            height: 26px;
-            font-size: 1.3rem;
-          }
-        }
-      }
-    }
-    //特定のページのSP時のみ sticky しない
-    &.--no-sticky-sp{
-      position: relative;
-      top: 0;
-    }
+    // position: -webkit-sticky;
+    // position: sticky;
+    // top: 57px;
+    // z-index: 9;
+    // @include transition();
   }
   //main
   .main-column{
@@ -187,22 +193,21 @@ body.js-page-fadeout::after {
     //side
     .side-column{
       padding: 30px 0 100px;
-      background-color: rgba($gray, 1);
-      position: relative;
-      top: auto;
+      // position: relative;
+      // top: auto;
       //固定時にサイズ変更 をスマホ時以外はリセット
-      &.is-fixed{
-        padding: 30px 0 100px;
-        .category-list{
-          gap: 12px;
-          .cat-item{
-            a{
-              height: 36px;
-              font-size: 1.4rem;
-            }
-          }
-        }
-      }
+      // &.is-fixed{
+      //   padding: 30px 0 100px;
+      //   .category-list{
+      //    gap: 12px ;
+      //     .cat-item{
+      //       a{
+      //         height: 36px;
+      //         font-size: 1.4rem;
+      //       }
+      //     }
+      //   }
+      // }
       & > *{
         margin: 0 auto;
         width: clamp(140px, 15.81vw, 215px);
@@ -239,11 +244,11 @@ body.js-page-fadeout::after {
   }
 }
 
-
 //バンくず
 .sec-bread-navi{
   margin-top: 40px;
-  background-color: #fff;
+  // background-color: #fff;
+  background-color: transparent;
   //複数カラム内
   .main-column > &{}
   //ページごと
@@ -253,12 +258,14 @@ body.js-page-fadeout::after {
   }
 }
 //個別にグレー背景にする
-.archive:not(:is(.category,.term-custom)) .sec-bread-navi,
-.contact .sec-bread-navi,
-.entry .sec-bread-navi,
-.custom-list .sec-bread-navi{
-  background-color: rgba($gray, 1);
-}
+// .archive:not(:is(.category,.term-custom)) .sec-bread-navi,
+// .contact .sec-bread-navi,
+// .contact-en .sec-bread-navi,
+// .entry .sec-bread-navi,
+// .custom-list .sec-bread-navi,
+// .custom-list-en .sec-bread-navi{
+//   background-color: rgba($gray, 1);
+// }
 @include res_min( map-get($BP, md) ){
   .sec-bread-navi{
     margin-top: 200px;
@@ -328,6 +335,7 @@ body.js-page-fadeout::after {
     font-family: $ff-en;
     letter-spacing: 0;
     color: rgba($textBaseColor, 0.25);
+    white-space: nowrap;
   }
   .separate{
     margin: 0 10px;
@@ -355,7 +363,7 @@ body.js-page-fadeout::after {
       }
     }
     //個別に変更
-    html[lang="en"] .home .global-menu & > a,
+    html[lang="en"] .en[data-flg="en-home"] .global-menu & > a,
     html[lang="en"] .page-template-tmp-recruit .global-menu & > a{
       &.en{
         color: #fff;
@@ -374,6 +382,11 @@ body.js-page-fadeout::after {
   }
   .block-item-title{
     order: 1;
+    .logo-create-future-arts{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 275px;
+    }
   }
   .block-item-text{
     order: 3;
@@ -400,6 +413,11 @@ body.js-page-fadeout::after {
     }
     .block-item-title{
       order: unset;
+      .logo-create-future-arts{
+        margin-top: 16px;
+        margin-bottom: 17px;
+        width: 380px;
+      }
     }
     .block-item-text{
       order: unset;
@@ -448,7 +466,7 @@ body.js-page-fadeout::after {
     }
     th{
       padding-right: 1.7em;
-      width: clamp(120px, 14.32vw, 270px);
+      width: clamp(160px, 14.32vw, 270px);
       background-color: rgba($gray, 0);
     }
   }

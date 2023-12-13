@@ -26,7 +26,7 @@ get_header(); ?>
     <div class="qa-wrapper">
       <section class="sec qa qa-interview">
         <figure class="qa__image">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/interview/<?php echo $slag; ?>/img-qa01.jpg" alt="" width="960" height="640">
+          <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/interview/<?php echo $slag; ?>/img-qa01.jpg" alt="" width="960" height="640">
         </figure>
         <div class="qa__data">
           <h2 class="qa__data__q">入社した理由を教えてください。</h2>
@@ -36,7 +36,7 @@ get_header(); ?>
       </section>
       <section class="sec qa qa-interview">
         <figure class="qa__image">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/interview/<?php echo $slag; ?>/img-qa02.jpg" alt="" width="960" height="640">
+          <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/interview/<?php echo $slag; ?>/img-qa02.jpg" alt="" width="960" height="640">
         </figure>
         <div class="qa__data">
           <h2 class="qa__data__q">仕事内容を教えてください。</h2>
@@ -46,7 +46,7 @@ get_header(); ?>
       </section>
       <section class="sec qa qa-interview">
         <figure class="qa__image">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/interview/<?php echo $slag; ?>/img-qa03.jpg" alt="" width="960" height="640">
+          <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/interview/<?php echo $slag; ?>/img-qa03.jpg" alt="" width="960" height="640">
         </figure>
         <div class="qa__data">
           <h2 class="qa__data__q">仕事の面白さ、やりがい、これからの目標を教えてください。</h2>

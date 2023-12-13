@@ -32,6 +32,11 @@ define('CONTACT_INPUT_SLUG', 'contact');
 define('CONTACT_CONFIRM_SLUG', 'contact/contact-confirm');
 define('CONTACT_COMPLETE_SLUG', 'contact/contact-complete');
 
+/** （英語）お問い合わせ登録・確認・完了画面 */
+define('CONTACT_EN_INPUT_SLUG', 'en/contact-en');
+define('CONTACT_EN_CONFIRM_SLUG', 'en/contact-en/contact-confirm-en');
+define('CONTACT_EN_COMPLETE_SLUG', 'en/contact-en/contact-complete-en');
+
 
 /** お申し込み登録・完了画面 */
 define('ENTRY_INPUT_SLUG', 'recruit/entry');
@@ -63,3 +68,18 @@ define('MAILL_ERRORS', 'メール送信に失敗しました。大変お手数�
 
 /** ファイルアップロードの失敗 */
 define('FILE_COMPLETE_ERRORS', 'ファイルの登録に失敗しました。お手数ですが再度の登録を行なってください。<br>引き続き処理に失敗する場合は、お手数ですがしばらくしてからご登録いただくか、管理者にお問い合わせください。');
+
+/* 英語フォーム用
+ ---------------------------------------*/
+
+/** reCAPTCHA */
+define('EN_RECAPTCHA_ERRORS', 'The reCAPTCHA authentication failed. We apologize for the inconvenience, but please submit the form again. If the process continues to fail, please try again in a few minutes or contact the administrator.');
+
+/** 不正な移動 */
+define('EN_VALIDTOKEN_ERRORS', 'There was an incorrect page move. We apologize for the inconvenience, but please submit the form again. If the process continues to fail, please try again in a few minutes or contact the administrator.');
+
+/** 入力値おかしい場合 */
+define('EN_CONTENT_INPUT_ERRORS', 'The information you entered is incomplete. Please submit the form again. If the process continues to fail, please try again in a few minutes or contact the administrator.');
+
+/** メール送信失敗 */
+define('EN_MAILL_ERRORS', 'Email transmission failed. Please submit the form again. If the process continues to fail, please try again in a few minutes or contact the administrator.');

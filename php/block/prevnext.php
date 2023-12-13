@@ -9,7 +9,7 @@
 
   <?php //一覧へ?>
   <div class="archive-post">
-    <a href="<?php echo esc_url( home_url() ); ?>/news" class="archive-link"> View All</a>
+    <a href="<?php echo esc_url( home_url() ); ?>/news/" class="archive-link"> View All</a>
   </div>
 
   <?php //次の記事 ?>

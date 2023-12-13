@@ -6,7 +6,7 @@
 
     <div class="has-column">
       <aside class="side-column">
-        <ul class="category-list js-positionNav">
+        <ul class="category-list position-nav js-positionNav">
           <li class="cat-item is-active"><a href="#history1980">1980～</a></li>
           <li class="cat-item"><a href="#history1990">1990～</a></li>
           <li class="cat-item"><a href="#history2000">2000～</a></li>
@@ -65,7 +65,7 @@
             </dd>
             <dt>1998</dt>
             <dd>
-              <p>フリップチップボンダ（CB-1750）<br>業界初のウェハ対応BGAボール搭載機（BA-1100W）</p>
+              <p>フリップチップボンダ（CB-1750）<br>業界初のウェハ対応BGAボール搭載機（BA-1100）</p>
             </dd>
             <dt>1999</dt>
             <dd>

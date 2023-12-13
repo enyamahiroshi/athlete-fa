@@ -1,7 +1,7 @@
 <?php
 /**
  * From Action
- * 
+ *
  */
 $objApp = new Contact();
 $objApp->confirm();

@@ -107,20 +107,20 @@ get_header(); ?>
 
         <ul class="post-list">
           <?php //記事リスト（先頭固定記事のみ）
-          $args = array(
+          $argsStickyPost = array(
             'post_type' => 'post',
             'post__in' => get_option('sticky_posts'), // 先頭固定のみ
-            'posts_per_page' => '-1',
+            'posts_per_page' => '1',
             'category_name' => $catSlug,
           );
           ?>
           <?php
-          $the_query = new WP_Query( $args );
-          if( $the_query->have_posts() ):
+          $the_query_sticky_post = new WP_Query( $argsStickyPost );
+          if( $the_query_sticky_post->have_posts() ):
           $sticky = get_option('sticky_posts');
           if ( !empty($sticky) ):
-          while( $the_query->have_posts() ):
-          $the_query->the_post();
+          while( $the_query_sticky_post->have_posts() ):
+          $the_query_sticky_post->the_post();
           $category = get_the_category();
           $cat_name = $category[0]->cat_name;
           $cat_slug = $category[0]->category_nicename;
@@ -138,11 +138,16 @@ get_header(); ?>
           <?php endif; endif; wp_reset_postdata(); ?>
 
           <?php //記事リスト（先頭固定記事は除外）
+          if ( !empty($sticky) ){ //Totalで3件表示にするため：固定記事がある場合と無い場合で表示記事数を変更する
+            $posts_per_page = 2;
+          } else {
+            $posts_per_page = 3;
+          }
           $args = array(
             'post_type' => 'post',
             'ignore_sticky_posts' => 1,
             'post__not_in' => get_option('sticky_posts'), // 先頭固定は除外
-            'posts_per_page' => '3',
+            'posts_per_page' => $posts_per_page,
             'category_name' => $catSlug,
           );
           ?>
@@ -308,7 +313,7 @@ get_header(); ?>
         </a>
       </div>
       <figure class="info-internship-image">
-        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/new-graduates/img-internship.jpg" alt="" width="906" height="641">
+        <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/new-graduates/img-internship.jpg" alt="" width="906" height="641">
       </figure>
     </section>
     <?php endif; ?>
@@ -415,9 +420,9 @@ get_header(); ?>
       <?php include_once('./wp-content/themes/athletefa/block/block-job-description-career.php'); ?>
     </section>
     <figure class="sec sec-full sec-job-description-images">
-      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/career/img-job-description01.jpg" alt="" width="640" height="427">
-      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/career/img-job-description02.jpg" alt="" width="640" height="427">
-      <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/career/img-job-description03.jpg" alt="" width="640" height="427">
+      <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/career/img-job-description01.jpg" alt="" width="640" height="427">
+      <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/career/img-job-description02.jpg" alt="" width="640" height="427">
+      <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/recruit/career/img-job-description03.jpg" alt="" width="640" height="427">
     </figure>
     <?php endif; ?>
 

@@ -51,13 +51,82 @@
       display: none;
     }
   }
-  //ページによって表示を消す
+  //ページによって表示をカスタマイズ
   .company &,
   .recruit &{
     & > span:nth-of-type(2){
+      a{
+        pointer-events: none;
+        color: rgba($textBaseColor, 1);
+      }
+    }
+  }
+
+  //英語ページ内は日本語HOMEを非表示にする
+  html[lang="en"] &{
+    & > span:nth-of-type(1){
       display: none;
     }
   }
+  .company-en &{
+    & > span:nth-of-type(3){
+      a{
+        pointer-events: none;
+        color: rgba($textBaseColor, 1);
+      }
+    }
+  }
+
+  //英語ページ内日本語名を英語へ（リンクなし）
+  .post-type-archive-products-en & > span:nth-of-type(3),
+  .post-type-archive-news-en & > span:nth-of-type(3){
+    display: inline-flex;
+    gap: 5px;
+    @include res_min( map-get($BP, md) ) {
+      gap: 10px;
+    }
+    &::before{
+      content: 'News';
+    }
+    span[property="name"]{
+      display: none;
+    }
+  }
+  .post-type-archive-products-en & > span:nth-of-type(3){
+    &::before{
+      content: 'Products';
+    }
+  }
+
+  //英語ページ内日本語名を英語へ（リンク有り）
+  .single-news-en & > span:nth-of-type(3),
+  .tax-news-en-category & > span:nth-of-type(3),
+  .single-products-en & > span:nth-of-type(3),
+  .tax-products-en-category & > span:nth-of-type(3){
+    display: inline-flex;
+    gap: 5px;
+    @include res_min( map-get($BP, md) ) {
+      gap: 10px;
+    }
+    a{
+      &::before{
+        content: 'News';
+      }
+    }
+    span[property="name"]{
+      display: none;
+    }
+  }
+  .post-type-archive-products-en & > span:nth-of-type(3),
+  .single-products-en & > span:nth-of-type(3),
+  .tax-products-en-category & > span:nth-of-type(3){
+    a{
+      &::before{
+        content: 'Products';
+      }
+    }
+  }
+
 }
 @include res_min( map-get($BP, md) ) {
   .bread-navi {

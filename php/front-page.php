@@ -36,7 +36,7 @@
       <div class="block-layout1">
         <div class="block-item-data">
           <h2 class="title01 block-item-title" data-sub="Our mission is ...">
-            <em class="italic">Create Future Arts</em><br>私たちは未来につながる技術を創造します
+            <img class="logo-create-future-arts" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/logo-create-future-arts.svg" alt="Create Future Arts" width="408.8" height="27.7"><br>私たちは未来につながる技術を創造します
           </h2>
           <p class="block-item-text">私たちのものづくりにおいて、Future Arts(未来につながる技術)は現在から未来への架け橋となる技術を意味します。<br>私たちはFuture Artsの創造を通して、お客様のビジネスの可能性を広げるチカラになるとともに豊かな社会に貢献します。</p>
           <a href="<?php echo esc_url(home_url()); ?>/products/" class="button-r-link-large button-circle-ani">
@@ -49,7 +49,7 @@
           </a>
         </div>
         <figure class="block-item-image">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-intro.jpg" alt="" width="600" height="600">
+          <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-intro.jpg" alt="" width="600" height="600">
         </figure>
       </div>
     </section>
@@ -89,7 +89,7 @@
                   <figure class="slider-item__image">
                   <?php
                     if($productCatImg){
-                      echo wp_get_attachment_image($productCatImg, 'large');
+                      echo wp_get_attachment_image($productCatImg, 'full');
                     } else {
                       echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/common/no-image.png" alt="" width="1840" height="1226">';
                     }
@@ -170,7 +170,7 @@
           <?php //採用項目リンク ?>
           <a href="<?php echo esc_url(home_url()); ?>/recruit/department/" class="recruit-link-item">
             <div class="recruit-link-item__link">
-              <em>職種紹介</em><span>Occupation</span><i class="icon"></i>
+              <em>部署紹介</em><span>Department</span><i class="icon"></i>
             </div>
             <figure class="recruit-link-item__image">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/img-recruit-link-image-01.jpg" alt="" width="958" height="677">
@@ -234,7 +234,7 @@
     <section class="recruit-links">
       <a href="#" target="_blank" rel="noopener noreferrer" class="recruit-links__button --blank">
         <span>新卒採用</span>
-        <figure class="button-mynavi"></figure>
+        <div class="button-mynavi"></div>
       </a>
       <a href="<?php echo esc_url(home_url()); ?>/recruit/entry/" class="recruit-links__button">
         <span>キャリア採用</span>
@@ -275,7 +275,14 @@
       </div>
     </section>
 
-    <section class="sec sec-full sec-company-image js-color-change"></section>
+    <section class="sec sec-full sec-company-image js-color-change">
+      <div class="company-image sp">
+        <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/bg-company-small.jpg" alt="" width="390" height="275">
+      </div>
+      <div class="company-image pc">
+        <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/home/bg-company-large.jpg" alt="" width="1920" height="800">
+      </div>
+    </section>
 
     <?php //Block: content - news ?>
     <section class="sec sec-wide sec-news">

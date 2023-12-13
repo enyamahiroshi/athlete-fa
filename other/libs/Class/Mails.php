@@ -32,7 +32,7 @@ class Mails
 
             $mail_sender = CONTACT_MAIL_SENDER;
             if($arrData['onamae']){
-                $mail_sender = $arrData['onamae'];
+                $mail_sender = esc_attr($arrData['onamae']);
             }
             $reply_to_mail = CONTACT_REPLY_TO_MAIL;
             if($mail){
@@ -63,6 +63,57 @@ class Mails
     }
 
     /**
+     * 英語お問い合わせ
+     *
+     * @param string $mail
+     * @param array $arrData
+     * @return void
+     */
+    public function englishContact($mail, $arrData)
+    {
+        if(!$mail){
+            return false;
+        }
+        try {
+            /** 管理者に送信 */
+            ob_start();
+            require_once(realpath(dirname(__FILE__) . '/../tpl/admin/english_contact.tpl'));
+            $notice = ob_get_contents();
+            ob_end_clean();
+
+            $mail_sender = CONTACT_EN_MAIL_SENDER;
+            if($arrData['firstname']){
+                $mail_sender = esc_attr($arrData['firstname'] . ' ' . $arrData['lastname']);
+            }
+            $reply_to_mail = CONTACT_EN_REPLY_TO_MAIL;
+            if($mail){
+                $reply_to_mail = $mail;
+            }
+
+            $this->send_mail(CONTACT_EN_MAIL_TITLE_ADMIN, $notice, CONTACT_EN_SEND_MAIL, '', '', CONTACT_EN_FROM_MAIL, $mail_sender, $reply_to_mail);
+
+        } catch ( Exception $e ) {
+            Logs::printLog("ERROR : " . $e->getMessage());
+            return false;
+        }
+        try {
+            /** ユーザーに送信 */
+            ob_start();
+            require_once(realpath(dirname(__FILE__) . '/../tpl/user/english_contact.tpl'));
+            $notice = ob_get_contents();
+            ob_end_clean();
+
+            $this->send_mail(CONTACT_EN_MAIL_TITLE_USER, $notice, $mail, '', '', CONTACT_EN_FROM_MAIL, CONTACT_EN_MAIL_SENDER, CONTACT_EN_REPLY_TO_MAIL);
+
+        } catch ( Exception $e ) {
+            Logs::printLog("ERROR : " . $e->getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * エントリー
      *
      * @param string $mail
@@ -83,7 +134,7 @@ class Mails
 
             $mail_sender = ENTRY_MAIL_SENDER;
             if($arrData['onamae']){
-                $mail_sender = $arrData['onamae'];
+                $mail_sender = esc_attr($arrData['onamae']);
             }
             $reply_to_mail = ENTRY_REPLY_TO_MAIL;
             if($mail){

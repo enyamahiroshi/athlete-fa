@@ -46,9 +46,18 @@ add_action('wp_head', function(){
         </div>
         <div class="item__input">
           <div class="item__input__block custom-select">
+            <?php
+            $kibojobs = [];
+            $fields = SCF::get_option_meta('entry-options', '希望職種');
+            foreach ($fields as $value) {
+                if (isset($value['name']) && !empty($value['name'])) {
+                    $kibojobs[] = $value['name'];
+                }
+            }
+            ?>
             <select id="kibojob" name="kibojob" class="custom-select size-wide">
               <option value="" selected disabled>選択してください</option>
-              <?php echo Utils::html_select(ITEM_KIBOJOB, $objApp->arrData['kibojob'] ?? ''); ?>
+              <?php echo Utils::html_select($kibojobs, $objApp->arrData['kibojob'] ?? ''); ?>
             </select>
           </div>
           <?php Utils::printErr($objApp->arrErr['kibojob'] ?? ''); ?>

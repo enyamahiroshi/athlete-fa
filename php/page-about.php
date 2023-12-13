@@ -6,7 +6,7 @@
 
     <div class="has-column">
       <aside class="side-column">
-        <ul class="category-list js-positionNav">
+        <ul class="category-list position-nav js-positionNav">
           <li class="cat-item is-active"><a href="#outline">会社概要</a></li>
           <li class="cat-item"><a href="#access">アクセス</a></li>
         </ul>
@@ -91,7 +91,7 @@
               <p></span><a href="https://maps.app.goo.gl/dnEMheRagnespc1Z7" target="_blank" rel="noopener noreferrer" class="ff-en after-icon after-icon--map">Google Map</a></p>
             </div>
             <figure class="access__image">
-              <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/about/img-company-honsha.jpg" alt="" width="687" height="457">
+              <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/about/img-company-honsha.jpg" alt="" width="687" height="457">
             </figure>
           </div>
           <div class="access">
@@ -101,7 +101,7 @@
               <p></span><a href="https://maps.app.goo.gl/BCdhpAB8PQP89Aim7" target="_blank" rel="noopener noreferrer" class="ff-en after-icon after-icon--map">Google Map</a></p>
             </div>
             <figure class="access__image">
-              <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/about/img-company-daini.jpg" alt="" width="687" height="457">
+              <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/about/img-company-daini.jpg" alt="" width="687" height="457">
             </figure>
           </div>
         </div>

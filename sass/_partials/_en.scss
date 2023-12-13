@@ -1,0 +1,216 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* ----------------------------------------------------------------
+  英語ページ用
+---------------------------------------------------------------- */
+html[lang="en"]{
+
+
+
+//黒丸
+.list-disc{
+  li{
+    &::before{
+      content: '-';
+      width: auto;
+      height: auto;
+      background-color: transparent;
+      top: 0;
+    }
+  }
+}
+
+//非表示設定まとめて
+.page-header .page-header__title:after {
+  display: none;
+}
+
+// .president__message__sign{
+//   margin-top: 30px;
+// }
+// @include res_min( map-get($BP, md) ) {
+//   .president__message__sign{
+//     margin-top: 40px;
+//   }
+// }
+
+
+.page-header__title-sub{
+  font-family: $ff-en;
+}
+
+
+// カテゴリーのリスト表示（wp_list_categories）
+.category-list{
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  .cat-item{
+    a{
+      padding: 0 15px;
+      font-size: clamp(1.1rem, 1.3vw, 1.6rem);
+      letter-spacing: 0.015em;
+      &::before{
+        left: 15px;
+      }
+    }
+    //カレント
+    &.current-cat a,
+    &.is-active a{
+      padding-left: 30px;
+    }
+  }
+  //サイドのリスト：ページ内アンカーリンク
+  &.position-nav{
+    .cat-item{
+      a{
+        padding-left: 30px;
+      }
+    }
+  }
+}
+@include res_min( map-get($BP, md) ){
+  .category-list{
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    @include res_min( map-get($BP, lg) ){
+      grid-template-columns: 1fr;
+    }
+    .cat-item{
+      a{
+        padding: 0 min(15px, 1.85vw);
+        font-size: 1.45rem;
+        &::before{
+          left: min(15px, 1.85vw);
+        }
+        &:hover, &:active{
+          padding-left: min(30px, calc(1.85vw + 15px));
+        }
+      }
+      //カレント
+      &.current-cat a,
+      &.is-active a{
+        padding-left: min(30px, calc(1.85vw + 15px));
+      }
+    }
+    //サイドのリスト：ページ内アンカーリンク
+    &.position-nav{
+      .cat-item{
+        a{
+          padding-left: min(30px, calc(1.85vw + 15px));
+        }
+        @include res_min( map-get($BP, lg) ){
+          &:not(.is-active){
+            a{
+              padding-left: min(15px, 1.85vw);
+              //「:hover」が使用できない端末
+              @media (hover: none){
+                &:active{
+                  padding-left: min(30px, calc(1.85vw + 15px));
+                }
+              }
+              //「:hover」が使用できる端末
+              @media (hover: hover){
+                &:hover{
+                  padding-left: min(30px, calc(1.85vw + 15px));
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//複数カラム表示レイアウト
+@include res_min( map-get($BP, lg) ){
+  .has-column{
+    .side-column{
+      & > *{
+        width: clamp(140px,19.81vw,215px);
+      }
+    }
+  }
+}
+
+//ページリンク
+.page-link{
+  .link-item01.page-link__item{
+    .link-content{
+      //ナンバリング
+      &::before{
+        top: 3px;
+      }
+    }
+  }
+}
+@include res_min( map-get($BP, md) ){
+  .page-link{
+    .link-item01.page-link__item{
+      .link-content{
+        //ナンバリング
+        &::before{
+          top: 9px;
+        }
+      }
+    }
+  }
+}
+
+
+.block-item-title{
+  .logo-create-future-arts{
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+}
+@include res_min( map-get($BP, md) ){
+  .block-item-title{
+    .logo-create-future-arts{
+      margin-top: 16px;
+      margin-bottom: 0;
+    }
+  }
+  .block-layout1 .block-item-text{
+    margin-top: 20px;
+  }
+}
+
+.sec-company{
+  background-color: #fff;
+  .link-item01{
+    .icon{
+      background-color: rgba($gray, 1);
+    }
+  }
+}
+
+
+.president__message__catchcopy{
+  margin-bottom: 20px;
+}
+
+
+//フォームステップ
+.form-step{
+  .form-step__item{
+    min-width: 7em;
+  }
+}
+@include res_min( map-get($BP, md) ){
+  .form-step{
+    .form-step__item{
+      min-width: 9em;
+    }
+  }
+}
+
+
+.link-cn{
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+
+
+
+}//.en

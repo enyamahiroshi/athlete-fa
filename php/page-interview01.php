@@ -26,27 +26,27 @@ get_header(); ?>
     <div class="qa-wrapper">
       <section class="sec qa qa-interview">
         <figure class="qa__image">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/interview/<?php echo $slag; ?>/img-qa01.jpg" alt="" width="960" height="640">
+          <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/interview/<?php echo $slag; ?>/img-qa01.jpg" alt="" width="960" height="640">
         </figure>
         <div class="qa__data">
           <h2 class="qa__data__q">入社した理由を教えてください。</h2>
           <strong class="qa__data__a-title">FAの将来性と高い技術力に魅力を感じました。</strong>
-          <p class="qa__data__a__text">大学４年生の時に制御分野の研究をしていました。具体的には、モーターで可動部を直線運動させ、速度軌道を変えることによって、梁を揺らさずに早く動かすという研究です。３年次までは自分が何をやりたいか決まっていませんでしたが、この研究でFA（Factory Automation＝工場自動化システム）の分野に将来性を感じ、工場自動化分野の会社の中からアスリートFAを選びました。当社では非常に精密な作業を行うための装置を製造しており、このような高い技術を持った会社の一員として働きたいと思いました。さらに、会社見学の際に、清潔感のある職場だなと思ったことや、希望部署で働けると聞いて魅力を感じ、入社を決意しました。</p>
+          <p class="qa__data__a__text">大学4年生の時に制御分野の研究をしていました。具体的には、モーターで可動部を直線運動させ、速度軌道を変えることによって、梁を揺らさずに早く動かすという研究です。3年次までは自分が何をやりたいか決まっていませんでしたが、この研究でFA（Factory Automation＝工場自動化システム）の分野に将来性を感じ、工場自動化分野の会社の中からアスリートFAを選びました。当社では非常に精密な作業を行うための装置を製造しており、このような高い技術を持った会社の一員として働きたいと思いました。さらに、会社見学の際に、清潔感のある職場だなと思ったことや、希望部署で働けると聞いて魅力を感じ、入社を決意しました。</p>
         </div>
       </section>
       <section class="sec qa qa-interview">
         <figure class="qa__image">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/interview/<?php echo $slag; ?>/img-qa02.jpg" alt="" width="960" height="640">
+          <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/interview/<?php echo $slag; ?>/img-qa02.jpg" alt="" width="960" height="640">
         </figure>
         <div class="qa__data">
           <h2 class="qa__data__q">仕事内容を教えてください。</h2>
           <strong class="qa__data__a-title">設計者としてのスキルを身につけながら、装置設計にチャレンジしています。</strong>
-          <p class="qa__data__a__text">入社してから３年間は、製造部で装置の組み立て業務に従事し、FA装置がどのようなものなのかを学びました。1年目は配管や配線などの業務を任され、２年目からは装置の調整を担当し、15台ほどの装置を調整しました。希望が叶い配属となった設計部では、装置の設計、製図、見積もりの作成、お客様からの案件の対応などを行っています。私自身は配属されてまだ数カ月のため、設計で使用するソフトの使い方や、部品図、製図の書き方など、設計部で働く上で必要なスキルを身に付けている段階です。装置の一部である治具などの部品から設計させてもらっています。まだ分からないことも多々ありますが、仕事をしていく中でさまざまな発見があり、楽しく学ばせてもらっています。</p>
+          <p class="qa__data__a__text">入社してから3年間は、製造部で装置の組み立て業務に従事し、FA装置がどのようなものなのかを学びました。1年目は配管や配線などの業務を任され、2年目からは装置の調整を担当し、15台ほどの装置を調整しました。希望が叶い配属となった設計部では、装置の設計、製図、見積もりの作成、お客様からの案件の対応などを行っています。私自身は配属されてまだ数カ月のため、設計で使用するソフトの使い方や、部品図、製図の書き方など、設計部で働く上で必要なスキルを身に付けている段階です。装置の一部である治具などの部品から設計させてもらっています。まだ分からないことも多々ありますが、仕事をしていく中でさまざまな発見があり、楽しく学ばせてもらっています。</p>
         </div>
       </section>
       <section class="sec qa qa-interview">
         <figure class="qa__image">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/interview/<?php echo $slag; ?>/img-qa03.jpg" alt="" width="960" height="640">
+          <img class="parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/interview/<?php echo $slag; ?>/img-qa03.jpg" alt="" width="960" height="640">
         </figure>
         <div class="qa__data">
           <h2 class="qa__data__q">仕事の面白さ、やりがい、これからの目標を教えてください。</h2>

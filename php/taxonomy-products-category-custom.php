@@ -7,7 +7,7 @@
 
     <div class="has-column">
       <aside class="side-column side-column--products">
-        <ul class="category-list js-positionNav">
+        <ul class="category-list position-nav js-positionNav">
           <li class="cat-item is-active"><a href="#features">サービスの特徴</a></li>
           <li class="cat-item"><a href="#flow">導入までの流れ</a></li>
           <li class="cat-item"><a href="#case">カスタム事例</a></li>
@@ -116,8 +116,6 @@
             <?php
             //カスタム投稿タイプのタクソノミーからタームを抽出
             $termTagTax = get_the_terms(get_the_ID(), 'products-tag');
-            $tag_name = $termTagTax[0]->name;
-            $tag_slug = $termTagTax[0]->slug;
             //カスタムフィールドより
             $mainImg = SCF::get('product-image');
             ?>
@@ -129,17 +127,19 @@
                   <figure class="product-item-image">
                     <?php
                     if($mainImg){
-                      echo wp_get_attachment_image($mainImg, 'medium');
+                      echo wp_get_attachment_image($mainImg, 'full');
                     } else {
                       echo '<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/no-image.png" alt="" width="1840" height="1226">';
                     }
                     ?>
                   </figure>
+                  <?php if($termTagTax): ?>
                   <ul class="product-tag">
                   <?php foreach ($termTagTax as $termTag): ?>
                     <li class="product-tag__name"><?php echo $termTag->name; ?></li>
                   <?php endforeach; ?>
                   </ul>
+                  <?php endif; ?>
                   <span class="button-r-link-large button-circle-ani">
                     <span class="svg-area">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
@@ -157,8 +157,7 @@
             <li><div class="not-post">まだ記事はありません。</div></li>
           </ul>
         <?php endif; wp_reset_postdata(); ?>
-
-        <?php
+        <?php //12件以上あればボタン表示
         $cntPost = $wp_query->found_posts;
         if( $cntPost > 12 ): ?>
           <div class="button-wrap">
@@ -171,8 +170,8 @@
               </span>
             </a>
           </div>
-        </div>
         <?php endif; ?>
+        </div>
 
         <?php //その他実績装置 ?>
         <div id="other" class="custom-other js-positionNav-target">
@@ -184,6 +183,16 @@
           $the_content = apply_filters('the_content', $the_content);
           echo $the_content; //取得したコンテンツを出力します
           ?>
+          </div>
+          <div class="button-wrap --left">
+            <a href="<?php echo esc_url(home_url()); ?>/products/" class="button-r-link-large button-circle-ani">
+              製品一覧へ戻る
+              <span class="svg-area">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="circle-ani">
+                  <circle cx="50%" cy="50%" r="28" class="circle-ani">
+                </circle></svg>
+              </span>
+            </a>
           </div>
         </div>
 

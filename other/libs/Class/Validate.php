@@ -8,16 +8,27 @@ class Validate
 {
     public $arrErr = array();
     public $arrParam;
+    public $lang;
+    public $english;
     /**
      * __construct
      */
-    public function __construct($array = '')
+    public function __construct($array = '', $lang = '',)
     {
         if ($array != '') {
             $this->arrParam = $array;
         } else {
             $this->arrParam = $_POST;
         }
+
+        if ($lang == 'en') {
+            $this->english = true;
+        } else {
+            $this->english = false;
+        }
+
+
+
     }
 
     /**
@@ -48,13 +59,21 @@ class Validate
         $input_var = $this->arrParam[$keyname];
         if (is_array($input_var)) {
             if (count($input_var) == 0) {
-                $this->arrErr[$keyname] =
-                    "「{$disp_name}」が選択されていません。";
+                if ($this->english) {
+                    $this->arrErr[$keyname] = "Please fill in the required items";
+                } else {
+                    $this->arrErr[$keyname] = "「{$disp_name}」が選択されていません。";
+                }
+                
             }
         } else {
             if (strlen($input_var) == 0) {
-                $this->arrErr[$keyname] =
-                    "「{$disp_name}」が入力されていません。";
+                if ($this->english) {
+                    $this->arrErr[$keyname] = "Please fill in the required items";
+                } else {
+                    $this->arrErr[$keyname] = "「{$disp_name}」が入力されていません。";
+                }
+                
             }
         }
     }
@@ -79,8 +98,12 @@ class Validate
         $this->createParam($value);
 
         if (strlen($this->arrParam[$keyname]) == 0) {
-            $this->arrErr[$keyname] =
-                "「{$disp_name}」が選択されていません。";
+            if ($this->english) {
+                $this->arrErr[$keyname] = "Please fill in the required items";
+            } else {
+                $this->arrErr[$keyname] = "「{$disp_name}」が選択されていません。";
+            }
+            
         }
     }
     /**
@@ -165,11 +188,21 @@ class Validate
 
         // 文字数の取得
         if (mb_strlen($this->arrParam[$keyname]) > $max_str_len) {
-            $this->arrErr[$keyname] = sprintf(
-                '「%s」は%d字以下で入力してください。',
-                $disp_name,
-                $max_str_len
-            );
+
+            if ($this->english) {
+                $this->arrErr[$keyname] = sprintf(
+                    'Please enter no more than %d characters.',
+                    $max_str_len
+                );
+            } else {
+                $this->arrErr[$keyname] = sprintf(
+                    '「%s」は%d字以下で入力してください。',
+                    $disp_name,
+                    $max_str_len
+                );
+            }
+
+            
         }
     }
 
@@ -197,6 +230,32 @@ class Validate
         }
     }
 
+    /**
+     * 電話番号の判定
+     *
+     * @param array $value 
+     * @return void
+     */
+    public function EN_TEL_CHECK($value)
+    {
+        $disp_name = $value[0];
+        $keyname = $value[1];
+
+        if (isset($this->arrErr[$keyname])) {
+            return;
+        }
+        $this->createParam($value);
+        $input_var = $this->arrParam[$keyname];
+        $pattern = "/\A[0-9\-\+]+\z/i";
+        if (strlen($input_var) > 0 && !preg_match($pattern, $input_var)) {
+            if ($this->english) {
+                $this->arrErr[$keyname] = "Please use single-byte numbers, hyphens, and +.";
+            } else {
+                $this->arrErr[$keyname] = "「{$disp_name}」は半角数字・ハイフン・＋で入力してください。";
+            }
+            
+        }
+    }
 
     /**
      * 電話番号の判定
@@ -216,7 +275,11 @@ class Validate
         $input_var = $this->arrParam[$keyname];
         $pattern = "/\A[0-9-]+\z/i";
         if (strlen($input_var) > 0 && !preg_match($pattern, $input_var)) {
-            $this->arrErr[$keyname] = "「{$disp_name}」は半角数字・ハイフンで入力してください。";
+            if ($this->english) {
+                $this->arrErr[$keyname] = "Please use single-byte numbers and hyphens.";
+            } else {
+                $this->arrErr[$keyname] = "「{$disp_name}」は半角数字・ハイフンで入力してください。";
+            }
         }
     }
 
@@ -295,7 +358,11 @@ class Validate
         }
 
         if (!preg_match($regexp, $this->arrParam[$keyname])) {
-            $this->arrErr[$keyname] = "「{$disp_name}」の形式が不正です。<br />";
+            if ($this->english) {
+                $this->arrErr[$keyname] = "The format of the e-mail address is invalid.";
+            } else {
+                $this->arrErr[$keyname] = "「{$disp_name}」の形式が不正です。";
+            }
 
             return;
         }

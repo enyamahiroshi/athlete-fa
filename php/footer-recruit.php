@@ -18,14 +18,14 @@
 </section>
 <?php elseif( is_page( 'career' ) ): ?>
 <section class="sec sec-small sec-cta-entry">
-  <a href="<?php echo esc_url(home_url()); ?>/recruit/entry/" target="_blank" rel="noopener noreferrer" class="cta-entry no-blank-image">
+  <a href="<?php echo esc_url(home_url()); ?>/recruit/entry/" class="cta-entry no-blank-image">
     <div class="inner">
       <h2 class="title02 --data-sub-ja" data-sub="キャリア採用 / エントリー">ENTRY</h2>
       <div class="cta-entry__button">
         <div class="cta-entry__button__text">
           <em>エントリーフォーム</em>
         </div>
-        <div class="icon icon--blank">
+        <div class="icon">
           <span class="rotateChar1">J</span><span class="rotateChar2">o</span><span class="rotateChar3">i</span><span class="rotateChar4">n</span><span class="rotateChar5"></span><span class="rotateChar6">o</span><span class="rotateChar7">u</span><span class="rotateChar8">r</span><span class="rotateChar9"></span><span class="rotateChar10">T</span><span class="rotateChar11">E</span><span class="rotateChar12">A</span><span class="rotateChar13">M</span><span class="rotateChar14">!</span>
         </div>
       </div>

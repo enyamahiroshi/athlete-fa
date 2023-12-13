@@ -136,12 +136,22 @@
 
 // お問い合わせ
 .sec-cta-contact{
-  background-image: url(./assets/images/common/bg-cta-contact--small.jpg);
-  background-position: left bottom;
-  background-size: cover;
+  // background-image: url(./assets/images/common/bg-cta-contact--small.jpg);
+  // background-position: left bottom;
+  // background-size: cover;
   overflow: hidden;
   position: relative;
   z-index: 3;
+  .cta-contact-image{
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
 }
 .cta-contact{
   padding: 75px 0 55px;
@@ -219,8 +229,10 @@
 }
 @include res_min( map-get($BP, lg) ){
   .sec-cta-contact{
-    background-image: url(./assets/images/common/bg-cta-contact--large.jpg);
-    background-position: center;
+    // background-image: url(./assets/images/common/bg-cta-contact--large.jpg);
+    // background-position: center;
+    .cta-contact-image{
+    }
   }
   .cta-contact{
     padding: 0;
@@ -734,7 +746,7 @@
       letter-spacing: 0;
       line-height: 1.4;
       position: relative;
-      z-index: 1;
+      z-index: -1;
       &::before{
         content: counter(catNum, decimal-leading-zero);
         margin-right: 20px;
@@ -780,7 +792,7 @@
   }
 }
 
-@include res_min( map-get($BP, md) ){
+@include res_min( map-get($BP, lg) ){
   .horizon-slider__container{
     height: calc(100vh - 57px - 86px);
     height: calc(100dvh - 57px - 86px);
@@ -1250,11 +1262,6 @@
   &:link, &:visited{
     color: $textBaseColor;
   }
-  &:hover, &:active{
-    img{
-      opacity: 1;
-    }
-  }
   .link-to-career__data{
     padding: 35px 37px;
   }
@@ -1267,8 +1274,6 @@
       margin-top: 20px;
     }
   .link-to-career__image{
-    img{
-    }
   }
 }
 @include res_min( map-get($BP, lg) ){
@@ -1291,12 +1296,13 @@
       }
     .link-to-career__image{
       flex-basis: 50%;
-      background: #000;
+      overflow: hidden;
       img{
         width: 100%;
         height: 100%;
         -o-object-fit: cover;
            object-fit: cover;
+        transition: transform .5s ease;
       }
     }
     //丸ボタンアニメーション
@@ -1312,6 +1318,11 @@
           opacity: 1;
           -webkit-animation: circleAni cubic-bezier(0.35, 0.01, 0, 0.98) 1.5s 1;
           animation: circleAni cubic-bezier(0.35, 0.01, 0, 0.98) 1.5s 1;
+        }
+      }
+      .link-to-career__image{
+        img{
+          transform: scale(1.025)
         }
       }
     }
@@ -1342,7 +1353,7 @@
       margin-bottom: 10px;
       display: block;
     }
-    figure{
+    .button-mynavi{
       display: block;
       width: calc(100% - 80px);
       height: 24px;
@@ -1426,11 +1437,11 @@
       span{
         margin-bottom: 14px;
       }
-      figure{
+      .button-mynavi{
         height: 35px;
       }
       &:hover{
-        figure{
+        .button-mynavi{
           //個別
           &.button-mynavi{
             transition-delay: 0.3s;
@@ -1514,16 +1525,24 @@
 
 //会社イメージ写真
 .sec-company-image{
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 390 / 275;
-  background-image: url(./assets/images/home/bg-company-small.jpg);
-  background-size: cover;
+  // width: 100%;
+  // height: 100%;
+  // aspect-ratio: 390 / 275;
+  // background-image: url(./assets/images/home/bg-company-small.jpg);
+  // background-size: cover;
+  .company-image{
+    margin-left: -15px;
+    margin-right: -15px;
+  }
 }
 @include res_min( map-get($BP, md) ){
   .sec-company-image{
-    aspect-ratio: 1920 / 800;
-    background-image: url(./assets/images/home/bg-company-large.jpg);
+    // aspect-ratio: 1920 / 800;
+    // background-image: url(./assets/images/home/bg-company-large.jpg);
+    .company-image{
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 }
 
@@ -1593,7 +1612,8 @@
 .sec-news{
   padding-top: 88px;
   padding-bottom: 58px;
-  .home &{
+  .home &,
+  .en[data-flg="en-home"] &{
     background-color: rgba($gray, 1);
   }
   .layout-block{
@@ -1808,7 +1828,9 @@
 
 
 //ターム：カスタムのページ内
-.has-column .main-column--custom{}
+.has-column .main-column--custom{
+  overflow: hidden;
+}
 @include res_min( map-get($BP, lg) ){
   .has-column .main-column.main-column--custom{
     & > *{
@@ -2051,10 +2073,18 @@
 //その他
 .custom-other{
   margin-top: 60px;
+  .button-wrap.--left{
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+  }
 }
 @include res_min( map-get($BP, md) ){
   .custom-other{
     margin-top: 160px;
+    .button-wrap.--left{
+      margin-top: 80px !important;
+      margin-bottom: 0 !important;
+    }
   }
 }
 
@@ -2180,14 +2210,9 @@
     @include flex(nowrap, center, center);
     flex-direction: column;
     white-space: nowrap;
-    &::before{
-      content: attr(data-sub);
-      font-family: $ff-en;
-      letter-spacing: -0.025em;
-      font-size: 3rem;
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: 5px;
+    .logo-create-future-arts{
+      margin-bottom: 9px;
+      width: 277px;
     }
     strong{
       @include flex(nowrap, center, center);
@@ -2226,8 +2251,9 @@
     }
     .president__message__catchcopy{
       font-size: 1.7rem;
-      &::before{
-        font-size: 3.5rem;
+      .logo-create-future-arts{
+        margin-bottom: 11px;
+        width: 323px;
       }
       strong{
         &::before,
@@ -2254,6 +2280,9 @@
   font-size: 3rem;
   font-weight: 700;
   letter-spacing: 0;
+  .logo-create-future-arts{
+    width: 292px;
+  }
 }
 .bland-item{
   margin-top: 35px;
@@ -2295,6 +2324,9 @@
   .bland-catchcopy{
     margin-top: 70px;
     font-size: 4rem;
+    .logo-create-future-arts{
+      width: 388px;
+    }
   }
   .bland-item{
     max-width: 805px;
@@ -4967,12 +4999,15 @@ p.staff-data__text{
   &:first-of-type{
     margin-top: 30px;
   }
+  position: relative;
   counter-increment: cntQA;
 }
 .qa__image{
+  z-index: 2;
 }
 .qa__data{
   margin-top: 40px;
+  z-index: 1;
 }
 .qa__data__q{
   font-size: 1.8rem;

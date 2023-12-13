@@ -59,50 +59,35 @@ window.addEventListener("scroll", function() {
 (function ($) {
 
   /* --------------------------------------------------
-  ページローディング処理：ふわっと表示(https://note.spiqa.design/4676/#%E7%B0%A1%E5%8D%98%E3%81%AB%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89)
+  ページローディング処理
   -------------------------------------------------- */
-  //ローディング時の動き
-  $(window).on('load', function () {
-    setTimeout(function(){
-      //bodyに付けているfadeのクラスを取る
-      $('body').removeClass('js-page-loading');
-    }, 300);
-  });
-  //ページ内リンク、target属性がない場合のaタグが押された時
-  $('a:not([href^="#"]):not([target])').on('click', function(e){
-    e.preventDefault();
+  //ページロード時にフェードイン
+  $('body').fadeIn(600);
+
+  //ブラウザバックで強制的にリフレッシュ
+  window.onpageshow = function(event) {
+    if (event.persisted) {
+      window.location.reload();
+    }
+  };
+
+  $('a:not([href^="#"]):not([target])').on('click', function (e) {
     link = $(this).attr('href');
     if (link !== '') {
-      //bodyにフェードアウトさせるためのクラスを付与
-      $('body').addClass('js-page-fadeout');
-      setTimeout(function(){
-        window.location = link;
-      }, 300);
-    }
-    return false;
-  });
-
-
-  /* --------------------------------------------------
-    スクロールによるメニューの変化
-    https://web-creates.com/code/jquery-menu-change/
-  -------------------------------------------------- */
-  $(window).on('load scroll resize', function () {
-
-    var st = $(window).scrollTop();
-    var wh = $(window).height();
-
-    $('.js-positionNav-target').each(function (i) {
-      var tg = $(this).offset().top;
-      var id = $(this).attr('id');
-
-      if (st > tg - wh + (wh / 1.2)) {
-        $(".js-positionNav li").removeClass("is-active");
-        var link = $(".js-positionNav li a[href *= " + id +"]").parent("li");
-        $(link).addClass("is-active");
+      // Ctrl キーが押されていた場合は別タブで開く
+      if (e.ctrlKey) {
+        window.open(link);
+      } else {
+        //bodyにフェードアウトさせるためのクラスを付与
+        // $('body').removeClass('js-page-loading');
+        $('body').addClass('js-page-fadeout');
+        // Ctrl キーが押されていなかった場合は同じタブで開く
+        setTimeout(function(){
+          location.href = link;
+        }, 300);
       }
-    });
-
+    }
+    // return false;
   });
 
 
@@ -134,29 +119,6 @@ window.addEventListener("scroll", function() {
         } else if ($(this).scrollTop() == 0) {
           $AppearGM.removeClass($aadclass);
         }
-    }
-  });
-
-  //サイドナビの変化
-  const $sideCateNav = $('.side-column');
-  $(window).on('load resize scroll', function () {
-    if ($sideCateNav.length) {
-      if (window.matchMedia("(max-width: " + mqueryLG + ")").matches) {
-        const $fixedTiming = $sideCateNav.offset().top - 58;
-        if ($(this).scrollTop() > $fixedTiming) {
-          $sideCateNav.addClass($aadclass);
-        } else {
-          $sideCateNav.removeClass($aadclass);
-        }
-      } else {
-        $sideCateNav.removeClass($aadclass);
-        // const $fixedTiming = $sideCateNav.offset().top - 127;
-        // if ($(this).scrollTop() > $fixedTiming) {
-        //   $sideCateNav.addClass($aadclass);
-        // } else {
-        //   $sideCateNav.removeClass($aadclass);
-        // }
-      }
     }
   });
 
@@ -251,15 +213,18 @@ window.addEventListener("scroll", function() {
   const headerHeight = $_header.height() + 40;
   const speed = 300;
 
-  $($anchor).on('tap click', function() {
-    const href= $(this).attr("href");
-    const target = $(href == "#" || href == "" ? 'html' : href);
-    const position = target.offset().top - headerHeight;
-    $("html, body").stop().animate({ scrollTop: position }, speed, 'swing');
-    $('*').removeClass('is-active');
-    $(this).parent().addClass('is-active');
-    return false;
+  //同ページ内
+  $(window).on('load scroll resize', function () {
+    const headerHeight = $_header.height() + 40;
+    $($anchor).on('tap click', function() {
+      const href= $(this).attr("href");
+      const target = $(href == "#" || href == "" ? 'html' : href);
+      const position = target.offset().top - headerHeight;
+      $("html, body").stop().animate({ scrollTop: position }, speed, 'swing');
+      return false;
+    });
   });
+  //別ページから遷移
   $(window).on('load resize', function() {
     if(document.URL.match("#")) {
       const str = location.href ;
@@ -272,5 +237,35 @@ window.addEventListener("scroll", function() {
       return false;
     }
   });
+
+  /* --------------------------------------------------
+    スクロールによるサイドメニューの変化
+    https://web-creates.com/code/jquery-menu-change/
+  -------------------------------------------------- */
+  $(window).on('load scroll resize', function () {
+    const addActive = "is-active";
+    //1023px以下
+    if (window.matchMedia("(max-width: " + mqueryLG + ")").matches) {
+      $(".js-positionNav li").removeClass(addActive);
+    } else
+    //1024以上
+    {
+      const st = $(window).scrollTop();
+      const wh = $(window).height();
+      $('.js-positionNav-target').each(function (i) {
+        const tg = $(this).offset().top;
+        const id = $(this).attr('id');
+
+        if (st > tg - wh + (wh / 1.2) - headerHeight) {
+          $(".js-positionNav li").removeClass(addActive);
+          const targt = $(".js-positionNav li a[href *= " + id +"]").parent("li");
+          $(targt).addClass(addActive);
+        }
+      });
+    }
+
+  });
+
+
 
 })(jQuery);

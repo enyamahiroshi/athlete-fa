@@ -15,6 +15,8 @@
       </svg>
     </a>
   </div>
+  <img class="cta-contact-image sp parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/bg-cta-contact--small.jpg" alt="" width="358" height="538">
+  <img class="cta-contact-image pc parallax js-parallax" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/bg-cta-contact--large.jpg" alt="" width="1523" height="700">
 </section>
 
 <aside class="page-top">

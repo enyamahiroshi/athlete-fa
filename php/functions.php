@@ -1,8 +1,9 @@
 <?php
+get_template_part( 'setting/custom-post-type' );
 get_template_part( 'setting/system' );
+get_template_part( 'setting/menu' );
 get_template_part( 'setting/include_files' );
 get_template_part( 'setting/customize-plugins' );
-get_template_part( 'setting/customize-block-editer' );
 
 /* -------------------------------------------------------------
 //  メインループの表示件数を制御
@@ -50,8 +51,8 @@ function my_pre_get_posts( $query ) {
   //   return;
   // }
   // // 固定ページ
-  // if($query->is_page('journal')){
-  //   $query->set('posts_per_page', 2); //表示件数
+  // if($query->is_page()){
+  //   $query -> set('posts_per_page', 30); //表示件数
   //   return;
   // }
   // // カスタム投稿タイプのアーカイブ
@@ -62,22 +63,30 @@ function my_pre_get_posts( $query ) {
   //   return;
   // }
   //カスタムタクソノミーのアーカイブ
-  if($query -> is_tax('products-category', 'custom')){ //カテゴリー：カスタムのみ
+  if($query -> is_tax( 'products-category', 'custom' )){ //カテゴリー：カスタムのみ
     $query -> set('posts_per_page', 12); //表示件数
-    $query -> set('order', 'DESC'); //ASC:昇順, DESC:降順
-    // $query -> set('orderby', 'date'); //日
+    $query -> set('order', 'ASC'); //ASC:昇順, DESC:降順
+    $query -> set('orderby', 'menu_order'); //menu_order: 管理画面上の表示順（並び替えプラグインなどで使われる値）
     return;
   }
-  if($query -> is_tax()){
+  if($query -> is_tax( 'products-en-category', 'custom' )){ //カテゴリー：カスタムのみ
+    $query -> set('posts_per_page', 12); //表示件数
+    $query -> set('order', 'ASC'); //ASC:昇順, DESC:降順
+    $query -> set('orderby', 'menu_order'); //menu_order: 管理画面上の表示順（並び替えプラグインなどで使われる値）
+    return;
+  }
+  if($query -> is_tax( array('products-category', 'products-en-category') )){
     $query -> set('posts_per_page', 30); //表示件数
-    // $query -> set('order', 'ASC'); //ASC:昇順, DESC:降順
-    // $query -> set('orderby', 'date'); //日
+    $query -> set('order', 'ASC'); //ASC:昇順, DESC:降順
+    $query -> set('orderby', 'menu_order'); //menu_order: 管理画面上の表示順（並び替えプラグインなどで使われる値）
     return;
   }
 }
 add_action('pre_get_posts','my_pre_get_posts');
 
-
+/* -------------------------------------------------------------
+// ページネーション
+// ------------------------------------------------------------*/
 // the_posts_pagination で吐き出すページネーションの整形
 function cut_screen_reader_text($template) {
 	$template = '
@@ -126,7 +135,7 @@ function add_posttype_classes( $classes ) {
     }
   }
 
-  $classes[] = 'js-page-loading'; //ページローディング用に付与
+  // $classes[] = 'js-page-loading'; //ページローディング用に付与
   return $classes;
 }
 
@@ -154,20 +163,6 @@ function is_parent_slug() {
 }
 
 /* -------------------------------------------------------------
-// the_excerpt() の内容変更
-// ------------------------------------------------------------*/
-// 区切り文字数を変える
-function custom_excerpt_length( $length ) {
-  return 125; //デフォルトは「110」
-}
-add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
-// 省略文字を変える
-function new_excerpt_more($more) {
-	return '...'; //デフォルトは「【...】」
-}
-add_filter('excerpt_more', 'new_excerpt_more');
-
-/* -------------------------------------------------------------
 // カスタムメニュー
 // ------------------------------------------------------------*/
 // 有効化
@@ -178,36 +173,6 @@ function removeId( $id ){
   return $id = array();
 }
 add_filter('nav_menu_item_id', 'removeId', 10);
-// li の class のコントロール
-// function my_custom_nav( $classes, $item ) {
-//   global $post;
-//   $current_class = 'current';
-//   $classes[] = $current_class;
-//   if( $item -> current == true ) {
-//     $classes[] = $current_class;
-//   }
-//   //カスタム投稿タイプでのカレント処理
-//   if (is_singular('works') && $item->object_id == $post->ID) {
-//     $classes[] = $current_class;
-//   }
-//   return $classes;
-// }
-// add_filter( 'nav_menu_css_class', 'my_custom_nav', 10, 2 );
-
-/* -------------------------------------------------------------
-// ウィジェットの使用
-// ------------------------------------------------------------*/
-// function my_theme_widgets_init() {
-//   register_sidebar( array(
-//     'name' => 'Main Sidebar',
-//     'id' => 'main-sidebar',
-//     'before_widget' => '<section class="widget %1$s">',
-//     'after_widget' => '</section>',
-//     'before_title' => '<h3 class="hl03 widget__title">',
-//     'after_title'  => '</h3>',
-//   ) );
-// }
-// add_action( 'widgets_init', 'my_theme_widgets_init' );
 
 /* -------------------------------------------------------------
 // 標準ギャラリーのCSSを停止
@@ -230,26 +195,6 @@ function lig_wp_category_terms_checklist_no_top( $args, $post_id = null ) {
   return $args;
 }
 add_action( 'wp_terms_checklist_args', 'lig_wp_category_terms_checklist_no_top' );
-
-/* -------------------------------------------------------------
-//  ダッシュボードにてカスタム投稿ポストをタクソノミーで絞り込みできるようにする
-// ------------------------------------------------------------*/
-add_action( 'restrict_manage_posts', 'add_post_taxonomy_restrict_filter' );
-function add_post_taxonomy_restrict_filter() {
-    global $post_type;
-    if ( 'products' == $post_type ) {
-        ?>
-        <select name="products-category">
-            <option value="">カテゴリー指定なし</option>
-            <?php
-            $terms = get_terms('products-category');
-            foreach ($terms as $term) { ?>
-                <option value="<?php echo $term->slug; ?>"><?php echo $term->name; ?></option>
-            <?php } ?>
-        </select>
-        <?php
-    }
-}
 
 /** Form related */
 require_once (realpath(dirname(__FILE__) . '/libs/require.php'));

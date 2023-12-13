@@ -93,7 +93,7 @@ Chart.plugins.register({
 
 	//画面上に入ったら円グラフを描画
 	//▼売上比率
-	$('.js-data-circle-uriagehiritsu').on('inview', function (event, isInView) {
+	$('.js-data-circle-uriagehiritsu').one('inview', function (event, isInView) {
 		if (isInView) {
 			const ctx = $("#data-circle-uriagehiritsu");//グラフを描画したい場所のid
 			const chart = new Chart( ctx,{
@@ -121,7 +121,7 @@ Chart.plugins.register({
 
 	//画面上に入ったら円グラフを描画
 	//▼有給休暇取得率
-	$('.js-data-circle-yukyusyutokuritsu').on('inview', function (event, isInView) {
+	$('.js-data-circle-yukyusyutokuritsu').one('inview', function (event, isInView) {
 		if (isInView) {
 			const ctx = $("#data-circle-yukyusyutokuritsu");//グラフを描画したい場所のid
 			const chart = new Chart( ctx,{
@@ -142,13 +142,6 @@ Chart.plugins.register({
 					},
 					tooltips: false, //グラフへカーソルを合わせた際の詳細（ツールチップ）表示の設定
 					title: false, //上部タイトル表示の設定
-					// 描画が終わったらイベントを発火させる
-					on: {
-						draw: function() {
-							// イベントを発火させる
-							alert('sfdf');
-						}
-					}
 				}
 			});
 		}
@@ -157,9 +150,8 @@ Chart.plugins.register({
 
 	//=========== ドーナツグラフ ============//
 	//画面上に入ったらドーナツグラフを描画
-	$('.js-chart-doughnut-nenreikoseihi').on('inview', function(event, isInView) {
+	$('.js-chart-doughnut-nenreikoseihi').one('inview', function(event, isInView) {
 		if (isInView) {
-
 			const ctx = $("#chart-doughnut-nenreikoseihi");//グラフを描画したい場所のid
 			const chart = new Chart( ctx,{
 				type:'doughnut',//グラフのタイプ
@@ -182,7 +174,6 @@ Chart.plugins.register({
 					title: false, //上部タイトル表示の設定
 				}
 			});
-
 		}
 	});
 

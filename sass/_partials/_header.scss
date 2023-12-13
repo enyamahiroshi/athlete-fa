@@ -42,6 +42,7 @@ $headerHighPC: 127;
   }
   //個別に変更
   .home &,
+  .en[data-flg="en-home"] &,
   .page-template-tmp-recruit &{
     .header__logo{
       svg{
@@ -49,7 +50,8 @@ $headerHighPC: 127;
       }
     }
   }
-  .home &{
+  .home &,
+  .en[data-flg="en-home"] &{
     border-bottom: none;
   }
   .page-template-tmp-recruit &{
@@ -155,6 +157,9 @@ $headerHighPC: 127;
     .company &.link-company,
     .tax-products-category &.menu-products,
     .products &.menu-products,
+    .company-en &.link-company,
+    .tax-products-en-category &.menu-products,
+    .products-en &.menu-products,
     .recruit &.link-recruit{
       a{
         color: rgba($mainColor, 1);
@@ -194,6 +199,9 @@ $headerHighPC: 127;
       .company &.link-company,
       .tax-products-category &.menu-products,
       .products &.menu-products,
+      .company-en &.link-company,
+      .tax-products-en-category &.menu-products,
+      .products-en &.menu-products,
       .recruit &.link-recruit{
         & > a{
           //サブメニュー開閉矢印
@@ -284,9 +292,19 @@ $headerHighPC: 127;
         &.current_page_item,
         &.current-menu-item,
         &.current_page_ancestor,
+        .single-post &.current_page_parent,
+        .category &.current_page_parent,
+        .single-news-en &.menu-item-object-news-en,
+        .tax-news-en-category &.menu-item-object-news-en,
+        .single-products-en &.menu-item-object-products-en,
+        .tax-products-en-category &.menu-item-object-products-en,
         .company &.link-company,
+        .company-en &.link-company,
         .tax-products-category &.menu-products,
         .products &.menu-products,
+        .products-en &.menu-products,
+        .custom-list &.menu-products,
+        .custom-list-en &.menu-products,
         .recruit &.link-recruit{
           //下線
           &::before{
@@ -298,8 +316,9 @@ $headerHighPC: 127;
             left: -8px;
             bottom: -39px;
             @include transition(bottom, 0.3);
-            //下線を付けない
-            .home &{
+            //カレントだが下線を付けない
+            .home &,
+            .en[data-flg="en-home"] &{
               content: none;
             }
           }
@@ -361,6 +380,7 @@ $headerHighPC: 127;
         }
         //個別に変更（リンク色を白にする）
         .home &:not(.current_page_item),
+        .en[data-flg="en-home"] &:not(.current_page_item),
         .page-template-tmp-recruit &{
           a{
             color: rgba(#fff, 1);
@@ -454,6 +474,7 @@ $headerHighPC: 127;
       }
       //個別に変更
       .home &,
+      .en[data-flg="en-home"] &,
       .page-template-tmp-recruit &{
         a{
           color: rgba(#fff, 0.5);
@@ -546,6 +567,7 @@ $headerHighPC: 127;
     }
     //個別に変更
     .home &,
+    .en[data-flg="en-home"] &,
     .page-template-tmp-recruit &{
       .button-contact{
         background-color: transparent;
@@ -626,6 +648,7 @@ $headerHighPC: 127;
   }
   //個別に変更
   .home &,
+  .en[data-flg="en-home"] &,
   .page-template-tmp-recruit &{
     .menu-bar-line{
       &::before,
@@ -652,13 +675,17 @@ $headerHighPC: 127;
 .header.is-fixed{
   border-bottom: none;
   background-color: rgba(#fff, 1);
-  .header__logo{
-    svg{
-      fill: rgba($mainColor, 1);
+  .home &,
+  .en[data-flg="en-home"] &,
+  .page-template-tmp-recruit &{
+    .header__logo{
+      svg{
+        fill: rgba($mainColor, 1);
+      }
     }
   }
   .menu-bar{
-    background-color: rgba(#fff, 1);
+    // background-color: rgba(#fff, 1);
     .menu-bar-line{
       &::before,
       &::after{
@@ -677,6 +704,7 @@ $headerHighPC: 127;
       .menu-item{
         //個別に変更
         .home &,
+        .en[data-flg="en-home"] &,
         .page-template-tmp-recruit &{
           a{
             color: rgba($textBaseColor, 1);
@@ -704,9 +732,19 @@ $headerHighPC: 127;
         &.current_page_item,
         &.current-menu-item,
         &.current_page_ancestor,
+        .single-post &.current_page_parent,
+        .category &.current_page_parent,
+        .single-news-en &.menu-item-object-news-en,
+        .tax-news-en-category &.menu-item-object-news-en,
+        .single-products-en &.menu-item-object-products-en,
+        .tax-products-en-category &.menu-item-object-products-en,
         .company &.link-company,
+        .company-en &.link-company,
         .tax-products-category &.menu-products,
         .products &.menu-products,
+        .products-en &.menu-products,
+        .custom-list &.menu-products,
+        .custom-list-en &.menu-products,
         .recruit &.link-recruit{
           //下線
           &::before{
@@ -723,14 +761,10 @@ $headerHighPC: 127;
       .global-menu__sub{
         //個別に変更
         .home &,
+        .en[data-flg="en-home"] &,
         .page-template-tmp-recruit &{
           a{
             color: rgba($textBaseColor, 0.5);
-          }
-          .switch-language{
-            a.ja{
-              color: rgba($textBaseColor, 1);
-            }
           }
           .separate{
             background-color: rgba($textBaseColor, 1);
@@ -739,6 +773,20 @@ $headerHighPC: 127;
             color: rgba($textBaseColor, 1);
             &::after{
               background-color: rgba($textBaseColor, 1);
+            }
+          }
+        }
+        .home &{
+          .switch-language{
+            a.ja{
+              color: rgba($textBaseColor, 1);
+            }
+          }
+        }
+        .en[data-flg="en-home"] &{
+          .switch-language{
+            a.en{
+              color: rgba($textBaseColor, 1);
             }
           }
         }
@@ -777,9 +825,13 @@ body.is-open{
 // header
 .header.is-open{
   background-color: $gray;
-  .header__logo{
-    svg{
-      fill: $mainColor;
+  .home &,
+  .en[data-flg="en-home"] &,
+  .page-template-tmp-recruit &{
+    .header__logo{
+      svg{
+        fill: $mainColor;
+      }
     }
   }
 }
@@ -828,5 +880,19 @@ body.is-open{
     background-color: rgba($textBaseColor, 1);
     -webkit-mask-image: url(./assets/images/common/menu-bar-close.svg);
             mask-image: url(./assets/images/common/menu-bar-close.svg);
+  }
+  //個別に変更
+  .home &,
+  .en[data-flg="en-home"] &,
+  .page-template-tmp-recruit &{
+    .menu-bar-line{
+      &::before,
+      &::after{
+        background-color: rgba($textBaseColor, 1);
+      }
+    }
+    .menu-bar-image{
+      background-color: rgba($textBaseColor, 1);
+    }
   }
 }

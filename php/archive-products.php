@@ -29,7 +29,7 @@
               <figure class="product-item-image">
               <?php
                 if($productCatImg){
-                  echo wp_get_attachment_image($productCatImg, 'medium');
+                  echo wp_get_attachment_image($productCatImg, 'full');
                 } else {
                   echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/common/no-image.png" alt="" width="1840" height="1226">';
                 }

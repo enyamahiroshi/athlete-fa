@@ -41,7 +41,7 @@
           <span class="separate"></span>
           <a href="<?php echo esc_url(home_url()); ?>/en/" class="en">EN</a>
         </div>
-        <a href="http://www.athlete-china.com/" target="_blank" rel="noopener noreferrer" class="link-cn">愛立発自動化設備有限公司<span>（CN）</span></a>
+        <a href="http://www.athlete-china.com/" target="_blank" rel="noopener noreferrer" class="link-cn">Athlete Automation Equipment (Shanghai) Co.,Ltd.<span>（CN）</span></a>
       </section>
     </div>
   </section>

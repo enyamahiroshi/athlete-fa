@@ -196,7 +196,8 @@ class Entry
         if ($recaptchaCheck && isset($arrForm['g-recaptcha-response'])) { 
             $result_message = $objErr->reCAPTCHA($arrForm['g-recaptcha-response']);
             if ($result_message) {
-                $objErr->arrErr['g-recaptcha-response'] = RECAPTCHA_ERRORS . '<br>（code : ' . $result_message . '）';
+                Logs::printLog("reCAPTCHA ERROR : " . $result_message);
+                $objErr->arrErr['g-recaptcha-response'] = RECAPTCHA_ERRORS;
             }
         }
 

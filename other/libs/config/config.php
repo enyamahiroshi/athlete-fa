@@ -11,11 +11,11 @@
  */
 
 /** サイトキー */
-define('GOOGLE_SITE_KEY', '6LfYV1ckAAAAAKl_9OJ7QS64GrERLtxaKetTYo7W');
+define('GOOGLE_SITE_KEY', '6LeMZwspAAAAAKmxmozy2UeNC57XI4U4yDVhzPc3');
 
 
 /** シークレットキー */
-define('GOOGLE_SECRET_KEY', '6LfYV1ckAAAAAOmSjTpvopUyjCfxPpOhJzguAfIS');
+define('GOOGLE_SECRET_KEY', '6LeMZwspAAAAAKiK3ABb_9HHP8b9XkiZlH-mEIEg');
 
 /** リキャプチャーの閾値（0.1〜1.0の間で指定） */
 define('RECAPTCHA_SCL', 0.5);
@@ -25,13 +25,13 @@ define('RECAPTCHA_SCL', 0.5);
  */
 
 /** 送信元メールアドレス */
-define('CONTACT_FROM_MAIL', 'mizuno.rimi@prart.jp');
+define('CONTACT_FROM_MAIL', 'info-jp@athlete-fa.co.jp');
 
 /** メールの差出人名 */
 define('CONTACT_MAIL_SENDER' , 'アスリートFA株式会社');
 
 /** 送信先メールアドレス */
-define('CONTACT_SEND_MAIL', 'mizuno.rimi@prart.jp');
+define('CONTACT_SEND_MAIL', 'info-jp@athlete-fa.co.jp');
 
 /** 返信時のメールアドレス（管理者宛はお客さまメールアドレスとなります） */
 define('CONTACT_REPLY_TO_MAIL', CONTACT_FROM_MAIL);
@@ -39,6 +39,27 @@ define('CONTACT_REPLY_TO_MAIL', CONTACT_FROM_MAIL);
 /** メール件名 */
 define('CONTACT_MAIL_TITLE_USER', 'お問い合わせを受け付けました');
 define('CONTACT_MAIL_TITLE_ADMIN', 'ウェブサイトよりお問い合わせがありました');
+
+
+/**
+ * 英語お問い合わせフォーム設定
+ */
+
+/** 送信元メールアドレス */
+define('CONTACT_EN_FROM_MAIL', 'info-en@athlete-fa.co.jp');
+
+/** メールの差出人名 */
+define('CONTACT_EN_MAIL_SENDER' , 'Athlete FA Corporation');
+
+/** 送信先メールアドレス */
+define('CONTACT_EN_SEND_MAIL', 'info-en@athlete-fa.co.jp');
+
+/** 返信時のメールアドレス（管理者宛はお客さまメールアドレスとなります） */
+define('CONTACT_EN_REPLY_TO_MAIL', 'info-en@athlete-fa.co.jp');
+
+/** メール件名 */
+define('CONTACT_EN_MAIL_TITLE_USER', 'Inquiry Confirmation');
+define('CONTACT_EN_MAIL_TITLE_ADMIN', 'ウェブサイトよりお問い合わせがありました');
 
 
 /**
@@ -52,7 +73,7 @@ define('ENTRY_FROM_MAIL', CONTACT_FROM_MAIL);
 define('ENTRY_MAIL_SENDER' , CONTACT_MAIL_SENDER);
 
 /** 送信先メールアドレス */
-define('ENTRY_SEND_MAIL', 'mizuno.rimi@prart.jp');
+define('ENTRY_SEND_MAIL', 'entry-hp@athlete-fa.co.jp');
 
 /** 返信時のメールアドレス（管理者宛はお客さまメールアドレスとなります） */
 define('ENTRY_REPLY_TO_MAIL', ENTRY_FROM_MAIL);

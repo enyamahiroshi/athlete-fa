@@ -181,8 +181,9 @@ input{
   .checkbox-field {
     // display: block;
     // margin: 1.3em 0 0 10px;
+    margin: 0 20px;
     line-height: 1.7;
-    white-space: nowrap;
+    // white-space: nowrap;
     label {
       position: relative;
       cursor: pointer;
@@ -267,8 +268,9 @@ input{
     }
   }
   .custom-select {
-    color: rgba($textBaseColor, 0.2);
+    // color: rgba($textBaseColor, 0.2);
   }
+
   // セレクトボックスに下矢印をつけるカスタマイズ
   // select の親 に .custom-select を付け足す
   .custom-select {
@@ -451,10 +453,27 @@ input{
   // ---------------------------------------*/
   .button-wrap{
     margin-top: 50px;
+    gap: 0;
+    button{
+      width: 80%;
+      max-width: 456px;
+      &:not(:last-of-type){
+        margin-bottom: 1em;
+      }
+    }
   }
   @include res_min( map-get($BP, md) ) {
     .button-wrap{
       margin-top: 55px;
+      flex-wrap: nowrap;
+      button{
+        &:not(:last-of-type){
+          margin-bottom: 0;
+        }
+      }
+      button + button{
+        margin: 0 10px;
+      }
       .button--gray{
         max-width: 244px;
       }

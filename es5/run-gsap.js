@@ -8,7 +8,7 @@
 let mm = gsap.matchMedia();
 
   //GSAPのレスポンシブ対応(https://enishida-web.com/archives/171)
-  mm.add("(min-width: 768px)", () => {
+  mm.add("(min-width: 1024px)", () => {
 
     gsap.registerPlugin(ScrollTrigger);
     const wrapper = document.querySelector('.horizon-slider-trigger');

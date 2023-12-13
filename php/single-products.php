@@ -44,7 +44,7 @@
 
     <div class="has-column">
       <aside class="side-column side-column--products">
-        <ul class="category-list js-positionNav">
+        <ul class="category-list position-nav js-positionNav">
           <li class="cat-item is-active"><a href="#features">特徴</a></li>
           <li class="cat-item"><a href="#spec">基本仕様</a></li>
         </ul>

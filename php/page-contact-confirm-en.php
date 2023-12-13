@@ -3,7 +3,7 @@
  * From Action
  *
  */
-$objApp = new Contact();
+$objApp = new ContactEng();
 $objApp->confirm();
 add_action('wp_head', function(){
     echo '<style>.u-error{ color: #c80421; display: block;}.u-error__box{ color: #c80421; display: block;}</style>'."\n";
@@ -11,22 +11,22 @@ add_action('wp_head', function(){
 ?>
 <?php get_header("english"); ?>
   <header class="page-header page-header--contact">
-    <h1 class="page-header__title" data-sub="お問い合わせ">Contact</h1>
+    <h1 class="page-header__title" data-sub="">Contact</h1>
   </header>
   <section class="sec sec-medium contact contact-confirm">
 
     <?php //フォームステップ ?>
     <div class="form-step">
-      <div class="form-step__item"><span>1</span>情報入力</div>
-      <div class="form-step__item current"><span>2</span>入力内容の確認</div>
-      <div class="form-step__item"><span>3</span>送信完了</div>
+      <div class="form-step__item"><span>1</span>Enter</div>
+      <div class="form-step__item current"><span>2</span>Verify</div>
+      <div class="form-step__item"><span>3</span>Complete</div>
     </div>
 
     <?php if (!empty($objApp->exceptionErr)): ?>
         <p class="error-text"><?php echo $objApp->exceptionErr; ?></p>
     <?php endif; ?>
 
-    <p class="form-information">入力内容をご確認ください。</p>
+    <p class="form-information">Please confirm the entered infromation</p>
 
     <?php //フォーム ?>
     <form class="form-contents" method="post" action="?">
@@ -35,7 +35,7 @@ add_action('wp_head', function(){
 
       <div class="item">
         <div class="item__label">
-          <label for="kaishamei" class="item__label__name">会社名</label>
+          <label for="kaishamei" class="item__label__name">Company</label>
         </div>
         <div class="item__input">
           <div class="item__input__block">
@@ -46,29 +46,29 @@ add_action('wp_head', function(){
 
       <div class="item">
         <div class="item__label">
-          <label for="onamae" class="item__label__name">お名前</label>
+          <label for="firstname" class="item__label__name">First name</label>
         </div>
         <div class="item__input">
           <div class="item__input__block">
-            <?php esc_html_e($objApp->arrData['onamae'] ?? ''); ?>
+            <?php esc_html_e($objApp->arrData['firstname'] ?? ''); ?>
           </div>
         </div>
       </div>
 
       <div class="item">
         <div class="item__label">
-          <label for="furigana" class="item__label__name">ふりがな</label>
+          <label for="lastname" class="item__label__name">Last name</label>
         </div>
         <div class="item__input">
           <div class="item__input__block">
-            <?php esc_html_e($objApp->arrData['furigana'] ?? ''); ?>
+            <?php esc_html_e($objApp->arrData['lastname'] ?? ''); ?>
           </div>
         </div>
       </div>
 
       <div class="item">
         <div class="item__label">
-          <label for="mailaddress" class="item__label__name">メールアドレス</label>
+          <label for="mailaddress" class="item__label__name">E-mail</label>
         </div>
         <div class="item__input">
           <div class="item__input__block">
@@ -79,7 +79,7 @@ add_action('wp_head', function(){
 
       <div class="item">
         <div class="item__label">
-          <label for="telnum" class="item__label__name">電話番号</label>
+          <label for="telnum" class="item__label__name">Phone number</label>
         </div>
         <div class="item__input">
           <div class="item__input__block">
@@ -90,13 +90,20 @@ add_action('wp_head', function(){
 
       <div class="item">
         <div class="item__label">
-          <label for="zipnum" class="item__label__name">住所</label>
+          <label for="telnum" class="item__label__name">Country</label>
         </div>
         <div class="item__input">
           <div class="item__input__block">
-            <span class="input-separate-text">〒</span>
-            <?php esc_html_e($objApp->arrData['zipnum'] ?? ''); ?>
+            <?php esc_html_e($objApp->arrData['country'] ?? ''); ?>
           </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item__label">
+          <label for="zipnum" class="item__label__name">Address</label>
+        </div>
+        <div class="item__input">
           <div class="item__input__block">
             <?php esc_html_e($objApp->arrData['address'] ?? ''); ?>
           </div>
@@ -105,7 +112,7 @@ add_action('wp_head', function(){
 
       <div class="item">
         <div class="item__label">
-          <label for="naiyo" class="item__label__name">ご相談内容</label>
+          <label for="naiyo" class="item__label__name">Request</label>
         </div>
         <div class="item__input">
           <div class="item__input__block">
@@ -117,8 +124,8 @@ add_action('wp_head', function(){
       </div>
 
       <div class="button-wrap">
-        <button type="button" class="button button--gray" onclick="location.href='<?php echo home_url(CONTACT_INPUT_SLUG); ?>'">入力画面へ戻る</button>
-        <button type="submit" class="button">送信</button>
+        <button type="button" class="button button--gray" onclick="location.href='<?php echo home_url(CONTACT_EN_INPUT_SLUG); ?>'">Go back</button>
+        <button type="submit" class="button">Submit</button>
       </div>
 
     </form>
