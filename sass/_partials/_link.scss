@@ -8,12 +8,10 @@
 a{
   @include transition();
   color: $linkColor;
-  text-decoration: none;
   &:link, &:visited{
     text-decoration: none;
   }
   &:hover, &:active{
-    // opacity: 0.8;
     color: $linkHoverColor;
   }
   // ウェブアイコン使用時

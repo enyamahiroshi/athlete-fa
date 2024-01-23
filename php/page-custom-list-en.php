@@ -31,6 +31,14 @@
         ?>
         <li class="product-list__item">
           <a href="<?php the_permalink(); ?>" class="product-link">
+            <?php //スマホのみ表示するラベル
+            if($termTagTax): ?>
+            <ul class="product-tag product-tag-sp">
+            <?php foreach ($termTagTax as $termTag): ?>
+              <li class="product-tag__name"><?php echo $termTag->name; ?></li>
+            <?php endforeach; ?>
+            </ul>
+            <?php endif; ?>
             <h2 class="product-name"><?php the_title(); ?></h2>
             <div class="product-item-data">
               <figure class="product-item-image">

@@ -62,7 +62,7 @@
             <tr>
               <th>Main customers</th>
               <td>
-                <p><span class="before-disc-item">Domestic</span>Olympus Corporation<br>KYOCERA Corporation<br>DENSO CORPORATION<br>Sony Semiconductor Solutions Corporation<br>TOPPAN Inc<br>NICHIA CORPORATION<br>HAMAMATSU PHOTONICS KOREA CO., LTD.<br>Mitsubishi Electric Corp.<br>Mitsubishi Electric Corp.<br>ROHM Co., Ltd.</p>
+                <p><span class="before-disc-item">Domestic</span>Olympus Corporation<br>KYOCERA Corporation<br>DENSO CORPORATION<br>Sony Semiconductor Solutions Corporation<br>TOPPAN Inc<br>NICHIA CORPORATION<br>HAMAMATSU PHOTONICS KOREA CO., LTD.<br>Mitsubishi Electric Corp.<br>ROHM Co., Ltd.</p>
                 <p><span class="before-disc-item">Overseas</span>Amkor<br>ASE<br>AT&S<br>Infineon Technologies<br>Nanya Technology<br>STATS ChipPAC<br>TSMC<br>Texas Instruments<br>Unimicron</p>
               </td>
             </tr>

@@ -145,7 +145,7 @@ get_header(); ?>
           }
           $args = array(
             'post_type' => 'post',
-            'ignore_sticky_posts' => 1,
+            'ignore_sticky_posts' => 1, //「この投稿を先頭に固定表示」の無効化
             'post__not_in' => get_option('sticky_posts'), // 先頭固定は除外
             'posts_per_page' => $posts_per_page,
             'category_name' => $catSlug,

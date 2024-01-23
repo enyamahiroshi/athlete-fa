@@ -182,6 +182,7 @@
           //     'field' => 'slug',
           //   ),
           // ),
+          'ignore_sticky_posts' => true, //「この投稿を先頭に固定表示」の無効化
           'paged' => $paged,
         );
         ?>

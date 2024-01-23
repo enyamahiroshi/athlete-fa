@@ -478,6 +478,9 @@ $headerHighPC: 127;
       .page-template-tmp-recruit &{
         a{
           color: rgba(#fff, 0.5);
+          &:hover, &:active{
+            color: rgba(#fff, 1);
+          }
         }
         .separate{
           background-color: rgba(#fff, 1);
@@ -703,11 +706,16 @@ $headerHighPC: 127;
     .menu{
       .menu-item{
         //個別に変更
-        .home &,
-        .en[data-flg="en-home"] &,
+        .home &:not(.current_page_item),
+        .en[data-flg="en-home"] &:not(.current_page_item),
         .page-template-tmp-recruit &{
           a{
-            color: rgba($textBaseColor, 1);
+            &:link, &:visited{
+              color: rgba($textBaseColor, 1);
+            }
+            &:hover, &:active{
+              color: rgba($mainColor, 1);
+            }
           }
           //サブメニュー開閉
           &.menu-item-has-children:not(:is(.current-menu-ancestor)){
@@ -751,7 +759,7 @@ $headerHighPC: 127;
             bottom: -25px;
           }
           a{
-            color: $mainColor;
+            color: rgba($mainColor, 1);
           }
         }
       }
@@ -765,6 +773,9 @@ $headerHighPC: 127;
         .page-template-tmp-recruit &{
           a{
             color: rgba($textBaseColor, 0.5);
+            &:hover, &:active{
+              color: rgba($textBaseColor, 1);
+            }
           }
           .separate{
             background-color: rgba($textBaseColor, 1);
@@ -776,7 +787,8 @@ $headerHighPC: 127;
             }
           }
         }
-        .home &{
+        .home &,
+        .page-template-tmp-recruit &{
           .switch-language{
             a.ja{
               color: rgba($textBaseColor, 1);

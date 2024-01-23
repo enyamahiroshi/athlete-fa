@@ -232,7 +232,7 @@
 
     <?php //採用リンクボタン ?>
     <section class="recruit-links">
-      <a href="#" target="_blank" rel="noopener noreferrer" class="recruit-links__button --blank">
+      <a href="https://job.mynavi.jp/24/pc/search/corp91106/outline.html" target="_blank" rel="noopener noreferrer" class="recruit-links__button --blank">
         <span>新卒採用</span>
         <div class="button-mynavi"></div>
       </a>
@@ -305,6 +305,7 @@
           'post_type' => 'post',
           'posts_per_page' => '3',
           // 'category_name' => 'cat_slug',
+          'ignore_sticky_posts' => 1, //「この投稿を先頭に固定表示」の無効化 //「この投稿を先頭に固定表示」の無効化
         );
         get_template_part( 'block/post_list', null, $args );
         ?>

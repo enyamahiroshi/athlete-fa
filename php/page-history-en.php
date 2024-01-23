@@ -39,7 +39,7 @@
             </dd>
             <dt>1992</dt>
             <dd>
-              <p>Chip bonder for communications LED launched<br>Man-machine visual interface "MAT" developed<br>Cell PCB automatic soldering line (MTB-400) sold outside　for the first time in industry</p>
+              <p>Chip bonder for communications LED launched<br>Man-machine visual interface "MAT" developed<br>Cell PCB automatic soldering line (MTB-400) sold outside for the first time in industry</p>
             </dd>
             <dt>1993</dt>
             <dd>

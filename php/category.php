@@ -14,6 +14,7 @@
             'use_desc_for_title' => 0,
             'title_li'           => '',
             'taxonomy'           => 'category',
+            'ignore_sticky_posts' => 1, //「この投稿を先頭に固定表示」の無効化
           );
           wp_list_categories( $args );
           ?>

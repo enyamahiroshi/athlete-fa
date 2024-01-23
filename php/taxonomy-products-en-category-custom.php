@@ -111,7 +111,7 @@
         <div id="case" class="custom-case js-positionNav-target">
           <h2 class="title05">Custom Cases</h2>
         <?php if( have_posts() ): ?>
-          <ul class="product-list">
+          <ul class="product-list --custom">
             <?php while( have_posts() ): the_post(); ?>
             <?php
             //カスタム投稿タイプのタクソノミーからタームを抽出
@@ -122,6 +122,14 @@
 
             <li class="product-list__item">
               <a href="<?php the_permalink(); ?>" class="product-link">
+                <?php //スマホのみ表示するラベル
+                if($termTagTax): ?>
+                <ul class="product-tag product-tag-sp">
+                <?php foreach ($termTagTax as $termTag): ?>
+                  <li class="product-tag__name"><?php echo $termTag->name; ?></li>
+                <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
                 <h2 class="product-name"><?php the_title(); ?></h2>
                 <div class="product-item-data">
                   <figure class="product-item-image">
@@ -129,7 +137,7 @@
                     if($mainImg){
                       echo wp_get_attachment_image($mainImg, 'full');
                     } else {
-                      echo '<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/no-image.png" alt="" width="1840" height="1226">';
+                      echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/common/no-image.png" alt="" width="1840" height="1226">';
                     }
                     ?>
                   </figure>

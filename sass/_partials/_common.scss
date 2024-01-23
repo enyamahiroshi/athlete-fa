@@ -90,6 +90,8 @@ body.js-page-loading::after {
 //ページごとに背景色を変える
 .archive:not(:is(.category, .term-custom, .news-en, .tax-news-en-category)),
 .recruit.entry,
+.entry.entry-confirm,
+.entry.entry-complete,
 .custom-list,
 .custom-list-en,
 .contact,
@@ -173,13 +175,16 @@ body.js-page-loading::after {
     //個別：製品情報詳細
     &.main-column--products-singular{
       // padding-top: 30px;
+
     }
-    .button-wrap:last-child{
+    .button-wrap:last-of-type{
       margin-top: 60px;
       @include res_min( map-get($BP, lg) ){
-        margin: 100px auto;
+        margin-top: 100px;
+        margin-bottom: 100px;
         @include res_min( map-get($BP, xl) ){
-          margin: 140px auto;
+          margin-top: 120px;
+          margin-bottom: 120px;
         }
       }
     }

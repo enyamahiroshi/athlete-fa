@@ -85,7 +85,7 @@
 
         <div id="environmental" class="cont js-positionNav-target">
           <h2 class="title05">Environment Policies</h2>
-          <p>Environmental Policies:<br>Athlete FA Corporation, in the development, design, manufacturing, and sales of automation and labor-saving equipment, is committed to pursuing harmony between corporate activities and the Earth's environment. We actively strive for the effective use of resources and the prevention of environmental pollution, fulfilling our role as responsible corporate citizens.</p>
+          <p>Athlete FA Corporation, in the development, design, manufacturing, and sales of automation and labor-saving equipment, is committed to pursuing harmony between corporate activities and the Earth's environment. We actively strive for the effective use of resources and the prevention of environmental pollution, fulfilling our role as responsible corporate citizens.</p>
           <ul class="ordered-list">
             <li>We will establish environmental goals within technically and economically feasible limits and continuously improve environmental impacts. Specifically, we are committed to resource conservation, energy savings, and comprehensive waste separation and discharge efforts across the entire organization. Additionally, we focus on the development and manufacturing of environmentally friendly products.</li>
             <li>We will fulfill compliance obligations related to the environment and endeavor to prevent pollution.</li>

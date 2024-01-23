@@ -73,17 +73,16 @@
   }
 
   // リンク
-  // a{
-  //   &:link,
-  //   &:visited{
-  //     color: $linkColor;
-  //     text-decoration: underline;
-  //   }
-  //   &:hover,
-  //   &:active{
-  //     opacity: 0.8;
-  //   }
-  // }
+  a{
+    &:link,
+    &:visited{
+      border-bottom: 1px solid rgba($mainColor, 0);
+    }
+    &:hover,
+    &:active{
+      border-bottom-color: rgba($mainColor, 1);
+    }
+  }
 
   // 画像
   // img{
