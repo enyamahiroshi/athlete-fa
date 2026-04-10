@@ -7,6 +7,7 @@
 
     <section class="sec sec-medium">
     <?php
+    $paged = max(1, get_query_var('paged'), get_query_var('page'));
     $args = array(
       'post_type' => 'products-en',
       'posts_per_page' => 30,
