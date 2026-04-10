@@ -91,42 +91,22 @@ class Utils
      */
     public static function mbWordwrap($string, $width = 75, $break = "\n", $cut = true)
     {
-
-        $return = '';
-
-        $texts = preg_split("/\r\n|\r|\n/", $string);
-        if (empty($texts)) {
-            return $return;
-        }
-
         if (!$cut) {
             $regexp = '#^(?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){'.$width.',}\b#U';
         } else {
             $regexp = '#^(?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){'.$width.'}#';
         }
-
-        foreach ($texts as $line => $text) {
-
-            $textLength = mb_strlen($text, 'UTF-8');
-
-            if ($width < $textLength) {
-
-                $length = ceil($textLength / $width);
-
-                $i = 1;
-                while ($i < $length) {
-                    preg_match($regexp, $text, $matches);
-                    $_text = $matches[0];
-                    $return .= $_text . $break;
-                    $text = substr($text, strlen($_text));
-                    $i++;
-                }
-                $return .= $text . $break;
-            } else {
-                $return .= $text . $break;
-            }
+        $string_length = mb_strlen($string,'UTF-8');
+        $cut_length = ceil($string_length / $width);
+        $i = 1;
+        $return = '';
+        while ($i < $cut_length) {
+            preg_match($regexp, $string,$matches);
+            $new_string = $matches[0];
+            $return .= $new_string.$break;
+            $string = substr($string, strlen($new_string));
+            $i++;
         }
-
-        return $return;
+        return $return.$string;
     }
 }

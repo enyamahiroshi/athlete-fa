@@ -232,7 +232,7 @@
 
     <?php //採用リンクボタン ?>
     <section class="recruit-links">
-      <a href="https://job.mynavi.jp/24/pc/search/corp91106/outline.html" target="_blank" rel="noopener noreferrer" class="recruit-links__button --blank">
+      <a href="https://job.mynavi.jp/26/pc/search/corp91106/outline.html" target="_blank" rel="noopener noreferrer" class="recruit-links__button --blank">
         <span>新卒採用</span>
         <div class="button-mynavi"></div>
       </a>

@@ -21,7 +21,7 @@
         <div id="features" class="custom-features js-positionNav-target">
           <div class="features__data">
             <h2 class="title05">サービスの特徴</h2>
-            <p>アスリートFAのカスタム装置はお客様の「欲しい」を実現します。長年に渡り培ってきた要素技術の組み合わせが、お客様の想定したプロセスに対し、技術的裏付けのある最適な装置提案を可能とします。また、各案件ごとにプロジェクトチームを編成し、仕様詰めから納入、アフターフォローにいたるまで一貫サポート致します。</p>
+            <p>アスリートFAのカスタム装置はお客様の「欲しい」を実現します。長年にわたり培ってきた要素技術の組み合わせが、お客様の想定したプロセスに対し、技術的裏付けのある最適な装置提案を可能とします。また、各案件ごとにプロジェクトチームを編成し、仕様詰めから納入、アフターフォローにいたるまで一貫サポート致します。</p>
           </div>
           <figure class="features__image">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/products/term-custom/img-custom-feature-image.png" alt="サービスの特徴:イメージ" width="529" height="525">

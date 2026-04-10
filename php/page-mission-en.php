@@ -53,7 +53,7 @@
           <p class="philosophy-text">We at Athlete FA create <span>"Future Arts"</span></p>
         </div>
 
-        <div id="policy" class="cont js-positionNav-target">
+        <div id="policy" class="cont js-positionNav-target policy-management">
           <h2 class="title05">Management Policies</h2>
           <p class="policy-intro">To aspire to the creation of Future Arts, we have established the following principles:</p>
           <dl class="policy-list">

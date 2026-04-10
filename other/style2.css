@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.policy-management .policy-list dt {
+  counter-increment: cntnum;
+}
+
+.policy-management .policy-list dt:before {
+  content: counter(cntnum) ".";
+}

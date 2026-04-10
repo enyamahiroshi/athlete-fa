@@ -13,6 +13,7 @@
   <meta name="format-detection" content="telephone=no">
   <title><?php bloginfo('name'); wp_title('|', true, 'left'); ?></title>
   <?php wp_head(); ?>
+  <link rel='stylesheet' id='style-css' href='https://www.athlete-fa.jp/wp-content/themes/athletefa/style2.css' type='text/css' media='all' />
   <script type="text/javascript">window.onunload = function(){};</script>
 </head>
 <body id="top" <?php body_class(); ?><?php if(is_page('en')){ echo 'data-flg="en-home"'; }?>>
