@@ -22,13 +22,6 @@
 
       <section class="main-column">
         <?php
-        $args = array(
-          'posts_per_page' => 10,
-          'ignore_sticky_posts' => 1, //「この投稿を先頭に固定表示」の無効化
-          'paged' => $paged,
-        );
-        $the_query = new WP_Query( $args );?>
-        <?php
         if( have_posts() ):
         ?>
         <ul class="post-list">

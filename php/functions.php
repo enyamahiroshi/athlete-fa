@@ -1,9 +1,9 @@
 <?php
-get_template_part( 'setting/custom-post-type' );
-get_template_part( 'setting/system' );
-get_template_part( 'setting/menu' );
-get_template_part( 'setting/include_files' );
-get_template_part( 'setting/customize-plugins' );
+get_template_part('setting/custom-post-type');
+get_template_part('setting/system');
+get_template_part('setting/menu');
+get_template_part('setting/include_files');
+get_template_part('setting/customize-plugins');
 
 /* -------------------------------------------------------------
 //  メインループの表示件数を制御
@@ -11,9 +11,12 @@ get_template_part( 'setting/customize-plugins' );
 // 表示件数制御
 // -1ですべて表示
 
-function my_pre_get_posts( $query ) {
+function my_pre_get_posts($query)
+{
 
-  if(is_admin() || ! $query -> is_main_query()) { return; } //ダッシュボードはスルー
+  if (is_admin() || ! $query->is_main_query()) {
+    return;
+  } //ダッシュボードはスルー
 
   // //フロントページ
   // if($query -> is_front_page()) {
@@ -63,73 +66,103 @@ function my_pre_get_posts( $query ) {
   //   return;
   // }
   //カスタムタクソノミーのアーカイブ
-  if($query -> is_tax( 'products-category', 'custom' )){ //カテゴリー：カスタムのみ
-    $query -> set('posts_per_page', 12); //表示件数
-    $query -> set('order', 'ASC'); //ASC:昇順, DESC:降順
-    $query -> set('orderby', 'menu_order'); //menu_order: 管理画面上の表示順（並び替えプラグインなどで使われる値）
+  if ($query->is_tax('products-category', 'custom')) { //カテゴリー：カスタムのみ
+    $query->set('posts_per_page', 12); //表示件数
+    $query->set('order', 'ASC'); //ASC:昇順, DESC:降順
+    $query->set('orderby', 'menu_order'); //menu_order: 管理画面上の表示順（並び替えプラグインなどで使われる値）
     return;
   }
-  if($query -> is_tax( 'products-en-category', 'custom' )){ //カテゴリー：カスタムのみ
-    $query -> set('posts_per_page', 12); //表示件数
-    $query -> set('order', 'ASC'); //ASC:昇順, DESC:降順
-    $query -> set('orderby', 'menu_order'); //menu_order: 管理画面上の表示順（並び替えプラグインなどで使われる値）
+  if ($query->is_tax('products-en-category', 'custom')) { //カテゴリー：カスタムのみ
+    $query->set('posts_per_page', 12); //表示件数
+    $query->set('order', 'ASC'); //ASC:昇順, DESC:降順
+    $query->set('orderby', 'menu_order'); //menu_order: 管理画面上の表示順（並び替えプラグインなどで使われる値）
     return;
   }
-  if($query -> is_tax( array('products-category', 'products-en-category') )){
-    $query -> set('posts_per_page', 30); //表示件数
-    $query -> set('order', 'ASC'); //ASC:昇順, DESC:降順
-    $query -> set('orderby', 'menu_order'); //menu_order: 管理画面上の表示順（並び替えプラグインなどで使われる値）
+  if ($query->is_tax(array('products-category', 'products-en-category'))) {
+    $query->set('posts_per_page', 30); //表示件数
+    $query->set('order', 'ASC'); //ASC:昇順, DESC:降順
+    $query->set('orderby', 'menu_order'); //menu_order: 管理画面上の表示順（並び替えプラグインなどで使われる値）
     return;
   }
 }
-add_action('pre_get_posts','my_pre_get_posts');
+add_action('pre_get_posts', 'my_pre_get_posts');
+
+/* -------------------------------------------------------------
+// newsカテゴリーページネーションの rewrite 補強
+// ------------------------------------------------------------*/
+function add_news_category_pagination_rewrite_rules()
+{
+  add_rewrite_rule(
+    '^news/([^/]+)/page/?([0-9]{1,})/?$',
+    'index.php?category_name=$matches[1]&paged=$matches[2]',
+    'top'
+  );
+  add_rewrite_rule(
+    '^news/([^/]+)/?$',
+    'index.php?category_name=$matches[1]',
+    'top'
+  );
+  add_rewrite_rule(
+    '^en/news-en/([^/]+)/page/?([0-9]{1,})/?$',
+    'index.php?news-en-category=$matches[1]&paged=$matches[2]',
+    'top'
+  );
+  add_rewrite_rule(
+    '^en/news-en/([^/]+)/?$',
+    'index.php?news-en-category=$matches[1]',
+    'top'
+  );
+}
+add_action('init', 'add_news_category_pagination_rewrite_rules');
 
 /* -------------------------------------------------------------
 // ページネーション
 // ------------------------------------------------------------*/
 // the_posts_pagination で吐き出すページネーションの整形
-function cut_screen_reader_text($template) {
-	$template = '
+function cut_screen_reader_text($template)
+{
+  $template = '
 		<nav class="navigation %1$s">
 			<div class="nav-links">%3$s</div>
 		</nav>';
-	return $template;
+  return $template;
 }
 add_filter('navigation_markup_template', 'cut_screen_reader_text');
 
 /* -------------------------------------------------------------
 // body_class
 // ------------------------------------------------------------*/
-add_filter('body_class','add_posttype_classes');
-function add_posttype_classes( $classes ) {
+add_filter('body_class', 'add_posttype_classes');
+function add_posttype_classes($classes)
+{
   $posType = get_query_var('post_type');
   $classes[] = $posType;
-  if( !$posType === "" ){
+  if (!$posType === "") {
     $m_key = array_search('home', $classes);
     unset($classes[${'m_key'}]);
-  } elseif( is_singular('products') ) {
+  } elseif (is_singular('products')) {
     global $post;
     $taxonomy_terms = get_the_terms($post->ID, 'products-category'); //タクソノミーを指定
-    if ( $taxonomy_terms ) {
-      foreach ( $taxonomy_terms as $taxonomy_term ) {
-      $classes[] = 'term-'. $taxonomy_term->slug;
+    if ($taxonomy_terms) {
+      foreach ($taxonomy_terms as $taxonomy_term) {
+        $classes[] = 'term-' . $taxonomy_term->slug;
       }
     }
-  } elseif ( is_page() ) {
-    $page = get_post( get_the_ID() );
+  } elseif (is_page()) {
+    $page = get_post(get_the_ID());
     $classes[] = $page->post_name;
     $parent_id = $page->post_parent;
-    if ( 0 == $parent_id ) {
+    if (0 == $parent_id) {
       $classes[] = get_post($parent_id)->post_name;
     } else {
       // $progenitor_id = array_pop( get_ancestors( $page->ID, 'page', 'post_type' ) );
       // $classes[] = get_post($progenitor_id)->post_name . '-child';
       $classes[] = get_post($parent_id)->post_name;
     }
-  } elseif ( is_single() || is_singular() ) {
-    $terms = get_the_terms( get_the_ID(), get_query_var('taxonomy') );
-    if ( $terms ) {
-      foreach ( $terms as $term ) {
+  } elseif (is_single() || is_singular()) {
+    $terms = get_the_terms(get_the_ID(), get_query_var('taxonomy'));
+    if ($terms) {
+      foreach ($terms as $term) {
         $classes[] = 'term-' . $term->slug;
       }
     }
@@ -142,19 +175,22 @@ function add_posttype_classes( $classes ) {
 /* -------------------------------------------------------------
 // previous_post_link() と next_post_link() にクラス付加
 // ------------------------------------------------------------*/
-add_filter( 'previous_post_link', 'add_prev_post_link_class' );
-function add_prev_post_link_class($output) {
+add_filter('previous_post_link', 'add_prev_post_link_class');
+function add_prev_post_link_class($output)
+{
   return str_replace('<a href=', '<a class="prev-link" href=', $output);
 }
-add_filter( 'next_post_link', 'add_next_post_link_class' );
-function add_next_post_link_class($output) {
+add_filter('next_post_link', 'add_next_post_link_class');
+function add_next_post_link_class($output)
+{
   return str_replace('<a href=', '<a class="next-link" href=', $output);
 }
 
 /* -------------------------------------------------------------
 // 親ページのスラッグを取得 (条件武器で is_parent_slug('xxx') 使用)
 // ------------------------------------------------------------*/
-function is_parent_slug() {
+function is_parent_slug()
+{
   global $post;
   if ($post->post_parent) {
     $post_data = get_post($post->post_parent);
@@ -169,7 +205,8 @@ function is_parent_slug() {
 add_theme_support('menus');
 
 // li から ID を削除する
-function removeId( $id ){
+function removeId($id)
+{
   return $id = array();
 }
 add_filter('nav_menu_item_id', 'removeId', 10);
@@ -177,24 +214,25 @@ add_filter('nav_menu_item_id', 'removeId', 10);
 /* -------------------------------------------------------------
 // 標準ギャラリーのCSSを停止
 // ------------------------------------------------------------*/
-add_filter( 'use_default_gallery_style', '__return_false' );
+add_filter('use_default_gallery_style', '__return_false');
 
 /* -------------------------------------------------------------
 // アイキャッチの設定
 // ------------------------------------------------------------*/
 // アイキャッチを有効にする
-add_theme_support( 'post-thumbnails' );
+add_theme_support('post-thumbnails');
 // アイキャッチの基本サイズ設定
-set_post_thumbnail_size(300, 300, false) ;
+set_post_thumbnail_size(300, 300, false);
 
 /* -------------------------------------------------------------
 //  記事作成後にカテゴリーの構造を保つようにする
 // ------------------------------------------------------------*/
-function lig_wp_category_terms_checklist_no_top( $args, $post_id = null ) {
+function lig_wp_category_terms_checklist_no_top($args, $post_id = null)
+{
   $args['checked_ontop'] = false;
   return $args;
 }
-add_action( 'wp_terms_checklist_args', 'lig_wp_category_terms_checklist_no_top' );
+add_action('wp_terms_checklist_args', 'lig_wp_category_terms_checklist_no_top');
 
 /** Form related */
-require_once (realpath(dirname(__FILE__) . '/libs/require.php'));
+require_once(realpath(dirname(__FILE__) . '/libs/require.php'));
